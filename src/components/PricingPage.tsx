@@ -1,0 +1,387 @@
+import React, { useState } from 'react';
+import { 
+  Check, X, Sparkles, HelpCircle, ArrowRight, ShieldCheck, 
+  Flame, CheckCircle2, ChevronDown, MessageSquare, ChevronRight
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+
+// Transparent billing toggle state
+type BillingCycle = 'monthly' | 'annual';
+
+interface PricingPlan {
+  name: string;
+  priceMonthly: number;
+  priceAnnual: number;
+  description: string;
+  ctaText: string;
+  features: string[];
+  popular: boolean;
+  tier: 'starter' | 'growth' | 'enterprise';
+}
+
+const PLANS: PricingPlan[] = [
+  {
+    name: 'Lite',
+    priceMonthly: 0,
+    priceAnnual: 0,
+    description: 'For small teams exploring organic advocacy channels.',
+    ctaText: 'Start for Free',
+    popular: false,
+    tier: 'starter',
+    features: [
+      'Up to 10 active advocates',
+      '1 slack channel integration',
+      'Standard campaign presets',
+      'Basic click-through tracking',
+      'Standard community support'
+    ]
+  },
+  {
+    name: 'Premium',
+    priceMonthly: -2, // flag for walkthrough required
+    priceAnnual: -2,
+    description: 'For scaling companies driving network distribution.',
+    ctaText: 'Request Live Demo',
+    popular: true,
+    tier: 'growth',
+    features: [
+      'Up to 100 active advocates',
+      'Unlimited slack/teams sync channels',
+      'Custom campaign post editor',
+      'Dynamic teammate leaderboards',
+      'Starbucks & Hoodie gamification claims',
+      'Priority email support (24hr SLA)'
+    ]
+  },
+  {
+    name: 'Agency',
+    priceMonthly: -1, // custom
+    priceAnnual: -1,
+    description: 'For global brands requiring custom compliance controls.',
+    ctaText: 'Contact Sales',
+    popular: false,
+    tier: 'enterprise',
+    features: [
+      'Unlimited active advocates',
+      'Dedicated timing dispatcher node',
+      'Lexical compliance regex filters',
+      'Custom OAuth app credential vaults',
+      'SOC2 Type II audit logs feed',
+      '99.9% API uptime SLA',
+      'Dedicated Account Manager'
+    ]
+  }
+];
+
+const COMPARISON_CATEGORIES = [
+  {
+    name: 'Advocate Management',
+    features: [
+      { name: 'Active advocates limit', starter: '10 users', growth: '100 users', enterprise: 'Unlimited' },
+      { name: 'Self-serve onboarding link', starter: true, growth: true, enterprise: true },
+      { name: 'Custom credentials & titles', starter: false, growth: true, enterprise: true },
+      { name: 'Advocate segments & cohorts', starter: false, growth: false, enterprise: true }
+    ]
+  },
+  {
+    name: 'Campaign & Customization',
+    features: [
+      { name: 'Campaign presets templates', starter: 'Standard', growth: 'Unlimited', enterprise: 'Unlimited' },
+      { name: 'Dynamic mobile post editor', starter: true, growth: true, enterprise: true },
+      { name: 'Custom image & link card attachment', starter: false, growth: true, enterprise: true },
+      { name: 'Lexical compliance regex filter', starter: false, growth: false, enterprise: true },
+      { name: 'White-labeling', starter: false, growth: false, enterprise: true }
+    ]
+  },
+  {
+    name: 'Analytics & Rewards',
+    features: [
+      { name: 'Click-through & reach tracking', starter: 'Basic', growth: 'Advanced (Real-time)', enterprise: 'Custom Ledger' },
+      { name: 'Leaderboard score standings', starter: false, growth: true, enterprise: true },
+      { name: 'Gamified rewards & claims', starter: false, growth: true, enterprise: true },
+      { name: 'Equivalent Advertising Value reports', starter: false, growth: true, enterprise: true },
+      { name: 'CSV & PDF data exports', starter: false, growth: true, enterprise: true }
+    ]
+  },
+  {
+    name: 'Security & Trust',
+    features: [
+      { name: 'Slack & Teams OAuth vault', starter: 'Standard', growth: 'Scoped Vault', enterprise: 'Dedicated App Vault' },
+      { name: 'SOC 2 Type II audit compliance', starter: false, growth: true, enterprise: true },
+      { name: 'Uptime SLA', starter: 'Best effort', growth: '99.5% SLA', enterprise: '99.99% SLA' },
+      { name: 'Single Sign-On (SSO / SAML)', starter: false, growth: false, enterprise: true }
+    ]
+  }
+];
+
+const PRICING_FAQS = [
+  {
+    q: 'How do you define an "active advocate"?',
+    a: 'An active advocate is any team member, employee, or external partner who joins your Wozku workspace and shares at least one campaign preset during a calendar month. Inactive accounts do not count toward your tier limits.'
+  },
+  {
+    q: 'Can we upgrade or downgrade our plan later?',
+    a: 'Yes, you can upgrade, downgrade, or cancel your subscription at any time. When upgrading, changes apply immediately, and we will prorate the price for the remainder of the billing cycle.'
+  },
+  {
+    q: 'What is Equivalent Advertising Value (EAV)?',
+    a: 'EAV is a financial metric that compares the organic clicks and impressions generated by your advocates against what you would have spent buying that same traffic volume via paid ads (e.g. LinkedIn Sponsored Posts). The metrics are updated in real-time.'
+  },
+  {
+    q: 'Do you offer custom pricing for non-profit organizations?',
+    a: 'Yes! We offer a 30% discount on our Growth tier for registered non-profit organizations and educational communities. Contact our billing team to apply the discount.'
+  }
+];
+
+export default function PricingPage() {
+  const [selectedTier, setSelectedTier] = useState<string>('Premium');
+  const [expandedFaqIndex, setExpandedFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setExpandedFaqIndex(expandedFaqIndex === index ? null : index);
+  };
+
+  return (
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-indigo-500/10 selection:text-indigo-900 relative overflow-hidden">
+      
+      {/* Background radial glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--indigo-500) 6%, transparent), transparent 60%)' }} />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header Block */}
+        <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-650 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-500" /> Wozku Plans
+          </span>
+          <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
+            Transparent, Scale-Ready Pricing
+          </h1>
+          <p className="text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl mx-auto">
+            Choose the plan that fits your advocate network size. Start driving organic reach and tracking revenue attribution today.
+          </p>
+        </div>
+
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-24 max-w-6xl mx-auto">
+          {PLANS.map((plan) => {
+            const price = plan.name === 'Lite' ? 0 : plan.name === 'Agency' ? -1 : -2;
+            const isSelected = plan.name === selectedTier;
+            
+            return (
+              <div
+                key={plan.name}
+                onClick={() => setSelectedTier(plan.name)}
+                className={`bg-white border rounded-3xl p-6 flex flex-col justify-between relative shadow-xs transition-all duration-300 cursor-pointer ${
+                  isSelected 
+                    ? 'border-indigo-600 ring-2 ring-indigo-500/20 scale-[1.03] md:scale-[1.04]' 
+                    : 'border-slate-200 hover:border-slate-350 hover:scale-[1.01]'
+                }`}
+              >
+                {isSelected && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-mono text-[9px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-xs flex items-center gap-1.5">
+                    {plan.name === 'Premium' ? (
+                      <>
+                        <Flame className="w-3.5 h-3.5 text-indigo-300 fill-indigo-300 animate-pulse" /> MOST POPULAR
+                      </>
+                    ) : (
+                      'SELECTED'
+                    )}
+                  </div>
+                )}
+
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <h3 className="text-lg font-bold text-neutral-900">{plan.name}</h3>
+                    <p className="text-[11px] text-slate-500 leading-relaxed font-medium min-h-[36px]">{plan.description}</p>
+                  </div>
+
+                  <hr className="border-slate-100" />
+
+                  {/* Price display */}
+                  <div className="min-h-[50px] flex items-baseline">
+                    {price === -1 ? (
+                      <span className="text-3xl font-display font-black text-neutral-900 tracking-tight">Custom</span>
+                    ) : price === -2 ? (
+                      <span className="text-2xl font-display font-black text-neutral-900 tracking-tight">Walkthrough Required</span>
+                    ) : (
+                      <>
+                        <span className="text-4xl font-display font-black text-neutral-900 tracking-tight">${price}</span>
+                        <span className="text-xs font-semibold text-slate-500 ml-1">/ month</span>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Plan features check list */}
+                  <ul className="space-y-3 pt-2">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-2.5 text-xs text-slate-600 font-sans font-medium">
+                        <Check className="w-4 h-4 text-indigo-600 shrink-0 stroke-[3] mt-0.5" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-8">
+                  <button
+                    onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+                    className={`w-full font-bold py-3.5 px-6 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 text-xs ${
+                      isSelected
+                        ? 'bg-indigo-600 hover:bg-indigo-500 text-fixed-white shadow-md shadow-indigo-500/20'
+                        : 'bg-[#141418] hover:bg-[#181b22] text-fixed-white border border-fixed-white/10 shadow-black/20'
+                    }`}
+                  >
+                    <span>{plan.ctaText}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                  {plan.tier === 'growth' ? (
+                    <span className="text-[10px] text-indigo-600 font-bold block text-center mt-2.5">
+                      Live Walkthrough + Best Practice Setup
+                    </span>
+                  ) : plan.tier === 'starter' && (
+                    <span className="text-[10px] text-slate-400 block text-center mt-2.5">
+                      No credit card required. Cancel anytime.
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Detailed Feature Comparison Section */}
+        <div className="mb-24 max-w-5xl mx-auto">
+          <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
+            <h2 className="text-2xl font-display font-extrabold text-neutral-900 tracking-tight">Full Features Comparison</h2>
+            <p className="text-xs text-neutral-500 leading-relaxed font-sans">
+              Compare plan details across security capabilities, tracking levels, and developer assets.
+            </p>
+          </div>
+
+          <div className="bg-white border border-slate-200 rounded-[2rem] overflow-hidden shadow-xs">
+            <table className="w-full border-collapse text-left text-xs font-sans">
+              <thead>
+                <tr className="bg-neutral-50 border-b border-slate-200">
+                  <th className="p-4 sm:p-5 font-mono font-bold text-neutral-400 uppercase tracking-widest text-[9px] w-1/2 sm:w-2/5">Feature Category</th>
+                  <th className="p-4 sm:p-5 font-bold text-neutral-900 w-1/6">Lite</th>
+                  <th className="p-4 sm:p-5 font-bold text-indigo-700 w-1/6">Premium</th>
+                  <th className="p-4 sm:p-5 font-bold text-neutral-900 w-1/6">Agency</th>
+                </tr>
+              </thead>
+              <tbody>
+                {COMPARISON_CATEGORIES.map((category) => (
+                  <React.Fragment key={category.name}>
+                    {/* Category Title Row */}
+                    <tr className="bg-slate-50/50 border-b border-slate-100 font-bold text-slate-800 font-sans">
+                      <td colSpan={4} className="px-5 py-3 text-[10.5px] tracking-wide uppercase">
+                        {category.name}
+                      </td>
+                    </tr>
+                    {category.features.map((row) => (
+                      <tr key={row.name} className="border-b border-slate-100 hover:bg-slate-50/30 transition-colors">
+                        <td className="px-5 py-3.5 text-slate-700 font-medium">{row.name}</td>
+                        <td className="px-5 py-3.5 text-slate-500">
+                          {typeof row.starter === 'boolean' ? (
+                            row.starter ? <Check className="w-4 h-4 text-slate-400 stroke-[3]" /> : <X className="w-4 h-4 text-slate-300" />
+                          ) : (
+                            row.starter
+                          )}
+                        </td>
+                        <td className="px-5 py-3.5 text-indigo-700 font-semibold">
+                          {typeof row.growth === 'boolean' ? (
+                            row.growth ? <Check className="w-4 h-4 text-indigo-600 stroke-[3]" /> : <X className="w-4 h-4 text-slate-300" />
+                          ) : (
+                            row.growth
+                          )}
+                        </td>
+                        <td className="px-5 py-3.5 text-slate-900 font-medium">
+                          {typeof row.enterprise === 'boolean' ? (
+                            row.enterprise ? <Check className="w-4 h-4 text-slate-700 stroke-[3]" /> : <X className="w-4 h-4 text-slate-350" />
+                          ) : (
+                            row.enterprise
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Pinned FAQ Section */}
+        <div className="max-w-4xl mx-auto mb-24 space-y-12">
+          <div className="text-center max-w-xl mx-auto space-y-2">
+            <h2 className="text-2xl font-display font-extrabold text-neutral-900 tracking-tight">Billing & Setup FAQs</h2>
+            <p className="text-xs text-neutral-500 font-sans">Got questions about billing, invoices, or team scaling? We have answers.</p>
+          </div>
+
+          <div className="space-y-3">
+            {PRICING_FAQS.map((faq, index) => {
+              const isExpanded = expandedFaqIndex === index;
+              return (
+                <div 
+                  key={index} 
+                  className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs transition-all duration-300"
+                >
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-center justify-between p-5 text-left font-sans font-bold text-xs text-slate-900 hover:text-indigo-600 cursor-pointer"
+                  >
+                    <span>{faq.q}</span>
+                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-indigo-600' : ''}`} />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                      >
+                        <div className="px-5 pb-5 pt-1 text-[11px] text-slate-500 leading-relaxed font-sans font-medium border-t border-slate-100/50">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Pinned Dark Footer CTA */}
+        <div className="bg-[#09090f] text-fixed-white rounded-[2.5rem] p-8 sm:p-12 border border-fixed-white/10 shadow-2xl relative overflow-hidden text-center max-w-5xl mx-auto">
+          {/* Subtle decoration vector */}
+          <div className="absolute inset-0 bg-grid-dots-accent opacity-15 pointer-events-none" />
+          <div className="absolute top-0 right-0 h-40 w-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="max-w-2xl mx-auto space-y-6 relative z-10">
+            <span className="inline-flex items-center gap-1.5 text-[8.5px] uppercase font-mono tracking-widest text-indigo-400 font-extrabold bg-indigo-950 border border-indigo-900/50 px-3.5 py-1 rounded-full">
+              <MessageSquare className="w-3.5 h-3.5" /> Direct Support Routing
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-fixed-white">
+              Need a Custom Campaign Plan?
+            </h2>
+            <p className="text-xs text-fixed-light leading-relaxed font-sans max-w-md mx-auto">
+              Our growth specialists can configure dedicated timing networks and ledger setups tailored to your corporate organization footprint.
+            </p>
+            <div className="pt-2 flex flex-wrap justify-center items-center gap-3 text-xs">
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+                className="bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-indigo-500/20"
+              >
+                Schedule Architecture Consultation
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  );
+}

@@ -1,0 +1,430 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-brand-primary: #1A1A1B;
+  --color-brand-accent: #6B6B6B;
+  --color-brand-purple: #10b981;
+
+  /* Fixed colors for surfaces that intentionally remain dark in every theme. */
+  --color-fixed-white: #ffffff;
+  --color-fixed-light: #c7c7d1;
+  --color-fixed-muted: #9696a3;
+  --color-fixed-dark: #141418;
+
+  /* Dynamically map core Tailwind colors to CSS properties for instant Dark Mode */
+  --color-white: var(--bg-white);
+  --color-card-accent: var(--bg-card-accent);
+  
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-150: var(--neutral-200);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-850: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+
+  --color-slate-50: var(--neutral-50);
+  --color-slate-100: var(--neutral-100);
+  --color-slate-200: var(--neutral-200);
+  --color-slate-300: var(--neutral-300);
+  --color-slate-400: var(--neutral-400);
+  --color-slate-500: var(--neutral-500);
+  --color-slate-600: var(--neutral-600);
+  --color-slate-700: var(--neutral-700);
+  --color-slate-800: var(--neutral-800);
+  --color-slate-900: var(--neutral-900);
+  --color-slate-950: var(--neutral-950);
+
+  /* Map Indigo scale to dynamic CSS properties for Theme Switcher options */
+  --color-indigo-50: var(--indigo-50);
+  --color-indigo-100: var(--indigo-100);
+  --color-indigo-200: var(--indigo-200);
+  --color-indigo-300: var(--indigo-300);
+  --color-indigo-400: var(--indigo-400);
+  --color-indigo-500: var(--indigo-500);
+  --color-indigo-600: var(--indigo-600);
+  --color-indigo-650: var(--indigo-650);
+  --color-indigo-700: var(--indigo-700);
+  --color-indigo-800: var(--indigo-800);
+  --color-indigo-900: var(--indigo-900);
+  --color-indigo-950: var(--indigo-950);
+
+  /* Map Violet scale to same dynamic properties to capture gradient middle highlights */
+  --color-violet-50: var(--indigo-50);
+  --color-violet-100: var(--indigo-100);
+  --color-violet-200: var(--indigo-200);
+  --color-violet-300: var(--indigo-300);
+  --color-violet-400: var(--indigo-400);
+  --color-violet-500: var(--indigo-500);
+  --color-violet-600: var(--indigo-600);
+  --color-violet-650: var(--indigo-650);
+  --color-violet-700: var(--indigo-700);
+  --color-violet-800: var(--indigo-800);
+  --color-violet-900: var(--indigo-900);
+  --color-violet-950: var(--indigo-950);
+
+  /* Map Purple scale to same dynamic properties to capture CTA highlights */
+  --color-purple-50: var(--indigo-50);
+  --color-purple-100: var(--indigo-100);
+  --color-purple-200: var(--indigo-200);
+  --color-purple-300: var(--indigo-300);
+  --color-purple-400: var(--indigo-400);
+  --color-purple-500: var(--indigo-500);
+  --color-purple-600: var(--indigo-600);
+  --color-purple-650: var(--indigo-650);
+  --color-purple-700: var(--indigo-700);
+  --color-purple-800: var(--indigo-800);
+  --color-purple-900: var(--indigo-900);
+  --color-purple-950: var(--indigo-950);
+
+  /* Map Fuchsia scale to same dynamic properties to capture other gradient edges */
+  --color-fuchsia-50: var(--indigo-50);
+  --color-fuchsia-100: var(--indigo-100);
+  --color-fuchsia-200: var(--indigo-200);
+  --color-fuchsia-300: var(--indigo-300);
+  --color-fuchsia-400: var(--indigo-400);
+  --color-fuchsia-500: var(--indigo-500);
+  --color-fuchsia-600: var(--indigo-600);
+  --color-fuchsia-650: var(--indigo-650);
+  --color-fuchsia-700: var(--indigo-700);
+  --color-fuchsia-800: var(--indigo-800);
+  --color-fuchsia-900: var(--indigo-900);
+  --color-fuchsia-950: var(--indigo-950);
+}
+
+:root {
+  /* Default Theme Base - Light Mode */
+  --bg-white: #ffffff;
+  --bg-card-accent: #FAF9F6;
+
+  --neutral-50: #FBFBFB;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  --neutral-950: #0a0a0a;
+
+  /* Integrations sandbox grid line color */
+  --grid-line-color: rgba(226, 232, 240, 0.4);
+
+  /* Default Indigo Presets */
+  --indigo-50: #f5f3ff;
+  --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --indigo-650: #4338ca;
+  --indigo-700: #4338ca;
+  --indigo-800: #3730a3;
+  --indigo-900: #1e1b4b;
+  --indigo-900: #1e1b4b;
+  --indigo-950: #07070a;
+}
+
+/* Site-Wide Dark Mode Overrides */
+.dark {
+  --bg-white: #0c0c0e;
+  --bg-card-accent: #141418;
+
+  --neutral-50: #060608;
+  --neutral-100: #121216;
+  --neutral-200: #1c1c21;
+  --neutral-300: #282830;
+  --neutral-400: #52525a;
+  --neutral-500: #71717a;
+  --neutral-600: #a1a1aa;
+  --neutral-700: #d4d4d8;
+  --neutral-800: #e4e4e7;
+  --neutral-900: #fafafa;
+  --neutral-950: #fafafa;
+
+  /* Dim grid lines in dark mode */
+  --grid-line-color: rgba(255, 255, 255, 0.05);
+
+  /* Tweak default indigo dark bounds so layouts scale in dark mode */
+  --indigo-950: #fafafa;
+}
+
+/* Dark-mode badge normalization for icon chips that were still using light pastel fills. */
+.dark .bg-indigo-50,
+.dark .bg-blue-50,
+.dark .bg-violet-50,
+.dark .bg-purple-50,
+.dark .bg-teal-50,
+.dark .bg-emerald-50,
+.dark .bg-amber-50,
+.dark .bg-sky-50 {
+  background-color: color-mix(in srgb, var(--indigo-500) 14%, #141418) !important;
+}
+
+.dark .border-indigo-100,
+.dark .border-blue-100,
+.dark .border-violet-100,
+.dark .border-purple-100,
+.dark .border-teal-100,
+.dark .border-emerald-100,
+.dark .border-amber-100,
+.dark .border-sky-100 {
+  border-color: color-mix(in srgb, var(--indigo-500) 26%, rgba(255, 255, 255, 0.08)) !important;
+}
+
+.dark .text-indigo-600,
+.dark .text-blue-600,
+.dark .text-violet-600,
+.dark .text-purple-600,
+.dark .text-teal-600,
+.dark .text-emerald-600,
+.dark .text-amber-600,
+.dark .text-sky-600 {
+  color: color-mix(in srgb, var(--indigo-400) 90%, white 10%) !important;
+}
+
+.dark .text-indigo-700,
+.dark .text-blue-700,
+.dark .text-violet-700,
+.dark .text-purple-700,
+.dark .text-teal-700,
+.dark .text-emerald-700,
+.dark .text-amber-700,
+.dark .text-sky-700 {
+  color: color-mix(in srgb, var(--indigo-300) 92%, white 8%) !important;
+}
+
+/* Normalize CTA/text contrast on theme-colored buttons and active tabs in dark mode. */
+.dark button[class*="bg-indigo-600"],
+.dark a[class*="bg-indigo-600"],
+.dark button[class*="bg-indigo-500"],
+.dark a[class*="bg-indigo-500"],
+.dark button[class*="from-indigo-500"],
+.dark a[class*="from-indigo-500"],
+.dark button[class*="bg-emerald-500"],
+.dark a[class*="bg-emerald-500"],
+.dark button[class*="bg-amber-500"],
+.dark a[class*="bg-amber-500"] {
+  color: var(--color-fixed-white) !important;
+}
+
+.dark button[class*="bg-indigo-600"] svg,
+.dark a[class*="bg-indigo-600"] svg,
+.dark button[class*="bg-indigo-500"] svg,
+.dark a[class*="bg-indigo-500"] svg,
+.dark button[class*="bg-emerald-500"] svg,
+.dark a[class*="bg-emerald-500"] svg,
+.dark button[class*="bg-amber-500"] svg,
+.dark a[class*="bg-amber-500"] svg {
+  color: currentColor !important;
+}
+
+.dark button[class*="bg-indigo-600"][class*="shadow-"],
+.dark a[class*="bg-indigo-600"][class*="shadow-"],
+.dark button[class*="bg-indigo-500"][class*="shadow-"],
+.dark a[class*="bg-indigo-500"][class*="shadow-"] {
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--indigo-500) 22%, transparent) !important;
+}
+
+.dark button[class*="bg-neutral-900"],
+.dark a[class*="bg-neutral-900"],
+.dark button[class*="bg-slate-900"],
+.dark a[class*="bg-slate-900"] {
+  background-color: #141418 !important;
+  color: var(--color-fixed-white) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Color Theme Presets */
+.theme-emerald {
+  --indigo-50: #ecfdf5;
+  --indigo-100: #d1fae5;
+  --indigo-200: #a7f3d0;
+  --indigo-300: #6ee7b7;
+  --indigo-400: #34d399;
+  --indigo-500: #10b981;
+  --indigo-600: #059669;
+  --indigo-650: #047857;
+  --indigo-700: #047857;
+  --indigo-800: #065f46;
+  --indigo-900: #064e3b;
+  --indigo-950: #022c22;
+}
+.dark.theme-emerald {
+  --indigo-950: #fafafa;
+}
+
+.theme-rose {
+  --indigo-50: #fff1f2;
+  --indigo-100: #ffe4e6;
+  --indigo-200: #fecdd3;
+  --indigo-300: #fda4af;
+  --indigo-400: #fb7185;
+  --indigo-500: #f43f5e;
+  --indigo-600: #e11d48;
+  --indigo-650: #be123c;
+  --indigo-700: #be123c;
+  --indigo-800: #9f1239;
+  --indigo-900: #881337;
+  --indigo-950: #4c0519;
+}
+.dark.theme-rose {
+  --indigo-950: #fafafa;
+}
+
+.theme-amber {
+  --indigo-50: #fffbeb;
+  --indigo-100: #fef3c7;
+  --indigo-200: #fde68a;
+  --indigo-300: #fcd34d;
+  --indigo-400: #fbbf24;
+  --indigo-500: #f59e0b;
+  --indigo-600: #d97706;
+  --indigo-650: #b45309;
+  --indigo-700: #b45309;
+  --indigo-800: #92400e;
+  --indigo-900: #78350f;
+  --indigo-950: #451a03;
+}
+.dark.theme-amber {
+  --indigo-950: #fafafa;
+}
+
+.theme-violet {
+  --indigo-50: #faf5ff;
+  --indigo-100: #f3e8ff;
+  --indigo-200: #e9d5ff;
+  --indigo-300: #d8b4fe;
+  --indigo-400: #c084fc;
+  --indigo-500: #a855f7;
+  --indigo-600: #9333ea;
+  --indigo-650: #7e22ce;
+  --indigo-700: #7e22ce;
+  --indigo-800: #6b21a8;
+  --indigo-900: #581c87;
+  --indigo-950: #3b0764;
+}
+.dark.theme-violet {
+  --indigo-950: #fafafa;
+}
+
+.theme-sky {
+  --indigo-50: #f0f9ff;
+  --indigo-100: #e0f2fe;
+  --indigo-200: #bae6fd;
+  --indigo-300: #7dd3fc;
+  --indigo-400: #38bdf8;
+  --indigo-500: #0ea5e9;
+  --indigo-600: #0284c7;
+  --indigo-650: #0369a1;
+  --indigo-700: #0369a1;
+  --indigo-800: #075985;
+  --indigo-900: #0c4a6e;
+  --indigo-950: #082f49;
+}
+.dark.theme-sky {
+  --indigo-950: #fafafa;
+}
+
+.theme-fuchsia {
+  --indigo-50: #fdf4ff;
+  --indigo-100: #fae8ff;
+  --indigo-200: #f5d0fe;
+  --indigo-300: #f0abfc;
+  --indigo-400: #e879f9;
+  --indigo-500: #d946ef;
+  --indigo-600: #c026d3;
+  --indigo-650: #a21caf;
+  --indigo-700: #a21caf;
+  --indigo-800: #86198f;
+  --indigo-900: #701a75;
+  --indigo-950: #4a044e;
+}
+.dark.theme-fuchsia {
+  --indigo-950: #fafafa;
+}
+
+.theme-crimson {
+  --indigo-50: #fef2f2;
+  --indigo-100: #fee2e2;
+  --indigo-200: #fecaca;
+  --indigo-300: #fca5a5;
+  --indigo-400: #f87171;
+  --indigo-500: #ef4444;
+  --indigo-600: #dc2626;
+  --indigo-650: #b91c1c;
+  --indigo-700: #b91c1c;
+  --indigo-800: #991b1b;
+  --indigo-900: #7f1d1d;
+  --indigo-950: #450a0a;
+}
+.dark.theme-crimson {
+  --indigo-950: #fafafa;
+}
+
+@layer base {
+  body {
+    background-color: var(--neutral-50);
+    color: var(--neutral-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--neutral-300);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--neutral-400);
+  }
+}
+
+/* Custom Dotted Background Grid - Light & Dark adaptation */
+.bg-grid-dots {
+  background-size: 24px 24px !important;
+  background-image: radial-gradient(circle, var(--neutral-200) 1px, transparent 1px) !important;
+}
+
+.bg-grid-dots-dark {
+  background-size: 24px 24px !important;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1.2px, transparent 1.2px) !important;
+}
+
+.bg-grid-dots-accent {
+  background-size: 20px 20px !important;
+  background-image: radial-gradient(circle, var(--neutral-300) 1.2px, transparent 1.2px) !important;
+}
+
+/* India map pulse ring animation */
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.5; }
+  70%, 100% { transform: scale(2); opacity: 0; }
+}
+
+svg { overflow: visible; }

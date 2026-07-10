@@ -10,11 +10,11 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import KamanashishImg from '../assets/kamanashish.png';
-import KamanashishDarkImg from '../assets/kamanashish-darkmode.png';
+import KamanashishDarkImg from '../assets/kamanashish-darkmode.webp';
 import MithileshImg from '../assets/mithilesh.png';
 import MithileshDarkImg from '../assets/mithilesh-darkmode.png';
 import JayantImg from '../assets/jayant.png';
-import JayantDarkImg from '../assets/jayant-darkmode.png';
+import JayantDarkImg from '../assets/jayant-darkmode.webp';
 import VishwanathImg from '../assets/vishwanath.png';
 import VishwanathDarkImg from '../assets/vishwanath-darkmode.png';
 

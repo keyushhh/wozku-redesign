@@ -10,6 +10,8 @@ export default function NetworkTeaserGlobe() {
 
   // Theme-reactive color ref: stores the current --indigo-500 as fractional [R,G,B]
   const themeColorRef = useRef<[number, number, number]>([0.38, 0.4, 0.95]);
+  const themeColorValueRef = useRef('');
+  const themeColorFrameRef = useRef<number | null>(null);
 
   // Parse computed --indigo-500 (hex or rgb()) to fractional [R,G,B] and store in ref
   const readThemeColor = () => {
@@ -18,6 +20,8 @@ export default function NetworkTeaserGlobe() {
         .getPropertyValue('--indigo-500');
       const trimmed = raw.trim();
       if (!trimmed) return;
+      if (trimmed === themeColorValueRef.current) return;
+      themeColorValueRef.current = trimmed;
       let r = 0.38, g = 0.4, b = 0.95; // safe fallback
       if (trimmed.startsWith('#')) {
         const hex = trimmed.replace('#', '');
@@ -41,15 +45,21 @@ export default function NetworkTeaserGlobe() {
     }
   };
 
-  // Seed initial value + watch <html> class changes (theme switches add/remove .theme-* classes)
+  // Watch preset class and custom inline-variable changes without re-parsing unchanged colors.
   useEffect(() => {
     readThemeColor();
     const observer = new MutationObserver(() => {
-      // Defer one rAF so the browser finishes CSS recalc before we read the new value
-      requestAnimationFrame(() => readThemeColor());
+      if (themeColorFrameRef.current !== null) return;
+      themeColorFrameRef.current = requestAnimationFrame(() => {
+        themeColorFrameRef.current = null;
+        readThemeColor();
+      });
     });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
+    return () => {
+      observer.disconnect();
+      if (themeColorFrameRef.current !== null) cancelAnimationFrame(themeColorFrameRef.current);
+    };
   }, []);
 
   useEffect(() => {

@@ -190,7 +190,7 @@ export function exportToTokensStudioFormat(tokens: DesignTokens) {
     },
   };
 
-  const steps = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
+  const steps = [50, 100, 200, 300, 400, 500, 600, 650, 700, 800, 900, 950] as const;
 
   steps.forEach((step) => {
     result.color.primary[step] = {

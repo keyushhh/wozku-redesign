@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Sparkles, ArrowUpRight, Menu, X, Palette, Sun, Moon, Check, ChevronDown } from 'lucide-react';
+import { ArrowRight, Sparkles, ArrowUpRight, Menu, X, Palette, Sun, Moon, Check, ChevronDown, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import LogoBlackTransparent from '../assets/Logo_Black_Transparent.png';
 import LogoWhiteTransparent from '../assets/Logo_White_Transparent.png';
+import { THEME_PRESETS, applyCustomTheme, clearCustomTheme, downloadThemeTokens } from '../lib/designSystem';
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,6 +12,7 @@ export default function Navbar() {
   const [activeTheme, setActiveTheme] = useState(() => {
     return localStorage.getItem('wozku-theme') || 'indigo';
   });
+  const [customHex, setCustomHex] = useState(() => localStorage.getItem('wozku-custom-hex') || '#6366f1');
   const [isDark, setIsDark] = useState(() => {
     return localStorage.getItem('wozku-dark') === 'true';
   });
@@ -19,23 +21,20 @@ export default function Navbar() {
 
   useEffect(() => {
     const root = document.documentElement;
-    // A legacy custom-palette bootstrap writes inline CSS variables. Inline
-    // values outrank the preset classes below, making the palette buttons look
-    // unresponsive. This picker owns the palette, so clear that stale override.
-    const scales = ['indigo', 'secondary', 'accent'];
-    scales.forEach((scale) => {
-      [50, 100, 200, 300, 400, 500, 600, 650, 700, 800, 900, 950].forEach((step) => {
-        root.style.removeProperty(`--${scale}-${step}`);
-      });
-    });
-    localStorage.removeItem('wozku-custom-palette');
-    // Remove color presets
     root.classList.remove('theme-emerald', 'theme-rose', 'theme-amber', 'theme-violet', 'theme-sky', 'theme-fuchsia', 'theme-crimson');
-    if (activeTheme !== 'indigo') {
+    if (activeTheme === 'custom') {
+      if (/^#[0-9A-F]{6}$/i.test(customHex)) {
+        applyCustomTheme(customHex);
+      }
+    } else if (activeTheme !== 'indigo') {
+      clearCustomTheme();
       root.classList.add(`theme-${activeTheme}`);
+    } else {
+      clearCustomTheme();
     }
+    if (/^#[0-9A-F]{6}$/i.test(customHex)) localStorage.setItem('wozku-custom-hex', customHex);
     localStorage.setItem('wozku-theme', activeTheme);
-  }, [activeTheme]);
+  }, [activeTheme, customHex]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -44,8 +43,11 @@ export default function Navbar() {
     } else {
       root.classList.remove('dark');
     }
+    if (activeTheme === 'custom' && /^#[0-9A-F]{6}$/i.test(customHex)) {
+      applyCustomTheme(customHex);
+    }
     localStorage.setItem('wozku-dark', String(isDark));
-  }, [isDark]);
+  }, [isDark, activeTheme, customHex]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -112,6 +114,22 @@ export default function Navbar() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     setIsMenuOpen(false);
+  };
+
+  const selectCustomTheme = (hex: string) => {
+    setCustomHex(hex.toUpperCase());
+    setActiveTheme('custom');
+  };
+
+  const selectPresetTheme = (id: string, hex: string) => {
+    setCustomHex(hex.toUpperCase());
+    setActiveTheme(id);
+  };
+
+  const handleCustomHexChange = (value: string) => {
+    const normalized = value.trim().toUpperCase();
+    setCustomHex(normalized);
+    if (/^#[0-9A-F]{6}$/.test(normalized)) setActiveTheme('custom');
   };
 
   return (
@@ -391,24 +409,15 @@ export default function Navbar() {
               </button>
 
               {isThemeOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 bg-white border border-neutral-200 rounded-2xl p-4 shadow-xl z-50 space-y-4 text-left">
+                <div className="absolute right-0 top-full mt-2 w-72 bg-white border border-neutral-200 rounded-2xl p-4 shadow-xl z-50 space-y-4 text-left">
                     
                     <div className="space-y-2">
                       <span className="text-[10px] font-mono font-bold text-neutral-400 tracking-wider block uppercase">Theme Colors</span>
                       <div className="grid grid-cols-4 gap-2">
-                        {[
-                          { id: 'indigo', name: 'Indigo', color: '#6366f1' },
-                          { id: 'emerald', name: 'Emerald', color: '#10b981' },
-                          { id: 'rose', name: 'Rose', color: '#f43f5e' },
-                          { id: 'amber', name: 'Amber', color: '#f59e0b' },
-                          { id: 'violet', name: 'Violet', color: '#a855f7' },
-                          { id: 'sky', name: 'Sky', color: '#0ea5e9' },
-                          { id: 'fuchsia', name: 'Fuchsia', color: '#d946ef' },
-                          { id: 'crimson', name: 'Crimson', color: '#dc2626' }
-                        ].map((t) => (
+                        {THEME_PRESETS.map((t) => (
                           <button
                             key={t.id}
-                            onClick={() => setActiveTheme(t.id)}
+                            onClick={() => selectPresetTheme(t.id, t.color)}
                             title={t.name}
                             className={`h-7 w-7 rounded-full flex items-center justify-center text-white transition-all transform hover:scale-110 active:scale-95 cursor-pointer shadow-3xs hover:shadow-2xs ${
                               activeTheme === t.id ? 'ring-2 ring-neutral-450 ring-offset-2 scale-105' : 'opacity-85'
@@ -419,6 +428,22 @@ export default function Navbar() {
                           </button>
                         ))}
                       </div>
+                    </div>
+
+                    <div className="h-px bg-neutral-200" />
+
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono font-bold text-neutral-400 tracking-wider uppercase">Custom</span>
+                        {activeTheme === 'custom' && <span className="text-[9px] font-bold text-indigo-600">ACTIVE</span>}
+                      </div>
+                      <div className={`flex items-center gap-2 rounded-xl border p-2 transition-colors ${activeTheme === 'custom' ? 'border-indigo-300 bg-indigo-50/50' : 'border-neutral-200 bg-neutral-50'}`}>
+                        <label className="relative h-8 w-8 shrink-0 cursor-pointer rounded-full border-2 border-white shadow-sm ring-1 ring-neutral-300" style={{ backgroundColor: /^#[0-9A-F]{6}$/i.test(customHex) ? customHex : '#6366f1' }}>
+                          <input aria-label="Custom theme color" type="color" value={/^#[0-9A-F]{6}$/i.test(customHex) ? customHex : '#6366f1'} onChange={(e) => selectCustomTheme(e.target.value)} className="absolute inset-0 h-full w-full cursor-pointer opacity-0" />
+                        </label>
+                        <input aria-label="Custom theme hex code" value={customHex} onChange={(e) => handleCustomHexChange(e.target.value)} onFocus={() => setActiveTheme('custom')} maxLength={7} spellCheck={false} className="min-w-0 flex-1 bg-transparent font-mono text-xs font-semibold uppercase text-neutral-800 outline-none placeholder:text-neutral-400" placeholder="#6366F1" />
+                      </div>
+                      <p className="text-[9px] leading-4 text-neutral-400">Choose a color or enter a six-digit HEX value to preview it across the site.</p>
                     </div>
 
                     <div className="h-px bg-neutral-200" />
@@ -450,6 +475,11 @@ export default function Navbar() {
                         </button>
                       </div>
                     </div>
+
+                    <button onClick={() => downloadThemeTokens(activeTheme, isDark)} className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[10px] font-bold text-indigo-700 transition-colors hover:bg-indigo-100 cursor-pointer">
+                      <Download className="h-3 w-3" />
+                      Export .JSON
+                    </button>
 
                   </div>
               )}
@@ -600,19 +630,10 @@ export default function Navbar() {
                   </div>
                   
                   <div className="flex flex-wrap gap-2 justify-center">
-                    {[
-                      { id: 'indigo', color: '#6366f1' },
-                      { id: 'emerald', color: '#10b981' },
-                      { id: 'rose', color: '#f43f5e' },
-                      { id: 'amber', color: '#f59e0b' },
-                      { id: 'violet', color: '#a855f7' },
-                      { id: 'sky', color: '#0ea5e9' },
-                      { id: 'fuchsia', color: '#d946ef' },
-                      { id: 'crimson', color: '#dc2626' }
-                    ].map((t) => (
+                    {THEME_PRESETS.map((t) => (
                       <button
                         key={t.id}
-                        onClick={() => setActiveTheme(t.id)}
+                        onClick={() => selectPresetTheme(t.id, t.color)}
                         className={`h-7 w-7 rounded-full flex items-center justify-center text-white transition-all cursor-pointer ${
                           activeTheme === t.id ? 'ring-2 ring-neutral-450 ring-offset-2 scale-105' : 'opacity-85'
                         }`}
@@ -622,6 +643,16 @@ export default function Navbar() {
                       </button>
                     ))}
                   </div>
+                  <div className="mx-2 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white p-2">
+                    <label className="relative h-7 w-7 shrink-0 cursor-pointer rounded-full border-2 border-white shadow-sm ring-1 ring-neutral-300" style={{ backgroundColor: /^#[0-9A-F]{6}$/i.test(customHex) ? customHex : '#6366f1' }}>
+                      <input aria-label="Custom theme color" type="color" value={/^#[0-9A-F]{6}$/i.test(customHex) ? customHex : '#6366f1'} onChange={(e) => selectCustomTheme(e.target.value)} className="absolute inset-0 h-full w-full cursor-pointer opacity-0" />
+                    </label>
+                    <input aria-label="Custom theme hex code" value={customHex} onChange={(e) => handleCustomHexChange(e.target.value)} onFocus={() => setActiveTheme('custom')} maxLength={7} spellCheck={false} className="min-w-0 flex-1 bg-transparent font-mono text-xs font-semibold uppercase text-neutral-800 outline-none" placeholder="#6366F1" />
+                    <span className="text-[9px] font-bold text-neutral-400">CUSTOM</span>
+                  </div>
+                  <button onClick={() => downloadThemeTokens(activeTheme, isDark)} className="mx-2 flex w-[calc(100%-1rem)] items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[10px] font-bold text-indigo-700 cursor-pointer">
+                    <Download className="h-3 w-3" /> Export .JSON
+                  </button>
                 </div>
 
                 <button

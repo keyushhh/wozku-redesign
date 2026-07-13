@@ -7,11 +7,15 @@
     <script>
       (function() {
         try {
+          var root = document.documentElement;
+          var theme = localStorage.getItem('wozku-theme');
+          if (localStorage.getItem('wozku-dark') === 'true') root.classList.add('dark');
+          if (theme && theme !== 'indigo' && theme !== 'custom') root.classList.add('theme-' + theme);
           var palette = localStorage.getItem('wozku-custom-palette');
-          if (palette) {
+          if (theme === 'custom' && palette) {
             var colors = JSON.parse(palette);
             for (var key in colors) {
-              document.documentElement.style.setProperty(key, colors[key]);
+              root.style.setProperty(key, colors[key]);
             }
           }
         } catch (e) {
@@ -25,4 +29,3 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

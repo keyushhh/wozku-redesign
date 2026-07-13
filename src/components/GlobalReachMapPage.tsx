@@ -110,6 +110,8 @@ export default function GlobalReachMapPage() {
 
   // Theme-reactive color ref: stores the current --indigo-500 as fractional [R,G,B]
   const themeColorRef = useRef<[number, number, number]>([0.38, 0.4, 0.95]);
+  const themeColorValueRef = useRef('');
+  const themeColorFrameRef = useRef<number | null>(null);
 
   // Parse hex color string like "#6366f1" or "rgb(99,102,241)" to fractional [R,G,B]
   const readThemeColor = () => {
@@ -118,6 +120,8 @@ export default function GlobalReachMapPage() {
         .getPropertyValue('--indigo-500')
         .trim();
       if (!raw) return;
+      if (raw === themeColorValueRef.current) return;
+      themeColorValueRef.current = raw;
       let r = 0.38, g = 0.4, b = 0.95; // safe fallback
       if (raw.startsWith('#')) {
         const hex = raw.replace('#', '');
@@ -141,15 +145,21 @@ export default function GlobalReachMapPage() {
     }
   };
 
-  // Watch <html> class changes (theme switches add/remove .theme-* classes)
+  // Watch preset class and custom inline-variable changes without re-parsing unchanged colors.
   useEffect(() => {
     readThemeColor(); // seed initial value
     const observer = new MutationObserver(() => {
-      // Defer one rAF so the browser finishes CSS recalc before we read the new value
-      requestAnimationFrame(() => readThemeColor());
+      if (themeColorFrameRef.current !== null) return;
+      themeColorFrameRef.current = requestAnimationFrame(() => {
+        themeColorFrameRef.current = null;
+        readThemeColor();
+      });
     });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'style'] });
+    return () => {
+      observer.disconnect();
+      if (themeColorFrameRef.current !== null) cancelAnimationFrame(themeColorFrameRef.current);
+    };
   }, []);
 
   const addLog = (msg: string) => {

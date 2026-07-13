@@ -262,7 +262,7 @@ export default function EventAdvocacyPage() {
         <section className="text-center max-w-4xl mx-auto space-y-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-neutral-950 leading-tight">
             Turn Attendees into<br />
-            <span className="bg-gradient-to-r from-indigo-600 to-accent-600 bg-clip-text text-transparent">
+            <span className="text-indigo-600 dark:text-indigo-400">
               Organic Broadcast Channels.
             </span>
           </h1>
@@ -299,7 +299,7 @@ export default function EventAdvocacyPage() {
             </p>
           </div>
 
-          {/* Confetti canvas — covers the entire simulator area */}
+          {/* Confetti canvas - covers the entire simulator area */}
           <div className="relative">
             <canvas
               ref={canvasRef}
@@ -520,7 +520,7 @@ export default function EventAdvocacyPage() {
                 )}
               </div>
 
-              {/* Leaderboard Rankings List — wrapped in LayoutGroup for physics-based smooth reordering */}
+              {/* Leaderboard Rankings List - wrapped in LayoutGroup for physics-based smooth reordering */}
               <LayoutGroup id="leaderboard">
                 <div className="flex-1 flex flex-col justify-center space-y-2.5 my-6 relative z-10">
                   {leaderboardRows.map((item) => (
@@ -629,7 +629,7 @@ export default function EventAdvocacyPage() {
                   ))}
                 </div>
                 <p className="text-[10px] text-neutral-400 mt-4 font-sans">
-                  Higher ranks unlock exclusive rewards — premium event access, sponsor swag, and VIP networking sessions.
+                  Higher ranks unlock exclusive rewards - premium event access, sponsor swag, and VIP networking sessions.
                 </p>
               </div>
             </motion.div>
@@ -727,61 +727,61 @@ export default function EventAdvocacyPage() {
             </div>
 
             {/* Right Col: Live Telemetry Displays */}
-            <div className="lg:col-span-6 bg-[#0a0a0d] border border-fixed-white/10 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xs text-fixed-white">
+            <div className="lg:col-span-6 bg-white dark:bg-[#0a0a0d] border border-neutral-200 dark:border-fixed-white/10 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-xs text-neutral-900 dark:text-fixed-white">
               
               <div className="space-y-6">
-                <span className="text-[10px] font-mono font-bold tracking-widest text-fixed-muted uppercase">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-neutral-500 dark:text-fixed-muted uppercase">
                   PROJECTED VALUE
                 </span>
 
                 <div className="grid grid-cols-2 gap-4">
                   {/* Metric 1 */}
-                  <div className="bg-[#141418] border border-fixed-white/10 p-4 rounded-2xl">
-                    <div className="flex items-center gap-1.5 text-fixed-light mb-1">
+                  <div className="bg-slate-50 dark:bg-[#141418] border border-neutral-200 dark:border-fixed-white/10 p-4 rounded-2xl">
+                    <div className="flex items-center gap-1.5 text-neutral-500 dark:text-fixed-light mb-1">
                       <Users className="w-3.5 h-3.5" />
                       <span className="text-[10px] font-bold font-mono tracking-wider uppercase">ADVOCATES</span>
                     </div>
-                    <span className="text-2xl font-mono font-extrabold text-fixed-white">
+                    <span className="text-2xl font-mono font-extrabold text-neutral-900 dark:text-fixed-white">
                       {totalAdvocates.toLocaleString()}
                     </span>
                   </div>
 
                   {/* Metric 2 */}
-                  <div className="bg-[#141418] border border-fixed-white/10 p-4 rounded-2xl">
-                    <div className="flex items-center gap-1.5 text-fixed-light mb-1">
+                  <div className="bg-slate-50 dark:bg-[#141418] border border-neutral-200 dark:border-fixed-white/10 p-4 rounded-2xl">
+                    <div className="flex items-center gap-1.5 text-neutral-500 dark:text-fixed-light mb-1">
                       <TrendingUp className="w-3.5 h-3.5" />
                       <span className="text-[10px] font-bold font-mono tracking-wider uppercase">IMPRESSIONS</span>
                     </div>
-                    <span className="text-2xl font-mono font-extrabold text-indigo-400">
+                    <span className="text-2xl font-mono font-extrabold text-indigo-600 dark:text-indigo-400">
                       {totalImpressions.toLocaleString()}
                     </span>
                   </div>
                 </div>
 
                 {/* Metric 3: Big Value Display */}
-                <div className="bg-gradient-to-br from-[#202040] to-[#141418] border border-indigo-900/40 p-6 rounded-2xl flex items-center justify-between relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.08)_0%,transparent_60%)]" />
+                <div className="bg-indigo-50 dark:bg-gradient-to-br dark:from-[#202040] dark:to-[#141418] border border-indigo-200 dark:border-indigo-900/40 p-6 rounded-2xl flex items-center justify-between relative overflow-hidden">
+                  <div className="absolute inset-0 hidden dark:block bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.08)_0%,transparent_60%)]" />
                   
                   <div className="space-y-1 relative z-10">
-                  <div className="flex items-center gap-1.5 text-fixed-light">
-                      <DollarSign className="w-4 h-4 text-emerald-400" />
+                  <div className="flex items-center gap-1.5 text-neutral-500 dark:text-fixed-light">
+                      <DollarSign className="w-4 h-4 text-indigo-500 dark:text-emerald-400" />
                       <span className="text-[10px] font-bold font-mono tracking-wider uppercase">MEDIA VALUE</span>
                     </div>
-                    <span className="text-3xl font-mono font-extrabold text-fixed-white">
+                    <span className="text-3xl font-mono font-extrabold text-neutral-900 dark:text-fixed-white">
                       ${equivalentMediaValue.toLocaleString()}
                     </span>
                   </div>
                   
-                  <div className="text-right text-[10px] font-mono text-fixed-light relative z-10 space-y-0.5">
-                    <span className="block text-emerald-400 font-bold">SAVED AD SPEND</span>
+                  <div className="text-right text-[10px] font-mono text-neutral-500 dark:text-fixed-light relative z-10 space-y-0.5">
+                    <span className="block text-indigo-600 dark:text-emerald-400 font-bold">SAVED AD SPEND</span>
                     <span className="block font-bold">CPM base: $18.00</span>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-fixed-white/10 mt-6 text-[10px] text-fixed-light flex items-center justify-between">
+              <div className="pt-6 border-t border-neutral-200 dark:border-fixed-white/10 mt-6 text-[10px] text-neutral-500 dark:text-fixed-light flex items-center justify-between">
                 <span>PROJECTED SOCIAL CPM</span>
-                <span className="font-mono text-fixed-white font-bold">$18.00 USD</span>
+                <span className="font-mono text-neutral-900 dark:text-fixed-white font-bold">$18.00 USD</span>
               </div>
             </div>
 
@@ -840,8 +840,8 @@ export default function EventAdvocacyPage() {
           <div className="relative rounded-3xl overflow-hidden bg-[#0a0a0d] border border-fixed-white/10 p-10 sm:p-16 text-center">
 
             {/* Background gradients */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(99,102,241,0.15)_0%,transparent_55%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(168,85,247,0.10)_0%,transparent_55%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,color-mix(in srgb,var(--indigo-500)_15%,transparent)_0%,transparent_55%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,color-mix(in srgb,var(--indigo-500)_8%,transparent)_0%,transparent_55%)] pointer-events-none" />
 
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
               
@@ -853,13 +853,13 @@ export default function EventAdvocacyPage() {
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-fixed-white leading-tight tracking-tight">
                 Turn your next event into a<br />
-                <span className="bg-gradient-to-r from-indigo-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent">
+                <span className="text-indigo-400">
                   viral distribution engine.
                 </span>
               </h2>
 
               <p className="text-sm text-fixed-light leading-relaxed max-w-lg mx-auto">
-                Our team will walk you through a live setup tailored to your event format — keynote, expo, or summit. Get up and running in under 48 hours.
+                Our team will walk you through a live setup tailored to your event format - keynote, expo, or summit. Get up and running in under 48 hours.
               </p>
 
               {/* Stat pills */}

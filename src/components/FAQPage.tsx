@@ -54,7 +54,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     category: 'Engagement & Adoption',
     question: 'What level of effort is required from our busy employees to share content?',
-    answer: 'Minimal. Wozku is designed with a "two-tap" sharing flow. Teammates receive curated, personalized post drafts via Slack, Microsoft Teams, or email. They can quickly preview, make brief personal edits, and post directly to their networks in seconds—requiring no tedious drafting or platform switching.'
+    answer: 'Minimal. Wozku is designed with a "two-tap" sharing flow. Teammates receive curated, personalized post drafts via Slack, Microsoft Teams, or email. They can quickly preview, make brief personal edits, and post directly to their networks in seconds-requiring no tedious drafting or platform switching.'
   },
   {
     category: 'Engagement & Adoption',

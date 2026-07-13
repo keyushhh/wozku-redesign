@@ -374,7 +374,7 @@ export default function IntegrationsSection() {
         <div className="relative z-20 bg-white border border-neutral-200 shadow-md p-3 rounded-2xl w-16 h-16 flex items-center justify-center hover:border-indigo-500 hover:shadow-lg hover:scale-105 transition-all duration-300">
           <img src={logoMarkWhite} className="w-10 h-10 object-contain" alt="Wozku Logo" />
           {connectedCount > 0 && (
-            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-emerald-500 border-2 border-white animate-pulse" />
+            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-[#0c0c0e] animate-pulse" />
           )}
         </div>
 
@@ -421,7 +421,7 @@ export default function IntegrationsSection() {
                         </div>
  
                         {/* Connection indicator */}
-                        <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-indigo-500 border-2 border-white" />
+                        <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-indigo-500 border-2 border-white dark:border-[#0c0c0e]" />
                       </motion.div>
                     ) : (
                       <div 
@@ -521,8 +521,8 @@ export default function IntegrationsSection() {
                   }}
                   className={`group relative border rounded-2xl p-4 flex items-center justify-center transition-all duration-200 shadow-3xs select-none focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 ${
                     isUsed 
-                      ? 'bg-neutral-50/50 border-neutral-200 opacity-30 cursor-not-allowed' 
-                      : `${app.color} border-neutral-200 hover:shadow-xs cursor-grab active:cursor-grabbing`
+                      ? 'bg-neutral-50/50 dark:bg-neutral-100/20 border-neutral-200 dark:border-neutral-800/40 opacity-30 cursor-not-allowed' 
+                      : `${app.color} border-neutral-200 dark:bg-neutral-100 dark:border-neutral-200 hover:shadow-xs cursor-grab active:cursor-grabbing`
                   }`}
                 >
                   {app.logo}

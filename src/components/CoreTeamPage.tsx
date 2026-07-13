@@ -10,11 +10,11 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import KamanashishImg from '../assets/kamanashish.png';
-import KamanashishDarkImg from '../assets/kamanashish-darkmode.webp';
+import KamanashishDarkImg from '../assets/kamanashish-darkmode.png';
 import MithileshImg from '../assets/mithilesh.png';
 import MithileshDarkImg from '../assets/mithilesh-darkmode.png';
 import JayantImg from '../assets/jayant.png';
-import JayantDarkImg from '../assets/jayant-darkmode.webp';
+import JayantDarkImg from '../assets/jayant-darkmode.png';
 import VishwanathImg from '../assets/vishwanath.png';
 import VishwanathDarkImg from '../assets/vishwanath-darkmode.png';
 
@@ -114,6 +114,30 @@ const TEAM_MEMBERS: TeamMember[] = [
 export default function CoreTeamPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
+
+  // Helpers for dynamic border opacities based on distance from active card
+  const getBeforeBorderClass = (idx: number) => {
+    const dist = activeIndex - (idx + 1);
+    if (dist === 0) return 'dark:border-white/25';
+    if (dist === 1) return 'dark:border-white/12';
+    if (dist === 2) return 'dark:border-white/5';
+    return 'dark:border-white/5';
+  };
+
+  const getAfterBorderClass = (idx: number) => {
+    const dist = idx - 1 - activeIndex;
+    if (dist === 0) return 'dark:border-white/25';
+    if (dist === 1) return 'dark:border-white/12';
+    if (dist === 2) return 'dark:border-white/5';
+    return 'dark:border-white/5';
+  };
+
+  const getInactiveColFooterBorderClass = (idx: number) => {
+    const dist = Math.abs(idx - activeIndex);
+    if (dist === 1) return 'dark:border-white/12';
+    if (dist === 2) return 'dark:border-white/8';
+    return 'dark:border-white/5';
+  };
   const activeMember = TEAM_MEMBERS[activeIndex];
   const [selectedModule, setSelectedModule] = useState<FocusModule>(activeMember.focusModules[0]);
 
@@ -126,7 +150,7 @@ export default function CoreTeamPage() {
   const beforeActive = TEAM_MEMBERS.slice(0, activeIndex);
   const afterActive  = TEAM_MEMBERS.slice(activeIndex + 1);
 
-  // Inactive column width — each column is fixed
+  // Inactive column width - each column is fixed
   const INACTIVE_W = 130;
   // Active portrait column width
   const PORTRAIT_W = 240;
@@ -148,10 +172,10 @@ export default function CoreTeamPage() {
       key={member.id}
       onClick={() => handleMemberChange(idx)}
       title={`View ${member.name}`}
-      className="relative shrink-0 cursor-pointer focus:outline-none group transition-colors duration-200 flex flex-col overflow-hidden bg-slate-100 dark:bg-[#18181d]"
+      className="relative shrink-0 cursor-pointer focus:outline-none group transition-colors duration-200 flex flex-col overflow-hidden bg-slate-100 dark:bg-[#0a0a0d]"
       style={{ width: `${INACTIVE_W}px` }}
     >
-      {/* Portrait — scales to fill height, bottom-anchored */}
+      {/* Portrait - scales to fill height, bottom-anchored */}
       <div className="flex-1 relative overflow-hidden">
         <div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 group-hover:opacity-50 transition-opacity duration-300"
@@ -161,7 +185,7 @@ export default function CoreTeamPage() {
         </div>
       </div>
       {/* Name footer */}
-      <div className="shrink-0 border-t border-slate-200 px-4 py-3">
+      <div className={`shrink-0 border-t border-slate-200 px-4 py-3 ${getInactiveColFooterBorderClass(idx)}`}>
         <span className="text-[10px] font-mono text-slate-400 font-semibold whitespace-nowrap">{member.name}</span>
       </div>
     </button>
@@ -186,7 +210,7 @@ export default function CoreTeamPage() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             Meet Wozku's{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">engine authors.</span>
+            <span className="text-indigo-600 dark:text-indigo-400">engine authors.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
@@ -195,29 +219,29 @@ export default function CoreTeamPage() {
         </div>
       </section>
 
-      {/* ── 2. INTERACTIVE CAROUSEL — exact Attio layout ─────────────── */}
+      {/* ── 2. INTERACTIVE CAROUSEL - exact Attio layout ─────────────── */}
       <section className="pb-24 relative">
         <div className="px-4 sm:px-8 lg:px-12">
 
           {/* Fixed height, no shadow, thin border */}
           <div
-            className="flex border border-slate-200 rounded-2xl overflow-hidden bg-white"
+            className="flex border border-slate-200 dark:border-white/15 rounded-2xl overflow-hidden bg-white dark:bg-black"
             style={{ height: '460px' }}
           >
 
             {/* ── COLUMNS BEFORE active (grey bg, left side) ── */}
             {beforeActive.map((member) => (
-              <div key={member.id} className="flex border-r border-slate-200">
+              <div key={member.id} className={`flex border-r border-slate-200 ${getBeforeBorderClass(TEAM_MEMBERS.indexOf(member))}`}>
                 <InactiveCol member={member} idx={TEAM_MEMBERS.indexOf(member)} />
               </div>
             ))}
 
             {/* ── ACTIVE PORTRAIT COLUMN (white bg) ── */}
             <div
-              className="relative shrink-0 flex flex-col border-r border-slate-200 bg-white overflow-hidden"
+              className="relative shrink-0 flex flex-col border-r border-slate-200 dark:border-white/25 bg-white dark:bg-black overflow-hidden"
               style={{ width: `${PORTRAIT_W}px` }}
             >
-              {/* Portrait — fills height, bottom-anchored */}
+              {/* Portrait - fills height, bottom-anchored */}
               <div className="flex-1 relative overflow-hidden">
                 <div
                   className="absolute bottom-0 left-1/2"
@@ -226,32 +250,32 @@ export default function CoreTeamPage() {
                   <img src={getPortraitSrc(activeMember)} alt={activeMember.name} className="w-full h-full object-cover object-center" />
                 </div>
               </div>
-              {/* Name footer — divider + name */}
-              <div className="shrink-0 border-t border-slate-200 px-5 py-3">
-                <span className="text-[10px] font-mono text-slate-500 font-semibold">{activeMember.name}</span>
+              {/* Name footer - divider + name */}
+              <div className="shrink-0 border-t border-slate-200 dark:border-white/25 px-5 py-3">
+                <span className="text-[10px] font-mono text-slate-500 dark:text-fixed-muted font-semibold">{activeMember.name}</span>
               </div>
             </div>
 
             {/* ── CONTENT PANEL (white bg, flex-1) ── */}
-            <div className="flex-1 flex flex-col justify-between p-10 sm:p-12 min-w-0 bg-white">
+            <div className="flex-1 flex flex-col justify-between p-10 sm:p-12 min-w-0 bg-white dark:bg-black">
 
               {/* Quote block */}
               <div className="space-y-5">
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-indigo-500 animate-pulse" />
-                  <span className="text-[9px] font-mono font-extrabold tracking-widest text-indigo-600 uppercase">Author statement</span>
+                  <span className="text-[9px] font-mono font-extrabold tracking-widest text-indigo-600 dark:text-indigo-400 uppercase">Author statement</span>
                 </div>
-                <p className="text-xl sm:text-2xl font-serif italic text-slate-800 leading-snug font-medium">
+                <p className="text-xl sm:text-2xl font-serif italic text-slate-800 dark:text-fixed-white leading-snug font-medium">
                   "{activeMember.quote}"
                 </p>
-                <p className="text-sm text-slate-700">
+                <p className="text-sm text-slate-700 dark:text-fixed-light">
                   <strong>{activeMember.name}</strong>
                   <span className="text-slate-400">, {activeMember.role}</span>
                 </p>
               </div>
 
-              {/* Module tabs — pinned to bottom, matches Attio tab row */}
-              <div className="border-t border-slate-100 pt-4">
+              {/* Module tabs - pinned to bottom, matches Attio tab row */}
+              <div className="border-t border-slate-100 dark:border-white/15 pt-4">
                 <div className="flex items-center gap-4 flex-wrap">
                   {activeMember.focusModules.map((mod) => {
                     const isModActive = selectedModule.name === mod.name;
@@ -261,8 +285,8 @@ export default function CoreTeamPage() {
                         onClick={() => setSelectedModule(mod)}
                         className={`flex items-center gap-1.5 text-[11px] font-medium transition-all cursor-pointer pb-1 border-b-2 ${
                           isModActive
-                            ? 'border-indigo-500 text-slate-800'
-                            : 'border-transparent text-slate-400 hover:text-slate-600 hover:border-slate-300'
+                            ? 'border-indigo-500 text-slate-800 dark:text-fixed-white'
+                            : 'border-transparent text-slate-400 hover:text-slate-600 dark:hover:text-fixed-light hover:border-slate-300'
                         }`}
                       >
                         {mod.name}
@@ -271,14 +295,14 @@ export default function CoreTeamPage() {
                   })}
                 </div>
                 {/* Module description */}
-                <p className="text-xs text-slate-400 mt-3 leading-relaxed">{selectedModule.desc}</p>
+                <p className="text-xs text-slate-400 dark:text-fixed-muted mt-3 leading-relaxed">{selectedModule.desc}</p>
               </div>
 
             </div>
 
             {/* ── COLUMNS AFTER active (grey bg, right side) ── */}
             {afterActive.map((member) => (
-              <div key={member.id} className="flex border-l border-slate-200">
+              <div key={member.id} className={`flex border-l border-slate-200 ${getAfterBorderClass(TEAM_MEMBERS.indexOf(member))}`}>
                 <InactiveCol member={member} idx={TEAM_MEMBERS.indexOf(member)} />
               </div>
             ))}

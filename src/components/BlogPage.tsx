@@ -23,7 +23,7 @@ const POSTS: BlogPost[] = [
     id: '1',
     slug: 'employee-advocacy-guide-2025',
     title: 'The Complete Guide to Employee Advocacy in 2025',
-    excerpt: 'Learn how top B2B companies are activating their biggest untapped distribution channel — their own employees — to drive pipeline, cut CAC, and dominate organic reach.',
+    excerpt: 'Learn how top B2B companies are activating their biggest untapped distribution channel - their own employees - to drive pipeline, cut CAC, and dominate organic reach.',
     category: 'Strategy',
     tags: ['Employee Advocacy', 'Organic Growth', 'B2B'],
     author: { name: 'Sarah Jenkins', initials: 'SJ', role: 'VP of Growth' },
@@ -59,7 +59,7 @@ const POSTS: BlogPost[] = [
     id: '4',
     slug: 'enterprise-compliance-social',
     title: 'Navigating Enterprise Compliance on Social Media',
-    excerpt: 'SOC2, HIPAA, GDPR — compliance need not be a barrier to sharing. How regulated industries unlock advocacy with guard-rail controls built in.',
+    excerpt: 'SOC2, HIPAA, GDPR - compliance need not be a barrier to sharing. How regulated industries unlock advocacy with guard-rail controls built in.',
     category: 'Compliance',
     tags: ['SOC2', 'HIPAA', 'Enterprise'],
     author: { name: 'Dr. Aris Vance', initials: 'AV', role: 'Chief Compliance Officer' },
@@ -71,7 +71,7 @@ const POSTS: BlogPost[] = [
     id: '5',
     slug: 'gamification-advocacy-programs',
     title: 'Gamification Done Right: Motivating Advocates Without Toxicity',
-    excerpt: 'Leaderboards, badges, and milestone rewards can drive massive participation — or create resentment. Learn the design principles that keep culture healthy.',
+    excerpt: 'Leaderboards, badges, and milestone rewards can drive massive participation - or create resentment. Learn the design principles that keep culture healthy.',
     category: 'Strategy',
     tags: ['Gamification', 'Engagement', 'Culture'],
     author: { name: 'Elena Rostov', initials: 'ER', role: 'CMO' },
@@ -107,7 +107,7 @@ const POSTS: BlogPost[] = [
     id: '8',
     slug: 'developer-community-growth',
     title: 'Building Developer Communities That Actually Share Your Product',
-    excerpt: 'The open-source playbook for converting GitHub watchers into LinkedIn advocates — without bribing them with swag they do not want.',
+    excerpt: 'The open-source playbook for converting GitHub watchers into LinkedIn advocates - without bribing them with swag they do not want.',
     category: 'Community',
     tags: ['Developer Relations', 'Community', 'Open Source'],
     author: { name: 'Danielle K.', initials: 'DK', role: 'Head of DevRel' },
@@ -222,7 +222,7 @@ export default function BlogPage() {
           </motion.div>
         )}
 
-        {/* Featured Posts — full width horizontal cards */}
+        {/* Featured Posts - full width horizontal cards */}
         {featuredPosts.length > 0 && (
           <div className="space-y-6 max-w-6xl mx-auto mb-12">
             <AnimatePresence mode="popLayout">

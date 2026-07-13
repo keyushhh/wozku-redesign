@@ -112,7 +112,7 @@ export default function GlobalOfficesPage() {
           </span>
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             Get in touch{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-500 bg-clip-text text-transparent">with our hubs.</span>
+            <span className="text-indigo-600 dark:text-indigo-400">with our hubs.</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
             Questions about deployments, integrations, or pricing? Drop us a line below, or trace our engineering offices on the map.
@@ -217,7 +217,7 @@ export default function GlobalOfficesPage() {
         </div>
       </section>
 
-      {/* ── 3. LOCATE US — Real India SVG Map ─────────────────────── */}
+      {/* ── 3. LOCATE US - Real India SVG Map ─────────────────────── */}
       <section className="py-24 bg-white border-y border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 

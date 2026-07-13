@@ -303,14 +303,14 @@ export default function CommunityGrowthPage() {
   const currentInitials = advocateName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || 'SJ';
 
   return (
-    <main className="min-h-screen bg-slate-50 text-neutral-900 selection:bg-indigo-500/10 selection:text-indigo-900 font-sans">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#0c0c0e] text-neutral-900 dark:text-fixed-white selection:bg-indigo-500/10 selection:text-indigo-900 font-sans">
       
       {/* ================= 1. REDESIGNED HERO SECTION (Centered with Sandbox Centerpiece) ================= */}
-      <section className="relative overflow-hidden bg-white border-b border-neutral-150 pt-16 pb-24 text-center">
+      <section className="relative overflow-hidden bg-white dark:bg-[#0c0c0e] border-b border-neutral-150 dark:border-fixed-white/5 pt-16 pb-24 text-center">
         {/* Glow ambient background circles */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.1),_transparent_35%)] pointer-events-none" />
         <div className="absolute left-[15%] top-[10%] w-[500px] h-[500px] rounded-full bg-indigo-500/[0.04] blur-[120px] pointer-events-none" />
-        <div className="absolute right-[15%] top-[10%] w-[500px] h-[500px] rounded-full bg-emerald-500/[0.04] blur-[120px] pointer-events-none" />
+        <div className="absolute right-[15%] top-[10%] w-[500px] h-[500px] rounded-full bg-[var(--indigo-500)]/[0.04] blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="space-y-6 max-w-4xl mx-auto mb-16">
@@ -318,14 +318,14 @@ export default function CommunityGrowthPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-indigo-600 animate-pulse" />
               Community Growth Loop
             </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-neutral-950 leading-[1.08] text-wrap-balance">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-neutral-950 dark:text-fixed-white leading-[1.08] text-wrap-balance">
               Turn customers into <br />
-              <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-500 bg-clip-text text-transparent">
+              <span className="text-indigo-600 dark:text-indigo-400">
                 your best growth channel.
               </span>
             </h1>
-            <p className="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed text-wrap-pretty">
-              Community Growth lets you orchestrate advocate campaigns end-to-end — from incentive design to real-time broadcast — so every satisfied customer becomes a measurable acquisition event.
+            <p className="text-sm sm:text-base text-neutral-600 dark:text-fixed-light max-w-2xl mx-auto leading-relaxed text-wrap-pretty">
+              Community Growth lets you orchestrate advocate campaigns end-to-end - from incentive design to real-time broadcast - so every satisfied customer becomes a measurable acquisition event.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3.5 pt-4">
               <button
@@ -337,7 +337,7 @@ export default function CommunityGrowthPage() {
               </button>
               <a
                 href="#forecast"
-                className="flex items-center gap-2 bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 font-semibold py-3.5 px-6 rounded-2xl text-sm transition-all cursor-pointer shadow-xs"
+                className="flex items-center gap-2 bg-white dark:bg-[#141418] hover:bg-neutral-50 dark:hover:bg-[#181b22] border border-neutral-200 dark:border-fixed-white/10 text-neutral-700 dark:text-fixed-white font-semibold py-3.5 px-6 rounded-2xl text-sm transition-all cursor-pointer shadow-xs"
               >
                 Forecast My Growth Loop
               </a>
@@ -348,19 +348,19 @@ export default function CommunityGrowthPage() {
           <div id="sandbox" className="max-w-5xl mx-auto text-left relative">
             <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-50 rounded-3xl" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-[#0c0c0e] border border-fixed-white/10 rounded-[2.5rem] p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white dark:bg-[#0c0c0e] border border-neutral-200 dark:border-fixed-white/10 rounded-[2.5rem] p-6 sm:p-8 shadow-xl dark:shadow-2xl relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none" />
 
               {/* LEFT COLUMN: Marketer Control Panel */}
-              <div className="lg:col-span-6 space-y-6 bg-[#141418] border border-fixed-white/10 rounded-[2rem] p-6 sm:p-7 shadow-sm">
+              <div className="lg:col-span-6 space-y-6 bg-neutral-50 dark:bg-[#141418] border border-neutral-200 dark:border-fixed-white/10 rounded-[2rem] p-6 sm:p-7 shadow-sm">
                 <div>
                   <span className="text-[10px] font-mono font-extrabold text-indigo-700 uppercase tracking-widest block mb-0.5">MARKETER CONTROL PANEL</span>
-                  <h3 className="text-base font-bold text-neutral-950">Configure Advocate Incentive</h3>
+                  <h3 className="text-base font-bold text-neutral-950 dark:text-fixed-white">Configure Advocate Incentive</h3>
                 </div>
 
                 {/* Campaign selector */}
                 <div className="space-y-2">
-                  <span className="text-[10px] font-mono font-bold text-neutral-500 uppercase block">Active Campaign Template</span>
+                  <span className="text-[10px] font-mono font-bold text-neutral-500 dark:text-fixed-muted uppercase block">Active Campaign Template</span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     {CAMPAIGN_PRESETS.map(preset => (
                       <button
@@ -368,8 +368,8 @@ export default function CommunityGrowthPage() {
                         onClick={() => setSelectedPreset(preset)}
                         className={`p-3 rounded-xl border text-left text-[10px] font-bold transition-all cursor-pointer ${
                           selectedPreset.id === preset.id
-                            ? 'bg-gradient-to-br from-indigo-500 to-secondary-600 border-transparent text-white shadow-lg shadow-indigo-500/30'
-                            : 'bg-white border-neutral-200 text-neutral-600 hover:border-neutral-300'
+                            ? 'bg-indigo-600 border-transparent text-white shadow-lg shadow-indigo-500/30'
+                          : 'bg-white dark:bg-[#0c0c0e] border-neutral-200 dark:border-fixed-white/10 text-neutral-600 dark:text-fixed-light hover:border-neutral-300 dark:hover:border-fixed-white/20'
                         }`}
                       >
                         <span className="block opacity-90 mb-1">{preset.tag.split(' ')[0]}</span>
@@ -381,12 +381,12 @@ export default function CommunityGrowthPage() {
 
                 {/* Reward Selector with FIXED padded chevron positioning */}
                 <div className="space-y-2">
-                  <span className="text-[10px] font-mono font-bold text-neutral-500 uppercase block">Assigned Advocate Incentive</span>
+                  <span className="text-[10px] font-mono font-bold text-neutral-500 dark:text-fixed-muted uppercase block">Assigned Advocate Incentive</span>
                   <div className="relative w-full">
                     <select
                       value={selectedReward}
                       onChange={(e) => setSelectedReward(e.target.value)}
-                      className="appearance-none w-full bg-white border border-neutral-200 rounded-xl pl-3.5 pr-10 py-2.5 text-xs font-semibold text-neutral-800 cursor-pointer focus:outline-hidden focus:border-indigo-500 transition-colors"
+                      className="appearance-none w-full bg-white dark:bg-[#0c0c0e] border border-neutral-200 dark:border-fixed-white/10 rounded-xl pl-3.5 pr-10 py-2.5 text-xs font-semibold text-neutral-800 dark:text-fixed-white cursor-pointer focus:outline-hidden focus:border-indigo-500 transition-colors"
                     >
                       <option value="Early Access Beta Key">Early Access Beta Key</option>
                       <option value="15% Lifetime Affiliate Commission">15% Lifetime Affiliate Commission</option>
@@ -399,31 +399,31 @@ export default function CommunityGrowthPage() {
 
                 {/* Creator Name input */}
                 <div className="space-y-2">
-                  <span className="text-[10px] font-mono font-bold text-neutral-500 uppercase block">Ambassador Name</span>
+                  <span className="text-[10px] font-mono font-bold text-neutral-500 dark:text-fixed-muted uppercase block">Ambassador Name</span>
                   <input
                     type="text"
                     value={advocateName}
                     onChange={(e) => setAdvocateName(e.target.value.slice(0, 24))}
                     placeholder="Sarah Jenkins"
-                    className="w-full bg-white border border-neutral-200 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 rounded-xl px-3 py-2.5 text-xs font-semibold text-neutral-800 transition-all focus:outline-hidden"
+                    className="w-full bg-white dark:bg-[#0c0c0e] border border-neutral-200 dark:border-fixed-white/10 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 rounded-xl px-3 py-2.5 text-xs font-semibold text-neutral-800 dark:text-fixed-white transition-all focus:outline-hidden"
                   />
                 </div>
 
                 {/* Telemetry output */}
-                <div className="border-t border-neutral-200 pt-5 space-y-3">
+                <div className="border-t border-neutral-200 dark:border-fixed-white/10 pt-5 space-y-3">
                   <span className="text-[10px] font-mono font-extrabold text-neutral-600 uppercase tracking-widest block">CAMPAIGN RETURN TELEMETRY</span>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-3.5">
                       <span className="text-[9px] uppercase font-mono text-neutral-500 font-bold block">Attributed Shares</span>
-                      <span className="text-xl font-mono font-bold block mt-0.5 text-neutral-900">{sharesCount}</span>
+                      <span className="text-xl font-mono font-bold block mt-0.5 text-neutral-900 dark:text-fixed-white">{sharesCount}</span>
                     </div>
                     <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-3.5">
                       <span className="text-[9px] uppercase font-mono text-neutral-500 font-bold block">Impressions Saved</span>
-                      <span className="text-xl font-mono font-bold block mt-0.5 text-neutral-900">{impressionsCount.toLocaleString()}</span>
+                      <span className="text-xl font-mono font-bold block mt-0.5 text-neutral-900 dark:text-fixed-white">{impressionsCount.toLocaleString()}</span>
                     </div>
                     <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-3.5">
                       <span className="text-[9px] uppercase font-mono text-neutral-500 font-bold block">Attributed Clicks</span>
-                      <span className="text-xl font-mono font-bold block mt-0.5 text-neutral-900">{clicksCount.toLocaleString()}</span>
+                      <span className="text-xl font-mono font-bold block mt-0.5 text-neutral-900 dark:text-fixed-white">{clicksCount.toLocaleString()}</span>
                     </div>
                     <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-3.5">
                       <span className="text-[9px] uppercase font-mono text-neutral-500 font-bold block">Equivalent Value</span>
@@ -436,36 +436,36 @@ export default function CommunityGrowthPage() {
               {/* RIGHT COLUMN: Dynamic Creator Portal Preview */}
               <div className="lg:col-span-6 flex flex-col justify-between p-2 sm:p-4">
                 <div className="space-y-5">
-                  <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+                  <div className="flex items-center justify-between border-b border-neutral-100 dark:border-fixed-white/10 pb-3">
                     <div>
                       <span className="text-[10px] font-mono font-extrabold text-neutral-500 uppercase tracking-widest block mb-0.5">DYNAMIC ADVOCATE VIEW</span>
-                      <h4 className="text-sm font-bold text-neutral-900">Portal Preview: {advocateName}</h4>
+                      <h4 className="text-sm font-bold text-neutral-900 dark:text-fixed-white">Portal Preview: {advocateName}</h4>
                     </div>
                     <span className="text-[8px] font-mono text-emerald-600 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full">LIVE PREVIEW</span>
                   </div>
 
                   {/* Discord/Portal prompt alert mockup */}
-                  <div className="bg-[#0d1220] border border-indigo-400/25 rounded-2xl p-4 space-y-3 shadow-inner shadow-black/25">
+                  <div className="bg-indigo-50/70 dark:bg-[#0d1220] border border-indigo-200 dark:border-indigo-400/25 rounded-2xl p-4 space-y-3 shadow-inner shadow-indigo-950/5 dark:shadow-black/25">
                     <div className="flex items-center gap-2">
                       <div className="h-6 w-6 rounded bg-indigo-600 flex items-center justify-center text-fixed-white text-[10px] font-bold">W</div>
-                      <span className="text-[10px] font-bold text-fixed-white">Wozku Community Bot</span>
-                      <span className="text-[8px] text-fixed-muted font-mono ml-auto">#announcements</span>
+                      <span className="text-[10px] font-bold text-neutral-900 dark:text-fixed-white">Wozku Community Bot</span>
+                      <span className="text-[8px] text-neutral-500 dark:text-fixed-muted font-mono ml-auto">#announcements</span>
                     </div>
-                    <p className="text-[11px] text-fixed-muted leading-relaxed font-sans">
-                      Hey <span className="text-sky-300 font-semibold">@{advocateName}</span>! You have a new campaign reward waiting. Broadcast the release card below and claim: <span className="text-emerald-300 font-semibold">{selectedReward}</span>.
+                    <p className="text-[11px] text-neutral-600 dark:text-fixed-muted leading-relaxed font-sans">
+                      Hey <span className="text-sky-700 dark:text-sky-300 font-semibold">@{advocateName}</span>! You have a new campaign reward waiting. Broadcast the release card below and claim: <span className="text-emerald-700 dark:text-emerald-300 font-semibold">{selectedReward}</span>.
                     </p>
                   </div>
 
                   {/* Social Card preview */}
-                  <div className="border border-neutral-200 rounded-2xl p-4 bg-white space-y-3">
+                  <div className="border border-neutral-200 dark:border-fixed-white/10 rounded-2xl p-4 bg-white dark:bg-[#141418] space-y-3">
                     <div className="flex items-center gap-2.5">
                       <div className="h-8 w-8 rounded-full bg-indigo-100 flex items-center justify-center font-bold text-xs text-indigo-700 font-mono">{currentInitials}</div>
                       <div>
-                        <span className="text-xs font-bold text-neutral-900 block">{advocateName}</span>
+                        <span className="text-xs font-bold text-neutral-900 dark:text-fixed-white block">{advocateName}</span>
                         <span className="text-[9px] text-neutral-400 block font-mono">Sharing to social networks</span>
                       </div>
                     </div>
-                    <p className="text-[11.5px] text-neutral-700 leading-relaxed font-sans italic">
+                    <p className="text-[11.5px] text-neutral-700 dark:text-fixed-light leading-relaxed font-sans italic">
                       "{selectedPreset.post}"
                     </p>
                     <span className="text-[10px] text-indigo-600 font-bold block">{selectedPreset.hashtag}</span>
@@ -550,8 +550,8 @@ export default function CommunityGrowthPage() {
                       onClick={() => setSelectedTier(tier)}
                       className={`p-2.5 rounded-xl border text-[10px] font-bold text-center cursor-pointer transition-all ${
                         selectedTier.id === tier.id
-                          ? 'bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] border-indigo-400/60 text-indigo-200'
-                          : 'bg-[#111216] border-fixed-white/10 text-fixed-muted hover:border-fixed-white/20 hover:text-fixed-white'
+                          ? 'bg-indigo-100 border-indigo-400/60 text-indigo-700 dark:bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] dark:text-indigo-200'
+                          : 'bg-white border-neutral-200 text-neutral-600 hover:border-neutral-300 hover:text-neutral-900 dark:bg-[#111216] dark:border-fixed-white/10 dark:text-fixed-muted dark:hover:border-fixed-white/20 dark:hover:text-fixed-white'
                       }`}
                     >
                       <span className="block font-mono font-bold">{tier.members}</span>
@@ -574,15 +574,15 @@ export default function CommunityGrowthPage() {
                   step="5"
                   value={engagementRate}
                   onChange={(e) => setEngagementRate(Number(e.target.value))}
-                  className="w-full h-1.5 bg-[#20232b] rounded-lg appearance-none cursor-pointer accent-indigo-500"
+                  className="w-full h-1.5 bg-neutral-200 dark:bg-[#20232b] rounded-lg appearance-none cursor-pointer accent-indigo-500"
                 />
               </div>
 
               {/* Custom micro-tip */}
-              <div className="bg-[#141418] border border-fixed-white/12 rounded-2xl p-4 flex gap-3 text-xs leading-normal shadow-inner shadow-black/20">
+              <div className="bg-indigo-50/70 dark:bg-[#141418] border border-indigo-100 dark:border-fixed-white/12 rounded-2xl p-4 flex gap-3 text-xs leading-normal shadow-inner shadow-indigo-950/5 dark:shadow-black/20">
                 <Sparkles className="w-5 h-5 text-indigo-600 shrink-0" />
-                <p className="text-fixed-white font-medium">
-                  At <strong className="text-sky-300">3.2%</strong> average click-through rate, your advocates bypass algorithm restrictions to deliver high-quality conversions directly.
+                <p className="text-neutral-700 dark:text-fixed-white font-medium">
+                  At <strong className="text-sky-700 dark:text-sky-300">3.2%</strong> average click-through rate, your advocates bypass algorithm restrictions to deliver high-quality conversions directly.
                 </p>
               </div>
             </div>
@@ -690,9 +690,9 @@ export default function CommunityGrowthPage() {
       {/* ================= 6. ULTRA-PREMIUM FINAL CTA SECTION ================= */}
       <section className="py-24 bg-[#0a0a0d] text-fixed-white relative overflow-hidden">
         {/* Glow ambient background circles with premium mesh effect */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(99,102,241,0.12)_0%,_transparent_65%)] pointer-events-none z-0" />
-        <div className="absolute -right-24 bottom-0 w-[500px] h-[500px] bg-emerald-500/[0.04] blur-[140px] rounded-full pointer-events-none z-0" />
-        <div className="absolute -left-24 top-0 w-[500px] h-[500px] bg-indigo-500/[0.06] blur-[140px] rounded-full pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_color-mix(in srgb,var(--indigo-500)_12%,transparent)_0%,_transparent_65%)] pointer-events-none z-0" />
+        <div className="absolute -right-24 bottom-0 w-[500px] h-[500px] bg-[var(--indigo-500)]/[0.04] blur-[140px] rounded-full pointer-events-none z-0" />
+        <div className="absolute -left-24 top-0 w-[500px] h-[500px] bg-[var(--indigo-500)]/[0.06] blur-[140px] rounded-full pointer-events-none z-0" />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-10">
           <div className="space-y-4 max-w-3xl mx-auto">

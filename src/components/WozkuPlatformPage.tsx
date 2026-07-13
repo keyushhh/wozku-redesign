@@ -60,7 +60,7 @@ const BLUEPRINT_NODES: BlueprintNode[] = [
     status: 'Idle',
     desc: 'The personal communication endpoints where shares are validated and posted.',
     details: [
-      'No custom applications required — runs entirely inside Slack, MS Teams, or Email',
+      'No custom applications required - runs entirely inside Slack, MS Teams, or Email',
       'Supports one-click oauth dispatch to LinkedIn, X, and Facebook',
       'Validates node authentications without storing personal login credentials'
     ]
@@ -115,7 +115,7 @@ export default function WozkuPlatformPage() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             Our architectural approach to{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">organic trust.</span>
+            <span className="text-indigo-600 dark:text-indigo-400">organic trust.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">

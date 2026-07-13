@@ -19,6 +19,16 @@ export default function Navbar() {
 
   useEffect(() => {
     const root = document.documentElement;
+    // A legacy custom-palette bootstrap writes inline CSS variables. Inline
+    // values outrank the preset classes below, making the palette buttons look
+    // unresponsive. This picker owns the palette, so clear that stale override.
+    const scales = ['indigo', 'secondary', 'accent'];
+    scales.forEach((scale) => {
+      [50, 100, 200, 300, 400, 500, 600, 650, 700, 800, 900, 950].forEach((step) => {
+        root.style.removeProperty(`--${scale}-${step}`);
+      });
+    });
+    localStorage.removeItem('wozku-custom-palette');
     // Remove color presets
     root.classList.remove('theme-emerald', 'theme-rose', 'theme-amber', 'theme-violet', 'theme-sky', 'theme-fuchsia', 'theme-crimson');
     if (activeTheme !== 'indigo') {

@@ -54,9 +54,9 @@ const playSynthSound = (type: 'share' | 'unlock' | 'claim') => {
 
 const CAMPAIGN_PRESETS = [
   { id: 'product', label: 'Product Launch', tag: '🚀 Launch', hashtag: '#WozkuLaunch', post: "Thrilled to share: Wozku just shipped our most powerful advocacy engine yet. Organic reach, fully automated. The future of brand distribution is here. #WozkuLaunch" },
-  { id: 'hiring', label: 'Job Opening', tag: '💼 Hiring', hashtag: '#WozkuHiring', post: "We're growing! Wozku is hiring across Product, Engineering & Sales. If you want to build something that changes how brands grow — let's talk. #WozkuHiring" },
+  { id: 'hiring', label: 'Job Opening', tag: '💼 Hiring', hashtag: '#WozkuHiring', post: "We're growing! Wozku is hiring across Product, Engineering & Sales. If you want to build something that changes how brands grow - let's talk. #WozkuHiring" },
   { id: 'thought', label: 'Thought Leadership', tag: '💡 Insight', hashtag: '#WozkuInsights', post: "Wozku's latest research: employee-shared content gets 8× more engagement than brand posts. The trust economy is real. #WozkuInsights #EmployeeAdvocacy" },
-  { id: 'event', label: 'Event Announcement', tag: '📅 Event', hashtag: '#WozkuEvent', post: "Representing Wozku at the Global SaaS Summit next week! Come find us — we'll be demoing how companies 10× their organic reach with zero paid media. #WozkuEvent" },
+  { id: 'event', label: 'Event Announcement', tag: '📅 Event', hashtag: '#WozkuEvent', post: "Representing Wozku at the Global SaaS Summit next week! Come find us - we'll be demoing how companies 10× their organic reach with zero paid media. #WozkuEvent" },
 ];
 
 const LEADERBOARD_BASE = [
@@ -198,7 +198,7 @@ export default function EmployeeAdvocacyPage() {
     <main className="min-h-screen bg-white font-sans text-neutral-900 overflow-hidden">
 
       {/* ============================================================
-          HERO — TWO COLUMN SPLIT
+          HERO - TWO COLUMN SPLIT
           ============================================================ */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-indigo-50/30 dark:from-[#05070b] dark:via-[#090b10] dark:to-[#0f1724] border-b border-neutral-200/60 dark:border-fixed-white/5">
 
@@ -228,7 +228,7 @@ export default function EmployeeAdvocacyPage() {
               </h1>
 
               <p className="text-base text-neutral-600 dark:text-fixed-light leading-relaxed max-w-lg">
-                Wozku automates employee advocacy at scale. Pre-approved campaigns land in Slack or email — employees share in one tap, and your brand multiplies across thousands of trusted personal networks.
+                Wozku automates employee advocacy at scale. Pre-approved campaigns land in Slack or email - employees share in one tap, and your brand multiplies across thousands of trusted personal networks.
               </p>
 
               {/* Trust signals */}
@@ -269,7 +269,7 @@ export default function EmployeeAdvocacyPage() {
                   <span className="ml-auto text-[8px] font-mono text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">NEW</span>
                 </div>
                 <p className="text-[10px] text-neutral-700 leading-relaxed border-t border-neutral-100 pt-2 font-sans">
-                  Hey <span className="font-bold text-indigo-700">@Alex</span> — a new campaign is ready for your network: <span className="font-semibold">Product Launch 🚀</span>. Share in 1 tap.
+                  Hey <span className="font-bold text-indigo-700">@Alex</span> - a new campaign is ready for your network: <span className="font-semibold">Product Launch 🚀</span>. Share in 1 tap.
                 </p>
                 <div className="mt-2 bg-indigo-600 text-fixed-white text-[9px] font-bold text-center py-1.5 rounded-lg cursor-pointer">
                   View &amp; Share →
@@ -318,7 +318,7 @@ export default function EmployeeAdvocacyPage() {
       </section>
 
       {/* ============================================================
-          SIMULATOR — FULL-WIDTH STEPPER LAYOUT
+          SIMULATOR - FULL-WIDTH STEPPER LAYOUT
           ============================================================ */}
       <section id="simulator" className="py-20 bg-slate-50/60 border-b border-neutral-200/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -401,8 +401,8 @@ export default function EmployeeAdvocacyPage() {
                               onClick={() => setSelectedCampaign(c)}
                               className={`p-3 rounded-xl border text-left text-[10px] font-bold transition-all cursor-pointer ${
                                 selectedCampaign.id === c.id
-                                  ? 'bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] border-indigo-400/60 text-indigo-200'
-                                  : 'bg-white border-neutral-200 text-neutral-600 hover:border-neutral-300'
+                                  ? 'bg-indigo-50 border-indigo-400/60 text-indigo-700 dark:bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] dark:text-indigo-200'
+                                  : 'bg-white border-neutral-200 text-neutral-600 hover:border-neutral-300 dark:bg-[#141418] dark:border-fixed-white/10 dark:text-fixed-light'
                               }`}
                             >
                               <span className="block mb-0.5">{c.tag}</span>
@@ -445,7 +445,7 @@ export default function EmployeeAdvocacyPage() {
 
                       <div className="grid grid-cols-2 gap-2 text-center">
                         {[{ label: 'Est. Reach', value: '1,200–2,400' }, { label: 'Ad Value', value: '$22–$43' }].map(({ label, value }) => (
-                          <div key={label} className="bg-[color-mix(in_srgb,var(--indigo-500)_14%,#141418)] border border-indigo-400/35 rounded-xl p-3">
+                          <div key={label} className="bg-indigo-50 border border-indigo-200 dark:bg-[color-mix(in_srgb,var(--indigo-500)_14%,#141418)] dark:border-indigo-400/35 rounded-xl p-3">
                             <span className="text-[10px] font-mono font-extrabold text-indigo-700 block">{value}</span>
                             <span className="text-[9px] text-indigo-600">{label}</span>
                           </div>
@@ -492,7 +492,7 @@ export default function EmployeeAdvocacyPage() {
                         Hey <span className="font-bold text-indigo-700">@{employeeName}</span> 👋<br />
                         A new campaign is ready for your network:<br />
                         <span className="font-semibold">{selectedCampaign.tag} {selectedCampaign.label}</span><br />
-                        Share it on LinkedIn — takes 10 seconds.
+                        Share it on LinkedIn - takes 10 seconds.
                       </div>
                       <motion.div
                         animate={{ opacity: [0.6, 1, 0.6] }}
@@ -595,7 +595,7 @@ export default function EmployeeAdvocacyPage() {
                     <div className="bg-emerald-50 border border-emerald-200/60 rounded-2xl px-5 py-3 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                        <span className="text-sm font-bold text-emerald-900">Post shared by {employeeName} — campaign is live!</span>
+                        <span className="text-sm font-bold text-emerald-900">Post shared by {employeeName} - campaign is live!</span>
                       </div>
                       <button onClick={handleReset} className="flex items-center gap-1.5 text-[10px] font-bold text-neutral-500 hover:text-neutral-700 bg-white border border-neutral-200 px-3 py-1.5 rounded-lg cursor-pointer transition-all">
                         <RefreshCw className="w-3 h-3" /> Reset
@@ -623,7 +623,7 @@ export default function EmployeeAdvocacyPage() {
 
                         {/* Reward */}
                         <div className="bg-amber-50 border border-amber-200/60 rounded-2xl p-4 space-y-2">
-                          <div className="flex items-center gap-1.5"><Gift className="w-3.5 h-3.5 text-amber-600" /><span className="text-[10px] font-bold text-amber-800">Amazon Gift Card — $25</span></div>
+                          <div className="flex items-center gap-1.5"><Gift className="w-3.5 h-3.5 text-amber-600" /><span className="text-[10px] font-bold text-amber-800">Amazon Gift Card - $25</span></div>
                           {userClaimedReward ? (
                             <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 py-2 rounded-xl text-[10px] font-bold text-center flex items-center justify-center gap-1.5">
                               <CheckCircle2 className="w-3.5 h-3.5" /> Reward Claimed!
@@ -699,7 +699,7 @@ export default function EmployeeAdvocacyPage() {
       </section>
 
       {/* ============================================================
-          HOW IT WORKS — NUMBERED PIPELINE
+          HOW IT WORKS - NUMBERED PIPELINE
           ============================================================ */}
       <section className="py-20 bg-white border-b border-neutral-200/60">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -722,7 +722,7 @@ export default function EmployeeAdvocacyPage() {
               <div className="space-y-2 relative z-10">
                 <h3 className="text-xl font-bold font-display">Smart Campaign Library</h3>
                 <p className="text-sm text-indigo-100 leading-relaxed">
-                  Pre-written, brand-approved posts auto-served to the right employees by role, team, seniority, or location. Your comms team creates once — the system delivers to thousands.
+                  Pre-written, brand-approved posts auto-served to the right employees by role, team, seniority, or location. Your comms team creates once - the system delivers to thousands.
                 </p>
               </div>
             </div>
@@ -730,8 +730,8 @@ export default function EmployeeAdvocacyPage() {
             {/* 3 smaller cards */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
-                { icon: <Bell className="w-5 h-5" />, title: 'Slack & Email Integration', desc: "Push campaigns into Slack or inboxes. Employees share in one tap — no new app, no new login." },
-                { icon: <ShieldCheck className="w-5 h-5" />, title: 'Compliance Controls', desc: 'Legal pre-approves every post variant before it reaches employees — zero rogue shares.' },
+                { icon: <Bell className="w-5 h-5" />, title: 'Slack & Email Integration', desc: "Push campaigns into Slack or inboxes. Employees share in one tap - no new app, no new login." },
+                { icon: <ShieldCheck className="w-5 h-5" />, title: 'Compliance Controls', desc: 'Legal pre-approves every post variant before it reaches employees - zero rogue shares.' },
                 { icon: <Trophy className="w-5 h-5" />, title: 'Leaderboard & Rewards', desc: 'Automated XP, monthly rankings, and redeemable rewards drive sustained participation.' },
               ].map(({ icon, title, desc }) => (
                 <div key={title} className="bg-white border border-neutral-200/60 rounded-2xl p-5 space-y-3 hover:border-indigo-200 hover:shadow-sm transition-all shadow-2xs">
@@ -753,7 +753,7 @@ export default function EmployeeAdvocacyPage() {
           <div className="text-center mb-12 space-y-3">
             <h2 className="text-2xl sm:text-3xl font-display font-bold text-neutral-900 tracking-tight">Employee Network Amplifier</h2>
             <p className="text-xs sm:text-sm text-neutral-500 max-w-lg mx-auto">
-              Calculate the organic reach your team can generate — and the paid media budget you eliminate entirely.
+              Calculate the organic reach your team can generate - and the paid media budget you eliminate entirely.
             </p>
           </div>
 
@@ -782,34 +782,33 @@ export default function EmployeeAdvocacyPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-6 bg-[#0a0a0d] border border-fixed-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-xs text-fixed-white">
+            <div className="lg:col-span-6 bg-white dark:bg-[#0a0a0d] border border-neutral-200 dark:border-fixed-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-xs text-neutral-900 dark:text-fixed-white">
               <div className="space-y-5">
-                <span className="text-[10px] font-mono font-bold tracking-widest text-fixed-muted uppercase">PROJECTED VALUE</span>
+                <span className="text-[10px] font-mono font-bold tracking-widest text-neutral-500 dark:text-fixed-muted uppercase">PROJECTED VALUE</span>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-[#141418] border border-fixed-white/10 p-4 rounded-2xl">
-                    <div className="flex items-center gap-1.5 text-fixed-light mb-1"><Users className="w-3.5 h-3.5" /><span className="text-[10px] font-bold font-mono uppercase">ADVOCATES</span></div>
+                  <div className="bg-slate-50 dark:bg-[#141418] border border-neutral-200 dark:border-fixed-white/10 p-4 rounded-2xl">
+                    <div className="flex items-center gap-1.5 text-neutral-500 dark:text-fixed-light mb-1"><Users className="w-3.5 h-3.5" /><span className="text-[10px] font-bold font-mono uppercase">ADVOCATES</span></div>
                     <span className="text-2xl font-mono font-extrabold">{totalAdvocates.toLocaleString()}</span>
                   </div>
-                  <div className="bg-[#141418] border border-fixed-white/10 p-4 rounded-2xl">
-                    <div className="flex items-center gap-1.5 text-fixed-light mb-1"><TrendingUp className="w-3.5 h-3.5" /><span className="text-[10px] font-bold font-mono uppercase">IMPRESSIONS</span></div>
+                  <div className="bg-slate-50 dark:bg-[#141418] border border-neutral-200 dark:border-fixed-white/10 p-4 rounded-2xl">
+                    <div className="flex items-center gap-1.5 text-neutral-500 dark:text-fixed-light mb-1"><TrendingUp className="w-3.5 h-3.5" /><span className="text-[10px] font-bold font-mono uppercase">IMPRESSIONS</span></div>
                     <span className="text-2xl font-mono font-extrabold text-teal-400">{totalImpressions.toLocaleString()}</span>
                   </div>
                 </div>
-                  <div className="bg-gradient-to-br from-[#202040] to-[#141418] border border-indigo-900/40 p-6 rounded-2xl flex items-center justify-between relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.12)_0%,transparent_60%)]" />
+                  <div className="bg-indigo-50 dark:bg-[#141418] border border-indigo-200 dark:border-fixed-white/10 p-6 rounded-2xl flex items-center justify-between relative overflow-hidden">
                   <div className="space-y-1 relative z-10">
-                    <div className="flex items-center gap-1.5"><DollarSign className="w-4 h-4 text-indigo-400" /><span className="text-[10px] font-bold font-mono uppercase text-fixed-light">MEDIA VALUE</span></div>
+                    <div className="flex items-center gap-1.5"><DollarSign className="w-4 h-4 text-indigo-500 dark:text-indigo-400" /><span className="text-[10px] font-bold font-mono uppercase text-neutral-500 dark:text-fixed-light">MEDIA VALUE</span></div>
                     <span className="text-3xl font-mono font-extrabold">${equivalentAdValue.toLocaleString()}</span>
                   </div>
-                  <div className="text-right text-[10px] font-mono text-fixed-light relative z-10 space-y-0.5">
-                    <span className="block text-indigo-400 font-bold">SAVED AD SPEND</span>
+                  <div className="text-right text-[10px] font-mono text-neutral-500 dark:text-fixed-light relative z-10 space-y-0.5">
+                    <span className="block text-indigo-600 dark:text-indigo-400 font-bold">SAVED AD SPEND</span>
                     <span className="block font-bold">CPM base: $18.00</span>
                   </div>
                 </div>
               </div>
-              <div className="pt-5 border-t border-fixed-white/10 mt-5 text-[10px] text-fixed-light flex items-center justify-between">
+              <div className="pt-5 border-t border-neutral-200 dark:border-fixed-white/10 mt-5 text-[10px] text-neutral-500 dark:text-fixed-light flex items-center justify-between">
                 <span>PROJECTED SOCIAL CPM</span>
-                <span className="font-mono text-fixed-white font-bold">$18.00 USD</span>
+                <span className="font-mono text-neutral-900 dark:text-fixed-white font-bold">$18.00 USD</span>
               </div>
             </div>
           </div>
@@ -822,15 +821,15 @@ export default function EmployeeAdvocacyPage() {
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-3xl overflow-hidden bg-[#0a0a0d] border border-fixed-white/10 p-10 sm:p-16 text-center">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(79,70,229,0.15)_0%,transparent_55%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(99,102,241,0.10)_0%,transparent_55%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,color-mix(in srgb,var(--indigo-500)_15%,transparent)_0%,transparent_55%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,color-mix(in srgb,var(--indigo-500)_8%,transparent)_0%,transparent_55%)] pointer-events-none" />
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
               <span className="inline-block text-[9px] font-mono font-extrabold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-md uppercase tracking-widest">
                 Ready to mobilize your team?
               </span>
               <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-fixed-white leading-tight tracking-tight">
                 Turn every employee post into<br />
-                <span className="bg-gradient-to-r from-indigo-400 via-indigo-300 to-indigo-400 bg-clip-text text-transparent">
+                <span className="text-indigo-400">
                   compounding brand reach.
                 </span>
               </h2>

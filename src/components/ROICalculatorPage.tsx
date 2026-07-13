@@ -321,7 +321,7 @@ export default function ROICalculatorPage() {
           </div>
 
           {/* Column 2: Dashboard & Comparisons (5 cols) */}
-          <div className="lg:col-span-5 bg-white dark:bg-[#0f1115] border border-slate-200 dark:border-fixed-white/8 rounded-3xl p-6 shadow-xs flex flex-col justify-between space-y-8">
+          <div className="lg:col-span-5 bg-white dark:bg-[#0f1115] border border-slate-100/60 dark:border-fixed-white/8 rounded-3xl p-6 shadow-xs flex flex-col justify-between space-y-8">
             <div className="space-y-6">
               
               <div className="space-y-1">
@@ -333,7 +333,7 @@ export default function ROICalculatorPage() {
 
               {/* Metric 1: Yearly EAV */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-150 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Ad Spend Offset</span>
                   <div className="text-2xl font-display font-extrabold text-indigo-950">
                     <AnimatedNumber value={yearlyEAV} prefix="$" />
@@ -344,7 +344,7 @@ export default function ROICalculatorPage() {
                 </div>
 
                 {/* Metric 2: Net ROI */}
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-150 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Net ROI % Sourced</span>
                   <div className="text-2xl font-display font-extrabold text-indigo-950">
                     <AnimatedNumber value={roiPercentage} suffix="%" />
@@ -357,7 +357,7 @@ export default function ROICalculatorPage() {
 
               {/* Metric 3: Reach & Clicks */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-150 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Impressions Sourced</span>
                   <div className="text-lg font-mono font-bold text-slate-900">
                     <AnimatedNumber value={yearlyImpressions} />
@@ -367,7 +367,7 @@ export default function ROICalculatorPage() {
                   </span>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-150 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Sourced Clicks</span>
                   <div className="text-lg font-mono font-bold text-slate-900">
                     <AnimatedNumber value={yearlyClicks} />

@@ -239,7 +239,7 @@ export default function CaseStudiesPage() {
             })}
           </div>
 
-          {/* View Mode Switcher — Light Mode */}
+          {/* View Mode Switcher - Light Mode */}
           <div className="bg-white border border-slate-200 p-1 rounded-2xl flex items-center shadow-sm">
             {[
               {

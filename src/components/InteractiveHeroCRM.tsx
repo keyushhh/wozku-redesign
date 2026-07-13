@@ -333,7 +333,7 @@ export default function InteractiveHeroCRM() {
 
                     {customFields.map((field, idx) => (
                       <td key={idx} className="p-4 text-neutral-600 font-mono text-[11px]">
-                        {field.values[adv.id] || '—'}
+                        {field.values[adv.id] || '-'}
                       </td>
                     ))}
 

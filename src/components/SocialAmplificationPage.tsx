@@ -34,7 +34,7 @@ const PLATFORMS: Platform[] = [
 ];
 
 const CONTENT_TYPES = [
-  { id: 'product',   label: 'Product Launch',   emoji: '🚀', template: `We just shipped something huge. The new Wozku Signal Console lets your team broadcast across every platform in one click — with zero coordination overhead. Thread below.` },
+  { id: 'product',   label: 'Product Launch',   emoji: '🚀', template: `We just shipped something huge. The new Wozku Signal Console lets your team broadcast across every platform in one click - with zero coordination overhead. Thread below.` },
   { id: 'milestone', label: 'Growth Milestone',  emoji: '📈', template: `1,000 active advocates later, and our organic reach has grown 4× without a single paid impression. This is what decentralized distribution looks like at scale.` },
   { id: 'insight',   label: 'Industry Insight',  emoji: '💡', template: `Paid CPM is up 31% YoY. Meanwhile brands using advocate-led amplification are seeing 6× higher click-through at 1/8th the cost. The math doesn't lie.` },
 ];
@@ -202,13 +202,13 @@ export default function SocialAmplificationPage() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             One signal.{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">Every channel.</span>
+            <span className="text-indigo-600 dark:text-indigo-400">Every channel.</span>
             <br />
             <span className="text-slate-400 text-4xl sm:text-5xl font-bold">Simultaneously.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">
-            Stop copy-pasting content across dashboards. Wozku's Signal Console fires brand-approved posts across every connected platform in a single dispatch — timed to each channel's peak engagement window.
+            Stop copy-pasting content across dashboards. Wozku's Signal Console fires brand-approved posts across every connected platform in a single dispatch - timed to each channel's peak engagement window.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mb-14">
@@ -267,7 +267,7 @@ export default function SocialAmplificationPage() {
                       onClick={() => handleContentSwitch(ct)}
                       className={`p-3 rounded-xl border text-left text-[9px] font-extrabold transition-all cursor-pointer ${
                         selectedContent.id === ct.id
-                          ? 'bg-gradient-to-br from-indigo-600 to-secondary-600 border-transparent text-white shadow-md shadow-indigo-600/10'
+                          ? 'bg-indigo-600 border-transparent text-white shadow-md shadow-indigo-600/10'
                           : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-800'
                       }`}
                     >
@@ -299,14 +299,14 @@ export default function SocialAmplificationPage() {
                       onClick={() => togglePlatform(p.id)}
                       className={`w-full flex items-center gap-3.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${
                         activePlatforms.has(p.id)
-                          ? 'bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] border-indigo-400/60 text-fixed-white shadow-xs'
-                          : 'bg-fixed-white/5 border-fixed-white/10 text-fixed-light hover:border-fixed-white/20 hover:text-fixed-white'
+                          ? 'bg-indigo-50 dark:bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] border-indigo-400/60 text-neutral-900 dark:text-fixed-white shadow-xs'
+                          : 'bg-white dark:bg-fixed-white/5 border-slate-200 dark:border-fixed-white/10 text-slate-600 dark:text-fixed-light hover:border-indigo-300 dark:hover:border-fixed-white/20 hover:text-slate-900 dark:hover:text-fixed-white'
                       }`}
                     >
                       <img src={p.asset} alt={p.name} className="h-6.5 w-6.5 object-contain shrink-0" />
                       <div className="flex-1 min-w-0">
-                        <span className={`text-[11px] font-bold block ${activePlatforms.has(p.id) ? 'text-fixed-white' : 'text-fixed-light'}`}>{p.name}</span>
-                        <span className={`text-[9px] font-mono ${activePlatforms.has(p.id) ? 'text-fixed-muted' : 'text-fixed-muted'}`}>{p.reach}K reach · {p.avgEng}% eng</span>
+                        <span className={`text-[11px] font-bold block ${activePlatforms.has(p.id) ? 'text-neutral-900 dark:text-fixed-white' : 'text-slate-700 dark:text-fixed-light'}`}>{p.name}</span>
+                        <span className="text-[9px] font-mono text-slate-400 dark:text-fixed-muted">{p.reach}K reach · {p.avgEng}% eng</span>
                       </div>
                       <div className={`h-4.5 w-4.5 rounded border shrink-0 flex items-center justify-center transition-all ${
                         activePlatforms.has(p.id) ? 'bg-indigo-600 border-indigo-600' : 'border-slate-300'
@@ -480,7 +480,7 @@ export default function SocialAmplificationPage() {
               <span className="text-[10px] font-mono font-extrabold text-indigo-600 uppercase tracking-widest block mb-3">Channel Intelligence</span>
               <h2 className="text-3xl font-display font-extrabold text-slate-900 mb-4">Each platform gets its own signal timing.</h2>
               <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                Wozku's ML timing engine analyzes 18 months of your audience's engagement history per channel and selects the precise dispatch window for each post — not a generic "best time to post" guess.
+                Wozku's ML timing engine analyzes 18 months of your audience's engagement history per channel and selects the precise dispatch window for each post - not a generic "best time to post" guess.
               </p>
               <div className="space-y-3">
                 {[
@@ -522,7 +522,7 @@ export default function SocialAmplificationPage() {
 
       {/* ── 6. CTA (Kept strictly in Dark Mode, Untouched) ────────────────── */}
       <section className="py-24 relative overflow-hidden bg-[#09090f] text-fixed-white border-t border-fixed-white/[0.06]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(99,102,241,0.14),transparent_65%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,color-mix(in srgb,var(--indigo-500)_14%,transparent),transparent_65%)] pointer-events-none" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <span className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-widest text-indigo-400 mb-6">
             <Sparkles className="w-3 h-3" /> Get Early Access

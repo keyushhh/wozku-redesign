@@ -342,7 +342,7 @@ export default function App() {
               className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight"
             >
               Own distribution.<br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-500 bg-clip-text text-transparent">
+              <span className="text-indigo-600 dark:text-indigo-400">
                 Your community is the antidote.
               </span>
             </motion.h1>
@@ -353,7 +353,7 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed font-sans"
             >
-              Paid ads are losing the trust game. Your employees, customers, and partners already have the audience — Wozku gives them the tools to share your story at scale, and shows you exactly how much pipeline it drives.
+              Paid ads are losing the trust game. Your employees, customers, and partners already have the audience - Wozku gives them the tools to share your story at scale, and shows you exactly how much pipeline it drives.
             </motion.p>
           </div>
 
@@ -550,7 +550,7 @@ export default function App() {
                   step: '02',
                   icon: <Users className="w-5 h-5" />,
                   title: 'Invite Advocates',
-                  body: 'Activate employees, customers, or partners directly via Slack, Teams, or email — no new app to download.',
+                  body: 'Activate employees, customers, or partners directly via Slack, Teams, or email - no new app to download.',
                   color: 'text-secondary-600 bg-secondary-50 border-secondary-100',
                   dot: 'bg-secondary-500',
                 },
@@ -558,7 +558,7 @@ export default function App() {
                   step: '03',
                   icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>,
                   title: 'Share Content',
-                  body: 'Advocates share one-click approved posts to LinkedIn, X, or any channel — tracked automatically.',
+                  body: 'Advocates share one-click approved posts to LinkedIn, X, or any channel - tracked automatically.',
                   color: 'text-blue-600 bg-blue-50 border-blue-100',
                   dot: 'bg-blue-500',
                 },
@@ -574,7 +574,7 @@ export default function App() {
                   step: '05',
                   icon: <TrendingUp className="w-5 h-5" />,
                   title: 'Measure ROI',
-                  body: 'CRM-native attribution closes the loop — see exactly which shares drove leads, demos, and closed deals.',
+                  body: 'CRM-native attribution closes the loop - see exactly which shares drove leads, demos, and closed deals.',
                   color: 'text-amber-600 bg-amber-50 border-amber-100',
                   dot: 'bg-amber-500',
                 },
@@ -610,7 +610,7 @@ export default function App() {
               >
                 See the full workflow live <ArrowRight className="w-3.5 h-3.5" />
               </button>
-              <p className="text-[10px] text-neutral-400 mt-2.5 font-medium">Personalised 30-min demo — no commitment</p>
+              <p className="text-[10px] text-neutral-400 mt-2.5 font-medium">Personalised 30-min demo - no commitment</p>
             </div>
 
           </div>
@@ -659,7 +659,7 @@ export default function App() {
           <div className="absolute bottom-0 right-0 w-[400px] h-[200px] bg-secondary-500 opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-neutral-950 border border-neutral-800 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-lg shadow-black/15">
+            <div className="bg-[#0c0c0e] border border-white/10 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-lg shadow-black/15">
 
               {/* Inner glow */}
               <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top left, color-mix(in srgb, var(--indigo-500) 10%, transparent) 0%, transparent 60%)' }} />
@@ -674,12 +674,12 @@ export default function App() {
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-fixed-white leading-tight tracking-tight">
                     Attendees scan a QR.<br />
-                    <span className="bg-gradient-to-r from-indigo-400 to-accent-400 bg-clip-text text-transparent">
+                    <span className="text-indigo-400">
                       Your brand goes viral.
                     </span>
                   </h2>
                   <p className="text-sm text-fixed-light leading-relaxed">
-                    At your venue, attendees scan a Wozku QR code, preview a pre-approved post, and share it to their LinkedIn — instantly climbing the live leaderboard projected on the main stage.
+                    At your venue, attendees scan a Wozku QR code, preview a pre-approved post, and share it to their LinkedIn - instantly climbing the live leaderboard projected on the main stage.
                   </p>
 
                   {/* Mini step indicators */}
@@ -696,7 +696,7 @@ export default function App() {
                             {i + 1}
                           </span>
                           <span className={`text-[11px] font-semibold transition-colors ${
-                            isFirst ? 'text-indigo-300' : 'text-neutral-500'
+                            isFirst ? 'text-indigo-300' : 'text-fixed-muted'
                           }`}>{step}</span>
                           {i < 3 && <ChevronRight className="w-3 h-3 text-neutral-700" />}
                         </div>
@@ -714,7 +714,7 @@ export default function App() {
                     See How It Works
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </button>
-                  <p className="text-[10px] text-neutral-600 font-mono">Interactive live demo — no sign-up needed</p>
+                  <p className="text-[10px] text-neutral-600 font-mono">Interactive live demo - no sign-up needed</p>
                 </div>
 
               </div>

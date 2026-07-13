@@ -27,7 +27,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     category: 'Engagement & Adoption',
     question: 'What level of effort is required from our busy employees to share content?',
-    answer: 'Minimal. Wozku is designed with a "two-tap" sharing flow. Teammates receive curated, personalized post drafts via Slack, Microsoft Teams, or email. They can quickly preview, make brief personal edits, and post directly to their networks in seconds—requiring no tedious drafting or platform switching.'
+    answer: 'Minimal. Wozku is designed with a "two-tap" sharing flow. Teammates receive curated, personalized post drafts via Slack, Microsoft Teams, or email. They can quickly preview, make brief personal edits, and post directly to their networks in seconds-requiring no tedious drafting or platform switching.'
   },
   {
     category: 'Customization',
@@ -70,10 +70,6 @@ export default function FAQSection() {
   return (
     <section id="faq" className="pt-24 pb-8 border-t border-neutral-200 relative bg-linear-to-b from-neutral-50/20 to-white">
       
-      {/* Decorative background glow */}
-      <div className="absolute top-1/3 right-10 w-72 h-72 rounded-full blur-3xl pointer-events-none" style={{ background: 'color-mix(in srgb, var(--indigo-500) 10%, transparent)' }} />
-      <div className="absolute bottom-10 left-10 w-72 h-72 rounded-full blur-3xl pointer-events-none" style={{ background: 'color-mix(in srgb, var(--indigo-500) 8%, transparent)' }} />
-
       <div className="max-w-4xl mx-auto px-4 relative z-10">
         
         {/* Section Header */}

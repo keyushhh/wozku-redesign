@@ -17,25 +17,25 @@ const PILLARS = [
     icon: <Users className="w-5 h-5" />,
     color: 'text-indigo-600 bg-indigo-50 border-indigo-100',
     title: 'Your people are your best channel',
-    body: 'Every employee, partner, and customer carries a network that no paid campaign can replicate. Wozku converts those idle connections into measurable pipeline — without asking anyone to change their workflow.'
+    body: 'Every employee, partner, and customer carries a network that no paid campaign can replicate. Wozku converts those idle connections into measurable pipeline - without asking anyone to change their workflow.'
   },
   {
     icon: <Zap className="w-5 h-5" />,
     color: 'text-secondary-600 bg-secondary-50 border-secondary-100',
     title: 'Activation in 48 hours, not 48 weeks',
-    body: 'Legacy advocacy platforms take months of implementation, training, and change management. Wozku plugs directly into Slack, Teams, and your CRM — your first campaign can go live before your next all-hands.'
+    body: 'Legacy advocacy platforms take months of implementation, training, and change management. Wozku plugs directly into Slack, Teams, and your CRM - your first campaign can go live before your next all-hands.'
   },
   {
     icon: <BarChart3 className="w-5 h-5" />,
     color: 'text-blue-600 bg-blue-50 border-blue-100',
     title: 'Attribution your CFO will actually believe',
-    body: 'Every share, click, and conversion is traced back to the exact advocate post that triggered it. Wozku closes the attribution loop between social activity and pipeline dollars — visible in Salesforce or HubSpot on day one.'
+    body: 'Every share, click, and conversion is traced back to the exact advocate post that triggered it. Wozku closes the attribution loop between social activity and pipeline dollars - visible in Salesforce or HubSpot on day one.'
   },
   {
     icon: <Shield className="w-5 h-5" />,
     color: 'text-emerald-600 bg-emerald-50 border-emerald-100',
     title: 'Enterprise-grade from the ground up',
-    body: 'SOC2 Type II, GDPR, and HIPAA-ready architecture with role-based permissions, approval workflows, and a full audit trail. Compliance teams sign off in a single review cycle — not a six-month security questionnaire.'
+    body: 'SOC2 Type II, GDPR, and HIPAA-ready architecture with role-based permissions, approval workflows, and a full audit trail. Compliance teams sign off in a single review cycle - not a six-month security questionnaire.'
   },
   {
     icon: <Globe className="w-5 h-5" />,
@@ -45,7 +45,7 @@ const PILLARS = [
   },
   {
     icon: <TrendingUp className="w-5 h-5" />,
-    color: 'text-rose-600 bg-rose-50 border-rose-100',
+    color: 'text-accent-600 bg-accent-50 border-accent-100',
     title: 'Growth that compounds over time',
     body: 'Unlike paid channels that go dark the moment you stop spending, organic advocacy builds durable brand equity. The more your advocates share, the stronger your search signals, social proof, and inbound pipeline become.'
   },
@@ -64,7 +64,7 @@ const COMPARISONS = [
 
 const TESTIMONIALS = [
   {
-    quote: "We replaced three separate tools — advocacy, analytics, and scheduling — with Wozku. The platform paid for itself in the first quarter.",
+    quote: "We replaced three separate tools - advocacy, analytics, and scheduling - with Wozku. The platform paid for itself in the first quarter.",
     name: 'Priya Mehra',
     role: 'CMO, Nexlayer',
     initials: 'PM'
@@ -121,7 +121,7 @@ export default function WhyWozkuPage() {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-2xl mx-auto font-medium">
-              Most advocacy tools measure likes. Wozku measures pipeline. We built the only platform that connects advocate activity directly to revenue — with the compliance controls, integrations, and activation speed that enterprise teams demand.
+              Most advocacy tools measure likes. Wozku measures pipeline. We built the only platform that connects advocate activity directly to revenue - with the compliance controls, integrations, and activation speed that enterprise teams demand.
             </p>
           </FadeIn>
           <FadeIn delay={0.15}>
@@ -223,7 +223,7 @@ export default function WhyWozkuPage() {
                       ? <CheckCircle2 className="w-4.5 h-4.5 text-slate-300" />
                       : row.generic === 'Partial'
                       ? <span className="text-[9px] font-bold text-amber-500 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">Partial</span>
-                      : <span className="text-slate-300 font-bold text-sm leading-none">—</span>
+                      : <span className="text-slate-300 font-bold text-sm leading-none">-</span>
                     }
                   </span>
                 </div>

@@ -28,7 +28,7 @@ export default function WhyChooseWozku() {
     { id: 2, sender: 'GTM Team', text: "Amazing! Referral loops are tracking in HubSpot now." }
   ]);
 
-  // Card 3: Telemetry dot — DOM-space path-following overlay
+  // Card 3: Telemetry dot - DOM-space path-following overlay
   const chartPathRef = useRef<SVGPathElement>(null);
   const dotContainerRef = useRef<HTMLDivElement>(null);
   const [dotPos, setDotPos] = useState<{ x: number; y: number } | null>(null);
@@ -219,7 +219,7 @@ export default function WhyChooseWozku() {
             <span>Sun</span>
           </div>
 
-          {/* Chart SVG Curve — dot lives outside the distorted SVG coordinate system */}
+          {/* Chart SVG Curve - dot lives outside the distorted SVG coordinate system */}
           <svg className="w-[85%] h-[60%] mt-4 ml-4" viewBox="0 0 100 100" fill="none" preserveAspectRatio="none">
             <defs>
               <linearGradient id="glowGrad" x1="0" y1="0" x2="0" y2="1">
@@ -229,7 +229,7 @@ export default function WhyChooseWozku() {
             </defs>
             <path d="M0 80 Q 25 30, 50 60 T 100 20 L 100 100 L 0 100 Z" fill="url(#glowGrad)" />
 
-            {/* Glowing line path — also the ref path for getPointAtLength() */}
+            {/* Glowing line path - also the ref path for getPointAtLength() */}
             <motion.path
               ref={chartPathRef}
               initial={{ pathLength: 0 }}
@@ -244,7 +244,7 @@ export default function WhyChooseWozku() {
             />
           </svg>
 
-          {/* Tracker dot — absolutely positioned in container space using real pixel coords from getPointAtLength() */}
+          {/* Tracker dot - absolutely positioned in container space using real pixel coords from getPointAtLength() */}
           {dotPos && (
             <div
               className="absolute h-3 w-3 rounded-full bg-indigo-500 border-2 border-fixed-white shadow-[0_0_12px_var(--indigo-500)] flex items-center justify-center pointer-events-none"

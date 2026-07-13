@@ -140,7 +140,7 @@ export default function SecurityCompliancePage() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             Enterprise-grade trust.{' '}
-            <span className="bg-gradient-to-r from-emerald-600 via-indigo-600 to-indigo-500 bg-clip-text text-transparent">By design.</span>
+            <span className="text-indigo-600 dark:text-indigo-400">By design.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-6">
@@ -323,14 +323,14 @@ export default function SecurityCompliancePage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { name: 'SOC 2 TYPE II', desc: 'Verified security and availability design models.' },
-              { name: 'GDPR READY', desc: 'Automated personal data deletion and consent maps.' },
-              { name: 'ISO/IEC 27001', desc: 'Aligned with global information security controls.' },
-              { name: 'CCPA COMPLIANT', desc: 'Enabling consumers right to opt-out and erase records.' }
+              { name: 'SOC 2 TYPE II', desc: 'Verified security and availability design models.', icon: Shield },
+              { name: 'GDPR READY', desc: 'Automated personal data deletion and consent maps.', icon: Lock },
+              { name: 'ISO/IEC 27001', desc: 'Aligned with global information security controls.', icon: FileCheck },
+              { name: 'CCPA COMPLIANT', desc: 'Enabling consumers right to opt-out and erase records.', icon: UserCheck }
             ].map(badge => (
               <div key={badge.name} className="border border-slate-100 bg-slate-50/30 hover:bg-slate-50 rounded-xl p-5 text-center transition-colors group">
-                <div className="inline-flex p-3 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100/60 mb-4 group-hover:scale-105 transition-transform">
-                  <Shield className="w-5 h-5" />
+                <div className="inline-flex p-3 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100/60 mb-4 group-hover:scale-105 transition-transform">
+                  <badge.icon className="w-5 h-5" />
                 </div>
                 <h4 className="text-xs font-mono font-extrabold text-slate-800 uppercase tracking-wider mb-1.5">{badge.name}</h4>
                 <p className="text-[11px] text-slate-400 leading-normal">{badge.desc}</p>

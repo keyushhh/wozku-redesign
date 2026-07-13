@@ -157,7 +157,7 @@ export default function Navbar() {
         </button>
 
         {/* Desktop Navigation links - Premium Minimalist Typography (Centered) */}
-        <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+        <nav className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
           <button
             onClick={handleLogoClick}
             className={`${navBase} ${isHome ? navActive : navInactive}`}
@@ -396,7 +396,7 @@ export default function Navbar() {
         {/* Action CTAs - Sleek pill style & microinteractions */}
         <div className="flex items-center gap-2 sm:gap-3">
 
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {/* Dynamic Theme Settings Dropdown */}
             <div className="relative" ref={themeDropdownRef}>
               <button
@@ -512,7 +512,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex items-center justify-center p-2 rounded-full hover:bg-neutral-100 text-neutral-600 hover:text-neutral-950 transition-colors md:hidden cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
+            className="flex items-center justify-center p-2 rounded-full hover:bg-neutral-100 text-neutral-600 hover:text-neutral-950 transition-colors lg:hidden cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
             aria-label="Toggle navigation menu"
           >
             {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -531,7 +531,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-neutral-950/40 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 z-40 bg-neutral-950/40 backdrop-blur-sm lg:hidden"
             />
 
             {/* Slide-out Drawer Panel */}
@@ -540,7 +540,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-xs bg-white border-l border-neutral-200 shadow-2xl p-6 flex flex-col justify-between md:hidden"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-xs bg-white border-l border-neutral-200 shadow-2xl p-6 flex flex-col justify-between lg:hidden"
             >
               <div className="space-y-8">
                 {/* Drawer Header */}

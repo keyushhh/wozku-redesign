@@ -67,11 +67,11 @@ interface BlockDefinition {
 
 const BLOCK_LIBRARY: BlockDefinition[] = [
   // Triggers
-  { id: 'trigger-product_launch', label: 'Product Launch', category: 'trigger', icon: Megaphone, desc: 'Major release announcement with peak interest.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-150', textCol: 'text-indigo-600' },
-  { id: 'trigger-webinar', label: 'Webinar', category: 'trigger', icon: Video, desc: 'Educational panel or live webinar demonstration.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-150', textCol: 'text-indigo-600' },
-  { id: 'trigger-event', label: 'Event', category: 'trigger', icon: Calendar, desc: 'Global conference, community summit, or keynotes.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-150', textCol: 'text-indigo-600' },
-  { id: 'trigger-csr', label: 'CSR Initiative', category: 'trigger', icon: Heart, desc: 'Environmental, social pledge, or foundation news.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-150', textCol: 'text-indigo-600' },
-  { id: 'trigger-product_update', label: 'Product Update', category: 'trigger', icon: Sparkles, desc: 'Incremental cool feature additions or enhancements.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-150', textCol: 'text-indigo-600' },
+  { id: 'trigger-product_launch', label: 'Product Launch', category: 'trigger', icon: Megaphone, desc: 'Major release announcement with peak interest.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
+  { id: 'trigger-webinar', label: 'Webinar', category: 'trigger', icon: Video, desc: 'Educational panel or live webinar demonstration.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
+  { id: 'trigger-event', label: 'Event', category: 'trigger', icon: Calendar, desc: 'Global conference, community summit, or keynotes.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
+  { id: 'trigger-csr', label: 'CSR Initiative', category: 'trigger', icon: Heart, desc: 'Environmental, social pledge, or foundation news.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
+  { id: 'trigger-product_update', label: 'Product Update', category: 'trigger', icon: Sparkles, desc: 'Incremental cool feature additions or enhancements.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
 
   // Audience
   { id: 'audience-employees', label: 'Employees', category: 'audience', icon: Users, desc: 'Internal colleagues and staff amplification.', color: 'blue', badgeBg: 'bg-blue-50 text-blue-700 border-blue-100', borderCol: 'border-blue-150', textCol: 'text-blue-600' },
@@ -81,11 +81,11 @@ const BLOCK_LIBRARY: BlockDefinition[] = [
   { id: 'audience-community', label: 'Community', category: 'audience', icon: Globe, desc: 'Passionate brand circle, advocates, and champions.', color: 'blue', badgeBg: 'bg-blue-50 text-blue-700 border-blue-100', borderCol: 'border-blue-150', textCol: 'text-blue-600' },
 
   // Channels
-  { id: 'channel-linkedin', label: 'LinkedIn Feed', category: 'channel', icon: Share2, desc: 'Reach premium professional network circles.', color: 'purple', badgeBg: 'bg-purple-50 text-purple-700 border-purple-100', borderCol: 'border-purple-150', textCol: 'text-purple-600' },
-  { id: 'channel-twitter', label: 'Twitter / X', category: 'channel', icon: Rss, desc: 'Fast broadcast feeds and tech news updates.', color: 'purple', badgeBg: 'bg-purple-50 text-purple-700 border-purple-100', borderCol: 'border-purple-150', textCol: 'text-purple-600' },
-  { id: 'channel-email', label: 'Direct Email', category: 'channel', icon: Mail, desc: 'Personal letters and direct forwarded highlights.', color: 'purple', badgeBg: 'bg-purple-50 text-purple-700 border-purple-100', borderCol: 'border-purple-150', textCol: 'text-purple-600' },
-  { id: 'channel-slack', label: 'Slack & Teams', category: 'channel', icon: Laptop, desc: 'Broadcast straight inside corporate workspaces.', color: 'purple', badgeBg: 'bg-purple-50 text-purple-700 border-purple-100', borderCol: 'border-purple-150', textCol: 'text-purple-600' },
-  { id: 'channel-whatsapp', label: 'WhatsApp', category: 'channel', icon: Phone, desc: 'Direct secure group chats and high-trust circles.', color: 'purple', badgeBg: 'bg-purple-50 text-purple-700 border-purple-100', borderCol: 'border-purple-150', textCol: 'text-purple-600' },
+  { id: 'channel-linkedin', label: 'LinkedIn Feed', category: 'channel', icon: Share2, desc: 'Reach premium professional network circles.', color: 'secondary', badgeBg: 'bg-secondary-50 text-secondary-700 border-secondary-100', borderCol: 'border-secondary-200', textCol: 'text-secondary-600' },
+  { id: 'channel-twitter', label: 'Twitter / X', category: 'channel', icon: Rss, desc: 'Fast broadcast feeds and tech news updates.', color: 'secondary', badgeBg: 'bg-secondary-50 text-secondary-700 border-secondary-100', borderCol: 'border-secondary-200', textCol: 'text-secondary-600' },
+  { id: 'channel-email', label: 'Direct Email', category: 'channel', icon: Mail, desc: 'Personal letters and direct forwarded highlights.', color: 'secondary', badgeBg: 'bg-secondary-50 text-secondary-700 border-secondary-100', borderCol: 'border-secondary-200', textCol: 'text-secondary-600' },
+  { id: 'channel-slack', label: 'Slack & Teams', category: 'channel', icon: Laptop, desc: 'Broadcast straight inside corporate workspaces.', color: 'secondary', badgeBg: 'bg-secondary-50 text-secondary-700 border-secondary-100', borderCol: 'border-secondary-200', textCol: 'text-secondary-600' },
+  { id: 'channel-whatsapp', label: 'WhatsApp', category: 'channel', icon: Phone, desc: 'Direct secure group chats and high-trust circles.', color: 'secondary', badgeBg: 'bg-secondary-50 text-secondary-700 border-secondary-100', borderCol: 'border-secondary-200', textCol: 'text-secondary-600' },
 
   // Actions
   { id: 'action-share', label: 'Share Content', category: 'action', icon: ThumbsUp, desc: 'Copy verified templates and post in one click.', color: 'teal', badgeBg: 'bg-teal-50 text-teal-700 border-teal-100', borderCol: 'border-teal-150', textCol: 'text-teal-600' },

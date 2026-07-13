@@ -102,6 +102,34 @@
   --color-fuchsia-800: var(--indigo-800);
   --color-fuchsia-900: var(--indigo-900);
   --color-fuchsia-950: var(--indigo-950);
+
+  /* Map Secondary scale to dynamic CSS properties */
+  --color-secondary-50: var(--secondary-50);
+  --color-secondary-100: var(--secondary-100);
+  --color-secondary-200: var(--secondary-200);
+  --color-secondary-300: var(--secondary-300);
+  --color-secondary-400: var(--secondary-400);
+  --color-secondary-500: var(--secondary-500);
+  --color-secondary-600: var(--secondary-600);
+  --color-secondary-650: var(--secondary-650);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-800: var(--secondary-800);
+  --color-secondary-900: var(--secondary-900);
+  --color-secondary-950: var(--secondary-950);
+
+  /* Map Accent scale to dynamic CSS properties */
+  --color-accent-50: var(--accent-50);
+  --color-accent-100: var(--accent-100);
+  --color-accent-200: var(--accent-200);
+  --color-accent-300: var(--accent-300);
+  --color-accent-400: var(--accent-400);
+  --color-accent-500: var(--accent-500);
+  --color-accent-600: var(--accent-600);
+  --color-accent-650: var(--accent-650);
+  --color-accent-700: var(--accent-700);
+  --color-accent-800: var(--accent-800);
+  --color-accent-900: var(--accent-900);
+  --color-accent-950: var(--accent-950);
 }
 
 :root {
@@ -136,8 +164,35 @@
   --indigo-700: #4338ca;
   --indigo-800: #3730a3;
   --indigo-900: #1e1b4b;
-  --indigo-900: #1e1b4b;
   --indigo-950: #07070a;
+
+  /* Default Secondary Presets */
+  --secondary-50: #f5f3ff;
+  --secondary-100: #e0e7ff;
+  --secondary-200: #c7d2fe;
+  --secondary-300: #a5b4fc;
+  --secondary-400: #818cf8;
+  --secondary-500: #6366f1;
+  --secondary-600: #4f46e5;
+  --secondary-650: #4338ca;
+  --secondary-700: #4338ca;
+  --secondary-800: #3730a3;
+  --secondary-900: #1e1b4b;
+  --secondary-950: #07070a;
+
+  /* Default Accent Presets */
+  --accent-50: #f5f3ff;
+  --accent-100: #e0e7ff;
+  --accent-200: #c7d2fe;
+  --accent-300: #a5b4fc;
+  --accent-400: #818cf8;
+  --accent-500: #6366f1;
+  --accent-600: #4f46e5;
+  --accent-650: #4338ca;
+  --accent-700: #4338ca;
+  --accent-800: #3730a3;
+  --accent-900: #1e1b4b;
+  --accent-950: #07070a;
 }
 
 /* Site-Wide Dark Mode Overrides */
@@ -160,8 +215,10 @@
   /* Dim grid lines in dark mode */
   --grid-line-color: rgba(255, 255, 255, 0.05);
 
-  /* Tweak default indigo dark bounds so layouts scale in dark mode */
+  /* Tweak default dark bounds so layouts scale in dark mode */
   --indigo-950: #fafafa;
+  --secondary-950: #fafafa;
+  --accent-950: #fafafa;
 }
 
 /* Dark-mode badge normalization for icon chips that were still using light pastel fills. */
@@ -209,6 +266,32 @@
   color: color-mix(in srgb, var(--indigo-300) 92%, white 8%) !important;
 }
 
+/* Secondary & Accent dark mode badge overrides */
+.dark .bg-secondary-50 {
+  background-color: color-mix(in srgb, var(--secondary-500) 14%, #141418) !important;
+}
+.dark .bg-accent-50 {
+  background-color: color-mix(in srgb, var(--accent-500) 14%, #141418) !important;
+}
+.dark .border-secondary-100 {
+  border-color: color-mix(in srgb, var(--secondary-500) 26%, rgba(255, 255, 255, 0.08)) !important;
+}
+.dark .border-accent-100 {
+  border-color: color-mix(in srgb, var(--accent-500) 26%, rgba(255, 255, 255, 0.08)) !important;
+}
+.dark .text-secondary-600 {
+  color: color-mix(in srgb, var(--secondary-400) 90%, white 10%) !important;
+}
+.dark .text-accent-600 {
+  color: color-mix(in srgb, var(--accent-400) 90%, white 10%) !important;
+}
+.dark .text-secondary-700 {
+  color: color-mix(in srgb, var(--secondary-300) 92%, white 8%) !important;
+}
+.dark .text-accent-700 {
+  color: color-mix(in srgb, var(--accent-300) 92%, white 8%) !important;
+}
+
 /* Normalize CTA/text contrast on theme-colored buttons and active tabs in dark mode. */
 .dark button[class*="bg-indigo-600"],
 .dark a[class*="bg-indigo-600"],
@@ -251,132 +334,8 @@
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* Color Theme Presets */
-.theme-emerald {
-  --indigo-50: #ecfdf5;
-  --indigo-100: #d1fae5;
-  --indigo-200: #a7f3d0;
-  --indigo-300: #6ee7b7;
-  --indigo-400: #34d399;
-  --indigo-500: #10b981;
-  --indigo-600: #059669;
-  --indigo-650: #047857;
-  --indigo-700: #047857;
-  --indigo-800: #065f46;
-  --indigo-900: #064e3b;
-  --indigo-950: #022c22;
-}
-.dark.theme-emerald {
-  --indigo-950: #fafafa;
-}
 
-.theme-rose {
-  --indigo-50: #fff1f2;
-  --indigo-100: #ffe4e6;
-  --indigo-200: #fecdd3;
-  --indigo-300: #fda4af;
-  --indigo-400: #fb7185;
-  --indigo-500: #f43f5e;
-  --indigo-600: #e11d48;
-  --indigo-650: #be123c;
-  --indigo-700: #be123c;
-  --indigo-800: #9f1239;
-  --indigo-900: #881337;
-  --indigo-950: #4c0519;
-}
-.dark.theme-rose {
-  --indigo-950: #fafafa;
-}
 
-.theme-amber {
-  --indigo-50: #fffbeb;
-  --indigo-100: #fef3c7;
-  --indigo-200: #fde68a;
-  --indigo-300: #fcd34d;
-  --indigo-400: #fbbf24;
-  --indigo-500: #f59e0b;
-  --indigo-600: #d97706;
-  --indigo-650: #b45309;
-  --indigo-700: #b45309;
-  --indigo-800: #92400e;
-  --indigo-900: #78350f;
-  --indigo-950: #451a03;
-}
-.dark.theme-amber {
-  --indigo-950: #fafafa;
-}
-
-.theme-violet {
-  --indigo-50: #faf5ff;
-  --indigo-100: #f3e8ff;
-  --indigo-200: #e9d5ff;
-  --indigo-300: #d8b4fe;
-  --indigo-400: #c084fc;
-  --indigo-500: #a855f7;
-  --indigo-600: #9333ea;
-  --indigo-650: #7e22ce;
-  --indigo-700: #7e22ce;
-  --indigo-800: #6b21a8;
-  --indigo-900: #581c87;
-  --indigo-950: #3b0764;
-}
-.dark.theme-violet {
-  --indigo-950: #fafafa;
-}
-
-.theme-sky {
-  --indigo-50: #f0f9ff;
-  --indigo-100: #e0f2fe;
-  --indigo-200: #bae6fd;
-  --indigo-300: #7dd3fc;
-  --indigo-400: #38bdf8;
-  --indigo-500: #0ea5e9;
-  --indigo-600: #0284c7;
-  --indigo-650: #0369a1;
-  --indigo-700: #0369a1;
-  --indigo-800: #075985;
-  --indigo-900: #0c4a6e;
-  --indigo-950: #082f49;
-}
-.dark.theme-sky {
-  --indigo-950: #fafafa;
-}
-
-.theme-fuchsia {
-  --indigo-50: #fdf4ff;
-  --indigo-100: #fae8ff;
-  --indigo-200: #f5d0fe;
-  --indigo-300: #f0abfc;
-  --indigo-400: #e879f9;
-  --indigo-500: #d946ef;
-  --indigo-600: #c026d3;
-  --indigo-650: #a21caf;
-  --indigo-700: #a21caf;
-  --indigo-800: #86198f;
-  --indigo-900: #701a75;
-  --indigo-950: #4a044e;
-}
-.dark.theme-fuchsia {
-  --indigo-950: #fafafa;
-}
-
-.theme-crimson {
-  --indigo-50: #fef2f2;
-  --indigo-100: #fee2e2;
-  --indigo-200: #fecaca;
-  --indigo-300: #fca5a5;
-  --indigo-400: #f87171;
-  --indigo-500: #ef4444;
-  --indigo-600: #dc2626;
-  --indigo-650: #b91c1c;
-  --indigo-700: #b91c1c;
-  --indigo-800: #991b1b;
-  --indigo-900: #7f1d1d;
-  --indigo-950: #450a0a;
-}
-.dark.theme-crimson {
-  --indigo-950: #fafafa;
-}
 
 @layer base {
   body {

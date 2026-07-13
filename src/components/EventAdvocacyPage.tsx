@@ -262,7 +262,7 @@ export default function EventAdvocacyPage() {
         <section className="text-center max-w-4xl mx-auto space-y-6">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-neutral-950 leading-tight">
             Turn Attendees into<br />
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 to-accent-600 bg-clip-text text-transparent">
               Organic Broadcast Channels.
             </span>
           </h1>
@@ -422,7 +422,7 @@ export default function EventAdvocacyPage() {
                         <div className="bg-neutral-50 border border-neutral-200 p-4 rounded-2xl text-left space-y-3">
                           <div className="flex items-center gap-2">
                             {/* Attendee initials profile icon */}
-                            <div className="h-8 w-8 rounded-full bg-indigo-150 border border-indigo-250 flex items-center justify-center font-mono text-[10px] font-bold text-indigo-700">
+                            <div className="h-8 w-8 rounded-full bg-indigo-100 border border-indigo-200 flex items-center justify-center font-mono text-[10px] font-bold text-indigo-700">
                               {attendeeName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || 'AM'}
                             </div>
                             <div className="text-left">
@@ -459,7 +459,7 @@ export default function EventAdvocacyPage() {
                         {/* Reward Card */}
                         <div className="bg-neutral-50 border border-neutral-200 p-4 rounded-2xl relative overflow-hidden flex flex-col justify-between min-h-[140px]">
                           <div className="space-y-1 text-left">
-                            <span className="text-[8px] font-mono font-extrabold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-150 uppercase inline-block">
+                            <span className="text-[8px] font-mono font-extrabold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-200 uppercase inline-block">
                               ADVOCACY REWARD
                             </span>
                             <h5 className="text-xs font-bold text-neutral-950 mt-1">Starbucks Coffee Voucher</h5>
@@ -543,7 +543,7 @@ export default function EventAdvocacyPage() {
                         <span
                           className={`h-6 w-6 rounded-full font-mono text-[10px] font-bold flex items-center justify-center ${
                             item.isUser
-                              ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-xs'
+                              ? 'bg-gradient-to-br from-indigo-500 to-secondary-600 text-white shadow-xs'
                               : 'bg-neutral-800 text-neutral-400'
                           }`}
                         >
@@ -853,7 +853,7 @@ export default function EventAdvocacyPage() {
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-fixed-white leading-tight tracking-tight">
                 Turn your next event into a<br />
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-indigo-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent">
                   viral distribution engine.
                 </span>
               </h2>

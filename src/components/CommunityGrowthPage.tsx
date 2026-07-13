@@ -320,7 +320,7 @@ export default function CommunityGrowthPage() {
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold tracking-tight text-neutral-950 leading-[1.08] text-wrap-balance">
               Turn customers into <br />
-              <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-500 bg-clip-text text-transparent">
                 your best growth channel.
               </span>
             </h1>
@@ -368,7 +368,7 @@ export default function CommunityGrowthPage() {
                         onClick={() => setSelectedPreset(preset)}
                         className={`p-3 rounded-xl border text-left text-[10px] font-bold transition-all cursor-pointer ${
                           selectedPreset.id === preset.id
-                            ? 'bg-gradient-to-br from-indigo-500 to-violet-600 border-transparent text-white shadow-lg shadow-indigo-500/30'
+                            ? 'bg-gradient-to-br from-indigo-500 to-secondary-600 border-transparent text-white shadow-lg shadow-indigo-500/30'
                             : 'bg-white border-neutral-200 text-neutral-600 hover:border-neutral-300'
                         }`}
                       >
@@ -638,7 +638,7 @@ export default function CommunityGrowthPage() {
       <section className="py-20 bg-white border-b border-neutral-200/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-purple-50 px-3.5 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-widest text-purple-700 border border-purple-200/50">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary-50 px-3.5 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-widest text-secondary-700 border border-secondary-200/50">
               GROWTH CAPABILITIES
             </span>
             <h2 className="text-3xl font-display font-bold text-neutral-950 text-wrap-balance">

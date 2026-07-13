@@ -105,7 +105,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
             className="bg-white rounded-3xl border border-neutral-200 shadow-2xl w-full max-w-xl overflow-hidden relative z-10 max-h-[90vh] flex flex-col"
           >
             {/* Header banner glow */}
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-600 via-violet-600 to-emerald-600" />
+            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-600" />
             
             {/* Top Close button */}
             <button 

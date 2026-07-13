@@ -293,7 +293,7 @@ export default function EcosystemIntegrationsPage() {
               className={[
                 'px-5 py-2.5 rounded-full text-[10px] font-mono font-extrabold uppercase tracking-widest border transition-all cursor-pointer select-none',
                 activeCategory === cat.id
-                  ? 'border-indigo-650 text-indigo-600 bg-indigo-50'
+                  ? 'border-indigo-500 text-indigo-600 bg-indigo-50'
                   : 'border-slate-200 text-slate-500 bg-white hover:bg-slate-50'
               ].join(' ')}
             >
@@ -378,7 +378,7 @@ export default function EcosystemIntegrationsPage() {
                       >
                         <div className="space-y-4">
                           <div className="flex items-center justify-between">
-                            <span className="text-[10px] font-mono font-bold uppercase text-indigo-650 tracking-wider">Setup connection</span>
+                            <span className="text-[10px] font-mono font-bold uppercase text-indigo-600 tracking-wider">Setup connection</span>
                             <button onClick={() => setConnectingId(null)} className="text-slate-400 hover:text-slate-600 cursor-pointer">
                               <X className="w-4 h-4" />
                             </button>

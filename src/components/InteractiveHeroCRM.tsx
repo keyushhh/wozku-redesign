@@ -284,7 +284,7 @@ export default function InteractiveHeroCRM() {
                         adv.role === 'Employee' ? 'bg-blue-50 text-blue-700 border-blue-100' :
                         adv.role === 'Customer' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' :
                         adv.role === 'Partner' ? 'bg-amber-50 text-amber-700 border-amber-100' :
-                        'bg-purple-50 text-purple-700 border-purple-100'
+                        'bg-secondary-50 text-secondary-700 border-secondary-100'
                       }`}>
                         {adv.role}
                       </span>

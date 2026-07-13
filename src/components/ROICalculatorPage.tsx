@@ -165,7 +165,7 @@ export default function ROICalculatorPage() {
         
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-650 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-600 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
             <Calculator className="w-3.5 h-3.5 text-indigo-500" /> B2B financial impact modeling
           </span>
           <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
@@ -431,7 +431,7 @@ export default function ROICalculatorPage() {
                   <Award className="w-3.5 h-3.5 text-indigo-500" /> PIPELINE CAPABILITIES
                 </div>
                 <h3 className="text-sm font-bold text-white">Revenue Multiplier</h3>
-                <p className="text-[10px] text-neutral-400 leading-relaxed">Model conversions of advocate-sourced clicks into sales pipeline deals.</p>
+                <p className="text-[10px] text-fixed-light leading-relaxed">Model conversions of advocate-sourced clicks into sales pipeline deals.</p>
               </div>
 
               <hr className="border-white/10" />
@@ -442,7 +442,7 @@ export default function ROICalculatorPage() {
                 {/* ACV Slide */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between font-bold">
-                    <span className="text-neutral-350 text-[11px]">Avg. Deal Size (ACV)</span>
+                    <span className="text-fixed-light text-[11px]">Avg. Deal Size (ACV)</span>
                     <span className="text-indigo-400 font-mono">${acv.toLocaleString()}</span>
                   </div>
                   <input 
@@ -456,7 +456,7 @@ export default function ROICalculatorPage() {
                 {/* Lead Conv Slide */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between font-bold">
-                    <span className="text-neutral-350 text-[11px]">Click-to-Lead Conv %</span>
+                    <span className="text-fixed-light text-[11px]">Click-to-Lead Conv %</span>
                     <span className="text-indigo-400 font-mono">{leadConv.toFixed(1)}%</span>
                   </div>
                   <input 
@@ -469,11 +469,11 @@ export default function ROICalculatorPage() {
 
                 {/* Outcome Sourced Pipeline */}
                 <div className="bg-[#141418] border border-white/10 p-4.5 rounded-2xl text-center space-y-2 mt-4">
-                  <span className="text-[9px] font-mono text-neutral-500 uppercase tracking-widest block font-bold">Influenced Annual Pipeline</span>
+                  <span className="text-[9px] font-mono text-fixed-muted uppercase tracking-widest block font-bold">Influenced Annual Pipeline</span>
                   <div className="text-2xl font-mono font-extrabold text-indigo-400">
                     <AnimatedNumber value={influencedPipeline} prefix="$" />
                   </div>
-                  <span className="text-[8.5px] text-neutral-400 block font-sans">
+                  <span className="text-[8.5px] text-fixed-muted block font-sans">
                     Based on sourcing <AnimatedNumber value={yearlyLeads} /> qualified leads / year
                   </span>
                 </div>
@@ -499,7 +499,7 @@ export default function ROICalculatorPage() {
                   <button
                     onClick={triggerReportDownload}
                     disabled={isGenerating}
-                    className="w-full bg-white hover:bg-neutral-100 disabled:bg-neutral-800 disabled:text-neutral-500 text-neutral-900 font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 text-xs shadow-xs"
+                    className="w-full bg-fixed-white hover:bg-fixed-light disabled:bg-fixed-dark/50 disabled:text-fixed-muted/50 text-fixed-dark font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 text-xs shadow-xs"
                   >
                     {isGenerating ? (
                       <>

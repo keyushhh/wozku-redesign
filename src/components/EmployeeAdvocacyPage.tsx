@@ -65,7 +65,7 @@ const LEADERBOARD_BASE = [
   { name: 'Sofia Andersson', dept: 'Engineering', xp: 1900, avatar: 'SA' },
 ];
 
-const AVATAR_COLORS = ['bg-violet-100 text-violet-700', 'bg-sky-100 text-sky-700', 'bg-rose-100 text-rose-700', 'bg-yellow-100 text-yellow-700'];
+const AVATAR_COLORS = ['bg-secondary-100 text-secondary-700', 'bg-sky-100 text-sky-700', 'bg-rose-100 text-rose-700', 'bg-yellow-100 text-yellow-700'];
 
 export default function EmployeeAdvocacyPage() {
   const [simStep, setSimStep] = useState<1 | 2 | 3 | 4>(1);
@@ -677,7 +677,7 @@ export default function EmployeeAdvocacyPage() {
                           { icon: <Share2 className="w-3.5 h-3.5" />, label: 'Share on Twitter too', val: '+250 XP', color: 'text-indigo-600 bg-indigo-50' },
                           { icon: <Star className="w-3.5 h-3.5" />, label: '10+ post reactions', val: '+300 XP', color: 'text-amber-600 bg-amber-50' },
                           { icon: <TrendingUp className="w-3.5 h-3.5" />, label: '3-month streak', val: '+500 XP', color: 'text-indigo-600 bg-indigo-50' },
-                          { icon: <Users className="w-3.5 h-3.5" />, label: 'Refer a colleague', val: '+800 XP', color: 'text-purple-600 bg-purple-50' },
+                          { icon: <Users className="w-3.5 h-3.5" />, label: 'Refer a colleague', val: '+800 XP', color: 'text-secondary-600 bg-secondary-50' },
                         ].map(({ icon, label, val, color }) => (
                           <div key={label} className="flex items-center gap-2.5 p-2.5 bg-neutral-50 border border-neutral-100 rounded-xl">
                             <div className={`${color} rounded-lg p-1.5 shrink-0`}>{icon}</div>

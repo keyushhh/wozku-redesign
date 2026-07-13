@@ -289,7 +289,7 @@ export default function InteractiveProductGrid() {
       <div className="col-span-12 md:col-span-4 bg-white border border-neutral-200 rounded-3xl p-6 sm:p-7 flex flex-col justify-between overflow-hidden relative group hover:border-neutral-350 transition-all duration-300 shadow-xs min-h-[260px]">
         
         {/* Soft Radial Ambient Glow in top right */}
-        <div className="absolute top-0 right-0 h-40 w-40 bg-radial-[at_top_right] from-indigo-500/10 via-purple-500/5 to-transparent pointer-events-none z-0" />
+        <div className="absolute top-0 right-0 h-40 w-40 bg-radial-[at_top_right] from-indigo-500/10 via-secondary-500/5 to-transparent pointer-events-none z-0" />
 
         {/* Floating pill notifications */}
         <div className="relative h-32 w-full flex flex-col justify-center gap-3.5 z-10 px-2">

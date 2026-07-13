@@ -202,7 +202,7 @@ export default function SocialAmplificationPage() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             One signal.{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Every channel.</span>
+            <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">Every channel.</span>
             <br />
             <span className="text-slate-400 text-4xl sm:text-5xl font-bold">Simultaneously.</span>
           </h1>
@@ -267,7 +267,7 @@ export default function SocialAmplificationPage() {
                       onClick={() => handleContentSwitch(ct)}
                       className={`p-3 rounded-xl border text-left text-[9px] font-extrabold transition-all cursor-pointer ${
                         selectedContent.id === ct.id
-                          ? 'bg-gradient-to-br from-indigo-600 to-violet-600 border-transparent text-white shadow-md shadow-indigo-600/10'
+                          ? 'bg-gradient-to-br from-indigo-600 to-secondary-600 border-transparent text-white shadow-md shadow-indigo-600/10'
                           : 'bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300 hover:text-slate-800'
                       }`}
                     >
@@ -330,7 +330,7 @@ export default function SocialAmplificationPage() {
                   disabled={isBroadcasting || activePlatforms.size === 0}
                   className={`relative z-10 h-16 w-16 rounded-full flex items-center justify-center transition-all duration-300 focus:outline-none ${
                     isBroadcasting
-                      ? 'bg-gradient-to-br from-indigo-500 to-violet-600 shadow-xl shadow-indigo-500/30 scale-110 cursor-wait'
+                      ? 'bg-gradient-to-br from-indigo-500 to-secondary-600 shadow-xl shadow-indigo-500/30 scale-110 cursor-wait'
                       : broadcastComplete
                       ? 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-xl shadow-emerald-500/20 text-white hover:scale-105 active:scale-95 cursor-pointer'
                       : activePlatforms.size === 0

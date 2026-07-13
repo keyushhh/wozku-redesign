@@ -21,7 +21,7 @@ const PILLARS = [
   },
   {
     icon: <Zap className="w-5 h-5" />,
-    color: 'text-violet-600 bg-violet-50 border-violet-100',
+    color: 'text-secondary-600 bg-secondary-50 border-secondary-100',
     title: 'Activation in 48 hours, not 48 weeks',
     body: 'Legacy advocacy platforms take months of implementation, training, and change management. Wozku plugs directly into Slack, Teams, and your CRM — your first campaign can go live before your next all-hands.'
   },
@@ -278,7 +278,7 @@ export default function WhyWozkuPage() {
         <div className="max-w-5xl mx-auto bg-[#09090f] text-fixed-white rounded-[2.5rem] p-8 sm:p-14 border border-fixed-white/10 shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-dots-accent opacity-15 pointer-events-none" />
           <div className="absolute top-0 right-0 h-64 w-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 h-40 w-40 bg-violet-500/[0.06] rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 h-40 w-40 bg-secondary-500/[0.06] rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 text-center space-y-6 max-w-2xl mx-auto">
             <FadeIn>

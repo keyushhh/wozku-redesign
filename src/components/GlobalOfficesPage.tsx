@@ -112,7 +112,7 @@ export default function GlobalOfficesPage() {
           </span>
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             Get in touch{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-400 bg-clip-text text-transparent">with our hubs.</span>
+            <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-500 bg-clip-text text-transparent">with our hubs.</span>
           </h1>
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
             Questions about deployments, integrations, or pricing? Drop us a line below, or trace our engineering offices on the map.
@@ -273,24 +273,24 @@ export default function GlobalOfficesPage() {
                           isSelected
                             ? 'var(--indigo-600)'
                             : isOffice
-                            ? isDarkMode ? '#334155' : '#c7d2fe'
+                            ? isDarkMode ? '#334155' : 'var(--indigo-200)'
                             : isDarkMode ? '#14181f' : '#e2e8f0'
                         }
                         stroke={isDarkMode ? '#2b3240' : '#ffffff'}
                         strokeWidth="1"
                         strokeLinejoin="round"
                         style={{
-                          filter: isOffice && !isSelected ? 'drop-shadow(0 0 6px rgba(99,102,241,0.35))' : 'none',
+                          filter: isOffice && !isSelected ? 'drop-shadow(0 0 6px color-mix(in srgb, var(--indigo-500) 35%, transparent))' : 'none',
                         }}
                         onClick={() => isOffice && setSelectedId(location.id === selectedId ? null : location.id)}
                         onMouseEnter={e => {
                           if (isOffice && !isSelected) {
-                            (e.target as SVGPathElement).setAttribute('fill', isDarkMode ? '#475569' : '#a5b4fc');
+                            (e.target as SVGPathElement).setAttribute('fill', isDarkMode ? '#475569' : 'var(--indigo-300)');
                           }
                         }}
                         onMouseLeave={e => {
                           if (isOffice && !isSelected) {
-                            (e.target as SVGPathElement).setAttribute('fill', isDarkMode ? '#334155' : '#c7d2fe');
+                            (e.target as SVGPathElement).setAttribute('fill', isDarkMode ? '#334155' : 'var(--indigo-200)');
                           }
                         }}
                       />

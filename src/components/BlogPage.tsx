@@ -120,7 +120,7 @@ const POSTS: BlogPost[] = [
 const CATEGORIES = ['All', 'Strategy', 'Analytics', 'Guides', 'Compliance', 'Community'];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Strategy: 'text-violet-600 bg-violet-50 border-violet-100',
+  Strategy: 'text-secondary-600 bg-secondary-50 border-secondary-100',
   Analytics: 'text-blue-600 bg-blue-50 border-blue-100',
   Guides: 'text-emerald-600 bg-emerald-50 border-emerald-100',
   Compliance: 'text-amber-600 bg-amber-50 border-amber-100',
@@ -377,7 +377,7 @@ export default function BlogPage() {
         <div className="mt-28 max-w-5xl mx-auto bg-[#09090f] text-fixed-white rounded-[2.5rem] p-8 sm:p-12 border border-fixed-white/10 shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-dots-accent opacity-15 pointer-events-none" />
           <div className="absolute top-0 right-0 h-48 w-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-0 left-0 h-32 w-32 bg-violet-500/[0.06] rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 h-32 w-32 bg-secondary-500/[0.06] rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="space-y-3 text-center lg:text-left">

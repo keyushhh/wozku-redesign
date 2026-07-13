@@ -342,7 +342,7 @@ export default function App() {
               className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight"
             >
               Own distribution.<br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-500 bg-clip-text text-transparent">
                 Your community is the antidote.
               </span>
             </motion.h1>
@@ -551,8 +551,8 @@ export default function App() {
                   icon: <Users className="w-5 h-5" />,
                   title: 'Invite Advocates',
                   body: 'Activate employees, customers, or partners directly via Slack, Teams, or email — no new app to download.',
-                  color: 'text-violet-600 bg-violet-50 border-violet-100',
-                  dot: 'bg-violet-500',
+                  color: 'text-secondary-600 bg-secondary-50 border-secondary-100',
+                  dot: 'bg-secondary-500',
                 },
                 {
                   step: '03',
@@ -656,10 +656,10 @@ export default function App() {
           
           {/* Subtle glow backdrops */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-indigo-500 opacity-[0.04] blur-[120px] rounded-full pointer-events-none" />
-          <div className="absolute bottom-0 right-0 w-[400px] h-[200px] bg-purple-500 opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-[400px] h-[200px] bg-secondary-500 opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-neutral-950 dark:bg-neutral-100 border border-neutral-800 dark:border-neutral-200 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-2xl shadow-black/10 dark:shadow-black/40">
+            <div className="bg-neutral-950 border border-neutral-800 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-lg shadow-black/15">
 
               {/* Inner glow */}
               <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top left, color-mix(in srgb, var(--indigo-500) 10%, transparent) 0%, transparent 60%)' }} />
@@ -672,13 +672,13 @@ export default function App() {
                   <span className="text-[9px] font-mono font-extrabold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-md uppercase tracking-widest inline-block">
                     Event Advocacy
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white dark:text-neutral-900 leading-tight tracking-tight">
+                  <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-fixed-white leading-tight tracking-tight">
                     Attendees scan a QR.<br />
-                    <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-indigo-400 to-accent-400 bg-clip-text text-transparent">
                       Your brand goes viral.
                     </span>
                   </h2>
-                  <p className="text-sm text-neutral-400 dark:text-neutral-600 leading-relaxed">
+                  <p className="text-sm text-fixed-light leading-relaxed">
                     At your venue, attendees scan a Wozku QR code, preview a pre-approved post, and share it to their LinkedIn — instantly climbing the live leaderboard projected on the main stage.
                   </p>
 
@@ -696,7 +696,7 @@ export default function App() {
                             {i + 1}
                           </span>
                           <span className={`text-[11px] font-semibold transition-colors ${
-                            isFirst ? 'text-indigo-300 dark:text-indigo-600' : 'text-neutral-500 dark:text-neutral-500'
+                            isFirst ? 'text-indigo-300' : 'text-neutral-500'
                           }`}>{step}</span>
                           {i < 3 && <ChevronRight className="w-3 h-3 text-neutral-700" />}
                         </div>

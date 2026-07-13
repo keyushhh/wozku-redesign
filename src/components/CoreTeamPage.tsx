@@ -168,7 +168,7 @@ export default function CoreTeamPage() {
   );
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500/10 selection:text-indigo-900">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#0c0c0e] text-slate-900 dark:text-fixed-white font-sans selection:bg-indigo-500/10 selection:text-indigo-900">
       
       {/* ── 1. HERO SECTION ─────────────────────────────────────────── */}
       <section className="relative overflow-hidden pt-16 pb-14 text-center">
@@ -186,7 +186,7 @@ export default function CoreTeamPage() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             Meet Wozku's{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">engine authors.</span>
+            <span className="bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">engine authors.</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-10">

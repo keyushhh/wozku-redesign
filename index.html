@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wozku Redesign</title>
+    <script>
+      (function() {
+        try {
+          var palette = localStorage.getItem('wozku-custom-palette');
+          if (palette) {
+            var colors = JSON.parse(palette);
+            for (var key in colors) {
+              document.documentElement.style.setProperty(key, colors[key]);
+            }
+          }
+        } catch (e) {
+          console.error('Failed to pre-hydrate custom theme:', e);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

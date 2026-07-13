@@ -61,60 +61,56 @@ export function clearCustomTheme() {
   localStorage.removeItem('wozku-custom-palette');
 }
 
-type TokenType = 'color' | 'fontFamilies' | 'fontSizes' | 'fontWeights' | 'lineHeights' | 'dimension' | 'borderRadius' | 'boxShadow' | 'strokeStyle' | 'opacity' | 'duration' | 'cubicBezier' | 'typography';
+const figmaScopes = { 'com.figma.scopes': ['ALL_SCOPES'] };
 
-function token(value: unknown, type: TokenType, description?: string) {
-  return { $value: value, $type: type, ...(description ? { $description: description } : {}) };
+function figmaToken(type: 'number' | 'string', value: number | string) {
+  return { $type: type, $value: value, $extensions: figmaScopes };
 }
 
-/** Creates a Tokens Studio / DTCG-compatible JSON object from the active UI theme. */
+function figmaColorToken(hex: string) {
+  const normalized = hex.trim().toUpperCase();
+  const match = /^#([0-9A-F]{6})$/.exec(normalized);
+  if (!match) throw new Error(`Expected a six-digit hex color, received: ${hex}`);
+  const value = match[1];
+  const component = (start: number) => Number((parseInt(value.slice(start, start + 2), 16) / 255).toFixed(6));
+  return {
+    $type: 'color',
+    $value: { colorSpace: 'srgb', components: [component(0), component(2), component(4)], alpha: 1, hex: `#${value}` },
+    $extensions: figmaScopes,
+  };
+}
+
+function cssLengthToNumber(value: string) {
+  const parsed = Number.parseFloat(value);
+  if (Number.isNaN(parsed)) throw new Error(`Expected a numeric CSS value, received: ${value}`);
+  return value.endsWith('rem') ? parsed * 16 : parsed;
+}
+
+function titleCase(value: string) {
+  return value.replace(/(^|[-_\s])(\w)/g, (_, prefix, character) => `${prefix}${character.toUpperCase()}`);
+}
+
+/** Creates a native Figma Variables JSON file from the active UI theme. */
 export function createThemeTokenExport(themeName: string, isDark: boolean) {
   const styles = getComputedStyle(document.documentElement);
   const color = (name: string) => styles.getPropertyValue(name).trim();
-  const scale = (name: string) => Object.fromEntries(COLOR_STEPS.map((step) => [String(step), token(color(`--${name}-${step}`), 'color')]));
+  const scale = (name: string) => Object.fromEntries(COLOR_STEPS.map((step) => [String(step), figmaColorToken(color(`--${name}-${step}`))]));
 
   return {
-    $description: `Wozku ${themeName} ${isDark ? 'dark' : 'light'} design system. DTCG JSON for Tokens Studio's Figma import.`,
-    $metadata: { tokenFormat: 'DTCG', generator: 'Wozku Theme Menu', theme: themeName, mode: isDark ? 'dark' : 'light' },
-    $themes: [{ id: `${themeName}-${isDark ? 'dark' : 'light'}`, name: `${themeName[0].toUpperCase()}${themeName.slice(1)} ${isDark ? 'Dark' : 'Light'}`, selectedTokenSets: { global: 'enabled', color: 'enabled', semantic: 'enabled', component: 'enabled' } }],
-    global: {
-      fontFamily: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.fontFamily).map(([key, value]) => [key, token(value, 'fontFamilies')])),
-      fontSize: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.fontSize).map(([key, value]) => [key, token(value, 'fontSizes')])),
-      fontWeight: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.fontWeight).map(([key, value]) => [key, token(value, 'fontWeights')])),
-      lineHeight: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.lineHeight).map(([key, value]) => [key, token(value, 'lineHeights')])),
-      spacing: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.spacing).map(([key, value]) => [key, token(value, 'dimension')])),
-      radius: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.radius).map(([key, value]) => [key, token(value, 'borderRadius')])),
-      shadow: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.shadow).map(([key, value]) => [key, token(value, 'boxShadow')])),
-      borderWidth: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.borderWidth).map(([key, value]) => [key, token(value, 'dimension')])),
-      opacity: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.opacity).map(([key, value]) => [key, token(value, 'opacity')])),
-      duration: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.duration).map(([key, value]) => [key, token(value, 'duration')])),
-      easing: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.easing).map(([key, value]) => [key, token(value, 'cubicBezier')])),
-      breakpoint: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.breakpoint).map(([key, value]) => [key, token(value, 'dimension')])),
-      typography: {
-        heading: { display: token({ fontFamily: '{global.fontFamily.display}', fontWeight: '{global.fontWeight.bold}', lineHeight: '{global.lineHeight.tight}', fontSize: '{global.fontSize.4xl}' }, 'typography') },
-        body: { default: token({ fontFamily: '{global.fontFamily.sans}', fontWeight: '{global.fontWeight.regular}', lineHeight: '{global.lineHeight.normal}', fontSize: '{global.fontSize.base}' }, 'typography') },
-        label: token({ fontFamily: '{global.fontFamily.sans}', fontWeight: '{global.fontWeight.semibold}', lineHeight: '{global.lineHeight.snug}', fontSize: '{global.fontSize.sm}' }, 'typography'),
-      },
-    },
+    $extensions: { 'com.figma.modeName': `${titleCase(themeName)} ${isDark ? 'Dark' : 'Light'}` },
     color: {
-      primary: scale('indigo'), secondary: scale('secondary'), accent: scale('accent'),
-      neutral: Object.fromEntries(neutralSteps.map((step) => [String(step), token(color(`--neutral-${step}`), 'color')])),
-      fixed: { white: token('#ffffff', 'color'), light: token('#c7c7d1', 'color'), muted: token('#9696a3', 'color'), dark: token('#141418', 'color') },
+      brand: { primary: scale('indigo'), secondary: scale('secondary'), accent: scale('accent') },
+      neutral: Object.fromEntries(neutralSteps.map((step) => [String(step), figmaColorToken(color(`--neutral-${step}`))])),
+      fixed: { white: figmaColorToken('#ffffff'), light: figmaColorToken('#c7c7d1'), muted: figmaColorToken('#9696a3'), dark: figmaColorToken('#141418') },
     },
-    semantic: {
-      surface: { canvas: token(color('--neutral-50'), 'color'), default: token(color('--bg-white'), 'color'), subtle: token(color('--bg-card-accent'), 'color') },
-      text: { primary: token(color('--neutral-900'), 'color'), secondary: token(color('--neutral-600'), 'color'), muted: token(color('--neutral-500'), 'color'), inverse: token('#ffffff', 'color') },
-      border: { default: token(color('--neutral-200'), 'color'), subtle: token(color('--neutral-100'), 'color'), strong: token(color('--neutral-300'), 'color') },
-      action: { primary: token(color('--indigo-600'), 'color'), primaryHover: token(color('--indigo-700'), 'color'), primarySubtle: token(color('--indigo-50'), 'color'), focusRing: token(color('--indigo-500'), 'color') },
+    typography: {
+      fontFamily: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.fontFamily).map(([key, value]) => [key, figmaToken('string', value)])),
+      fontSize: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.fontSize).map(([key, value]) => [key, figmaToken('number', cssLengthToNumber(value))])),
+      fontWeight: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.fontWeight).map(([key, value]) => [key, figmaToken('number', Number(value))])),
+      lineHeight: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.typography.lineHeight).map(([key, value]) => [key, figmaToken('number', Number(value))])),
     },
-    component: {
-      button: {
-        primary: { background: token('{semantic.action.primary}', 'color'), text: token('{semantic.text.inverse}', 'color'), hoverBackground: token('{semantic.action.primaryHover}', 'color'), radius: token('{global.radius.xl}', 'borderRadius'), paddingX: token('{global.spacing.4}', 'dimension'), paddingY: token('{global.spacing.2}', 'dimension') },
-        secondary: { background: token('{semantic.surface.default}', 'color'), text: token('{semantic.text.primary}', 'color'), border: token('{semantic.border.default}', 'color'), radius: token('{global.radius.xl}', 'borderRadius') },
-      },
-      input: { background: token('{semantic.surface.default}', 'color'), text: token('{semantic.text.primary}', 'color'), border: token('{semantic.border.default}', 'color'), focusRing: token('{semantic.action.focusRing}', 'color'), radius: token('{global.radius.md}', 'borderRadius') },
-      card: { background: token('{semantic.surface.default}', 'color'), border: token('{semantic.border.subtle}', 'color'), radius: token('{global.radius.2xl}', 'borderRadius'), shadow: token('{global.shadow.sm}', 'boxShadow'), padding: token('{global.spacing.6}', 'dimension') },
-    },
+    spacing: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.spacing).map(([key, value]) => [key, figmaToken('number', cssLengthToNumber(value))])),
+    radius: Object.fromEntries(Object.entries(DESIGN_FOUNDATIONS.radius).map(([key, value]) => [key, figmaToken('number', cssLengthToNumber(value))])),
   };
 }
 

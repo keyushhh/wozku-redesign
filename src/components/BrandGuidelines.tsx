@@ -90,7 +90,37 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
   // Storage key safely scoped to guidelines
   const storageKey = 'wozku-guidelines-custom-palette';
 
+  // Load and parse initial state from URL query parameters (supports both standard and hash queries)
+  const urlParams = (() => {
+    const params = new URLSearchParams(window.location.search);
+    const hashPart = window.location.hash;
+    if (hashPart.includes('?')) {
+      const hashQuery = hashPart.split('?')[1];
+      const hashParams = new URLSearchParams(hashQuery);
+      for (const [key, val] of hashParams.entries()) {
+        params.set(key, val);
+      }
+    }
+    // Perform console check for malformed hex strings
+    const checkKeys = ['primary', 'secondary', 'neutral', 'accent'];
+    checkKeys.forEach(k => {
+      const val = params.get(k);
+      if (val && !/^#[0-9A-F]{6}$/i.test(val)) {
+        console.warn(`[Wozku Guidelines] Invalid hex value found for query parameter '${k}': ${val}. Falling back to default.`);
+      }
+    });
+    return params;
+  })();
+
+  const isValidHex = (hex: string | null) => {
+    if (!hex) return false;
+    return /^#[0-9A-F]{6}$/i.test(hex);
+  };
+
   const [activeTheme, setActiveTheme] = useState(() => {
+    const urlPreset = urlParams.get('preset');
+    if (urlPreset) return urlPreset;
+
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -103,8 +133,12 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
 
   const [activeNav, setActiveNav] = useState('cover');
   const [isEditingColors, setIsEditingColors] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const [customPrimary, setCustomPrimary] = useState(() => {
+    const urlPrimary = urlParams.get('primary');
+    if (isValidHex(urlPrimary)) return urlPrimary!;
+
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -116,6 +150,9 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
   });
 
   const [customSecondary, setCustomSecondary] = useState(() => {
+    const urlSecondary = urlParams.get('secondary');
+    if (isValidHex(urlSecondary)) return urlSecondary!;
+
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -127,6 +164,9 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
   });
 
   const [customNeutral, setCustomNeutral] = useState(() => {
+    const urlNeutral = urlParams.get('neutral');
+    if (isValidHex(urlNeutral)) return urlNeutral!;
+
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -138,6 +178,9 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
   });
 
   const [hasAccent, setHasAccent] = useState(() => {
+    const urlAccent = urlParams.get('accent');
+    if (isValidHex(urlAccent)) return true;
+
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -149,6 +192,9 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
   });
 
   const [customAccent, setCustomAccent] = useState(() => {
+    const urlAccent = urlParams.get('accent');
+    if (isValidHex(urlAccent)) return urlAccent!;
+
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -216,6 +262,10 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
   // Reset to current preset's defaults
   const handleReset = () => {
     localStorage.removeItem(storageKey);
+    // Clear URL parameters
+    const hashRoute = window.location.hash.split('?')[0];
+    window.history.replaceState(null, '', `${window.location.pathname}${hashRoute}`);
+
     setHasAccent(false);
     const presetId = activeTheme || 'emerald';
     setActiveTheme(presetId);
@@ -224,6 +274,24 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
     setCustomSecondary(def.secondary);
     setCustomNeutral('#737373');
     setCustomAccent('#ec4899');
+  };
+
+  // Build current config URL and copy to clipboard
+  const handleCopyLink = () => {
+    const params = new URLSearchParams();
+    if (activeTheme) params.set('preset', activeTheme);
+    if (customPrimary) params.set('primary', customPrimary);
+    if (customSecondary) params.set('secondary', customSecondary);
+    if (customNeutral) params.set('neutral', customNeutral);
+    if (hasAccent && customAccent) params.set('accent', customAccent);
+
+    const hashRoute = window.location.hash.split('?')[0];
+    const shareUrl = `${window.location.origin}${window.location.pathname}${hashRoute}?${params.toString()}`;
+
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    });
   };
 
   // Manual scroll handler to prevent hash route collisions
@@ -438,8 +506,10 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
           <a href="#visual-language" onClick={(e) => handleScrollToSection(e, 'visual-language')} className={activeNav === 'visual-language' ? 'active' : ''}><span className="n">06</span>Visual Language</a>
           <a href="#clearspace" onClick={(e) => handleScrollToSection(e, 'clearspace')} className={activeNav === 'clearspace' ? 'active' : ''}><span className="n">07</span>Logo Clear Space</a>
           <a href="#misuse" onClick={(e) => handleScrollToSection(e, 'misuse')} className={activeNav === 'misuse' ? 'active' : ''}><span className="n">08</span>Logo Misuse</a>
-          <a href="#components" onClick={(e) => handleScrollToSection(e, 'components')} className={activeNav === 'components' ? 'active' : ''}><span className="n">09</span>Components</a>
-          <a href="#final-notes" onClick={(e) => handleScrollToSection(e, 'final-notes')} className={activeNav === 'final-notes' ? 'active' : ''}><span className="n">10</span>Final Notes</a>
+          <a href="#voice-tone" onClick={(e) => handleScrollToSection(e, 'voice-tone')} className={activeNav === 'voice-tone' ? 'active' : ''}><span className="n">09</span>Voice &amp; Tone</a>
+          <a href="#accessibility" onClick={(e) => handleScrollToSection(e, 'accessibility')} className={activeNav === 'accessibility' ? 'active' : ''}><span className="n">10</span>Accessibility</a>
+          <a href="#components" onClick={(e) => handleScrollToSection(e, 'components')} className={activeNav === 'components' ? 'active' : ''}><span className="n">11</span>Components</a>
+          <a href="#final-notes" onClick={(e) => handleScrollToSection(e, 'final-notes')} className={activeNav === 'final-notes' ? 'active' : ''}><span className="n">12</span>Final Notes</a>
         </nav>
         <div className="sidenav-tools">
           <div className="flex items-center gap-3 justify-between" style={{ marginBottom: '8px' }}>
@@ -535,6 +605,24 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
             </svg>
             Export as PDF
           </button>
+
+          <button 
+            className="export-btn" 
+            style={{ marginTop: '8px', background: 'var(--neutral-150)', color: 'var(--neutral-850)', border: '1px solid var(--neutral-200)' }} 
+            onClick={handleCopyLink}
+          >
+            {isCopied ? (
+              <>✓ Link Copied!</>
+            ) : (
+              <>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: '14px', height: '14px' }}>
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+                Copy Share Link
+              </>
+            )}
+          </button>
           
           <button 
             className="export-btn" 
@@ -576,7 +664,7 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
         <section id="toc" className="page page-toc">
           <div className="toc-head">
             <div className="big">Index</div>
-            <p>Ten sections covering identity, type, colour, components and usage rules — the foundation every touchpoint is built from.</p>
+            <p>Twelve sections covering identity, type, colour, voice, accessibility, components and usage rules — the foundation every touchpoint is built from.</p>
           </div>
           <div className="toc-list">
             <div className="toc-item"><span className="num">01</span><span className="name">Table of Contents</span></div>
@@ -587,8 +675,10 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
             <div className="toc-item"><span className="num">06</span><span className="name">Visual Language</span></div>
             <div className="toc-item"><span className="num">07</span><span className="name">Logo Clear Space</span></div>
             <div className="toc-item"><span className="num">08</span><span className="name">Logo Misuse</span></div>
-            <div className="toc-item"><span className="num">09</span><span className="name">Components</span></div>
-            <div className="toc-item"><span className="num">10</span><span className="name">Final Notes</span></div>
+            <div className="toc-item"><span className="num">09</span><span className="name">Voice &amp; Tone</span></div>
+            <div className="toc-item"><span className="num">10</span><span className="name">Accessibility</span></div>
+            <div className="toc-item"><span className="num">11</span><span className="name">Components</span></div>
+            <div className="toc-item"><span className="num">12</span><span className="name">Final Notes</span></div>
           </div>
         </section>
 
@@ -831,7 +921,137 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
           <div className="footer-row"><span>Wozku Brand Guidelines</span><span>Page 08</span></div>
         </section>
 
-        {/* 09 COMPONENTS */}
+        {/* 09 VOICE & TONE */}
+        <section id="voice-tone" className="page">
+          <div className="eyebrow">Content Section</div>
+          <h1 className="page-title">Voice &amp; Tone</h1>
+          <div className="type-grid">
+            <div>
+              <p className="page-body">Wozku speaks with the confidence of an engineer and the clarity of an operator. Our voice is direct, technical when it needs to be, and never inflated. We describe infrastructure the way the people who run it actually talk about it — plainly, and with respect for the reader's time.</p>
+              <div className="type-mini-list" style={{ marginTop: '20px' }}>
+                <div className="tm"><b>Clear over clever</b>Say exactly what a system does. Let capability speak for itself.</div>
+                <div className="tm"><b>Confident, not boastful</b>State facts plainly; let the numbers do the persuading.</div>
+                <div className="tm"><b>Technical when useful, plain everywhere else</b>Precision matters in specs; simplicity matters in explanation.</div>
+                <div className="tm"><b>Respect the reader's expertise</b>Talk to operators and engineers as peers, not prospects.</div>
+              </div>
+            </div>
+            <div>
+              <table style={{ width: '100%', borderCollapse: 'collapse', background: 'var(--neutral-50)', border: '1px solid var(--neutral-150)', borderRadius: 'var(--radius-sm)', overflow: 'hidden' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid var(--neutral-150)', textAlign: 'left', background: 'var(--neutral-100)' }}>
+                    <th style={{ padding: '10px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--neutral-500)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Do</th>
+                    <th style={{ padding: '10px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--neutral-500)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Don't</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ borderBottom: '1px solid var(--neutral-150)' }}>
+                    <td style={{ padding: '12px 14px', fontSize: '12.5px', color: 'var(--indigo-700)', fontWeight: 500, verticalAlign: 'top' }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '50%', background: 'var(--indigo-100)', color: 'var(--indigo-700)', fontSize: '10px', fontWeight: 'bold', flexShrink: 0, marginTop: '2px' }}>✓</span>
+                        <span>"This rack supports up to 40kW per cabinet."</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '12px 14px', fontSize: '12.5px', color: 'var(--neutral-400)', textDecoration: 'line-through', verticalAlign: 'top' }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '50%', background: '#fee2e2', color: '#ef4444', fontSize: '8px', fontWeight: 'bold', flexShrink: 0, marginTop: '2px' }}>✕</span>
+                        <span>"Unleash groundbreaking power density like never before."</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr style={{ borderBottom: '1px solid var(--neutral-150)' }}>
+                    <td style={{ padding: '12px 14px', fontSize: '12.5px', color: 'var(--indigo-700)', fontWeight: 500, verticalAlign: 'top' }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '50%', background: 'var(--indigo-100)', color: 'var(--indigo-700)', fontSize: '10px', fontWeight: 'bold', flexShrink: 0, marginTop: '2px' }}>✓</span>
+                        <span>"Deployment typically takes six to eight weeks."</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '12px 14px', fontSize: '12.5px', color: 'var(--neutral-400)', textDecoration: 'line-through', verticalAlign: 'top' }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '50%', background: '#fee2e2', color: '#ef4444', fontSize: '8px', fontWeight: 'bold', flexShrink: 0, marginTop: '2px' }}>✕</span>
+                        <span>"Blazing-fast deployment in the blink of an eye."</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style={{ padding: '12px 14px', fontSize: '12.5px', color: 'var(--indigo-700)', fontWeight: 500, verticalAlign: 'top' }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '50%', background: 'var(--indigo-100)', color: 'var(--indigo-700)', fontSize: '10px', fontWeight: 'bold', flexShrink: 0, marginTop: '2px' }}>✓</span>
+                        <span>"Reliable. Scalable. Sustainable."</span>
+                      </div>
+                    </td>
+                    <td style={{ padding: '12px 14px', fontSize: '12.5px', color: 'var(--neutral-400)', textDecoration: 'line-through', verticalAlign: 'top' }}>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', borderRadius: '50%', background: '#fee2e2', color: '#ef4444', fontSize: '8px', fontWeight: 'bold', flexShrink: 0, marginTop: '2px' }}>✕</span>
+                        <span>"The ultimate game-changing infrastructure revolution."</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div className="footer-row"><span>Wozku Brand Guidelines</span><span>Page 09</span></div>
+        </section>
+
+        {/* 10 ACCESSIBILITY */}
+        <section id="accessibility" className="page">
+          <div className="eyebrow">Content Section</div>
+          <h1 className="page-title">Accessibility</h1>
+          <p className="page-body" style={{ marginBottom: '24px' }}>
+            Every Wozku interface should be usable regardless of ability, device, or context. Accessibility isn't a final pass — it's a constraint we design within from the start.
+          </p>
+          <div className="vl-grid">
+            <div className="vl-card">
+              <h4>Colour contrast</h4>
+              <div className="vl-visual" style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px', justifyContent: 'center', background: 'var(--neutral-50)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 8px', borderRadius: '4px', background: 'var(--indigo-50)', border: '1px solid var(--indigo-150)' }}>
+                  <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--indigo-700)' }}>Pass (AA 4.5:1)</span>
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', color: 'var(--indigo-600)' }}>✓ Passed</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 8px', borderRadius: '4px', background: 'var(--indigo-50)', opacity: 0.45 }}>
+                  <span style={{ fontSize: '11px', color: 'var(--indigo-300)' }}>Fail (low contrast)</span>
+                  <span style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', color: 'var(--neutral-400)' }}>✕ Low</span>
+                </div>
+              </div>
+              <div className="cap">Body text maintains a minimum 4.5:1 contrast ratio against its background; large text and UI components maintain 3:1.</div>
+            </div>
+
+            <div className="vl-card">
+              <h4>Focus states</h4>
+              <div className="vl-visual" style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyCenter: 'center', background: 'var(--neutral-50)' }}>
+                <input type="text" placeholder="Focused state" style={{ border: '1px solid var(--indigo-500)', outline: 'none', boxShadow: '0 0 0 2px var(--indigo-100)', background: 'var(--neutral-0)', color: 'var(--neutral-900)', padding: '6px 10px', fontSize: '11px', borderRadius: 'var(--radius-sm)', width: '100%' }} readOnly />
+              </div>
+              <div className="cap">Every interactive element shows a visible focus ring in the active Primary colour. Never removed, never invisible.</div>
+            </div>
+
+            <div className="vl-card">
+              <h4>Motion</h4>
+              <div className="vl-visual" style={{ padding: '16px', display: 'flex', alignItems: 'center', justifyCenter: 'center', background: 'var(--neutral-50)' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '20px', marginBottom: '4px' }}>⚡</div>
+                  <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--neutral-500)' }}>prefers-reduced-motion</span>
+                </div>
+              </div>
+              <div className="cap">Animations respect prefers-reduced-motion. Nothing essential to understanding is conveyed through motion alone.</div>
+            </div>
+
+            <div className="vl-card">
+              <h4>Semantic structure</h4>
+              <div className="vl-visual" style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '4px', justifyContent: 'center', background: 'var(--neutral-50)' }}>
+                <code style={{ fontSize: '9.5px', fontFamily: 'var(--font-mono)', color: 'var(--neutral-600)' }}>
+                  &lt;main&gt;<br/>
+                  &nbsp;&nbsp;&lt;h1&gt;Header&lt;/h1&gt;<br/>
+                  &nbsp;&nbsp;&lt;nav aria-label="Page"&gt;<br/>
+                  &lt;/main&gt;
+                </code>
+              </div>
+              <div className="cap">Headings, landmarks, and form labels follow a logical, programmatically readable order.</div>
+            </div>
+          </div>
+          <div className="footer-row"><span>Wozku Brand Guidelines</span><span>Page 10</span></div>
+        </section>
+
+        {/* 11 COMPONENTS */}
         <section id="components" className="page">
           <div className="eyebrow">Content Section</div>
           <h1 className="page-title">Components</h1>
@@ -874,7 +1094,7 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
 
             <div className="vl-card" style={{ gridColumn: 'span 1' }}>
               <h4>Toggle / Checkbox</h4>
-              <div className="vl-visual" style={{ height: 'auto', padding: '16px', background: 'var(--neutral-50)', display: 'flex', gap: '20px', alignItems: 'center', justifyContent: 'center', minHeight: '116px' }}>
+              <div className="vl-visual" style={{ height: 'auto', padding: '16px', background: 'var(--neutral-50)', display: 'flex', gap: '20px', alignItems: 'center', justifyCenter: 'center', minHeight: '116px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <div style={{ width: '34px', height: '20px', borderRadius: '9999px', background: 'var(--indigo-500)', position: 'relative', cursor: 'pointer' }}>
                     <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: 'var(--neutral-0)', position: 'absolute', top: '3px', right: '3px' }} />
@@ -895,7 +1115,7 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
 
             <div className="vl-card" style={{ gridColumn: 'span 1' }}>
               <h4>Cards</h4>
-              <div className="vl-visual" style={{ height: 'auto', padding: '16px', background: 'var(--neutral-50)', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '116px' }}>
+              <div className="vl-visual" style={{ height: 'auto', padding: '16px', background: 'var(--neutral-50)', display: 'flex', alignItems: 'center', justifyCenter: 'center', minHeight: '116px' }}>
                 <div style={{ border: '1px solid var(--neutral-150)', background: 'var(--neutral-0)', borderRadius: 'var(--radius-card)', padding: '12px', boxShadow: 'var(--shadow-soft)', width: '100%', maxWidth: '200px' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: '12px', fontWeight: 700, color: 'var(--neutral-950)', marginBottom: '4px' }}>Wozku Card</div>
                   <p style={{ fontSize: '10px', color: 'var(--neutral-500)', marginBottom: '8px', lineHeight: 1.4 }}>Live example of standard component cards.</p>
@@ -905,17 +1125,17 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
               <div className="cap">Live card layout showing standard typography and actions.</div>
             </div>
           </div>
-          <div className="footer-row"><span>Wozku Brand Guidelines</span><span>Page 09</span></div>
+          <div className="footer-row"><span>Wozku Brand Guidelines</span><span>Page 11</span></div>
         </section>
 
-        {/* 10 FINAL NOTES */}
+        {/* 12 FINAL NOTES */}
         <section id="final-notes" className="page">
           <div className="eyebrow">Content Section</div>
           <h1 className="page-title">Final Notes</h1>
           <p className="page-body" style={{ marginBottom: '24px' }}>
             These brand guidelines serve to align Wozku's digital design identity across all touchpoints. By adhering to the layouts, spacing patterns, color variables, and components listed in this document, you maintain a professional and premium representation of the Wozku brand.
           </p>
-          <div className="footer-row"><span>Wozku Brand Guidelines</span><span>Page 10</span></div>
+          <div className="footer-row"><span>Wozku Brand Guidelines</span><span>Page 12</span></div>
         </section>
 
       </main>

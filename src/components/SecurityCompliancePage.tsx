@@ -30,11 +30,11 @@ interface SecurityLayer {
 const SECURITY_LAYERS: SecurityLayer[] = [
   {
     id: 'oauth-vault',
-    name: 'Scoped OAuth Token Vault',
+    name: 'Secure Login Connections',
     subtitle: 'Restricted Token Layer',
     status: 'Encrypted',
     cipher: 'AES-256 GCM via AWS KMS',
-    description: 'OAuth credentials are delegated directly by Slack, MS Teams, and social APIs. Tokens are scoped strictly to publish-only permissions, meaning Wozku can never read private user feeds or direct messages.',
+    description: 'Credentials are handled directly by Slack, MS Teams, and social platform APIs. Wozku does not store passwords and only asks for permission to publish posts — we can never read private feeds or chats.',
     specs: [
       'Automatic token expiration and silent rotation',
       'TLS 1.3 transport security for all external API endpoints',
@@ -44,11 +44,11 @@ const SECURITY_LAYERS: SecurityLayer[] = [
   },
   {
     id: 'brand-guard',
-    name: 'Compliance & Brand Filter',
+    name: 'Automated Content Safety Checks',
     subtitle: 'Automated Post Scrutiny',
     status: 'Active',
-    cipher: 'RegEx & LLM Verification',
-    description: 'All campaign drafts run through an automatic lexical compliance engine before release. Validates posts against disallowed keyword libraries, copyright flags, and checks for required brand sign-offs.',
+    cipher: 'Lexical Verification',
+    description: 'Every draft passes automated checks before it is sent out, matching your guidelines to make sure posts are appropriate and approved.',
     specs: [
       'Automated quarantine for unapproved content modifications',
       'Immutable legal sign-off hashes logged in campaign history',
@@ -58,11 +58,11 @@ const SECURITY_LAYERS: SecurityLayer[] = [
   },
   {
     id: 'decentralized-dispatch',
-    name: 'Decentralized Timing Dispatcher',
+    name: 'Safe Post Scheduling',
     subtitle: 'Anti-Spam Optimization',
     status: 'Online',
-    cipher: 'Dynamic Interval Scheduling',
-    description: 'Advocacy schedules are calculated per-recipient to prevent bulk-post detection. Distributes releases across natural active windows, ensuring that endpoints are never flagged or blacklisted by networks.',
+    cipher: 'Dispersion Intervals',
+    description: 'Sharing schedules are automatically spaced out for each person so your team members do not post at the exact same second, keeping their personal accounts in good standing.',
     specs: [
       'Randomized delivery dispersion offsets (jitter)',
       'Per-channel throttling matching provider rate limits',
@@ -72,11 +72,11 @@ const SECURITY_LAYERS: SecurityLayer[] = [
   },
   {
     id: 'audit-ledger',
-    name: 'Hashed Audit Ledger',
+    name: 'Accountability Change Logs',
     subtitle: 'Immutable System Records',
     status: 'Protected',
-    cipher: 'SHA-256 Cryptographic Hash Chain',
-    description: 'Every dispatch request, legal approval state, and schedule change is recorded onto a tamper-proof audit trail. Hashed logs guarantee clear enterprise accountability for compliance reports.',
+    cipher: 'Tamper-Proof Log Hash Chain',
+    description: 'All post approvals and scheduling changes are recorded in a permanent system log to give your team clear, verifiable compliance reports.',
     specs: [
       'Cryptographically chained change entries',
       'Real-time shipping of security events to SIEM providers',
@@ -143,8 +143,12 @@ export default function SecurityCompliancePage() {
             <span className="text-indigo-600 dark:text-indigo-400">By design.</span>
           </h1>
 
+          <div className="max-w-xl mx-auto bg-indigo-50/70 border border-indigo-100 rounded-2xl p-4.5 mb-8 text-center text-xs font-semibold text-indigo-950 leading-relaxed shadow-3xs">
+            📢 <strong>Plain English Summary:</strong> We protect your corporate logins and follow strict security rules, so your team can share updates safely without sharing their social media passwords.
+          </div>
+
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-6">
-            Advocacy shouldn't compromise network security. Wozku is engineered with scoped permission bounds, immutable log trails, and envelope encryption to keep systems secure.
+            Safety shouldn't compromise network security. Wozku is engineered with scoped permission bounds, immutable log trails, and envelope encryption to keep systems secure.
           </p>
         </div>
       </section>

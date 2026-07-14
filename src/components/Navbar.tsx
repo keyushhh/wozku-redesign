@@ -214,10 +214,8 @@ export default function Navbar() {
                       <h4 className="text-[11px] font-mono font-bold tracking-wider uppercase text-neutral-400">Product</h4>
                       <ul className="space-y-1">
                         {[
-                          { label: 'Event Advocacy', path: '#/product/event-advocacy', desc: 'Scan badges and boost live reach' },
-                          { label: 'Employee Advocacy', path: '#/product/employee-advocacy', desc: 'Mobilize internal company networks' },
-                          { label: 'Community Growth', path: '#/product/community-growth', desc: 'Turn advocates into distribution media' },
-                          { label: 'Social Amplification', path: '#/product/social-amplification', desc: 'Decentralize your brand messages' }
+                          { label: 'Teams & Employees', path: '#/product/teams-employees', desc: 'Help your team share company news and jobs' },
+                          { label: 'Events & Communities', path: '#/product/events-communities', desc: 'Let attendees and fans recommend your brand' }
                         ].map((item) => (
                           <li key={item.label}>
                             <button 
@@ -240,10 +238,8 @@ export default function Navbar() {
                       <h4 className="text-[11px] font-mono font-bold tracking-wider uppercase text-neutral-400">About</h4>
                       <ul className="space-y-1">
                         {[
-                          { label: 'Wozku Platform', path: '#/about/wozku-platform', desc: 'Our architectural design approach' },
-                          { label: 'Core Team', path: '#/about/core-team', desc: 'Decentralization engine authors' },
-                          { label: 'Security Compliance', path: '#/about/security-compliance', desc: 'SOC2 Ready and GDPR compliant' },
-                          { label: 'Global Offices', path: '#/about/global-offices', desc: 'Based in Kolkata and Bengaluru' }
+                          { label: 'Core Team & Offices', path: '#/about/core-team', desc: 'Meet our team and find our locations' },
+                          { label: 'Security & Safety', path: '#/about/security-compliance', desc: 'Enterprise-grade protection policies' }
                         ].map((item) => (
                           <li key={item.label}>
                             <button 
@@ -266,10 +262,10 @@ export default function Navbar() {
                       <h4 className="text-[11px] font-mono font-bold tracking-wider uppercase text-neutral-400">Resources</h4>
                       <ul className="space-y-1">
                         {[
-                          { label: 'Ecosystem Integrations', path: '#/resources/ecosystem-integrations', desc: 'Connect Slack, Zapier, Hubspot' },
-                          { label: 'Frequently Asked Questions', path: '#/resources/faq', desc: 'Browse filters and answers' },
-                          { label: 'Global Reach Map', path: '#/resources/global-reach-map', desc: 'Simulate connection ripple effect' },
-                          { label: 'ROI Calculator', path: '#/resources/roi-calculator', desc: 'Calculate equivalent media value savings' }
+                          { label: 'Ecosystem Integrations', path: '#/resources/ecosystem-integrations', desc: 'Connect Slack, Salesforce, HubSpot' },
+                          { label: 'Frequently Asked Questions', path: '#/resources/faq', desc: 'Answers to common questions' },
+                          { label: 'Global Reach Map', path: '#/resources/global-reach-map', desc: 'See shares spread across the map' },
+                          { label: 'ROI Calculator', path: '#/resources/roi-calculator', desc: 'Calculate how much you can save' }
                         ].map((item) => (
                           <li key={item.label}>
                             <button 
@@ -565,7 +561,10 @@ export default function Navbar() {
                   {[
                     { label: 'Home', action: () => { handleLogoClick(); } },
                     { label: 'Why Wozku?', action: () => { window.location.hash = '#/why-wozku'; setIsMenuOpen(false); } },
-                    { label: 'Use Cases', action: () => scrollToSection('use-cases') },
+                    { label: 'For Teams & Employees', action: () => { window.location.hash = '#/product/teams-employees'; setIsMenuOpen(false); } },
+                    { label: 'For Events & Communities', action: () => { window.location.hash = '#/product/events-communities'; setIsMenuOpen(false); } },
+                    { label: 'Core Team & Offices', action: () => { window.location.hash = '#/about/core-team'; setIsMenuOpen(false); } },
+                    { label: 'Security & Safety', action: () => { window.location.hash = '#/about/security-compliance'; setIsMenuOpen(false); } },
                     { label: 'Pricing', action: () => { window.location.hash = '#/pricing'; setIsMenuOpen(false); } }
                   ].map((link) => (
                     <button

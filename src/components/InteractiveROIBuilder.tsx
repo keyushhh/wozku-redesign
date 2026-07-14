@@ -683,11 +683,11 @@ export default function InteractiveROIBuilder() {
 
   const CATEGORIES = [
     { id: 'all', label: 'All Blocks', icon: Sparkles, count: BLOCK_LIBRARY.length },
-    { id: 'trigger', label: '⚡ Trigger', icon: Megaphone, count: BLOCK_LIBRARY.filter(b => b.category === 'trigger').length },
-    { id: 'audience', label: '👥 Audience', icon: Users, count: BLOCK_LIBRARY.filter(b => b.category === 'audience').length },
-    { id: 'channel', label: '📢 Channel', icon: Share2, count: BLOCK_LIBRARY.filter(b => b.category === 'channel').length },
-    { id: 'action', label: '🎯 Action', icon: ThumbsUp, count: BLOCK_LIBRARY.filter(b => b.category === 'action').length },
-    { id: 'outcome', label: '📈 Outcome', icon: Target, count: BLOCK_LIBRARY.filter(b => b.category === 'outcome').length },
+    { id: 'trigger', label: '⚡ Event / Update', icon: Megaphone, count: BLOCK_LIBRARY.filter(b => b.category === 'trigger').length },
+    { id: 'audience', label: '👥 People Sharing', icon: Users, count: BLOCK_LIBRARY.filter(b => b.category === 'audience').length },
+    { id: 'channel', label: '📢 Where They Share', icon: Share2, count: BLOCK_LIBRARY.filter(b => b.category === 'channel').length },
+    { id: 'action', label: '🎯 Action Taken', icon: ThumbsUp, count: BLOCK_LIBRARY.filter(b => b.category === 'action').length },
+    { id: 'outcome', label: '📈 Result', icon: Target, count: BLOCK_LIBRARY.filter(b => b.category === 'outcome').length },
   ] as const;
 
   return (
@@ -697,10 +697,10 @@ export default function InteractiveROIBuilder() {
       <div id="roi-header" className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-100 dark:border-fixed-white/6">
         <div>
           <h3 className="font-display font-extrabold text-neutral-900 dark:text-fixed-white text-3xl tracking-tight">
-            Advocacy Strategy Workspace
+            Referral Strategy Workspace
           </h3>
           <p className="text-sm text-neutral-500 dark:text-fixed-light mt-1 max-w-2xl">
-            Design distribution branches, map audience workflows, and evaluate business metrics instantly. Spawning cards will automatically connect them into a high-performance strategy.
+            Connect blocks below to see how sharing flows from templates to business results in real-time.
           </p>
         </div>
 

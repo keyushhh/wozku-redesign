@@ -169,10 +169,10 @@ export default function ROICalculatorPage() {
             <Calculator className="w-3.5 h-3.5 text-indigo-500" /> B2B financial impact modeling
           </span>
           <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
-            Advocacy ROI Calculator
+            Referral ROI Calculator
           </h1>
           <p className="text-sm sm:text-base text-neutral-600 leading-relaxed max-w-2xl mx-auto">
-            Model the potential advertising value and customer acquisition pipeline sourced directly from employee, customer, and partner social shares.
+            Calculate the marketing budget saved and customer pipelines built when your employees and customers recommend you on social media.
           </p>
         </div>
 
@@ -209,7 +209,7 @@ export default function ROICalculatorPage() {
               {/* Slider 1: Advocates */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Users className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Advocates</span>
+                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Users className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> People Sharing</span>
                   <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{advocates.toLocaleString()}</span>
                 </div>
                 <input 
@@ -230,7 +230,7 @@ export default function ROICalculatorPage() {
               {/* Slider 2: Average Followers */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Eye className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Avg. Followers</span>
+                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Eye className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Avg. Connections</span>
                   <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{followers.toLocaleString()}</span>
                 </div>
                 <input 
@@ -251,7 +251,7 @@ export default function ROICalculatorPage() {
               {/* Slider 3: Share Frequency */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><RefreshCw className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Share Frequency</span>
+                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><RefreshCw className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Posts Shared Monthly</span>
                   <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{shares} / mo</span>
                 </div>
                 <input 
@@ -272,7 +272,7 @@ export default function ROICalculatorPage() {
               {/* Slider 4: Click-Through Rate */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Target className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Advocate CTR</span>
+                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Target className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Click-Through Rate (CTR %)</span>
                   <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{ctr.toFixed(1)}%</span>
                 </div>
                 <input 
@@ -293,7 +293,7 @@ export default function ROICalculatorPage() {
               {/* Slider 5: Click Value CPC */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Coins className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> CPC Click Value</span>
+                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Coins className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Ad Cost per Click</span>
                   <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">${cpc.toFixed(2)}</span>
                 </div>
                 <input 
@@ -315,7 +315,7 @@ export default function ROICalculatorPage() {
             <div className="bg-slate-50 dark:bg-[#141418] border border-slate-150 dark:border-fixed-white/8 p-4.5 rounded-2xl text-[10px] text-slate-500 dark:text-fixed-muted leading-relaxed font-sans mt-4 flex gap-2">
               <Info className="w-4.5 h-4.5 text-indigo-500 shrink-0 mt-0.5" />
               <p>
-                Calculations are modeled based on transparent industrial B2B referral equations. Equivalent Media Value represents the budget offset savings if purchasing equal traffic volume on LinkedIn/Google ads.
+                Calculations are modeled on average ad cost offsets. Equivalent Ad Savings represents the budget saved by generating views naturally instead of buying standard search or social ads.
               </p>
             </div>
           </div>
@@ -334,7 +334,7 @@ export default function ROICalculatorPage() {
               {/* Metric 1: Yearly EAV */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Ad Spend Offset</span>
+                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Equivalent Ad Savings</span>
                   <div className="text-2xl font-display font-extrabold text-indigo-950">
                     <AnimatedNumber value={yearlyEAV} prefix="$" />
                   </div>
@@ -344,8 +344,8 @@ export default function ROICalculatorPage() {
                 </div>
 
                 {/* Metric 2: Net ROI */}
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Net ROI % Sourced</span>
+                <div className="bg-slate-55 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">ROI Cost Recovery</span>
                   <div className="text-2xl font-display font-extrabold text-indigo-950">
                     <AnimatedNumber value={roiPercentage} suffix="%" />
                   </div>
@@ -358,7 +358,7 @@ export default function ROICalculatorPage() {
               {/* Metric 3: Reach & Clicks */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Impressions Sourced</span>
+                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Message Views</span>
                   <div className="text-lg font-mono font-bold text-slate-900">
                     <AnimatedNumber value={yearlyImpressions} />
                   </div>
@@ -368,7 +368,7 @@ export default function ROICalculatorPage() {
                 </div>
 
                 <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
-                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Sourced Clicks</span>
+                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Clicks Generated</span>
                   <div className="text-lg font-mono font-bold text-slate-900">
                     <AnimatedNumber value={yearlyClicks} />
                   </div>
@@ -381,8 +381,8 @@ export default function ROICalculatorPage() {
               {/* Cost bar-chart comparison container */}
               <div className="space-y-4 pt-2">
                 <div className="space-y-1">
-                  <h4 className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">Annual Cost vs. Saving Offset</h4>
-                  <p className="text-[9.5px] text-slate-500">Comparing traditional paid CPC spend versus equivalent Wozku licensing.</p>
+                  <h4 className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">Annual Cost vs. Ad Savings</h4>
+                  <p className="text-[9.5px] text-slate-500">Comparing traditional ad click costs versus Wozku licensing.</p>
                 </div>
 
                 <div className="space-y-3.5">
@@ -390,7 +390,7 @@ export default function ROICalculatorPage() {
                   {/* Bar 1: Paid Ad Spend */}
                   <div className="space-y-1">
                     <div className="flex justify-between text-[10px] font-bold">
-                      <span className="text-slate-600">Paid Search CPC Ad Spend</span>
+                      <span className="text-slate-600">Traditional Ad Click Spend</span>
                       <span className="text-slate-900"><AnimatedNumber value={yearlyEAV} prefix="$" /></span>
                     </div>
                     <div className="h-5 bg-slate-100 rounded-lg overflow-hidden flex">
@@ -431,7 +431,7 @@ export default function ROICalculatorPage() {
                   <Award className="w-3.5 h-3.5 text-indigo-500" /> PIPELINE CAPABILITIES
                 </div>
                 <h3 className="text-sm font-bold text-white">Revenue Multiplier</h3>
-                <p className="text-[10px] text-fixed-light leading-relaxed">Model conversions of advocate-sourced clicks into sales pipeline deals.</p>
+                <p className="text-[10px] text-fixed-light leading-relaxed">Estimate how many clicks convert into closed sales deals.</p>
               </div>
 
               <hr className="border-white/10" />

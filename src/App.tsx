@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import InteractiveHeroCRM from './components/InteractiveHeroCRM';
+import EditorialHero from './components/EditorialHero';
 import InteractiveProductGrid from './components/InteractiveProductGrid';
 import UseCasesSection from './components/UseCasesSection';
-import IntegrationsSection from './components/IntegrationsSection';
-import WhyChooseWozku from './components/WhyChooseWozku';
+import CustomerImpact from './components/CustomerImpact';
 import CustomerSuccess from './components/CustomerSuccess';
 import Footer from './components/Footer';
 import DemoModal from './components/DemoModal';
 import FAQSection from './components/FAQSection';
 import NetworkEffectMap from './components/NetworkEffectMap';
 import ScrollToTop from './components/ScrollToTop';
-import EventAdvocacyPage, { ProductComingSoonPage } from './components/EventAdvocacyPage';
-import EmployeeAdvocacyPage from './components/EmployeeAdvocacyPage';
-import CommunityGrowthPage from './components/CommunityGrowthPage';
-import SocialAmplificationPage from './components/SocialAmplificationPage';
-import WozkuPlatformPage from './components/WozkuPlatformPage';
+import TeamsEmployeesPage from './components/TeamsEmployeesPage';
+import EventsCommunitiesPage from './components/EventsCommunitiesPage';
 import CoreTeamPage from './components/CoreTeamPage';
 import SecurityCompliancePage from './components/SecurityCompliancePage';
-import GlobalOfficesPage from './components/GlobalOfficesPage';
 import EcosystemIntegrationsPage from './components/EcosystemIntegrationsPage';
 import FAQPage from './components/FAQPage';
 import GlobalReachMapPage from './components/GlobalReachMapPage';
@@ -53,6 +49,76 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 
+// Custom styled premium dropdown component matching the Wozku design language
+function CustomSelect({
+  label,
+  options,
+  value,
+  onChange
+}: {
+  label: string;
+  options: string[];
+  value: string;
+  onChange: (val: string) => void;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  return (
+    <div className="relative w-full text-left" ref={dropdownRef}>
+      <label className="block text-[10px] uppercase font-mono tracking-wider text-fixed-muted mb-1.5">
+        {label}
+      </label>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between bg-[#141418] border border-fixed-white/10 hover:border-fixed-white/20 rounded-xl px-3.5 py-2.5 text-xs text-fixed-white focus:outline-none focus:border-indigo-550 transition-colors cursor-pointer"
+      >
+        <span>{value}</span>
+        <ChevronDown className={`w-3.5 h-3.5 text-fixed-light transition-transform duration-205 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15 }}
+            className="absolute left-0 right-0 mt-1.5 bg-[#141418] border border-fixed-white/10 rounded-xl overflow-hidden shadow-2xl z-40 max-h-60 overflow-y-auto"
+          >
+            {options.map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => {
+                  onChange(option);
+                  setIsOpen(false);
+                }}
+                className={`w-full text-left px-3.5 py-2.5 text-[11px] transition-colors hover:bg-indigo-600/10 cursor-pointer block ${
+                  value === option ? 'text-indigo-400 font-bold bg-indigo-600/5' : 'text-fixed-white'
+                }`}
+              >
+                {option}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function App() {
   // Path routing state
   const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
@@ -71,6 +137,13 @@ export default function App() {
 
   // Interactive Book a Demo modal state
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [heroVisual, setHeroVisual] = useState<'network' | 'original'>(() => {
+    return localStorage.getItem('wozku-hero-visual') === 'original' ? 'original' : 'network';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('wozku-hero-visual', heroVisual);
+  }, [heroVisual]);
 
   useEffect(() => {
     const handleOpenDemo = () => setIsDemoModalOpen(true);
@@ -193,22 +266,14 @@ export default function App() {
       )}
 
       {/* Dynamic Page Router Switcher */}
-      {currentPath === '#/product/event-advocacy' ? (
-        <EventAdvocacyPage />
-      ) : currentPath === '#/product/employee-advocacy' ? (
-        <EmployeeAdvocacyPage />
-      ) : currentPath === '#/product/community-growth' ? (
-        <CommunityGrowthPage />
-      ) : currentPath === '#/product/social-amplification' ? (
-        <SocialAmplificationPage />
-      ) : currentPath === '#/about/wozku-platform' ? (
-        <WozkuPlatformPage />
+      {currentPath === '#/product/teams-employees' ? (
+        <TeamsEmployeesPage />
+      ) : currentPath === '#/product/events-communities' ? (
+        <EventsCommunitiesPage />
       ) : currentPath === '#/about/core-team' ? (
         <CoreTeamPage />
       ) : currentPath === '#/about/security-compliance' ? (
         <SecurityCompliancePage />
-      ) : currentPath === '#/about/global-offices' ? (
-        <GlobalOfficesPage />
       ) : currentPath === '#/resources/ecosystem-integrations' ? (
         <EcosystemIntegrationsPage />
       ) : currentPath === '#/resources/faq' ? (
@@ -331,56 +396,87 @@ export default function App() {
         </div>
 
         {/* ================= HERO SECTION ================= */}
-        <section className="pt-16 pb-24 text-center space-y-10 relative z-10">
-          
+        {heroVisual === 'network' ? <EditorialHero onOpenDemo={() => setIsDemoModalOpen(true)} /> : <section className="pt-20 pb-20 max-w-7xl mx-auto px-6 sm:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[calc(100vh-100px)]">
+          {/* Left Column: Copy & CTA & Metrics */}
+          <div className="lg:col-span-6 text-left space-y-7 flex flex-col justify-center">
+            <div className="space-y-3">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-display font-extrabold text-neutral-900 dark:text-fixed-white tracking-tight leading-[1.1]"
+              >
+                Own distribution.<br />
+                <span className="text-indigo-650 dark:text-indigo-400">
+                  Your community is the antidote.
+                </span>
+              </motion.h1>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-sm sm:text-base text-neutral-500 dark:text-fixed-light leading-relaxed font-sans max-w-lg"
+              >
+                Paid ads are losing trust. Your employees, partners, and customers already have the audience. Wozku activates them to share your story at scale while attributing every dollar of organic pipeline.
+              </motion.p>
+            </div>
 
-          <div className="space-y-6 max-w-4xl mx-auto">
-            <motion.h1 
-              initial={{ opacity: 0, y: 24 }}
+            {/* Email Capture CTA capsule form */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="h-[52px] flex items-center bg-white dark:bg-neutral-900 border border-neutral-200/50 dark:border-neutral-800/40 p-1.5 rounded-xl max-w-md focus-within:border-neutral-350 dark:focus-within:border-neutral-700 transition-all"
             >
-              Own distribution.<br className="hidden sm:inline" />
-              <span className="text-indigo-600 dark:text-indigo-400">
-                Your community is the antidote.
-              </span>
-            </motion.h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 16 }}
+              <input
+                type="email"
+                placeholder="Enter work email"
+                className="flex-1 h-full bg-transparent px-3 text-xs focus:outline-none text-neutral-900 dark:text-fixed-white placeholder:text-neutral-400/70"
+              />
+              <button 
+                onClick={() => setIsDemoModalOpen(true)}
+                className="h-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-6 rounded-lg transition-all cursor-pointer whitespace-nowrap"
+              >
+                Book a demo
+              </button>
+            </motion.div>
+
+            {/* Metrics Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed font-sans"
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="grid grid-cols-2 gap-6 pt-5 border-t border-neutral-100 dark:border-neutral-850 max-w-sm"
             >
-              Paid ads are losing the trust game. Your employees, customers, and partners already have the audience - Wozku gives them the tools to share your story at scale, and shows you exactly how much pipeline it drives.
-            </motion.p>
+              <div>
+                <span className="text-3xl font-black font-display text-neutral-900 dark:text-fixed-white">8x</span>
+                <span className="text-[10px] font-mono font-bold text-neutral-450 dark:text-fixed-muted uppercase tracking-wider block mt-1">Average ROI Multiplier</span>
+              </div>
+              <div>
+                <span className="text-3xl font-black font-display text-neutral-900 dark:text-fixed-white">2.1M+</span>
+                <span className="text-[10px] font-mono font-bold text-neutral-450 dark:text-fixed-muted uppercase tracking-wider block mt-1">Organic reach scaled</span>
+              </div>
+            </motion.div>
           </div>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <button 
-              onClick={() => setIsDemoModalOpen(true)}
-              className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-semibold py-3 px-6 rounded-xl text-sm transition-all shadow-md shadow-indigo-600/20 hover:scale-[1.02] active:scale-[0.98] duration-150 cursor-pointer"
-            >
-              Book a Live Demo
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            
-            <button 
-              onClick={() => handleStageScroll('what', 'interactive-crm')}
-              className="flex items-center gap-2 bg-white hover:bg-neutral-50 border border-neutral-200 text-neutral-700 font-semibold py-3 px-6 rounded-xl text-sm transition-all cursor-pointer shadow-sm"
-            >
-              Test Drive Advocacy CRM
-            </button>
+          {/* Right Column: Original visual illustration. */}
+          <div className="lg:col-span-6 flex flex-col items-center justify-center lg:items-end">
+            <AnimatePresence mode="wait">
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }} className="w-full flex justify-center lg:justify-end">
+                <InteractiveHeroCRM />
+              </motion.div>
+            </AnimatePresence>
           </div>
+        </section>}
 
-          {/* Majestic Interactive Advocacy CRM block */}
-          <div className="pt-10 max-w-5xl mx-auto">
-            <InteractiveHeroCRM />
+        {import.meta.env.DEV && (
+          <div className="fixed bottom-4 left-4 z-[60] flex items-center gap-1 rounded-full border border-neutral-200 bg-white/90 p-1 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-neutral-900/90">
+            <span className="px-2 text-[8px] font-mono font-bold uppercase tracking-wide text-neutral-400">Hero</span>
+            <button onClick={() => setHeroVisual('network')} className={`rounded-full px-2.5 py-1 text-[9px] font-bold ${heroVisual === 'network' ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900' : 'text-neutral-500'}`}>New</button>
+            <button onClick={() => setHeroVisual('original')} className={`rounded-full px-2.5 py-1 text-[9px] font-bold ${heroVisual === 'original' ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900' : 'text-neutral-500'}`}>Original</button>
           </div>
-
-        </section>
+        )}
 
         {/* ================= SOCIAL PROOF LOGO STRIP ================= */}
         <section className="py-10 border-t border-neutral-100 relative">
@@ -723,20 +819,22 @@ export default function App() {
         </section>
 
 
-        {/* ================= WHY CHOOSE WOZKU ================= */}
-        <section id="why-choose-wozku" className="py-24 border-t border-neutral-200 relative">
+        {/* ================= CUSTOMER IMPACT PROOF ================= */}
+        <section id="customer-impact" className="py-16 border-t border-neutral-200 dark:border-neutral-800 relative bg-transparent">
           
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
-              Built with zero compromises.
+          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3 px-4">
+            <span className="text-[9.5px] font-mono font-bold tracking-widest text-indigo-650 dark:text-indigo-400 uppercase bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-150 dark:border-indigo-900/60 px-3 py-1 rounded-full inline-block">
+              Enterprise Scale Outcomes
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 dark:text-fixed-white tracking-tight leading-tight pt-1">
+              Proven reach. Quantifiable impact.
             </h2>
-            
-            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-2xl mx-auto">
-              We support enterprise scale, automated global loyalty compliance, and GDPR-compliant analytics, trusted by top engineering and finance brands.
+            <p className="text-xs sm:text-sm text-neutral-600 dark:text-fixed-light leading-relaxed max-w-xl mx-auto font-sans font-medium">
+              We replace expensive rented attention with permanent, organic distribution assets built on real advocacy relationships.
             </p>
           </div>
 
-          <WhyChooseWozku />
+          <CustomerImpact />
 
         </section>
 
@@ -759,22 +857,7 @@ export default function App() {
 
         </section>
 
-        {/* ================= INTEGRATIONS SECTION ================= */}
-        <section id="integrations" className="py-24 border-t border-neutral-200 relative">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
-              Connect to your current workflow.
-            </h2>
-            
-            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-2xl mx-auto">
-              Integrate smoothly with the tools your employees use every single hour. Automate notifications, sync directory tables, and credit HubSpot/Salesforce leads.
-            </p>
-          </div>
 
-          <IntegrationsSection />
-
-        </section>
 
         {/* ================= LIVE NETWORK EFFECT MAP SIMULATOR ================= */}
         <section id="network-effect-simulator" className="py-24 border-t border-neutral-200 relative bg-linear-to-b from-neutral-50/30 to-white">
@@ -864,61 +947,40 @@ export default function App() {
 
               <form onSubmit={generateProposal} className="space-y-4">
                 
-                <div>
-                  <label className="block text-[10px] uppercase font-mono tracking-wider text-fixed-muted mb-1.5">
-                    Company Employee Scale
-                  </label>
-                  <div className="relative w-full">
-                    <select 
-                      value={proposalInputs.scale}
-                      onChange={(e) => setProposalInputs(prev => ({ ...prev, scale: e.target.value }))}
-                      className="appearance-none w-full bg-[#141418] border border-fixed-white/10 rounded-xl pl-3 pr-8 py-2.5 text-xs text-fixed-white focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                    >
-                      <option>Seed Stage (20-100 employees)</option>
-                      <option>Mid-Market (100-1000 employees)</option>
-                      <option>Enterprise (1000+ employees)</option>
-                    </select>
-                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-fixed-light" />
-                  </div>
-                </div>
+                <CustomSelect
+                  label="Company Employee Scale"
+                  options={[
+                    'Seed Stage (20-100 employees)',
+                    'Mid-Market (100-1000 employees)',
+                    'Enterprise (1000+ employees)'
+                  ]}
+                  value={proposalInputs.scale}
+                  onChange={(val) => setProposalInputs(prev => ({ ...prev, scale: val }))}
+                />
 
-                <div>
-                  <label className="block text-[10px] uppercase font-mono tracking-wider text-fixed-muted mb-1.5">
-                    Primary Advocacy Network
-                  </label>
-                  <div className="relative w-full">
-                    <select
-                      value={proposalInputs.channel}
-                      onChange={(e) => setProposalInputs(prev => ({ ...prev, channel: e.target.value }))}
-                      className="appearance-none w-full bg-[#141418] border border-fixed-white/10 rounded-xl pl-3 pr-8 py-2.5 text-xs text-fixed-white focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                    >
-                      <option>LinkedIn Networks</option>
-                      <option>X / Twitter Communities</option>
-                      <option>Slack & Teams Internals</option>
-                      <option>Developer Forums & Github</option>
-                    </select>
-                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-fixed-light" />
-                  </div>
-                </div>
+                <CustomSelect
+                  label="Primary Advocacy Network"
+                  options={[
+                    'LinkedIn Networks',
+                    'X / Twitter Communities',
+                    'Slack & Teams Internals',
+                    'Developer Forums & Github'
+                  ]}
+                  value={proposalInputs.channel}
+                  onChange={(val) => setProposalInputs(prev => ({ ...prev, channel: val }))}
+                />
 
-                <div>
-                  <label className="block text-[10px] uppercase font-mono tracking-wider text-fixed-muted mb-1.5">
-                    Core Objective
-                  </label>
-                  <div className="relative w-full">
-                    <select
-                      value={proposalInputs.objective}
-                      onChange={(e) => setProposalInputs(prev => ({ ...prev, objective: e.target.value }))}
-                      className="appearance-none w-full bg-[#141418] border border-fixed-white/10 rounded-xl pl-3 pr-8 py-2.5 text-xs text-fixed-white focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                    >
-                      <option>Brand Visibility & Organic Impressions</option>
-                      <option>Technical Passive Recruitment</option>
-                      <option>Lead Generation & Direct Clicks</option>
-                      <option>Internal Information Unification</option>
-                    </select>
-                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-fixed-light" />
-                  </div>
-                </div>
+                <CustomSelect
+                  label="Core Objective"
+                  options={[
+                    'Brand Visibility & Organic Impressions',
+                    'Technical Passive Recruitment',
+                    'Lead Generation & Direct Clicks',
+                    'Internal Information Unification'
+                  ]}
+                  value={proposalInputs.objective}
+                  onChange={(val) => setProposalInputs(prev => ({ ...prev, objective: val }))}
+                />
 
                 <button
                   type="submit"

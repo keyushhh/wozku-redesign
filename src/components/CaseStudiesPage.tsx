@@ -32,19 +32,19 @@ const CASE_STUDIES: CaseStudy[] = [
     id: '1',
     company: 'VaporSoft',
     logoText: 'VS',
-    title: 'How VaporSoft unlocked $1.8M in organic pipeline with employee advocacy',
+    title: 'How VaporSoft unlocked $1.8M in sales opportunities with team sharing',
     metric: '+340%',
     metricLabel: 'Social Reach',
-    description: 'VaporSoft transformed their 200+ employee base into active brand ambassadors, expanding organic reach without increasing ad spend.',
-    tags: ['B2B SaaS', 'Employee Advocacy'],
+    description: 'VaporSoft transformed their 200+ employee base into active brand recommenders, expanding organic reach without increasing ad spend.',
+    tags: ['B2B SaaS', 'Team Sharing'],
     category: 'B2B SaaS',
     duration: '6 Month Study',
-    challenge: 'VaporSoft was struggling to lower their rising Customer Acquisition Cost (CAC) through traditional paid LinkedIn ads, while their employees had massive untapped professional networks.',
-    solution: 'By deploying Wozku, VaporSoft launched employee advocacy presets that made it seamless for engineering and sales teams to share weekly product updates with two taps from Slack.',
+    challenge: 'VaporSoft was struggling with rising marketing costs through paid ads, while their employees had massive untapped professional networks.',
+    solution: 'By deploying Wozku, VaporSoft launched team sharing programs that made it seamless for engineering and sales teams to share weekly updates with two clicks from Slack.',
     results: [
-      '$1.8M in net-new sourced pipeline',
-      '340% increase in organic social reach',
-      'Average CAC reduced by 22% in first quarter'
+      '$1.8M in new sales opportunities',
+      '340% increase in social reach',
+      'Average ad costs reduced by 22% in the first quarter'
     ],
     testimonial: {
       quote: "Wozku completely changed how our team communicates on social. Organic reach has become our highest-converting acquisition channel.",
@@ -56,19 +56,19 @@ const CASE_STUDIES: CaseStudy[] = [
     id: '2',
     company: 'Apex Logistics',
     logoText: 'AL',
-    title: 'Driving corporate event registration with community-led sharing',
+    title: 'Driving corporate event registration with community recommendation links',
     metric: '14,000+',
     metricLabel: 'Summit Signups',
-    description: 'By incentivizing field agents and logistics partners, Apex Logistics boosted attendance at their annual summit to record numbers.',
-    tags: ['Enterprise', 'Event Advocacy'],
+    description: 'By sharing recommendation links, Apex Logistics boosted attendance at their annual summit to record numbers.',
+    tags: ['Enterprise', 'Event Sharing'],
     category: 'Enterprise',
     duration: '3 Month Study',
-    challenge: 'Apex Logistics needed to drive attendance to their global summit, but email outreach was getting less than 12% open rates, and banner ads yielded low conversions.',
-    solution: 'They mobilized their internal team and partner advocate networks with custom registration campaign links and live dashboards displaying registrant count standings.',
+    challenge: 'Apex Logistics needed to drive attendance to their annual conference, but standard emails and banner ads were yielding very few signups.',
+    solution: 'They created simple recommendation campaigns for their team and partner networks with ready-made registration links.',
     results: [
       '14,230 verified event signups',
-      '55% of all signups directly attributed to advocate links',
-      '94% advocate participation rate across regional hubs'
+      '55% of all signups came directly from recommendation links',
+      '94% team participation rate across regional offices'
     ],
     testimonial: {
       quote: "Wozku gamified the registration campaign so successfully that our own regional managers were competing to drive the most signups.",
@@ -80,22 +80,22 @@ const CASE_STUDIES: CaseStudy[] = [
     id: '3',
     company: 'Bloom Retail',
     logoText: 'BR',
-    title: 'Bloom Retail generates 4.2x ROAS using advocate tracking links',
+    title: 'Bloom Retail generates 4.2x sales savings using team referral links',
     metric: '4.2x',
-    metricLabel: 'Return on Spend',
-    description: 'Bloom Retail deployed trackable campaign presets to micro-influencers and store managers, attributing sales in real-time.',
-    tags: ['Retail', 'Social Amplification'],
+    metricLabel: 'Return on Investment',
+    description: 'Bloom Retail deployed trackable campaign posts to store managers and partners, attributing sales in real-time.',
+    tags: ['Retail', 'Social Sharing'],
     category: 'Consumer',
     duration: '9 Month Study',
-    challenge: 'Bloom Retail wanted to build local community buzz across 80+ physical stores, but could not accurately track which influencer posts drove in-store conversions.',
-    solution: 'They provided managers and partners with localized Wozku campaign presets containing dynamically attributed coupon codes and conversion pixels.',
+    challenge: 'Bloom Retail wanted to build local community buzz across 80+ physical stores, but could not track which posts drove in-store purchases.',
+    solution: 'They provided managers and partners with localized Wozku campaign posts containing tracking codes.',
     results: [
-      '4.2x return on advocate investment',
-      '35,000+ unique code redemptions tracked',
-      'Real-time retail dashboard analytics deployed for store managers'
+      '4.2x return on sharing program investment',
+      '35,000+ unique coupon codes tracked',
+      'Real-time dashboards deployed for store managers'
     ],
     testimonial: {
-      quote: "Being able to trace online organic shares straight to store cash registers solved our biggest marketing attribution puzzle.",
+      quote: "Being able to trace online social shares straight to store cash registers solved our biggest marketing analytics puzzle.",
       author: "Elena Rostov",
       role: "Chief Marketing Officer, Bloom Retail"
     }

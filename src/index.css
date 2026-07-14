@@ -444,3 +444,41 @@
 }
 
 svg { overflow: visible; }
+
+/* Sharp/Squared corners styling toggle */
+:root.corners-sharp,
+.corners-sharp,
+.corners-sharp * {
+  border-radius: 0px !important;
+}
+
+/* Exclude map ripples, tiny status indicators, and color preset circles from being squared */
+.corners-sharp .custom-ripple,
+.corners-sharp .reach-ripple,
+.corners-sharp [class*="ripple"],
+.corners-sharp .w-1.h-1,
+.corners-sharp .w-2.h-2,
+.corners-sharp .w-3.h-3,
+.corners-sharp .h-1.w-1,
+.corners-sharp .h-2.w-2,
+.corners-sharp .h-3.w-3,
+.corners-sharp .w-7.h-7,
+.corners-sharp .w-8.h-8,
+.corners-sharp .h-7.w-7,
+.corners-sharp .h-8.w-8 {
+  border-radius: 50% !important;
+}
+
+.corners-sharp ::-webkit-scrollbar-thumb {
+  border-radius: 0px !important;
+}
+
+/* Hide all page and section description pills/badges and tracking-widest uppercase sub-labels */
+span[class*="tracking-widest"][class*="uppercase"],
+span[class*="tracking-widest"][class*="font-mono"],
+span[class*="font-mono"][class*="uppercase"][class*="px-"],
+span.font-mono.uppercase[class*="bg-"] {
+  display: none !important;
+}
+
+

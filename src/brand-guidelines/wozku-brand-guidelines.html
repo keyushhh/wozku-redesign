@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-emerald">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wozku — Brand Guidelines</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   WOZKU — BRAND GUIDELINES (internal reference doc)
+   Standalone file. Not linked from product nav.
+   Reads / mirrors the product's theme-preset system so the team
+   can preview the full guideline in any preset before committing.
+   Swap the placeholder mark in #logo-mark-svg for the real file
+   from src/assets once available.
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-sans: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --radius-card: 16px;
+  --radius-sm: 8px;
+  --radius-xs: 6px;
+
+  --shadow-soft: 0 1px 2px rgba(15,23,20,0.04), 0 12px 32px -12px rgba(15,23,20,0.10);
+  --shadow-lift: 0 2px 4px rgba(15,23,20,0.05), 0 24px 48px -16px rgba(15,23,20,0.16);
+
+  /* neutrals — light mode only, per brief */
+  --neutral-0:#ffffff;
+  --neutral-50:#fbfbfb;
+  --neutral-100:#f5f5f5;
+  --neutral-150:#eeeeee;
+  --neutral-200:#e5e5e5;
+  --neutral-300:#d4d4d4;
+  --neutral-400:#a3a3a3;
+  --neutral-500:#737373;
+  --neutral-600:#525252;
+  --neutral-700:#404040;
+  --neutral-800:#262626;
+  --neutral-900:#171717;
+  --neutral-950:#0a0a0a;
+
+  --pure-black:#000000;
+  --pure-white:#ffffff;
+}
+
+/* ---------- Theme preset scales ----------
+   --indigo-*  = PRIMARY brand scale
+   --accent-*  = SECONDARY brand scale
+   (mirrors index.css preset structure; secondary/indigo duplication
+   from the app is collapsed here since the guideline only needs
+   two live brand scales, Primary + Secondary.) */
+
+html, .theme-indigo{
+  --indigo-50:#f5f3ff; --indigo-100:#e0e7ff; --indigo-200:#c7d2fe; --indigo-300:#a5b4fc; --indigo-400:#818cf8; --indigo-500:#6366f1; --indigo-600:#4f46e5; --indigo-700:#4338ca; --indigo-800:#3730a3; --indigo-900:#1e1b4b;
+  --accent-50:#f5f3ff; --accent-100:#e0e7ff; --accent-200:#c7d2fe; --accent-300:#a5b4fc; --accent-400:#818cf8; --accent-500:#6366f1; --accent-600:#4f46e5; --accent-700:#4338ca; --accent-800:#3730a3; --accent-900:#1e1b4b;
+}
+.theme-emerald{
+  --indigo-50:#ecfdf5; --indigo-100:#d1fae5; --indigo-200:#a7f3d0; --indigo-300:#6ee7b7; --indigo-400:#34d399; --indigo-500:#10b981; --indigo-600:#059669; --indigo-700:#047857; --indigo-800:#065f46; --indigo-900:#064e3b;
+  --accent-50:#f0fdf4; --accent-100:#dcfce7; --accent-200:#bbf7d0; --accent-300:#86efac; --accent-400:#4ade80; --accent-500:#22c55e; --accent-600:#16a34a; --accent-700:#15803d; --accent-800:#166534; --accent-900:#14532d;
+}
+.theme-rose{
+  --indigo-50:#fff1f2; --indigo-100:#ffe4e6; --indigo-200:#fecdd3; --indigo-300:#fda4af; --indigo-400:#fb7185; --indigo-500:#f43f5e; --indigo-600:#e11d48; --indigo-700:#be123c; --indigo-800:#9f1239; --indigo-900:#881337;
+  --accent-50:#fff7ed; --accent-100:#ffedd5; --accent-200:#fed7aa; --accent-300:#fdba74; --accent-400:#fb923c; --accent-500:#f97316; --accent-600:#ea580c; --accent-700:#c2410c; --accent-800:#9a3412; --accent-900:#7c2d12;
+}
+.theme-amber{
+  --indigo-50:#fffbeb; --indigo-100:#fef3c7; --indigo-200:#fde68a; --indigo-300:#fcd34d; --indigo-400:#fbbf24; --indigo-500:#f59e0b; --indigo-600:#d97706; --indigo-700:#b45309; --indigo-800:#92400e; --indigo-900:#78350f;
+  --accent-50:#fefce8; --accent-100:#fef9c3; --accent-200:#fef08a; --accent-300:#fde047; --accent-400:#facc15; --accent-500:#eab308; --accent-600:#ca8a04; --accent-700:#a16207; --accent-800:#854d0e; --accent-900:#713f12;
+}
+.theme-violet{
+  --indigo-50:#f5f3ff; --indigo-100:#ede9fe; --indigo-200:#ddd6fe; --indigo-300:#c4b5fd; --indigo-400:#a78bfa; --indigo-500:#8b5cf6; --indigo-600:#7c3aed; --indigo-700:#6d28d9; --indigo-800:#5b21b6; --indigo-900:#4c1d95;
+  --accent-50:#fdf4ff; --accent-100:#fae8ff; --accent-200:#f5d0fe; --accent-300:#f0abfc; --accent-400:#e879f9; --accent-500:#d946ef; --accent-600:#c026d3; --accent-700:#a21caf; --accent-800:#86198f; --accent-900:#701a75;
+}
+.theme-sky{
+  --indigo-50:#f0f9ff; --indigo-100:#e0f2fe; --indigo-200:#bae6fd; --indigo-300:#7dd3fc; --indigo-400:#38bdf8; --indigo-500:#0ea5e9; --indigo-600:#0284c7; --indigo-700:#0369a1; --indigo-800:#075985; --indigo-900:#0c4a6e;
+  --accent-50:#eff6ff; --accent-100:#dbeafe; --accent-200:#bfdbfe; --accent-300:#93c5fd; --accent-400:#60a5fa; --accent-500:#3b82f6; --accent-600:#2563eb; --accent-700:#1d4ed8; --accent-800:#1e40af; --accent-900:#1e3a8a;
+}
+.theme-fuchsia{
+  --indigo-50:#fdf4ff; --indigo-100:#fae8ff; --indigo-200:#f5d0fe; --indigo-300:#f0abfc; --indigo-400:#e879f9; --indigo-500:#d946ef; --indigo-600:#c026d3; --indigo-700:#a21caf; --indigo-800:#86198f; --indigo-900:#701a75;
+  --accent-50:#faf5ff; --accent-100:#f3e8ff; --accent-200:#e9d5ff; --accent-300:#d8b4fe; --accent-400:#c084fc; --accent-500:#a855f7; --accent-600:#9333ea; --accent-700:#7e22ce; --accent-800:#6b21a8; --accent-900:#581c87;
+}
+.theme-crimson{
+  --indigo-50:#fef2f2; --indigo-100:#fee2e2; --indigo-200:#fecaca; --indigo-300:#fca5a5; --indigo-400:#f87171; --indigo-500:#dc2626; --indigo-600:#b91c1c; --indigo-700:#991b1b; --indigo-800:#7f1d1d; --indigo-900:#651313;
+  --accent-50:#fff7ed; --accent-100:#ffedd5; --accent-200:#fed7aa; --accent-300:#fdba74; --accent-400:#fb923c; --accent-500:#f97316; --accent-600:#ea580c; --accent-700:#c2410c; --accent-800:#9a3412; --accent-900:#7c2d12;
+}
+
+body{
+  font-family: var(--font-sans);
+  background: var(--neutral-100);
+  color: var(--neutral-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ================= SIDE NAV ================= */
+.sidenav{
+  position: fixed;
+  top:0; left:0; bottom:0;
+  width: 236px;
+  background: var(--pure-white);
+  border-right: 1px solid var(--neutral-150);
+  display:flex;
+  flex-direction:column;
+  z-index: 100;
+}
+.sidenav-brand{
+  display:flex; align-items:center; gap:8px;
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid var(--neutral-150);
+}
+.sidenav-brand svg{ width:20px; height:20px; color: var(--indigo-600); }
+.sidenav-brand span{ font-family: var(--font-display); font-weight:700; font-size:14.5px; letter-spacing:0.01em; }
+.sidenav-scroll{ flex:1; overflow-y:auto; padding: 16px 12px; }
+.sidenav a{
+  display:flex; align-items:baseline; gap:10px;
+  padding: 8px 10px; border-radius: var(--radius-xs);
+  text-decoration:none; color: var(--neutral-500);
+  font-size: 13px; font-weight:500; margin-bottom:2px;
+  transition: background .15s ease, color .15s ease;
+}
+.sidenav a .n{ font-family: var(--font-mono); font-size:11px; color: var(--neutral-400); min-width:16px; }
+.sidenav a:hover{ background: var(--neutral-100); color: var(--neutral-900); }
+.sidenav a.active{ background: var(--indigo-50); color: var(--indigo-700); }
+.sidenav a.active .n{ color: var(--indigo-600); }
+
+.sidenav-tools{ padding: 14px 16px 18px; border-top: 1px solid var(--neutral-150); }
+.tools-label{ font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color: var(--neutral-400); margin-bottom:9px; }
+.swatch-row{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.swatch{
+  width:22px; height:22px; border-radius:50%;
+  border: 2px solid var(--pure-white);
+  outline: 1px solid var(--neutral-200);
+  cursor:pointer; position:relative;
+}
+.swatch.active{ outline: 2px solid var(--neutral-900); outline-offset:1px; }
+.custom-hex-row{ display:flex; align-items:center; gap:6px; margin-bottom:12px; }
+.custom-hex-row input[type=color]{
+  width:26px; height:26px; border:none; border-radius:6px; padding:0; cursor:pointer; background:none;
+}
+.custom-hex-row span{ font-size:11.5px; color: var(--neutral-500); font-family: var(--font-mono); }
+.export-btn{
+  width:100%; display:flex; align-items:center; justify-content:center; gap:7px;
+  background: var(--neutral-900); color:#fff; border:none;
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  font-family: var(--font-sans); font-weight:600; font-size:13px;
+  cursor:pointer; transition: background .15s ease;
+}
+.export-btn:hover{ background: var(--indigo-700); }
+.export-btn svg{ width:14px; height:14px; }
+
+/* ================= MAIN / PAGES ================= */
+.book{ margin-left: 236px; padding: 40px 40px 120px; max-width: 1180px; }
+.page{
+  background: var(--pure-white);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 32px;
+  padding: 56px 64px;
+  position: relative;
+  overflow: hidden;
+  min-height: 640px;
+  scroll-margin-top: 24px;
+}
+.eyebrow{
+  font-family: var(--font-mono); font-size:11px; font-weight:500;
+  letter-spacing:.09em; text-transform:uppercase; color: var(--indigo-600);
+  margin-bottom: 14px; display:flex; align-items:center; gap:8px;
+}
+.eyebrow::before{ content:""; width:14px; height:1.5px; background: var(--indigo-500); display:inline-block; }
+h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40px; letter-spacing:-0.02em; line-height:1.05; margin-bottom:18px; color: var(--neutral-950);}
+.page-body{ font-size: 15px; line-height:1.65; color: var(--neutral-600); max-width: 480px; }
+.footer-row{
+  position:absolute; left:64px; right:64px; bottom:28px;
+  display:flex; justify-content:space-between;
+  font-family: var(--font-mono); font-size:10.5px; letter-spacing:.04em;
+  color: var(--neutral-400); text-transform:uppercase;
+}
+
+/* ---------- 01 COVER ---------- */
+.page-cover{
+  background: linear-gradient(160deg, var(--indigo-600), var(--indigo-900) 78%);
+  color: #fff; min-height: 720px; padding: 48px 60px;
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.page-cover .wave{ position:absolute; inset:0; opacity:.16; }
+.page-cover .brandmark{ display:flex; align-items:center; gap:10px; position:relative; z-index:2;}
+.page-cover .brandmark svg{ width:26px; height:26px; color:#fff; }
+.page-cover .brandmark span{ font-family: var(--font-display); font-weight:700; font-size:19px; letter-spacing:.01em; }
+.cover-title{ position:relative; z-index:2; }
+.cover-title h1{
+  font-family: var(--font-display); font-weight:700; font-size: 76px; line-height:0.98;
+  letter-spacing:-0.03em; margin-bottom: 20px;
+}
+.cover-title p{ font-size:17px; opacity:.85; max-width:420px; }
+.cover-foot{ position:relative; z-index:2; display:flex; justify-content:space-between; align-items:flex-end;
+  font-family: var(--font-mono); font-size:11px; letter-spacing:.05em; text-transform:uppercase; opacity:.75; }
+
+/* ---------- 02 TOC ---------- */
+.page-toc{ background: var(--neutral-950); color:#fff; }
+.toc-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:44px; }
+.toc-head .big{ font-family: var(--font-display); font-weight:700; font-size:64px; color: var(--indigo-400); letter-spacing:-0.02em; }
+.toc-head p{ max-width:280px; font-size:13.5px; color: var(--neutral-400); text-align:right; line-height:1.6; }
+.toc-list{ display:grid; grid-template-columns: 1fr 1fr; gap: 4px 48px; }
+.toc-item{ display:flex; align-items:center; gap:16px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+.toc-item .num{ font-family: var(--font-mono); font-size:12px; color: var(--indigo-400); width:22px; }
+.toc-item .name{ font-family: var(--font-display); font-weight:500; font-size:16px; }
+
+/* ---------- 03 TYPOGRAPHY ---------- */
+.type-grid{ display:grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items:flex-start; margin-top:28px; }
+.type-showcase{
+  background: linear-gradient(150deg, var(--indigo-600), var(--indigo-800));
+  border-radius: var(--radius-card); color:#fff; padding:36px 32px;
+  box-shadow: var(--shadow-lift);
+}
+.type-showcase h3{ font-family: var(--font-display); font-weight:700; font-size:30px; margin-bottom:22px; }
+.type-row{ display:grid; grid-template-columns: 90px 1fr; gap:16px; padding:14px 0; border-top:1px solid rgba(255,255,255,.16); }
+.type-row .label{ font-family: var(--font-mono); font-size:11px; letter-spacing:.03em; text-transform:uppercase; opacity:.75; padding-top:3px;}
+.type-row .sample.medium{ font-weight:400; font-size:14.5px; line-height:1.5; }
+.type-row .sample.semibold{ font-weight:700; font-size:14.5px; line-height:1.5; }
+.type-mini-list{ margin-top:26px; display:flex; flex-direction:column; gap:16px; }
+.type-mini-list .tm{ font-size:13.5px; color: var(--neutral-600); }
+.type-mini-list b{ display:block; font-family: var(--font-display); font-weight:600; font-size:14px; color: var(--neutral-900); margin-bottom:2px; }
+
+/* ---------- 04 TYPE HIERARCHY ---------- */
+.hier-grid{ display:grid; grid-template-columns: 250px 1fr; gap:52px; margin-top:24px; }
+.hier-specs .spec{ padding: 15px 0; border-top:1px solid var(--neutral-150); }
+.hier-specs .spec:first-child{ border-top:none; }
+.hier-specs .spec .name{ font-family: var(--font-display); font-weight:600; font-size:13.5px; margin-bottom:3px; }
+.hier-specs .spec .meta{ font-family: var(--font-mono); font-size:10.5px; color: var(--neutral-500); }
+.hier-demo h2{ font-family: var(--font-display); font-weight:700; font-size:34px; line-height:1.15; letter-spacing:-0.015em; margin-bottom:14px; }
+.hier-demo h3{ font-family: var(--font-display); font-weight:600; font-size:20px; margin-bottom:14px; color: var(--indigo-700); }
+.hier-demo h4{ font-family: var(--font-display); font-weight:500; font-size:16px; margin-bottom:14px; color: var(--neutral-800); }
+.hier-demo p.lg{ font-size:16px; line-height:1.6; color: var(--neutral-700); margin-bottom:10px; }
+.hier-demo p.sm{ font-size:13px; line-height:1.6; color: var(--neutral-500); }
+
+/* ---------- 05 LOGO ---------- */
+.logo-grid{ display:grid; grid-template-columns: 1fr 1.2fr; gap:48px; margin-top:26px; }
+.logo-card{ border-radius: var(--radius-card); height:170px; display:flex; align-items:center; justify-content:center; position:relative; box-shadow: var(--shadow-soft); }
+.logo-card.primary{ background: linear-gradient(135deg, var(--indigo-600), var(--indigo-800)); }
+.logo-card.reverse{ background: var(--neutral-50); border:1px solid var(--neutral-150); }
+.logo-card .tag{ position:absolute; top:14px; left:16px; font-family: var(--font-mono); font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; }
+.logo-card.primary .tag{ color: rgba(255,255,255,.65); }
+.logo-card.reverse .tag{ color: var(--neutral-400); }
+.lockup{ display:flex; align-items:center; gap:10px; }
+.lockup svg{ width:30px; height:30px; }
+.logo-card.primary .lockup{ color:#fff; }
+.logo-card.reverse .lockup{ color: var(--neutral-950); }
+.lockup span{ font-family: var(--font-display); font-weight:700; font-size:24px; letter-spacing:.01em; }
+.min-size-row{ display:flex; gap:36px; margin-top:22px; }
+.min-size-row .item{ text-align:center; }
+.min-size-row svg{ width:20px; height:20px; color: var(--indigo-600); }
+.min-size-row .cap{ font-family: var(--font-mono); font-size:10.5px; color: var(--neutral-500); margin-top:8px; }
+
+/* ---------- 06 COLOUR PALETTE ---------- */
+.palette-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-top:30px; }
+.swatch-card{ border-radius: var(--radius-card); height:280px; padding:20px; display:flex; flex-direction:column; justify-content:space-between; box-shadow: var(--shadow-soft); }
+.swatch-card .label{ font-family: var(--font-display); font-weight:600; font-size:15px; }
+.swatch-card .role{ font-family: var(--font-mono); font-size:10px; text-transform:uppercase; letter-spacing:.06em; opacity:.75; margin-top:2px; }
+.swatch-card .specs{ font-family: var(--font-mono); font-size:11px; line-height:1.7; }
+.swatch-card .specs b{ display:block; font-size:9.5px; opacity:.6; font-weight:400; text-transform:uppercase; letter-spacing:.06em; margin-top:8px; }
+
+/* ---------- 07 VISUAL LANGUAGE ---------- */
+.vl-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:28px; }
+.vl-card{ border:1px solid var(--neutral-150); border-radius: var(--radius-card); padding:18px; }
+.vl-card h4{ font-family: var(--font-display); font-weight:600; font-size:13.5px; margin-bottom:10px; }
+.vl-card .cap{ font-size:11.5px; color: var(--neutral-500); line-height:1.5; margin-top:10px; }
+.vl-visual{ height:100px; border-radius: var(--radius-sm); overflow:hidden; position:relative; background: var(--neutral-50); }
+
+/* grid & spacing mock */
+.mock-grid{ display:grid; grid-template-columns: repeat(6,1fr); gap:4px; padding:10px; height:100%; }
+.mock-grid div{ background: var(--indigo-100); border-radius:3px; }
+.mock-grid div:nth-child(3n){ background: var(--indigo-300); }
+
+/* corner radius mock */
+.mock-radius{ display:flex; align-items:center; justify-content:center; gap:10px; height:100%; }
+.mock-radius i{ display:block; width:34px; height:34px; background: var(--indigo-500); }
+.mock-radius i:nth-child(1){ border-radius:4px; }
+.mock-radius i:nth-child(2){ border-radius:10px; }
+.mock-radius i:nth-child(3){ border-radius:16px; }
+
+/* iconography mock */
+.mock-icons{ display:grid; grid-template-columns: repeat(4,1fr); gap:8px; align-items:center; justify-items:center; height:100%; padding:10px; }
+.mock-icons svg{ width:20px; height:20px; color: var(--indigo-600); }
+
+/* illustration mock */
+.mock-illustration{ display:flex; align-items:center; justify-content:center; height:100%; gap:6px; }
+.mock-illustration .b1{ width:44px; height:44px; border-radius:50%; background: var(--accent-300); }
+.mock-illustration .b2{ width:30px; height:52px; border-radius:14px; background: var(--indigo-500); }
+.mock-illustration .b3{ width:24px; height:24px; border-radius:6px; background: var(--indigo-800); transform: rotate(18deg); }
+
+/* gradients mock */
+.mock-gradient{ height:100%; background: linear-gradient(135deg, var(--indigo-400), var(--accent-500)); position:relative; }
+.mock-gradient::after{ content:""; position:absolute; width:60px; height:60px; border-radius:50%; background: rgba(255,255,255,.35); filter: blur(14px); top:20px; right:16px; }
+
+/* photography mock */
+.mock-photo{ height:100%; background: linear-gradient(160deg, var(--neutral-800), var(--indigo-900)); position:relative; }
+.mock-photo::before{ content:""; position:absolute; inset:0; background-image: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1px); background-size:12px 12px; }
+
+/* ---------- 08 CLEAR SPACE ---------- */
+.clearspace-wrap{ margin-top:36px; display:flex; justify-content:center; }
+.clearspace-box{
+  position:relative; padding: 48px; border:1.5px dashed var(--neutral-300); border-radius: var(--radius-sm);
+}
+.clearspace-box .lockup{ color: var(--neutral-950); }
+.clearspace-box .x-label{ position:absolute; font-family: var(--font-mono); font-size:10px; color: var(--neutral-400); }
+.clearspace-box .x-label.top{ top:12px; left:50%; transform:translateX(-50%); }
+.clearspace-box .x-label.bottom{ bottom:12px; left:50%; transform:translateX(-50%); }
+.clearspace-box .x-label.left{ left:12px; top:50%; transform:translateY(-50%) rotate(-90deg); }
+.clearspace-box .x-label.right{ right:12px; top:50%; transform:translateY(-50%) rotate(90deg); }
+
+/* ---------- 09 MISUSE ---------- */
+.misuse-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:28px; }
+.misuse-card{ border:1px solid var(--neutral-150); border-radius: var(--radius-card); padding:0; overflow:hidden; }
+.misuse-preview{ height:110px; display:flex; align-items:center; justify-content:center; position:relative; background: var(--neutral-50); }
+.misuse-preview .badge{ position:absolute; top:10px; right:10px; width:18px; height:18px; border-radius:50%; background:#ef4444; display:flex; align-items:center; justify-content:center; }
+.misuse-preview .badge svg{ width:10px; height:10px; color:#fff; }
+.misuse-card .cap{ padding:12px 14px; font-size:12px; color: var(--neutral-600); border-top:1px solid var(--neutral-150); font-weight:500; }
+.misuse-preview .lockup{ color: var(--neutral-950); }
+.misuse-preview.busy{ background: linear-gradient(135deg, var(--indigo-300), var(--accent-400), var(--indigo-700)); }
+.misuse-preview.busy .lockup{ color:#fff; }
+
+/* small helpers */
+.two-col{ column-count:1; }
+@media (max-width: 1040px){
+  .type-grid, .hier-grid, .logo-grid{ grid-template-columns: 1fr; }
+  .palette-grid{ grid-template-columns: repeat(2,1fr); }
+  .vl-grid, .misuse-grid{ grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 720px){
+  .sidenav{ display:none; }
+  .book{ margin-left:0; padding: 24px 16px 80px; }
+  .page{ padding: 36px 24px; }
+  .cover-title h1{ font-size:44px; }
+  .toc-list{ grid-template-columns: 1fr; }
+  .palette-grid, .vl-grid, .misuse-grid{ grid-template-columns: 1fr 1fr; }
+}
+
+/* ================= PRINT / PDF EXPORT ================= */
+@media print{
+  .sidenav{ display:none; }
+  .book{ margin-left:0; padding:0; max-width:none; }
+  .page{
+    box-shadow:none; border-radius:0; margin:0; page-break-after: always;
+    min-height: 100vh; padding: 48px 56px;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .page:last-child{ page-break-after: auto; }
+  @page{ size: A4 landscape; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= SIDE NAV ================= -->
+<aside class="sidenav">
+  <div class="sidenav-brand">
+    <svg id="logo-mark-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/>
+      <path d="M4 18C10 18 14 22 14 28C6 28 4 24 4 18Z" fill="currentColor" opacity="0.55"/>
+    </svg>
+    <span>WOZKU</span>
+  </div>
+  <nav class="sidenav-scroll" id="navlinks">
+    <a href="#cover" data-n="00"><span class="n">00</span>Cover</a>
+    <a href="#toc" data-n="01"><span class="n">01</span>Contents</a>
+    <a href="#typography" data-n="02"><span class="n">02</span>Typography</a>
+    <a href="#hierarchy" data-n="03"><span class="n">03</span>Type Hierarchy</a>
+    <a href="#logo" data-n="04"><span class="n">04</span>Logo</a>
+    <a href="#color" data-n="05"><span class="n">05</span>Colour Palette</a>
+    <a href="#visual-language" data-n="06"><span class="n">06</span>Visual Language</a>
+    <a href="#clearspace" data-n="07"><span class="n">07</span>Logo Clear Space</a>
+    <a href="#misuse" data-n="08"><span class="n">08</span>Logo Misuse</a>
+  </nav>
+  <div class="sidenav-tools">
+    <div class="tools-label">Preview theme</div>
+    <div class="swatch-row" id="swatchRow"></div>
+    <div class="custom-hex-row">
+      <input type="color" id="customHex" value="#10b981">
+      <span>Custom primary</span>
+    </div>
+    <button class="export-btn" onclick="window.print()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+      Export as PDF
+    </button>
+  </div>
+</aside>
+
+<!-- ================= MAIN BOOK ================= -->
+<main class="book">
+
+  <!-- 00 COVER -->
+  <section id="cover" class="page page-cover">
+    <svg class="wave" viewBox="0 0 800 700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M-50 500 C 150 400, 300 620, 550 480 S 900 380, 950 550" stroke="white" stroke-width="1.5" fill="none"/>
+      <path d="M-50 560 C 150 460, 300 680, 550 540 S 900 440, 950 610" stroke="white" stroke-width="1.5" fill="none"/>
+      <path d="M-50 620 C 150 520, 300 740, 550 600 S 900 500, 950 670" stroke="white" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="brandmark">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/>
+        <path d="M4 18C10 18 14 22 14 28C6 28 4 24 4 18Z" fill="currentColor" opacity="0.55"/>
+      </svg>
+      <span>WOZKU</span>
+    </div>
+    <div class="cover-title">
+      <h1>BRAND<br>GUIDELINES</h1>
+      <p>The visual language of Wozku — how we look, sound, and show up across every surface.</p>
+    </div>
+    <div class="cover-foot">
+      <span>Version 1.0</span>
+      <span>July 2026</span>
+    </div>
+  </section>
+
+  <!-- 01 TABLE OF CONTENTS -->
+  <section id="toc" class="page page-toc">
+    <div class="toc-head">
+      <div class="big">Index</div>
+      <p>Nine sections covering identity, type, colour and usage rules — the foundation every touchpoint is built from.</p>
+    </div>
+    <div class="toc-list">
+      <div class="toc-item"><span class="num">01</span><span class="name">Table of Contents</span></div>
+      <div class="toc-item"><span class="num">02</span><span class="name">Typography</span></div>
+      <div class="toc-item"><span class="num">03</span><span class="name">Type Hierarchy</span></div>
+      <div class="toc-item"><span class="num">04</span><span class="name">Logo</span></div>
+      <div class="toc-item"><span class="num">05</span><span class="name">Colour Palette</span></div>
+      <div class="toc-item"><span class="num">06</span><span class="name">Visual Language</span></div>
+      <div class="toc-item"><span class="num">07</span><span class="name">Logo Clear Space</span></div>
+      <div class="toc-item"><span class="num">08</span><span class="name">Logo Misuse</span></div>
+      <div class="toc-item"><span class="num">09</span><span class="name">Final Notes</span></div>
+    </div>
+  </section>
+
+  <!-- 02 TYPOGRAPHY -->
+  <section id="typography" class="page">
+    <div class="eyebrow">Content Section</div>
+    <h1 class="page-title">Typography</h1>
+    <div class="type-grid">
+      <div>
+        <p class="page-body">Our typography is modern, readable and built for digital experiences. Each typeface has a specific role in creating clarity and hierarchy. We use a combination of three families with carefully selected fallbacks for every platform.</p>
+        <div class="type-mini-list">
+          <div class="tm"><b>Primary — Space Grotesk</b>Used for headlines and key messaging.</div>
+          <div class="tm"><b>Secondary — Satoshi</b>Used for body copy and interface text.</div>
+          <div class="tm"><b>Tertiary — JetBrains Mono</b>Used for technical content, labels and data.</div>
+        </div>
+      </div>
+      <div class="type-showcase">
+        <h3>Space Grotesk</h3>
+        <div class="type-row"><div class="label">Medium</div><div class="sample medium">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 !?@#%&</div></div>
+        <div class="type-row"><div class="label">SemiBold</div><div class="sample semibold">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 !?@#%&</div></div>
+      </div>
+    </div>
+    <div class="footer-row"><span>Wozku Brand Guidelines</span><span>Page 02</span></div>
+  </section>
+
+  <!-- 03 TYPE HIERARCHY -->
+  <section id="hierarchy" class="page">
+    <div class="eyebrow">Content Section</div>
+    <h1 class="page-title">Type Hierarchy</h1>
+    <div class="hier-grid">
+      <div class="hier-specs">
+        <p class="page-body" style="margin-bottom:20px;">Our type scale is built to establish a clear visual hierarchy across all platforms and devices. Use these sizes and styles consistently to maintain rhythm and readability.</p>
+        <div class="spec"><div class="name">H1 / Display</div><div class="meta">Space Grotesk / Bold — 56 / 64 · -2%</div></div>
+        <div class="spec"><div class="name">H2 / Heading</div><div class="meta">Space Grotesk / SemiBold — 32 / 40 · -1%</div></div>
+        <div class="spec"><div class="name">H3 / Subheading</div><div class="meta">Space Grotesk / Medium — 20 / 28 · 0%</div></div>
+        <div class="spec"><div class="name">Body / Large</div><div class="meta">Satoshi / Regular — 16 / 24 · 0%</div></div>
+        <div class="spec"><div class="name">Body / Small</div><div class="meta">Satoshi / Regular — 13 / 20 · 0%</div></div>
+      </div>
+      <div class="hier-demo">
+        <h2>The total solution for data centres.</h2>
+        <h3>Power. Cooling. Infrastructure. All working as one.</h3>
+        <p class="lg">We help enterprises design, build and operate future-ready data centres with end-to-end solutions — from site selection to commissioning.</p>
+        <p class="sm">Reliable. Scalable. Sustainable.</p>
+      </div>
+    </div>
+    <div class="footer-row"><span>Wozku Brand Guidelines</span><span>Page 03</span></div>
+  </section>
+
+  <!-- 04 LOGO -->
+  <section id="logo" class="page">
+    <div class="eyebrow">Content Section</div>
+    <h1 class="page-title">Logo</h1>
+    <div class="logo-grid">
+      <div>
+        <p class="page-body">Our logo is the key identifier of the Wozku brand. Use it with care and consistency. It is available in primary and reverse variants for different backgrounds — never redraw, recolour, or reconstruct it.</p>
+        <div class="min-size-row">
+          <div class="item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="8" rx="2"/></svg>
+            <div class="cap">Digital min · 32px</div>
+          </div>
+          <div class="item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v18M3 12h18"/></svg>
+            <div class="cap">Print min · 10mm</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="logo-card primary">
+          <span class="tag">Primary</span>
+          <div class="lockup">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/><path d="M4 18C10 18 14 22 14 28C6 28 4 24 4 18Z" fill="currentColor" opacity="0.55"/></svg>
+            <span>WOZKU</span>
+          </div>
+        </div>
+        <div class="logo-card reverse">
+          <span class="tag">Reverse</span>
+          <div class="lockup">
+            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/><path d="M4 18C10 18 14 22 14 28C6 28 4 24 4 18Z" fill="currentColor" opacity="0.55"/></svg>
+            <span>WOZKU</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-row"><span>Wozku Brand Guidelines</span><span>Page 04.1</span></div>
+  </section>
+
+  <!-- 05 COLOUR PALETTE -->
+  <section id="color" class="page">
+    <div class="eyebrow">Content Section</div>
+    <h1 class="page-title">Colour Palette</h1>
+    <p class="page-body">Only the colours listed here may be used in the Wozku visual style. Primary and Secondary shift with the theme preview below; Black and White are fixed constants in every configuration.</p>
+    <div class="palette-grid" id="paletteGrid">
+      <!-- filled by JS -->
+    </div>
+    <div class="footer-row"><span>Wozku Brand Guidelines</span><span>Page 05</span></div>
+  </section>
+
+  <!-- 06 VISUAL LANGUAGE -->
+  <section id="visual-language" class="page">
+    <div class="eyebrow">Content Section</div>
+    <h1 class="page-title">Visual Language</h1>
+    <p class="page-body">These key elements shape how we express the Wozku brand across all touchpoints. Use them consistently to create a clear, professional and unified brand presence.</p>
+    <div class="vl-grid">
+      <div class="vl-card">
+        <h4>Grid &amp; Spacing</h4>
+        <div class="vl-visual"><div class="mock-grid"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+        <div class="cap">8pt spacing system for layouts and consistent rhythm.</div>
+      </div>
+      <div class="vl-card">
+        <h4>Corner Radius</h4>
+        <div class="vl-visual"><div class="mock-radius"><i></i><i></i><i></i></div></div>
+        <div class="cap">16px is our default radius for cards and UI surfaces.</div>
+      </div>
+      <div class="vl-card">
+        <h4>Iconography</h4>
+        <div class="vl-visual"><div class="mock-icons">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 4v10l-7 4-7-4V7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>
+        </div></div>
+        <div class="cap">Rounded, outline icons with 1.5–2px stroke weight.</div>
+      </div>
+      <div class="vl-card">
+        <h4>Illustration Style</h4>
+        <div class="vl-visual"><div class="mock-illustration"><div class="b1"></div><div class="b2"></div><div class="b3"></div></div></div>
+        <div class="cap">Clean, minimal illustrations using geometric shapes and brand colours.</div>
+      </div>
+      <div class="vl-card">
+        <h4>Gradients &amp; Effects</h4>
+        <div class="vl-visual"><div class="mock-gradient"></div></div>
+        <div class="cap">Soft gradients and shadows used sparingly to create depth and emphasis.</div>
+      </div>
+      <div class="vl-card">
+        <h4>Photography Style</h4>
+        <div class="vl-visual"><div class="mock-photo"></div></div>
+        <div class="cap">Authentic, natural imagery focused on people, collaboration and infrastructure.</div>
+      </div>
+    </div>
+    <div class="footer-row"><span>Wozku Brand Guidelines</span><span>Page 06</span></div>
+  </section>
+
+  <!-- 07 LOGO CLEAR SPACE -->
+  <section id="clearspace" class="page">
+    <div class="eyebrow">Content Section</div>
+    <h1 class="page-title">Logo Clear Space</h1>
+    <p class="page-body">To ensure visibility and impact, always keep clear space around the logo. The clear space is defined by the height of the logo mark (X). No text, graphics, or other elements should enter this zone.</p>
+    <div class="clearspace-wrap">
+      <div class="clearspace-box">
+        <span class="x-label top">X</span>
+        <span class="x-label bottom">X</span>
+        <span class="x-label left">X</span>
+        <span class="x-label right">X</span>
+        <div class="lockup">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/><path d="M4 18C10 18 14 22 14 28C6 28 4 24 4 18Z" fill="currentColor" opacity="0.55"/></svg>
+          <span>WOZKU</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-row"><span>Wozku Brand Guidelines</span><span>Page 07</span></div>
+  </section>
+
+  <!-- 08 LOGO MISUSE -->
+  <section id="misuse" class="page">
+    <div class="eyebrow">Content Section</div>
+    <h1 class="page-title">Logo Misuse</h1>
+    <p class="page-body">To maintain the integrity of the brand, never alter the logo. Examples of incorrect usage are shown below.</p>
+    <div class="misuse-grid">
+      <div class="misuse-card">
+        <div class="misuse-preview">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <div class="lockup" style="transform: scaleX(1.8);">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/></svg><span>WOZKU</span>
+          </div>
+        </div>
+        <div class="cap">Don't stretch the logo</div>
+      </div>
+      <div class="misuse-card">
+        <div class="misuse-preview">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <div class="lockup" style="color:#f43f5e;">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/></svg><span>WOZKU</span>
+          </div>
+        </div>
+        <div class="cap">Don't change the colours</div>
+      </div>
+      <div class="misuse-card">
+        <div class="misuse-preview">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <div class="lockup" style="filter: drop-shadow(4px 6px 4px rgba(0,0,0,.45));">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/></svg><span>WOZKU</span>
+          </div>
+        </div>
+        <div class="cap">Don't add drop shadows</div>
+      </div>
+      <div class="misuse-card">
+        <div class="misuse-preview">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <div class="lockup" style="transform: rotate(-16deg);">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/></svg><span>WOZKU</span>
+          </div>
+        </div>
+        <div class="cap">Don't rotate the logo</div>
+      </div>
+      <div class="misuse-card">
+        <div class="misuse-preview busy">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <div class="lockup"><svg viewBox="0 0 32 32" fill="none"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/></svg><span>WOZKU</span></div>
+        </div>
+        <div class="cap">Don't use on busy backgrounds</div>
+      </div>
+      <div class="misuse-card">
+        <div class="misuse-preview">
+          <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+          <div class="lockup" style="transform: scale(0.5);">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M4 18C4 10 10 4 18 4C18 12 12 18 4 18Z" fill="currentColor"/></svg><span>WOZKU</span>
+          </div>
+        </div>
+        <div class="cap">Don't resize elements independently</div>
+      </div>
+    </div>
+    <div class="footer-row"><span>Wozku Brand Guidelines</span><span>Page 08</span></div>
+  </section>
+
+</main>
+
+<script>
+// ---------- theme presets (mirrors THEME_PRESETS in designSystem.ts) ----------
+const PRESETS = [
+  { id:'indigo',  name:'Indigo',  color:'#6366f1' },
+  { id:'emerald', name:'Emerald', color:'#10b981' },
+  { id:'rose',    name:'Rose',    color:'#f43f5e' },
+  { id:'amber',   name:'Amber',   color:'#f59e0b' },
+  { id:'violet',  name:'Violet',  color:'#8b5cf6' },
+  { id:'sky',     name:'Sky',     color:'#0ea5e9' },
+  { id:'fuchsia', name:'Fuchsia', color:'#d946ef' },
+  { id:'crimson', name:'Crimson', color:'#dc2626' },
+];
+
+const swatchRow = document.getElementById('swatchRow');
+PRESETS.forEach(p=>{
+  const el = document.createElement('div');
+  el.className = 'swatch' + (p.id === 'emerald' ? ' active' : '');
+  el.style.background = p.color;
+  el.title = p.name;
+  el.dataset.id = p.id;
+  el.onclick = () => setTheme(p.id);
+  swatchRow.appendChild(el);
+});
+
+function setTheme(id){
+  document.documentElement.className = 'theme-' + id;
+  document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.id === id));
+  document.documentElement.style.removeProperty('--indigo-500');
+  renderPalette();
+}
+
+// custom hex — simple single-tone override (not a full scale generator)
+document.getElementById('customHex').addEventListener('input', (e)=>{
+  const hex = e.target.value;
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  document.documentElement.style.setProperty('--indigo-500', hex);
+  document.documentElement.style.setProperty('--indigo-600', shade(hex, -12));
+  document.documentElement.style.setProperty('--indigo-700', shade(hex, -24));
+  document.documentElement.style.setProperty('--indigo-400', shade(hex, 16));
+  renderPalette();
+});
+
+function shade(hex, percent){
+  const n = parseInt(hex.slice(1),16);
+  let r = (n>>16) + Math.round(2.55*percent);
+  let g = (n>>8 & 0xff) + Math.round(2.55*percent);
+  let b = (n & 0xff) + Math.round(2.55*percent);
+  r = Math.max(0,Math.min(255,r)); g = Math.max(0,Math.min(255,g)); b = Math.max(0,Math.min(255,b));
+  return '#' + (1<<24 | r<<16 | g<<8 | b).toString(16).slice(1);
+}
+
+function hexFromComputed(varName){
+  const val = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  if(val.startsWith('#')) return val;
+  const m = val.match(/\d+/g);
+  if(!m) return '#000000';
+  return '#' + m.slice(0,3).map(x => (+x).toString(16).padStart(2,'0')).join('');
+}
+function hexToRgb(hex){
+  const n = parseInt(hex.replace('#',''),16);
+  return [(n>>16)&255, (n>>8)&255, n&255];
+}
+function rgbToCmyk(r,g,b){
+  if(r===0 && g===0 && b===0) return [0,0,0,100];
+  const rp=r/255, gp=g/255, bp=b/255;
+  const k = 1 - Math.max(rp,gp,bp);
+  const c = (1-rp-k)/(1-k) || 0;
+  const m = (1-gp-k)/(1-k) || 0;
+  const y = (1-bp-k)/(1-k) || 0;
+  return [Math.round(c*100), Math.round(m*100), Math.round(y*100), Math.round(k*100)];
+}
+
+function swatchCardHTML(label, role, hex, bg, textColor){
+  const [r,g,b] = hexToRgb(hex);
+  const [c,m,y,k] = rgbToCmyk(r,g,b);
+  return `<div class="swatch-card" style="background:${bg}; color:${textColor};">
+    <div>
+      <div class="label">${label}</div>
+      <div class="role">${role}</div>
+    </div>
+    <div class="specs">
+      HEX ${hex.toUpperCase()}
+      <b>RGB</b>${r}, ${g}, ${b}
+      <b>CMYK</b>${c}, ${m}, ${y}, ${k}
+    </div>
+  </div>`;
+}
+
+function renderPalette(){
+  const primary = hexFromComputed('--indigo-500');
+  const secondary = hexFromComputed('--accent-500');
+  document.getElementById('paletteGrid').innerHTML =
+    swatchCardHTML('Primary','Primary', primary, primary, '#ffffff') +
+    swatchCardHTML('Secondary','Secondary', secondary, secondary, '#ffffff') +
+    swatchCardHTML('Black','Neutral', '#000000', '#000000', '#ffffff') +
+    swatchCardHTML('White','Neutral', '#ffffff', '#ffffff', '#171717');
+}
+renderPalette();
+
+// ---------- active nav highlight on scroll ----------
+const links = document.querySelectorAll('#navlinks a');
+const sections = document.querySelectorAll('.page');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#'+id));
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => io.observe(s));
+</script>
+
+</body>
+</html>

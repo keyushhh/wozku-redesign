@@ -24,6 +24,7 @@ import PricingPage from './components/PricingPage';
 import CaseStudiesPage from './components/CaseStudiesPage';
 import BlogPage from './components/BlogPage';
 import WhyWozkuPage from './components/WhyWozkuPage';
+import BrandGuidelines from './components/BrandGuidelines';
 import slackLogo from './assets/slack.svg';
 import linkedinLogo from './assets/linkedin.svg';
 import hubspotLogo from './assets/hubspot.svg';
@@ -141,9 +142,25 @@ export default function App() {
     return localStorage.getItem('wozku-hero-visual') === 'original' ? 'original' : 'network';
   });
 
+  const [radiusMode, setRadiusMode] = useState<'rounded' | 'sharp'>(() => {
+    return localStorage.getItem('wozku-radius-mode') === 'sharp' ? 'sharp' : 'rounded';
+  });
+
+  const [devControlsExpanded, setDevControlsExpanded] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('wozku-hero-visual', heroVisual);
   }, [heroVisual]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (radiusMode === 'sharp') {
+      root.classList.add('corners-sharp');
+    } else {
+      root.classList.remove('corners-sharp');
+    }
+    localStorage.setItem('wozku-radius-mode', radiusMode);
+  }, [radiusMode]);
 
   useEffect(() => {
     const handleOpenDemo = () => setIsDemoModalOpen(true);
@@ -243,13 +260,15 @@ export default function App() {
     }
   };
 
+  const isBrandGuidelines = currentPath === '#/brand-guidelines';
+
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900 selection:bg-indigo-500/10 selection:text-indigo-900">
       {/* 1. TOP NAV BAR */}
-      <Navbar />
+      {!isBrandGuidelines && <Navbar />}
 
       {/* Interactive mouse follow blur orb */}
-      {isHovering && (
+      {isHovering && !isBrandGuidelines && (
         <motion.div
           animate={{
             x: mousePos.x,
@@ -261,12 +280,14 @@ export default function App() {
             stiffness: 100,
             mass: 0.6,
           }}
-          className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-indigo-500 opacity-[0.05] blur-[110px] pointer-events-none z-30 hidden md:block"
+className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-indigo-500 opacity-[0.05] blur-[110px] pointer-events-none z-30 hidden md:block"
         />
       )}
 
       {/* Dynamic Page Router Switcher */}
-      {currentPath === '#/product/teams-employees' ? (
+      {currentPath.startsWith('#/brand-guidelines') ? (
+        <BrandGuidelines radiusMode={radiusMode} />
+      ) : currentPath === '#/product/teams-employees' ? (
         <TeamsEmployeesPage />
       ) : currentPath === '#/product/events-communities' ? (
         <EventsCommunitiesPage />
@@ -470,13 +491,7 @@ export default function App() {
           </div>
         </section>}
 
-        {import.meta.env.DEV && (
-          <div className="fixed bottom-4 left-4 z-[60] flex items-center gap-1 rounded-full border border-neutral-200 bg-white/90 p-1 shadow-lg backdrop-blur-md dark:border-white/10 dark:bg-neutral-900/90">
-            <span className="px-2 text-[8px] font-mono font-bold uppercase tracking-wide text-neutral-400">Hero</span>
-            <button onClick={() => setHeroVisual('network')} className={`rounded-full px-2.5 py-1 text-[9px] font-bold ${heroVisual === 'network' ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900' : 'text-neutral-500'}`}>New</button>
-            <button onClick={() => setHeroVisual('original')} className={`rounded-full px-2.5 py-1 text-[9px] font-bold ${heroVisual === 'original' ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900' : 'text-neutral-500'}`}>Original</button>
-          </div>
-        )}
+
 
         {/* ================= SOCIAL PROOF LOGO STRIP ================= */}
         <section className="py-10 border-t border-neutral-100 relative">
@@ -613,9 +628,6 @@ export default function App() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[280px] bg-indigo-500 opacity-[0.035] dark:opacity-[0.08] blur-[110px] rounded-full pointer-events-none" />
 
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="inline-flex items-center gap-1.5 text-[9.5px] uppercase font-mono tracking-widest text-indigo-600 dark:text-indigo-300 font-extrabold bg-indigo-50 dark:bg-[color-mix(in_srgb,var(--indigo-500)_14%,#141418)] border border-indigo-100 dark:border-indigo-400/30 px-4 py-1.5 rounded-full">
-              <Sparkles className="w-3 h-3" /> How It Works
-            </span>
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 dark:text-fixed-white tracking-tight leading-tight">
               From zero to viral in<br className="hidden sm:block" /> five steps.
             </h2>
@@ -765,9 +777,6 @@ export default function App() {
                 
                 {/* Left: Copy */}
                 <div className="space-y-4 max-w-lg">
-                  <span className="text-[9px] font-mono font-extrabold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-md uppercase tracking-widest inline-block">
-                    Event Advocacy
-                  </span>
                   <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-fixed-white leading-tight tracking-tight">
                     Attendees scan a QR.<br />
                     <span className="text-indigo-400">
@@ -823,9 +832,6 @@ export default function App() {
         <section id="customer-impact" className="py-16 border-t border-neutral-200 dark:border-neutral-800 relative bg-transparent">
           
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3 px-4">
-            <span className="text-[9.5px] font-mono font-bold tracking-widest text-indigo-650 dark:text-indigo-400 uppercase bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-150 dark:border-indigo-900/60 px-3 py-1 rounded-full inline-block">
-              Enterprise Scale Outcomes
-            </span>
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 dark:text-fixed-white tracking-tight leading-tight pt-1">
               Proven reach. Quantifiable impact.
             </h2>
@@ -870,10 +876,6 @@ export default function App() {
 
               {/* Left Column: Text Content */}
               <div className="flex-1 space-y-6 relative z-10 text-center md:text-left">
-                <span className="inline-flex items-center gap-1.5 text-[8px] uppercase font-mono tracking-widest text-indigo-650 font-extrabold bg-indigo-50 border border-indigo-100 px-3.5 py-1 rounded-full">
-                  <Sparkles className="w-3 h-3 text-indigo-500" /> Live Network Simulator
-                </span>
-                
                 <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-slate-900 tracking-tight leading-tight">
                   Visualize Advocacy in<br />Real-Time
                 </h2>
@@ -1056,9 +1058,6 @@ export default function App() {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-indigo-500 opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-650 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
-              Transparent Plans
-            </span>
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
               Scale-Ready Pricing for Any Brand
             </h2>
@@ -1163,13 +1162,87 @@ export default function App() {
       )}
 
       {/* 4. FOOTER */}
-      <Footer />
+      {!isBrandGuidelines && <Footer />}
 
       {/* 4. STRATEGY DEMO BOOKING MODAL */}
       <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
 
       {/* 5. SCROLL TO TOP FLOATER */}
-      <ScrollToTop />
+      {!isBrandGuidelines && <ScrollToTop />}
+
+      {/* Global Dev & Design Controls Panel */}
+      {import.meta.env.DEV && (
+        <div className="fixed bottom-4 left-4 z-[60] flex flex-col gap-3 rounded-2xl border border-neutral-200 bg-white/95 p-3.5 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-neutral-950/95 text-neutral-900 dark:text-neutral-50 w-52 select-none">
+          <div 
+            onClick={() => setDevControlsExpanded(!devControlsExpanded)}
+            className={`flex items-center justify-between cursor-pointer ${devControlsExpanded ? 'border-b border-neutral-100 dark:border-white/5 pb-2' : ''}`}
+          >
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400">Dev Controls</span>
+            <div className="flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+              <ChevronDown className={`w-3.5 h-3.5 text-neutral-400 transition-transform duration-200 ${devControlsExpanded ? 'rotate-180' : ''}`} />
+            </div>
+          </div>
+          
+          {devControlsExpanded && (
+            <>
+              <div className="space-y-1.5">
+                <span className="block text-[9px] font-mono font-bold uppercase tracking-wider text-neutral-400">Hero Layout</span>
+                <div className="grid grid-cols-2 gap-1 bg-neutral-100 dark:bg-neutral-900 p-0.5 rounded-lg">
+                  <button 
+                    onClick={() => setHeroVisual('network')} 
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'network' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                  >
+                    New
+                  </button>
+                  <button 
+                    onClick={() => setHeroVisual('original')} 
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'original' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                  >
+                    Original
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <span className="block text-[9px] font-mono font-bold uppercase tracking-wider text-neutral-400">Corners</span>
+                <div className="grid grid-cols-2 gap-1 bg-neutral-100 dark:bg-neutral-900 p-0.5 rounded-lg">
+                  <button 
+                    onClick={() => setRadiusMode('rounded')} 
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${radiusMode === 'rounded' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                  >
+                    Rounded
+                  </button>
+                  <button 
+                    onClick={() => setRadiusMode('sharp')} 
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${radiusMode === 'sharp' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                  >
+                    Sharp
+                  </button>
+                </div>
+              </div>
+
+              <div className="border-t border-neutral-100 dark:border-white/5 pt-2 mt-1">
+                {isBrandGuidelines ? (
+                  <button 
+                    onClick={() => { window.location.hash = '#/'; }} 
+                    className="w-full flex items-center justify-center gap-1 bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-100 dark:text-neutral-900 font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
+                  >
+                    Exit Guidelines
+                  </button>
+                ) : (
+                  <button 
+                    onClick={() => { window.location.hash = '#/brand-guidelines'; }} 
+                    className="w-full flex items-center justify-center gap-1 bg-indigo-650 hover:bg-indigo-500 text-white font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
+                  >
+                    Brand Guidelines
+                  </button>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }

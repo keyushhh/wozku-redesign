@@ -12,8 +12,16 @@
     <script>
       (function() {
         try {
+          // One-time branding migration to new defaults
+          if (localStorage.getItem('wozku-branding-v2') !== 'true') {
+            localStorage.removeItem('wozku-hero-visual');
+            localStorage.removeItem('wozku-radius-mode');
+            localStorage.removeItem('wozku-theme');
+            localStorage.removeItem('wozku-custom-hex');
+            localStorage.setItem('wozku-branding-v2', 'true');
+          }
           var root = document.documentElement;
-          var theme = localStorage.getItem('wozku-theme');
+          var theme = localStorage.getItem('wozku-theme') || 'emerald';
           if (theme && theme !== 'indigo' && theme !== 'custom') root.classList.add('theme-' + theme);
           var palette = localStorage.getItem('wozku-custom-palette');
           if (theme === 'custom' && palette) {

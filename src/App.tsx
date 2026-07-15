@@ -134,11 +134,14 @@ export default function App() {
     const saved = localStorage.getItem('wozku-hero-visual');
     if (saved === 'original') return 'original';
     if (saved === 'linkedin') return 'linkedin';
-    return 'network';
+    if (saved === 'network') return 'network';
+    return 'linkedin';
   });
 
   const [radiusMode, setRadiusMode] = useState<'rounded' | 'sharp'>(() => {
-    return localStorage.getItem('wozku-radius-mode') === 'sharp' ? 'sharp' : 'rounded';
+    const saved = localStorage.getItem('wozku-radius-mode');
+    if (saved === 'rounded') return 'rounded';
+    return 'sharp';
   });
 
   const [devControlsExpanded, setDevControlsExpanded] = useState(false);

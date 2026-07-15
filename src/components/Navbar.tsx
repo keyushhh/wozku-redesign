@@ -10,9 +10,9 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [currentPath, setCurrentPath] = useState(() => window.location.hash || '#/');
   const [activeTheme, setActiveTheme] = useState(() => {
-    return localStorage.getItem('wozku-theme') || 'indigo';
+    return localStorage.getItem('wozku-theme') || 'emerald';
   });
-  const [customHex, setCustomHex] = useState(() => localStorage.getItem('wozku-custom-hex') || '#6366f1');
+  const [customHex, setCustomHex] = useState(() => localStorage.getItem('wozku-custom-hex') || '#10b981');
   const isDark = false;
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const themeDropdownRef = useRef<HTMLDivElement>(null);

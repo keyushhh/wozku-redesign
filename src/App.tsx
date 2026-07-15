@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import InteractiveHeroCRM from './components/InteractiveHeroCRM';
 import EditorialHero from './components/EditorialHero';
+import HeroLinkedIn from './components/HeroLinkedIn';
 import InteractiveProductGrid from './components/InteractiveProductGrid';
 import UseCasesSection from './components/UseCasesSection';
 import CustomerImpact from './components/CustomerImpact';
@@ -138,8 +139,11 @@ export default function App() {
 
   // Interactive Book a Demo modal state
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
-  const [heroVisual, setHeroVisual] = useState<'network' | 'original'>(() => {
-    return localStorage.getItem('wozku-hero-visual') === 'original' ? 'original' : 'network';
+  const [heroVisual, setHeroVisual] = useState<'network' | 'original' | 'linkedin'>(() => {
+    const saved = localStorage.getItem('wozku-hero-visual');
+    if (saved === 'original') return 'original';
+    if (saved === 'linkedin') return 'linkedin';
+    return 'network';
   });
 
   const [radiusMode, setRadiusMode] = useState<'rounded' | 'sharp'>(() => {
@@ -417,7 +421,12 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
         </div>
 
         {/* ================= HERO SECTION ================= */}
-        {heroVisual === 'network' ? <EditorialHero onOpenDemo={() => setIsDemoModalOpen(true)} /> : <section className="pt-20 pb-20 max-w-7xl mx-auto px-6 sm:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[calc(100vh-100px)]">
+        {heroVisual === 'network' ? (
+          <EditorialHero onOpenDemo={() => setIsDemoModalOpen(true)} />
+        ) : heroVisual === 'linkedin' ? (
+          <HeroLinkedIn onOpenDemo={() => setIsDemoModalOpen(true)} radiusMode={radiusMode} />
+        ) : (
+          <section className="pt-20 pb-20 max-w-7xl mx-auto px-6 sm:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[calc(100vh-100px)]">
           {/* Left Column: Copy & CTA & Metrics */}
           <div className="lg:col-span-6 text-left space-y-7 flex flex-col justify-center">
             <div className="space-y-3">
@@ -489,7 +498,8 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
               </motion.div>
             </AnimatePresence>
           </div>
-        </section>}
+          </section>
+        )}
 
 
 
@@ -1188,7 +1198,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
             <>
               <div className="space-y-1.5">
                 <span className="block text-[9px] font-mono font-bold uppercase tracking-wider text-neutral-400">Hero Layout</span>
-                <div className="grid grid-cols-2 gap-1 bg-neutral-100 dark:bg-neutral-900 p-0.5 rounded-lg">
+                <div className="grid grid-cols-3 gap-1 bg-neutral-100 dark:bg-neutral-900 p-0.5 rounded-lg">
                   <button 
                     onClick={() => setHeroVisual('network')} 
                     className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'network' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
@@ -1200,6 +1210,12 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
                     className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'original' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
                   >
                     Original
+                  </button>
+                  <button 
+                    onClick={() => setHeroVisual('linkedin')} 
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'linkedin' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                  >
+                    LinkedIn
                   </button>
                 </div>
               </div>

@@ -13,9 +13,7 @@ export default function Navbar() {
     return localStorage.getItem('wozku-theme') || 'indigo';
   });
   const [customHex, setCustomHex] = useState(() => localStorage.getItem('wozku-custom-hex') || '#6366f1');
-  const [isDark, setIsDark] = useState(() => {
-    return localStorage.getItem('wozku-dark') === 'true';
-  });
+  const isDark = false;
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const themeDropdownRef = useRef<HTMLDivElement>(null);
 
@@ -38,16 +36,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
+    root.classList.remove('dark');
     if (activeTheme === 'custom' && /^#[0-9A-F]{6}$/i.test(customHex)) {
       applyCustomTheme(customHex);
     }
-    localStorage.setItem('wozku-dark', String(isDark));
-  }, [isDark, activeTheme, customHex]);
+    localStorage.setItem('wozku-dark', 'false');
+  }, [activeTheme, customHex]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -443,35 +437,6 @@ export default function Navbar() {
                     </div>
 
                     <div className="h-px bg-neutral-200" />
-
-                    <div className="space-y-2">
-                      <span className="text-[10px] font-mono font-bold text-neutral-400 tracking-wider block uppercase">Appearance</span>
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => setIsDark(false)}
-                          className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg border text-[10px] font-bold cursor-pointer transition-all ${
-                            !isDark 
-                              ? 'bg-neutral-900 border-neutral-900 text-white shadow-xs' 
-                              : 'bg-white border-neutral-200 text-neutral-600 hover:border-neutral-300'
-                          }`}
-                        >
-                          <Sun className="w-3 h-3" />
-                          Light
-                        </button>
-                        <button
-                          onClick={() => setIsDark(true)}
-                          className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 px-3 rounded-lg border text-[10px] font-bold cursor-pointer transition-all ${
-                            isDark 
-                              ? 'bg-neutral-900 border-neutral-900 text-white shadow-xs' 
-                              : 'bg-white border-neutral-200 text-neutral-600 hover:border-neutral-300'
-                          }`}
-                        >
-                          <Moon className="w-3 h-3" />
-                          Dark
-                        </button>
-                      </div>
-                    </div>
-
                     <button onClick={() => downloadThemeTokens(activeTheme, isDark)} className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[10px] font-bold text-indigo-700 transition-colors hover:bg-indigo-100 cursor-pointer">
                       <Download className="h-3 w-3" />
                       Export .JSON
@@ -620,12 +585,6 @@ export default function Navbar() {
                 <div className="space-y-3 px-1 py-3 bg-neutral-100/50 rounded-2xl border border-neutral-200">
                   <div className="flex justify-between items-center px-1">
                     <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-widest">Theme Options</span>
-                    <button
-                      onClick={() => setIsDark(!isDark)}
-                      className="text-neutral-500 hover:text-neutral-900 focus:outline-hidden"
-                    >
-                      {isDark ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4" />}
-                    </button>
                   </div>
                   
                   <div className="flex flex-wrap gap-2 justify-center">

@@ -16,13 +16,9 @@ import {
   Compass
 } from 'lucide-react';
 import KamanashishImg from '../assets/kamanashish.webp';
-import KamanashishDarkImg from '../assets/kamanashish-darkmode.webp';
 import MithileshImg from '../assets/mithilesh.webp';
-import MithileshDarkImg from '../assets/mithilesh-darkmode.webp';
 import JayantImg from '../assets/jayant.webp';
-import JayantDarkImg from '../assets/jayant-darkmode.webp';
 import VishwanathImg from '../assets/vishwanath.webp';
-import VishwanathDarkImg from '../assets/vishwanath-darkmode.webp';
 import linkedinIcon from '../assets/linkedin.svg';
 
 interface FocusModule {
@@ -38,7 +34,6 @@ interface TeamMember {
   quote: string;
   focusModules: FocusModule[];
   image: string;
-  darkImage: string;
   email: string;
   linkedin: string;
   github: string;
@@ -69,7 +64,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     linkedin: 'linkedin.com/in/roy-wozku',
     github: 'github.com/roy-wozku',
     image: KamanashishImg,
-    darkImage: KamanashishDarkImg,
     focusModules: [
       { name: 'Growth Strategy', desc: 'Helping brands get recommended by people, not ads.' },
       { name: 'Customer Focus', desc: 'Connecting with users and making their experience outstanding.' },
@@ -86,7 +80,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     linkedin: 'linkedin.com/in/mithilesh-wozku',
     github: 'github.com/mithilesh-wozku',
     image: MithileshImg,
-    darkImage: MithileshDarkImg,
     focusModules: [
       { name: 'Reliable Systems', desc: 'Designing fast software that keeps running under heavy loads.' },
       { name: 'Intelligent Timing', desc: 'Scheduling posts automatically when people are most active.' },
@@ -103,7 +96,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     linkedin: 'linkedin.com/in/jayant-wozku',
     github: 'github.com/jayant-wozku',
     image: JayantImg,
-    darkImage: JayantDarkImg,
     focusModules: [
       { name: 'Smooth Operations', desc: 'Designing simple processes that keep the business running.' },
       { name: 'System Efficiency', desc: 'Keeping server costs low and delivery speeds high.' },
@@ -120,7 +112,6 @@ const TEAM_MEMBERS: TeamMember[] = [
     linkedin: 'linkedin.com/in/vishwanath-wozku',
     github: 'github.com/vishwanath-wozku',
     image: VishwanathImg,
-    darkImage: VishwanathDarkImg,
     focusModules: [
       { name: 'Revenue Growth', desc: 'Helping customers see the direct value and savings from their sharing programs.' },
       { name: 'Customer Support', desc: 'Working with global clients to ensure their teams succeed.' },
@@ -169,7 +160,7 @@ function getTargetVB(office: OfficeAddress | null): string {
 
 export default function CoreTeamPage() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
+
   const [selectedOfficeId, setSelectedOfficeId] = useState<string | null>(null);
 
   const activeOffice = selectedOfficeId ? OFFICES[selectedOfficeId] : null;
@@ -198,14 +189,7 @@ export default function CoreTeamPage() {
   const beforeActive = TEAM_MEMBERS.slice(0, activeIndex);
   const afterActive = TEAM_MEMBERS.slice(activeIndex + 1);
 
-  useEffect(() => {
-    const root = document.documentElement;
-    const sync = () => setIsDarkMode(root.classList.contains('dark'));
-    sync();
-    const observer = new MutationObserver(sync);
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
-  }, []);
+  const isDarkMode = false;
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500/10 selection:text-indigo-900">
@@ -244,7 +228,7 @@ export default function CoreTeamPage() {
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <span className="h-12 w-12 rounded-full overflow-hidden border border-slate-200 bg-slate-50 shadow-sm shrink-0">
-                    <img src={isDarkMode ? activeMember.darkImage : activeMember.image} className="h-full w-full object-cover" alt="" />
+                    <img src={activeMember.image} className="h-full w-full object-cover" alt="" />
                   </span>
                   <div>
                     <h3 className="text-lg font-bold text-neutral-900">{activeMember.name}</h3>
@@ -488,15 +472,7 @@ export default function CoreTeamPage() {
 
 // Inactive member list card component
 function InactiveCol({ member, idx, onClick }: { member: TeamMember, idx: number, onClick: () => void }) {
-  const [isDarkMode, setIsDarkMode] = useState(() => document.documentElement.classList.contains('dark'));
 
-  useEffect(() => {
-    const root = document.documentElement;
-    const sync = () => setIsDarkMode(root.classList.contains('dark'));
-    const observer = new MutationObserver(sync);
-    observer.observe(root, { attributes: true, attributeFilter: ['class'] });
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <div 
@@ -505,7 +481,7 @@ function InactiveCol({ member, idx, onClick }: { member: TeamMember, idx: number
     >
       <div className="space-y-4">
         <span className="h-9 w-9 rounded-full overflow-hidden border border-slate-200/30 bg-slate-100/50 inline-block shadow-sm">
-          <img src={isDarkMode ? member.darkImage : member.image} className="h-full w-full object-cover grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100" alt="" />
+          <img src={member.image} className="h-full w-full object-cover grayscale opacity-75 group-hover:grayscale-0 group-hover:opacity-100" alt="" />
         </span>
         <div className="[writing-mode:vertical-rl] text-[10px] uppercase font-mono font-bold tracking-wider text-slate-400 select-none">
           {member.shortName}

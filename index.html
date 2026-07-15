@@ -14,7 +14,6 @@
         try {
           var root = document.documentElement;
           var theme = localStorage.getItem('wozku-theme');
-          if (localStorage.getItem('wozku-dark') === 'true') root.classList.add('dark');
           if (theme && theme !== 'indigo' && theme !== 'custom') root.classList.add('theme-' + theme);
           var palette = localStorage.getItem('wozku-custom-palette');
           if (theme === 'custom' && palette) {

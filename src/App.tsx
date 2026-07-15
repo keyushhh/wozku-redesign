@@ -1190,7 +1190,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
       {!isBrandGuidelines && <ScrollToTop />}
 
       {/* Global Dev & Design Controls Panel */}
-      {import.meta.env.DEV && (
+      {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEV_CONTROLS === 'true') && (
         <div className="fixed bottom-4 left-4 z-[60] flex flex-col gap-3 rounded-2xl border border-neutral-200 bg-white/95 p-3.5 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-neutral-950/95 text-neutral-900 dark:text-neutral-50 w-52 select-none">
           <div 
             onClick={() => setDevControlsExpanded(!devControlsExpanded)}

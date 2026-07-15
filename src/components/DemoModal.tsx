@@ -225,7 +225,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       className="space-y-5"
                     >
                       <div className="pr-7">
-                        <h3 id="demo-modal-title" className="font-display text-2.5xl font-black tracking-tight text-neutral-900">Experience Wozku Live</h3>
+                        <h3 id="demo-modal-title" className="font-display text-3xl font-black tracking-tight text-neutral-900">Experience Wozku Live</h3>
                         <p className="mt-1 text-xs leading-relaxed text-neutral-500">Book a 15-minute customized product tour. We will map out your company's potential organic reach and design a simulated event advocacy campaign.</p>
                       </div>
 
@@ -273,7 +273,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
                         <Button
                           type="submit"
-                          className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 uppercase tracking-wider py-3.5"
+                          className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 uppercase tracking-wider"
                         >
                           Secure 15-min demo slot
                           <ChevronRight className="h-4 w-4" />

@@ -9,6 +9,7 @@ import CustomerImpact from './components/CustomerImpact';
 import CustomerSuccess from './components/CustomerSuccess';
 import Footer from './components/Footer';
 import DemoModal from './components/DemoModal';
+import AuthModal from './components/AuthModal';
 import { CustomSelect } from './components/FormControls';
 import FAQSection from './components/FAQSection';
 import NetworkEffectMap from './components/NetworkEffectMap';
@@ -67,6 +68,12 @@ export default function App() {
         setCurrentPath('#/');
         return;
       }
+      if (window.location.hash === '#/sign-in') {
+        setIsAuthModalOpen(true);
+        window.history.replaceState(null, '', window.location.pathname + '#/');
+        setCurrentPath('#/');
+        return;
+      }
       setCurrentPath(window.location.hash || '#/');
       window.scrollTo({ top: 0 });
     };
@@ -79,9 +86,10 @@ export default function App() {
 
   // Interactive Book a Demo modal state
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const prevPathRef = useRef({
-    pathname: window.location.pathname === '/book-demo' ? '/' : window.location.pathname,
-    hash: window.location.hash && window.location.hash !== '#/book-demo' ? window.location.hash : '#/'
+    pathname: (window.location.pathname === '/book-demo' || window.location.pathname === '/sign-in') ? '/' : window.location.pathname,
+    hash: window.location.hash && window.location.hash !== '#/book-demo' && window.location.hash !== '#/sign-in' ? window.location.hash : '#/'
   });
 
   // Handle direct loads on mount
@@ -91,6 +99,14 @@ export default function App() {
       setIsDemoModalOpen(true);
       if (window.location.hash === '#/book-demo') {
         window.history.replaceState(null, '', '/book-demo' + '#/');
+        setCurrentPath('#/');
+      }
+    }
+    const isSignIn = window.location.pathname === '/sign-in' || window.location.hash === '#/sign-in';
+    if (isSignIn) {
+      setIsAuthModalOpen(true);
+      if (window.location.hash === '#/sign-in') {
+        window.history.replaceState(null, '', '/sign-in' + '#/');
         setCurrentPath('#/');
       }
     }
@@ -117,6 +133,26 @@ export default function App() {
     }
   }, [isDemoModalOpen]);
 
+  useEffect(() => {
+    const currentPathname = window.location.pathname;
+    const currentHash = window.location.hash || '#/';
+
+    if (isAuthModalOpen) {
+      if (currentPathname !== '/sign-in') {
+        prevPathRef.current = { pathname: currentPathname, hash: currentHash };
+        const cleanHash = currentHash === '#/sign-in' ? '#/' : currentHash;
+        window.history.pushState({ wozkuAuthModal: true }, '', '/sign-in' + cleanHash);
+      }
+    } else {
+      if (currentPathname === '/sign-in') {
+        const targetPath = prevPathRef.current.pathname === '/sign-in' ? '/' : prevPathRef.current.pathname;
+        const targetHash = prevPathRef.current.hash === '#/sign-in' ? '#/' : prevPathRef.current.hash;
+        window.history.pushState(null, '', targetPath + targetHash);
+        setCurrentPath(targetHash);
+      }
+    }
+  }, [isAuthModalOpen]);
+
   // Sync browser back/forward buttons
   useEffect(() => {
     const handlePopState = () => {
@@ -125,6 +161,12 @@ export default function App() {
         setIsDemoModalOpen(true);
       } else {
         setIsDemoModalOpen(false);
+      }
+      const isSignIn = window.location.pathname === '/sign-in' || window.location.hash === '#/sign-in';
+      if (isSignIn) {
+        setIsAuthModalOpen(true);
+      } else {
+        setIsAuthModalOpen(false);
       }
     };
     window.addEventListener('popstate', handlePopState);
@@ -164,6 +206,12 @@ export default function App() {
     const handleOpenDemo = () => setIsDemoModalOpen(true);
     window.addEventListener('open-demo-modal', handleOpenDemo);
     return () => window.removeEventListener('open-demo-modal', handleOpenDemo);
+  }, []);
+
+  useEffect(() => {
+    const handleOpenAuth = () => setIsAuthModalOpen(true);
+    window.addEventListener('open-auth-modal', handleOpenAuth);
+    return () => window.removeEventListener('open-auth-modal', handleOpenAuth);
   }, []);
 
   // Parallax / cursor mouse offset state
@@ -1188,6 +1236,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
 
       {/* 4. STRATEGY DEMO BOOKING MODAL */}
       <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
 
       {/* 5. SCROLL TO TOP FLOATER */}
       {!isBrandGuidelines && <ScrollToTop />}

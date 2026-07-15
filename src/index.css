@@ -479,4 +479,10 @@ span.font-mono.uppercase[class*="bg-"] {
   display: none !important;
 }
 
+/* Standard height utility to keep inputs, buttons, and selects in perfect visual sync */
+.modal-control-height {
+  height: 44px !important;
+  box-sizing: border-box !important;
+}
+
 

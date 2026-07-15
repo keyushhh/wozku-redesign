@@ -447,7 +447,7 @@ export default function Navbar() {
             </div>
             <button 
               onClick={() => {
-                window.dispatchEvent(new CustomEvent('open-demo-modal'));
+                window.dispatchEvent(new CustomEvent('open-auth-modal'));
                 setIsMenuOpen(false);
               }} 
               className="text-sm font-semibold text-neutral-500 hover:text-neutral-900 px-3 py-1.5 transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-full"
@@ -615,7 +615,7 @@ export default function Navbar() {
 
                 <button
                   onClick={() => {
-                    window.dispatchEvent(new CustomEvent('open-demo-modal'));
+                    window.dispatchEvent(new CustomEvent('open-auth-modal'));
                     setIsMenuOpen(false);
                   }}
                   className="w-full text-center py-3 rounded-xl text-sm font-semibold text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50 transition-all cursor-pointer block border border-neutral-200"

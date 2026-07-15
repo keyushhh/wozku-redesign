@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/book-demo", "destination": "/" },
+    { "source": "/((?!assets/|.*\\..*$).*)", "destination": "/" }
+  ]
+}

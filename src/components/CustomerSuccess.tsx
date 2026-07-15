@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import elenaRostovaImg from '../assets/elena_rostova.png';
-import johnDoeImg from '../assets/john_doe.png';
-import davidVanceImg from '../assets/david_vance.png';
-import zarahWuImg from '../assets/zarah_wu.png';
+import elenaRostovaImg from '../assets/elena_rostova.webp';
+import johnDoeImg from '../assets/john_doe.webp';
+import davidVanceImg from '../assets/david_vance.webp';
+import zarahWuImg from '../assets/zarah_wu.webp';
 
 interface CustomTestimonial {
   id: string;

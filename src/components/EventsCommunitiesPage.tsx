@@ -120,6 +120,13 @@ export default function EventsCommunitiesPage() {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<ConfettiParticle[]>([]);
+  const xpIntervalRef = useRef<any>(null);
+
+  useEffect(() => {
+    return () => {
+      if (xpIntervalRef.current) clearInterval(xpIntervalRef.current);
+    };
+  }, []);
 
   // Confetti animation loop
   useEffect(() => {
@@ -180,26 +187,53 @@ export default function EventsCommunitiesPage() {
   };
 
   const handleSimulateShare = () => {
+    if (xpIntervalRef.current) {
+      clearInterval(xpIntervalRef.current);
+    }
     setSimStep(3);
     playSynthSound('share');
     setTimeout(() => {
       setSimStep(4);
-      setUserXP(1450);
-      setLeaderboardFlash(true);
       playSynthSound('unlock');
-      setTimeout(() => {
-        setLeaderboardFlash(false);
-        spawnConfetti();
-      }, 1500);
+      
+      const startXP = 250;
+      const targetXP = 1450;
+      const duration = 2800; // 2.8 seconds
+      const steps = 70;
+      const stepTime = duration / steps;
+      const xpIncrement = (targetXP - startXP) / steps;
+      
+      let currentStep = 0;
+      setLeaderboardFlash(true);
+
+      xpIntervalRef.current = setInterval(() => {
+        currentStep++;
+        const nextXP = Math.round(startXP + xpIncrement * currentStep);
+        setUserXP(nextXP);
+
+        if (currentStep >= steps) {
+          if (xpIntervalRef.current) {
+            clearInterval(xpIntervalRef.current);
+            xpIntervalRef.current = null;
+          }
+          setLeaderboardFlash(false);
+          spawnConfetti();
+        }
+      }, stepTime);
     }, 2000);
   };
 
   const handleClaimReward = () => {
     setUserClaimedReward(true);
     playSynthSound('claim');
+    spawnConfetti();
   };
 
   const handleReset = () => {
+    if (xpIntervalRef.current) {
+      clearInterval(xpIntervalRef.current);
+      xpIntervalRef.current = null;
+    }
     setSimStep(1);
     setUserXP(250);
     setUserRank(4);
@@ -452,7 +486,7 @@ export default function EventsCommunitiesPage() {
                           <div className="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center justify-between">
                             <div className="flex items-center gap-2">
                               <Gift className="h-4 w-4 text-amber-500 shrink-0" />
-                              <span className="text-[9.5px] font-bold text-neutral-700">Get Free Sticker</span>
+                              <span className="text-[9.5px] font-bold text-neutral-700">Wozku Premium Swag Bag</span>
                             </div>
                             <button
                               onClick={handleClaimReward}

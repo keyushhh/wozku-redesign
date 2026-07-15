@@ -281,23 +281,23 @@ export default function PricingPage() {
                     {category.features.map((row) => (
                       <tr key={row.name} className="border-b border-slate-100 hover:bg-slate-50/30 transition-colors">
                         <td className="px-5 py-3.5 text-slate-700 font-medium">{row.name}</td>
-                        <td className="px-5 py-3.5 text-slate-500">
+                        <td className="px-5 py-3.5 text-slate-700 font-medium">
                           {typeof row.starter === 'boolean' ? (
-                            row.starter ? <Check className="w-4 h-4 text-slate-400 stroke-[3]" /> : <X className="w-4 h-4 text-slate-300" />
+                            row.starter ? <Check className="w-4 h-4 text-slate-600 stroke-[3]" /> : <X className="w-4 h-4 text-slate-500" />
                           ) : (
                             row.starter
                           )}
                         </td>
                         <td className="px-5 py-3.5 text-indigo-700 font-semibold">
                           {typeof row.growth === 'boolean' ? (
-                            row.growth ? <Check className="w-4 h-4 text-indigo-600 stroke-[3]" /> : <X className="w-4 h-4 text-slate-300" />
+                            row.growth ? <Check className="w-4 h-4 text-indigo-600 stroke-[3]" /> : <X className="w-4 h-4 text-slate-500" />
                           ) : (
                             row.growth
                           )}
                         </td>
                         <td className="px-5 py-3.5 text-slate-900 font-medium">
                           {typeof row.enterprise === 'boolean' ? (
-                            row.enterprise ? <Check className="w-4 h-4 text-slate-700 stroke-[3]" /> : <X className="w-4 h-4 text-slate-350" />
+                            row.enterprise ? <Check className="w-4 h-4 text-slate-700 stroke-[3]" /> : <X className="w-4 h-4 text-slate-500" />
                           ) : (
                             row.enterprise
                           )}

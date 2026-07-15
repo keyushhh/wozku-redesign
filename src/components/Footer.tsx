@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Logo block */}
           <div className="md:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <img src={LogoWhiteTransparent} className="h-9 w-auto object-contain" alt="Wozku Logo" />
+              <img src={LogoWhiteTransparent} width={162} height={36} className="h-9 w-auto object-contain" alt="Wozku Logo" />
             </div>
             <p className="text-xs text-neutral-400 max-w-sm leading-relaxed">
               Wozku is a next-generation advocacy marketing platform that helps enterprise organizations transform organic employee, community, and partner advocates into measurable social reach.

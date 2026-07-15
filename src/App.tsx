@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import InteractiveHeroCRM from './components/InteractiveHeroCRM';
 import EditorialHero from './components/EditorialHero';
@@ -9,23 +9,25 @@ import CustomerImpact from './components/CustomerImpact';
 import CustomerSuccess from './components/CustomerSuccess';
 import Footer from './components/Footer';
 import DemoModal from './components/DemoModal';
+import { CustomSelect } from './components/FormControls';
 import FAQSection from './components/FAQSection';
 import NetworkEffectMap from './components/NetworkEffectMap';
 import ScrollToTop from './components/ScrollToTop';
-import TeamsEmployeesPage from './components/TeamsEmployeesPage';
-import EventsCommunitiesPage from './components/EventsCommunitiesPage';
-import CoreTeamPage from './components/CoreTeamPage';
-import SecurityCompliancePage from './components/SecurityCompliancePage';
-import EcosystemIntegrationsPage from './components/EcosystemIntegrationsPage';
-import FAQPage from './components/FAQPage';
-import GlobalReachMapPage from './components/GlobalReachMapPage';
-import NetworkTeaserGlobe from './components/NetworkTeaserGlobe';
-import ROICalculatorPage from './components/ROICalculatorPage';
-import PricingPage from './components/PricingPage';
-import CaseStudiesPage from './components/CaseStudiesPage';
-import BlogPage from './components/BlogPage';
-import WhyWozkuPage from './components/WhyWozkuPage';
-import BrandGuidelines from './components/BrandGuidelines';
+const NetworkTeaserGlobe = lazy(() => import('./components/NetworkTeaserGlobe'));
+
+const TeamsEmployeesPage = lazy(() => import('./components/TeamsEmployeesPage'));
+const EventsCommunitiesPage = lazy(() => import('./components/EventsCommunitiesPage'));
+const CoreTeamPage = lazy(() => import('./components/CoreTeamPage'));
+const SecurityCompliancePage = lazy(() => import('./components/SecurityCompliancePage'));
+const EcosystemIntegrationsPage = lazy(() => import('./components/EcosystemIntegrationsPage'));
+const FAQPage = lazy(() => import('./components/FAQPage'));
+const GlobalReachMapPage = lazy(() => import('./components/GlobalReachMapPage'));
+const ROICalculatorPage = lazy(() => import('./components/ROICalculatorPage'));
+const PricingPage = lazy(() => import('./components/PricingPage'));
+const CaseStudiesPage = lazy(() => import('./components/CaseStudiesPage'));
+const BlogPage = lazy(() => import('./components/BlogPage'));
+const WhyWozkuPage = lazy(() => import('./components/WhyWozkuPage'));
+const BrandGuidelines = lazy(() => import('./components/BrandGuidelines'));
 import slackLogo from './assets/slack.svg';
 import linkedinLogo from './assets/linkedin.svg';
 import hubspotLogo from './assets/hubspot.svg';
@@ -47,79 +49,10 @@ import {
   TrendingDown,
   Building,
   Target,
-  ChevronDown
+  ChevronDown,
+  RefreshCw
 } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
-
-// Custom styled premium dropdown component matching the Wozku design language
-function CustomSelect({
-  label,
-  options,
-  value,
-  onChange
-}: {
-  label: string;
-  options: string[];
-  value: string;
-  onChange: (val: string) => void;
-}) {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleOutsideClick = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => document.removeEventListener('mousedown', handleOutsideClick);
-  }, []);
-
-  return (
-    <div className="relative w-full text-left" ref={dropdownRef}>
-      <label className="block text-[10px] uppercase font-mono tracking-wider text-fixed-muted mb-1.5">
-        {label}
-      </label>
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-[#141418] border border-fixed-white/10 hover:border-fixed-white/20 rounded-xl px-3.5 py-2.5 text-xs text-fixed-white focus:outline-none focus:border-indigo-550 transition-colors cursor-pointer"
-      >
-        <span>{value}</span>
-        <ChevronDown className={`w-3.5 h-3.5 text-fixed-light transition-transform duration-205 ${isOpen ? 'rotate-180' : ''}`} />
-      </button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15 }}
-            className="absolute left-0 right-0 mt-1.5 bg-[#141418] border border-fixed-white/10 rounded-xl overflow-hidden shadow-2xl z-40 max-h-60 overflow-y-auto"
-          >
-            {options.map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => {
-                  onChange(option);
-                  setIsOpen(false);
-                }}
-                className={`w-full text-left px-3.5 py-2.5 text-[11px] transition-colors hover:bg-indigo-600/10 cursor-pointer block ${
-                  value === option ? 'text-indigo-400 font-bold bg-indigo-600/5' : 'text-fixed-white'
-                }`}
-              >
-                {option}
-              </button>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
 
 export default function App() {
   // Path routing state
@@ -127,6 +60,13 @@ export default function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
+      // Don't intercept hash changes if it's the modal trigger itself
+      if (window.location.hash === '#/book-demo') {
+        setIsDemoModalOpen(true);
+        window.history.replaceState(null, '', window.location.pathname + '#/');
+        setCurrentPath('#/');
+        return;
+      }
       setCurrentPath(window.location.hash || '#/');
       window.scrollTo({ top: 0 });
     };
@@ -139,6 +79,57 @@ export default function App() {
 
   // Interactive Book a Demo modal state
   const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
+  const prevPathRef = useRef({
+    pathname: window.location.pathname === '/book-demo' ? '/' : window.location.pathname,
+    hash: window.location.hash && window.location.hash !== '#/book-demo' ? window.location.hash : '#/'
+  });
+
+  // Handle direct loads on mount
+  useEffect(() => {
+    const isBookDemo = window.location.pathname === '/book-demo' || window.location.hash === '#/book-demo';
+    if (isBookDemo) {
+      setIsDemoModalOpen(true);
+      if (window.location.hash === '#/book-demo') {
+        window.history.replaceState(null, '', '/book-demo' + '#/');
+        setCurrentPath('#/');
+      }
+    }
+  }, []);
+
+  // Sync state changes with the URL path
+  useEffect(() => {
+    const currentPathname = window.location.pathname;
+    const currentHash = window.location.hash || '#/';
+
+    if (isDemoModalOpen) {
+      if (currentPathname !== '/book-demo') {
+        prevPathRef.current = { pathname: currentPathname, hash: currentHash };
+        const cleanHash = currentHash === '#/book-demo' ? '#/' : currentHash;
+        window.history.pushState({ wozkuDemoModal: true }, '', '/book-demo' + cleanHash);
+      }
+    } else {
+      if (currentPathname === '/book-demo') {
+        const targetPath = prevPathRef.current.pathname === '/book-demo' ? '/' : prevPathRef.current.pathname;
+        const targetHash = prevPathRef.current.hash === '#/book-demo' ? '#/' : prevPathRef.current.hash;
+        window.history.pushState(null, '', targetPath + targetHash);
+        setCurrentPath(targetHash);
+      }
+    }
+  }, [isDemoModalOpen]);
+
+  // Sync browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const isBookDemo = window.location.pathname === '/book-demo' || window.location.hash === '#/book-demo';
+      if (isBookDemo) {
+        setIsDemoModalOpen(true);
+      } else {
+        setIsDemoModalOpen(false);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
   const [heroVisual, setHeroVisual] = useState<'network' | 'original' | 'linkedin'>(() => {
     const saved = localStorage.getItem('wozku-hero-visual');
     if (saved === 'original') return 'original';
@@ -289,8 +280,16 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
       )}
 
       {/* Dynamic Page Router Switcher */}
-      {currentPath.startsWith('#/brand-guidelines') ? (
-        <BrandGuidelines radiusMode={radiusMode} />
+      <Suspense fallback={
+        <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans">
+          <div className="flex flex-col items-center gap-3">
+            <RefreshCw className="w-8.5 h-8.5 animate-spin text-indigo-650" />
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400">Loading Page...</span>
+          </div>
+        </div>
+      }>
+        {currentPath.startsWith('#/brand-guidelines') ? (
+          <BrandGuidelines radiusMode={radiusMode} />
       ) : currentPath === '#/product/teams-employees' ? (
         <TeamsEmployeesPage />
       ) : currentPath === '#/product/events-communities' ? (
@@ -823,7 +822,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
                 {/* Right: CTA */}
                 <div className="flex flex-col items-start lg:items-end gap-4 shrink-0">
                   <button
-                    onClick={() => { window.location.hash = '#/product/event-advocacy'; }}
+                    onClick={() => { window.location.hash = '#/product/events-communities'; }}
                     className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-bold py-3.5 px-7 rounded-2xl text-sm transition-all shadow-lg shadow-indigo-500/20 cursor-pointer group"
                   >
                     See How It Works
@@ -907,7 +906,13 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
 
               {/* Right Column: Visual Teaser (Interactive 3D Globe with auto-rotation) */}
               <div className="w-full md:w-[360px] aspect-square shrink-0 rounded-2xl bg-[#0a0a0d] border border-white/10 relative overflow-hidden shadow-inner">
-                <NetworkTeaserGlobe />
+                <Suspense fallback={
+                  <div className="w-full h-full flex items-center justify-center bg-neutral-900 text-neutral-400">
+                    <RefreshCw className="w-6 h-6 animate-spin" />
+                  </div>
+                }>
+                  <NetworkTeaserGlobe />
+                </Suspense>
               </div>
 
             </div>
@@ -960,6 +965,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
               <form onSubmit={generateProposal} className="space-y-4">
                 
                 <CustomSelect
+                  tone="dark"
                   label="Company Employee Scale"
                   options={[
                     'Seed Stage (20-100 employees)',
@@ -971,6 +977,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
                 />
 
                 <CustomSelect
+                  tone="dark"
                   label="Primary Advocacy Network"
                   options={[
                     'LinkedIn Networks',
@@ -983,6 +990,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
                 />
 
                 <CustomSelect
+                  tone="dark"
                   label="Core Objective"
                   options={[
                     'Brand Visibility & Organic Impressions',
@@ -1170,6 +1178,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
       <FAQSection />
         </>
       )}
+      </Suspense>
 
       {/* 4. FOOTER */}
       {!isBrandGuidelines && <Footer />}

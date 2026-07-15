@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  X, Calendar, Clock, Sparkles, CheckCircle2, User, Building, Mail, 
-  ChevronRight, RefreshCw, Star, Users, ArrowUpRight, ChevronDown
-} from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { CheckCircle2, ChevronRight, RefreshCw, Star, X } from 'lucide-react';
+import LogoWhiteTransparent from '../assets/Logo_White_Transparent.png';
+import { Button, Input, Label } from './FormControls';
 
 interface DemoModalProps {
   isOpen: boolean;
@@ -13,54 +12,91 @@ interface DemoModalProps {
 export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const [step, setStep] = useState<'form' | 'submitting' | 'confirmed'>('form');
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
-    company: '',
-    size: '100-500 employees',
-    objective: 'Event Social Advocacy',
+    phone: '',
   });
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
   const [error, setError] = useState('');
+  const [showCalComAlert, setShowCalComAlert] = useState(false);
 
-  // Auto-generate some upcoming business dates for high-fidelity booking
-  const [availableDates, setAvailableDates] = useState<string[]>([]);
-  
+  const shouldReduceMotion = useReducedMotion();
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedElement = useRef<HTMLElement | null>(null);
+
+  // Keyboard Focus Trap & A11y
   useEffect(() => {
-    const dates: string[] = [];
-    const today = new Date();
-    let count = 0;
-    while (count < 5) {
-      today.setDate(today.getDate() + 1);
-      // Skip weekends (0 is Sunday, 6 is Saturday)
-      if (today.getDay() !== 0 && today.getDay() !== 6) {
-        dates.push(today.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }));
-        count++;
-      }
-    }
-    setAvailableDates(dates);
-    setSelectedDate(dates[0]);
-    setSelectedTime('10:00 AM EST');
-  }, []);
+    if (isOpen) {
+      previouslyFocusedElement.current = document.activeElement as HTMLElement;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+      const focusTimeout = setTimeout(() => {
+        const firstInput = modalRef.current?.querySelector('input');
+        if (firstInput) {
+          (firstInput as HTMLElement).focus();
+        } else {
+          modalRef.current?.focus();
+        }
+      }, 50);
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          onClose();
+          return;
+        }
+
+        if (e.key === 'Tab') {
+          if (!modalRef.current) return;
+          const focusableElements = modalRef.current.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+          );
+
+          if (focusableElements.length === 0) return;
+
+          const firstElement = focusableElements[0] as HTMLElement;
+          const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+          if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+              lastElement.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              firstElement.focus();
+              e.preventDefault();
+            }
+          }
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        clearTimeout(focusTimeout);
+        window.removeEventListener('keydown', handleKeyDown);
+        if (previouslyFocusedElement.current) {
+          previouslyFocusedElement.current.focus();
+        }
+      };
+    }
+  }, [isOpen, onClose]);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
     setError('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name.trim()) {
-      setError('Please enter your name.');
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!formData.fullName.trim()) {
+      setError('Please enter your full name.');
       return;
     }
     if (!formData.email.trim() || !formData.email.includes('@')) {
       setError('Please enter a valid work email.');
       return;
     }
-    if (!formData.company.trim()) {
-      setError('Please enter your company name.');
+    if (!formData.phone.trim()) {
+      setError('Please enter your phone number.');
       return;
     }
 
@@ -73,20 +109,27 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const handleReset = () => {
     setStep('form');
     setFormData({
-      name: '',
+      fullName: '',
       email: '',
-      company: '',
-      size: '100-500 employees',
-      objective: 'Event Social Advocacy',
+      phone: '',
     });
+    setError('');
+    setShowCalComAlert(false);
     onClose();
   };
+
+  const modalAnimation = shouldReduceMotion
+    ? { opacity: 1, scale: 1, y: 0 }
+    : { opacity: 1, scale: 1, y: 0 };
+
+  const modalTransition = shouldReduceMotion
+    ? { duration: 0.05 }
+    : { type: 'spring', damping: 25, stiffness: 350 };
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5">
           {/* Backdrop Blur overlay */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -96,316 +139,218 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
-          {/* Modal Card Content */}
+          {/* Modal Card Content (Height sizes to content snugly) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 16 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 16 }}
-            transition={{ type: "spring", damping: 25, stiffness: 350 }}
-            className="bg-white rounded-3xl border border-neutral-200 shadow-2xl w-full max-w-xl overflow-hidden relative z-10 max-h-[90vh] flex flex-col"
+            ref={modalRef}
+            tabIndex={-1}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="demo-modal-title"
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 16 }}
+            animate={modalAnimation}
+            exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 16 }}
+            transition={modalTransition}
+            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl bg-white shadow-2xl flex flex-col md:flex-row h-auto max-h-[90vh] md:max-h-[85vh] focus:outline-hidden"
           >
-            {/* Header banner glow */}
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-600 via-secondary-600 to-accent-600" />
-            
             {/* Top Close button */}
-            <button 
+            <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 rounded-full hover:bg-neutral-100 text-neutral-400 hover:text-neutral-900 transition-colors cursor-pointer z-20"
+              aria-label="Close demo form"
+              className="absolute right-4 top-4 z-30 rounded-full p-2 text-white transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-50 focus-visible:text-red-600 focus-visible:outline-none md:text-neutral-500"
             >
-              <X className="w-5 h-5" />
+              <X className="h-5 w-5" />
             </button>
 
-            <div className="overflow-y-auto flex-1 p-6 md:p-8">
-              
-              <AnimatePresence mode="wait">
-                {step === 'form' && (
-                  <motion.div
-                    key="form-step"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 10 }}
-                    className="space-y-6"
-                  >
-                    {/* Header */}
-                    <div className="space-y-2 pr-6">
-                      <h3 className="text-2xl font-display font-black text-neutral-900 tracking-tight leading-tight">
-                        Experience Wozku Live
-                      </h3>
-                      <p className="text-xs text-neutral-500 font-sans leading-relaxed">
-                        Book a 15-minute customized product tour. We will map out your company's potential organic reach and design a simulated event advocacy campaign.
-                      </p>
-                    </div>
+            <div className="flex w-full flex-col md:flex-row h-full">
+              {/* Left Panel (Branding & Stats) */}
+              <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
+                <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />
+                <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-3xl" />
+                
+                <div className="relative">
+                  <img src={LogoWhiteTransparent} alt="Wozku" className="h-7 w-auto" />
+                </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      {error && (
-                        <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-xs text-red-600 font-medium">
-                          {error}
-                        </div>
-                      )}
+                <div className="relative my-6 space-y-4 md:my-auto">
+                  <div>
+                    <p className="mb-2 text-[10px] font-mono font-bold uppercase tracking-[.18em] text-indigo-300">Your Wozku walkthrough</p>
+                    <h2 className="max-w-sm font-display text-2xl font-black leading-tight tracking-tight">See how Wozku turns your advocates into reach</h2>
+                  </div>
+                  <ul className="space-y-2.5">
+                    {[
+                      'Map your existing advocate network',
+                      'Build an organic reach forecast',
+                      'See campaign attribution in action',
+                      'Leave with a tailored rollout plan',
+                    ].map((item) => (
+                      <li key={item} className="flex items-center gap-2.5 text-[11px] text-neutral-200">
+                        <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-indigo-500/20 text-indigo-200">
+                          {/* Checked indicator */}
+                          <svg className="h-3 w-3 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="3">
+                            <polyline points="20 6 9 17 4 12" />
+                          </svg>
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex items-end gap-3 border-l border-white/15 pl-3 pt-1">
+                    <span className="font-display text-2xl font-black text-white">8x</span>
+                    <span className="pb-1 text-[9px] font-mono uppercase tracking-wider text-neutral-400">
+                      Average ROI<br />multiplier
+                    </span>
+                  </div>
+                </div>
 
-                      {/* Name and Company Inputs */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-wider block">Full Name</label>
-                          <div className="relative">
-                            <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400">
-                              <User className="w-4 h-4" />
-                            </span>
-                            <input
-                              type="text"
-                              name="name"
-                              value={formData.name}
-                              onChange={handleInputChange}
-                              placeholder="Alex Mercer"
-                              className="w-full text-xs pl-9 pr-3 py-2.5 rounded-xl border border-neutral-200 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden bg-neutral-50/50"
-                            />
-                          </div>
-                        </div>
+                <div className="relative mt-6 flex items-center gap-2.5 border-t border-white/10 pt-4 shrink-0">
+                  <div className="flex gap-0.5 text-amber-400">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="h-3 w-3 fill-current stroke-none" />
+                    ))}
+                  </div>
+                  <span className="text-[10px] font-semibold text-neutral-200">Trusted by 50+ Enterprise Teams</span>
+                </div>
+              </aside>
 
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-wider block">Company Name</label>
-                          <div className="relative">
-                            <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400">
-                              <Building className="w-4 h-4" />
-                            </span>
-                            <input
-                              type="text"
-                              name="company"
-                              value={formData.company}
-                              onChange={handleInputChange}
-                              placeholder="Acme Corp"
-                              className="w-full text-xs pl-9 pr-3 py-2.5 rounded-xl border border-neutral-200 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden bg-neutral-50/50"
-                            />
-                          </div>
-                        </div>
+              {/* Right Panel (Form / Confirmation) */}
+              <main className="min-h-0 flex-1 overflow-y-auto bg-white px-6 py-8 sm:px-9 md:py-8 flex flex-col justify-center">
+                <AnimatePresence mode="wait">
+                  {step === 'form' && (
+                    <motion.div
+                      key="form-view"
+                      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -12 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 12 }}
+                      transition={{ duration: 0.2 }}
+                      className="space-y-5"
+                    >
+                      <div className="pr-7">
+                        <h3 id="demo-modal-title" className="font-display text-2.5xl font-black tracking-tight text-neutral-900">Experience Wozku Live</h3>
+                        <p className="mt-1 text-xs leading-relaxed text-neutral-500">Book a 15-minute customized product tour. We will map out your company's potential organic reach and design a simulated event advocacy campaign.</p>
                       </div>
 
-                      {/* Work Email */}
-                      <div className="space-y-1.5">
-                        <label className="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-wider block">Work Email Address</label>
-                        <div className="relative">
-                          <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-neutral-400">
-                            <Mail className="w-4 h-4" />
-                          </span>
-                          <input
+                      <form onSubmit={handleSubmit} className="space-y-3.5">
+                        {error && (
+                          <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-xs font-medium text-red-600">
+                            {error}
+                          </div>
+                        )}
+
+                        <div>
+                          <Label>Full Name</Label>
+                          <Input
+                            name="fullName"
+                            value={formData.fullName}
+                            onChange={handleInputChange}
+                            placeholder="Alex Mercer *"
+                            required
+                          />
+                        </div>
+
+                        <div>
+                          <Label>Company Email</Label>
+                          <Input
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            placeholder="alex@company.com"
-                            className="w-full text-xs pl-9 pr-3 py-2.5 rounded-xl border border-neutral-200 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden bg-neutral-50/50"
+                            placeholder="alex@company.com *"
+                            required
                           />
                         </div>
-                      </div>
 
-                      {/* Company Size & Objective */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-wider block">Company Size</label>
-                          <div className="relative w-full">
-                            <select
-                              name="size"
-                              value={formData.size}
-                              onChange={handleInputChange}
-                              className="appearance-none w-full text-xs pl-3 pr-8 py-2.5 rounded-xl border border-neutral-200 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden bg-neutral-50/50 cursor-pointer"
-                            >
-                              <option>10-99 employees</option>
-                              <option>100-500 employees</option>
-                              <option>500-2000 employees</option>
-                              <option>2000+ employees</option>
-                            </select>
-                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-neutral-500" />
-                          </div>
+                        <div>
+                          <Label>Phone Number</Label>
+                          <Input
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            placeholder="+1 (555) 000-0000 *"
+                            required
+                          />
                         </div>
 
-                        <div className="space-y-1.5">
-                          <label className="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-wider block">Primary Goal</label>
-                          <div className="relative w-full">
-                            <select
-                              name="objective"
-                              value={formData.objective}
-                              onChange={handleInputChange}
-                              className="appearance-none w-full text-xs pl-3 pr-8 py-2.5 rounded-xl border border-neutral-200 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden bg-neutral-50/50 cursor-pointer"
-                            >
-                              <option>Event Social Advocacy</option>
-                              <option>Employee Brand Distribution</option>
-                              <option>Partner Network Amplification</option>
-                              <option>Bypass Paid Social Ad Spend</option>
-                            </select>
-                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-neutral-500" />
-                          </div>
-                        </div>
-                      </div>
+                        <Button
+                          type="submit"
+                          className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 uppercase tracking-wider py-3.5"
+                        >
+                          Secure 15-min demo slot
+                          <ChevronRight className="h-4 w-4" />
+                        </Button>
+                      </form>
+                    </motion.div>
+                  )}
 
-                      {/* High fidelity interactive calendar date/time slots selector */}
-                      <div className="space-y-3 pt-2">
-                        <div className="flex items-center justify-between">
-                          <label className="text-[10px] font-mono font-bold text-neutral-500 uppercase tracking-wider block">
-                            Preferred Live Date & Slot
-                          </label>
-                          <span className="text-[9px] font-semibold text-emerald-600 flex items-center gap-1">
-                            <Clock className="w-3 h-3" /> Instantly Confirmed
-                          </span>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-2">
-                          {/* Dates dropdown */}
-                          <div className="relative">
-                          <div className="relative w-full">
-                            <select
-                              value={selectedDate}
-                              onChange={(e) => setSelectedDate(e.target.value)}
-                              className="appearance-none w-full text-xs pl-3 pr-8 py-2.5 rounded-xl border border-neutral-200 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden bg-neutral-50/50 cursor-pointer"
-                            >
-                              {availableDates.map((d) => (
-                                <option key={d} value={d}>{d}</option>
-                              ))}
-                            </select>
-                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-neutral-500" />
-                          </div>
-                          </div>
-
-                          {/* Times dropdown */}
-                          <div>
-                          <div className="relative w-full">
-                            <select
-                              value={selectedTime}
-                              onChange={(e) => setSelectedTime(e.target.value)}
-                              className="appearance-none w-full text-xs pl-3 pr-8 py-2.5 rounded-xl border border-neutral-200 focus:ring-1 focus:ring-indigo-500 focus:outline-hidden bg-neutral-50/50 cursor-pointer"
-                            >
-                              <option value="10:00 AM EST">10:00 AM EST</option>
-                              <option value="11:30 AM EST">11:30 AM EST</option>
-                              <option value="1:00 PM EST">1:00 PM EST</option>
-                              <option value="3:30 PM EST">3:30 PM EST</option>
-                              <option value="4:45 PM EST">4:45 PM EST</option>
-                            </select>
-                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none text-neutral-500" />
-                          </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Submit CTA button */}
-                      <button
-                        type="submit"
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 px-4 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer shadow-md shadow-indigo-500/10 flex items-center justify-center gap-2 mt-4"
-                      >
-                        Secure 15-Min Demo Slot
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </form>
-
-                    {/* Trust badges */}
-                    <div className="flex items-center justify-around text-center pt-3 border-t border-neutral-100">
-                      <div className="space-y-0.5">
-                        <span className="text-[10px] font-mono font-bold text-neutral-400 block uppercase">No-pressure tour</span>
-                        <div className="flex items-center justify-center gap-0.5 text-amber-500">
-                          {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="w-2.5 h-2.5 fill-amber-500 stroke-none" />)}
-                        </div>
-                      </div>
-                      <div className="h-6 w-px bg-neutral-100" />
-                      <div>
-                        <span className="text-[10px] font-mono font-bold text-neutral-400 block uppercase">Trusted By</span>
-                        <span className="text-[10px] text-neutral-700 font-bold">50+ Enterprise Teams</span>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 'submitting' && (
-                  <motion.div
-                    key="submitting-step"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="py-12 flex flex-col items-center justify-center text-center space-y-4"
-                  >
-                    <div className="p-4 bg-indigo-50 rounded-full border border-indigo-100 relative">
-                      <RefreshCw className="w-8 h-8 text-indigo-600 animate-spin" />
-                    </div>
-                    <div className="space-y-1">
-                      <h4 className="text-sm font-bold text-neutral-900 uppercase font-mono tracking-wider">Syncing Calendars...</h4>
-                      <p className="text-xs text-neutral-500 max-w-xs">Allocating slot on {selectedDate} at {selectedTime} and assigning dedicated account engineer...</p>
-                    </div>
-                  </motion.div>
-                )}
-
-                {step === 'confirmed' && (
-                  <motion.div
-                    key="confirmed-step"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-6 text-center space-y-6"
-                  >
-                    <div className="flex flex-col items-center justify-center space-y-2">
-                      <div className="p-3 bg-emerald-50 rounded-full border border-emerald-100 text-emerald-600">
-                        <CheckCircle2 className="w-10 h-10" />
-                      </div>
-                      <span className="inline-flex items-center gap-1 text-[9px] uppercase font-mono tracking-wider font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                        DEMO RESERVED
-                      </span>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-display font-black text-neutral-900 tracking-tight leading-none">
-                        You're Booked, {formData.name}!
-                      </h3>
-                      <p className="text-xs text-neutral-500 max-w-sm mx-auto">
-                        A calendar invitation and direct meeting link has been dispatched to <strong>{formData.email}</strong>.
-                      </p>
-                    </div>
-
-                    {/* Ticket style confirmation summary */}
-                    <div className="bg-neutral-50 border border-neutral-200 rounded-2xl p-4 max-w-sm mx-auto divide-y divide-neutral-100 text-left">
-                      <div className="pb-3 space-y-1.5">
-                        <span className="text-[9px] font-mono text-neutral-400 block uppercase">SESSION DETAILS</span>
-                        <div className="flex justify-between text-xs text-neutral-800">
-                          <span className="font-semibold flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5 text-indigo-500" />
-                            {selectedDate}
-                          </span>
-                          <span className="font-semibold flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5 text-indigo-500" />
-                            {selectedTime}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="py-3 space-y-1.5">
-                        <span className="text-[9px] font-mono text-neutral-400 block uppercase">ASSIGNED WOZKU STRATEGIST</span>
-                        <div className="flex items-center gap-2">
-                          <div className="h-6 w-6 rounded-full bg-indigo-600 flex items-center justify-center text-white text-[9px] font-bold">
-                            MK
-                          </div>
-                          <div>
-                            <p className="text-xs font-bold text-neutral-900">Marcus Kaelen</p>
-                            <p className="text-[9px] text-neutral-400 leading-none">Enterprise Architect, Wozku</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="pt-3">
-                        <div className="flex items-center gap-1 text-[10px] text-neutral-500">
-                          <span className="h-1.5 w-1.5 rounded-full bg-indigo-500" />
-                          <span>Custom reach forecast dashboard prepared</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={handleReset}
-                      className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer"
+                  {step === 'submitting' && (
+                    <motion.div
+                      key="submitting-view"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="flex h-full min-h-[300px] flex-col items-center justify-center space-y-4 text-center"
                     >
-                      Return To Website
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                      <div className="rounded-full border border-indigo-100 bg-indigo-50 p-4">
+                        <RefreshCw className="h-8 w-8 animate-spin text-indigo-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-mono text-sm font-bold uppercase tracking-wider text-neutral-900">Syncing Calendars...</h4>
+                        <p className="mt-1 text-xs text-neutral-500">Allocating your custom slot and preparing strategist briefing.</p>
+                      </div>
+                    </motion.div>
+                  )}
 
+                  {step === 'confirmed' && (
+                    <motion.div
+                      key="confirmed-view"
+                      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="flex h-full min-h-[300px] flex-col items-center justify-center space-y-5 text-center py-4"
+                    >
+                      <div className="rounded-full border border-emerald-100 bg-emerald-50 p-3 text-emerald-600">
+                        <CheckCircle2 className="h-10 w-10" />
+                      </div>
+                      <div className="space-y-2">
+                        <h3 id="demo-modal-title" className="font-display text-2.5xl font-black text-neutral-900 leading-tight">
+                          You're Booked, {formData.fullName}!
+                        </h3>
+                        <p className="text-xs text-neutral-500 max-w-sm mx-auto leading-relaxed">
+                          Thank you for booking a demo — <strong>Sarah from Wozku</strong> will reach out to you shortly!
+                        </p>
+                      </div>
+
+                      <div className="space-y-3 w-full max-w-xs pt-2">
+                        <button
+                          type="button"
+                          onClick={() => setShowCalComAlert(true)}
+                          className="w-full text-xs font-bold text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer hover:underline"
+                        >
+                          Want to select a date and time of your choice?
+                        </button>
+
+                        <AnimatePresence>
+                          {showCalComAlert && (
+                            <motion.div
+                              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
+                              className="text-[11px] bg-indigo-50 border border-indigo-100 text-indigo-950 px-3.5 py-2.5 rounded-xl font-medium leading-normal"
+                            >
+                              🗓️ Cal.com integration coming soon! A direct scheduling invitation has been sent to your email.
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+
+                      <Button onClick={handleReset} className="cursor-pointer w-full max-w-xs mt-2">
+                        Return To Website
+                      </Button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </main>
             </div>
-
           </motion.div>
-
         </div>
       )}
     </AnimatePresence>

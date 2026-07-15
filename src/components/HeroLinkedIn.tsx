@@ -82,11 +82,6 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
         className="w-[300px] sm:w-[330px] shrink-0 border border-neutral-200/80 bg-white p-3.5 shadow-xs transition-colors dark:border-neutral-855 dark:bg-neutral-900 text-left flex flex-col relative select-none"
         aria-hidden={isClone ? "true" : undefined}
       >
-        {/* Top-Right Decorative Controls */}
-        <div className="absolute top-3.5 right-3.5 flex items-center gap-2 text-neutral-400 dark:text-neutral-500">
-          <MoreHorizontal className="w-4 h-4 cursor-default hover:text-neutral-600 dark:hover:text-neutral-450" />
-          <X className="w-4 h-4 cursor-default hover:text-neutral-600 dark:hover:text-neutral-455" />
-        </div>
 
         {/* 1. Header Row */}
         <div className="flex gap-2.5 items-start pr-10">

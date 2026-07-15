@@ -89,7 +89,7 @@ export default function Navbar() {
 
   const navBase = 'px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[var(--indigo-500)]';
   const navActive   = 'font-bold';
-  const navActiveStyle = { color: 'var(--indigo-600)', background: 'color-mix(in srgb, var(--indigo-500) 10%, transparent)' };
+  const navActiveStyle = { color: 'var(--indigo-600)' };
   const navInactive = 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100/50';
 
   const scrollToSection = (id: string) => {
@@ -153,7 +153,7 @@ export default function Navbar() {
           onClick={handleLogoClick}
           className="flex items-center group text-left cursor-pointer transition-transform hover:scale-[1.02] duration-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-lg relative z-10"
         >
-          <img src={isDark ? LogoWhiteTransparent : LogoBlackTransparent} className="h-6 w-auto object-contain" alt="Wozku Logo" />
+          <img src={isDark ? LogoWhiteTransparent : LogoBlackTransparent} width={108} height={24} className="h-6 w-auto object-contain" alt="Wozku Logo" />
         </button>
 
         {/* Desktop Navigation links - Premium Minimalist Typography (Centered) */}

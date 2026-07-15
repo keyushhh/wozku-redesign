@@ -15,14 +15,15 @@ import {
   Clock,
   Compass
 } from 'lucide-react';
-import KamanashishImg from '../assets/kamanashish.png';
-import KamanashishDarkImg from '../assets/kamanashish-darkmode.png';
-import MithileshImg from '../assets/mithilesh.png';
-import MithileshDarkImg from '../assets/mithilesh-darkmode.png';
-import JayantImg from '../assets/jayant.png';
-import JayantDarkImg from '../assets/jayant-darkmode.png';
-import VishwanathImg from '../assets/vishwanath.png';
-import VishwanathDarkImg from '../assets/vishwanath-darkmode.png';
+import KamanashishImg from '../assets/kamanashish.webp';
+import KamanashishDarkImg from '../assets/kamanashish-darkmode.webp';
+import MithileshImg from '../assets/mithilesh.webp';
+import MithileshDarkImg from '../assets/mithilesh-darkmode.webp';
+import JayantImg from '../assets/jayant.webp';
+import JayantDarkImg from '../assets/jayant-darkmode.webp';
+import VishwanathImg from '../assets/vishwanath.webp';
+import VishwanathDarkImg from '../assets/vishwanath-darkmode.webp';
+import linkedinIcon from '../assets/linkedin.svg';
 
 interface FocusModule {
   name: string;
@@ -285,7 +286,9 @@ export default function CoreTeamPage() {
                   <Mail className="h-4 w-4" /> {activeMember.email}
                 </a>
                 <div className="flex items-center gap-2">
-                  <a href={`https://${activeMember.linkedin}`} target="_blank" rel="noreferrer" className="p-2 border border-slate-200 hover:border-slate-350 text-neutral-500 hover:text-neutral-950 rounded-xl transition-all shadow-3xs cursor-pointer"><Linkedin className="h-4 w-4" /></a>
+                  <a href={`https://${activeMember.linkedin}`} target="_blank" rel="noreferrer" className="p-2 border border-slate-200 hover:border-slate-350 rounded-xl transition-all shadow-3xs cursor-pointer flex items-center justify-center">
+                    <img src={linkedinIcon} className="h-4 w-4 object-contain opacity-80 hover:opacity-100 transition-opacity" alt="LinkedIn" />
+                  </a>
                   <a href={`https://${activeMember.github}`} target="_blank" rel="noreferrer" className="p-2 border border-slate-200 hover:border-slate-350 text-neutral-500 hover:text-neutral-950 rounded-xl transition-all shadow-3xs cursor-pointer"><Github className="h-4 w-4" /></a>
                 </div>
               </div>

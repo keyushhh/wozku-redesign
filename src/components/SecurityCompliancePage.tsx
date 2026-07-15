@@ -143,9 +143,6 @@ export default function SecurityCompliancePage() {
             <span className="text-indigo-600 dark:text-indigo-400">By design.</span>
           </h1>
 
-          <div className="max-w-xl mx-auto bg-indigo-50/70 border border-indigo-100 rounded-2xl p-4.5 mb-8 text-center text-xs font-semibold text-indigo-950 leading-relaxed shadow-3xs">
-            📢 <strong>Plain English Summary:</strong> We protect your corporate logins and follow strict security rules, so your team can share updates safely without sharing their social media passwords.
-          </div>
 
           <p className="text-base sm:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed mb-6">
             Safety shouldn't compromise network security. Wozku is engineered with scoped permission bounds, immutable log trails, and envelope encryption to keep systems secure.

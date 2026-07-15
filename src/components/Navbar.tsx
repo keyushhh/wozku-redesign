@@ -4,11 +4,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import LogoBlackTransparent from '../assets/Logo_Black_Transparent.png';
 import LogoWhiteTransparent from '../assets/Logo_White_Transparent.png';
 import { THEME_PRESETS, applyCustomTheme, clearCustomTheme, downloadThemeTokens } from '../lib/designSystem';
+import { navigateTo } from '../lib/router';
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [currentPath, setCurrentPath] = useState(() => window.location.hash || '#/');
+  const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
   const [activeTheme, setActiveTheme] = useState(() => {
     return localStorage.getItem('wozku-theme') || 'emerald';
   });
@@ -45,12 +47,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    const handleHash = () => setCurrentPath(window.location.hash || '#/');
+    const handlePopState = () => setCurrentPath(window.location.pathname);
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('hashchange', handleHash);
+    window.addEventListener('popstate', handlePopState);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('hashchange', handleHash);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, []);
 
@@ -75,11 +77,11 @@ export default function Navbar() {
 
 
   // Active-state helpers
-  const isHome        = currentPath === '#/' || currentPath === '#' || currentPath === '';
-  const isWhyWozku    = currentPath.startsWith('#/why-wozku');
-  const isSolutions   = currentPath.startsWith('#/product');
-  const isInsights    = currentPath.startsWith('#/insights');
-  const isPricing     = currentPath.startsWith('#/pricing');
+  const isHome        = currentPath === '/';
+  const isWhyWozku    = currentPath.startsWith('/why-wozku');
+  const isSolutions   = currentPath.startsWith('/product');
+  const isInsights    = currentPath.startsWith('/insights');
+  const isPricing     = currentPath.startsWith('/pricing');
 
   const navBase = 'px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[var(--indigo-500)]';
   const navActive   = 'font-bold';
@@ -87,9 +89,9 @@ export default function Navbar() {
   const navInactive = 'text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100/50';
 
   const scrollToSection = (id: string) => {
-    const hash = window.location.hash;
-    if (hash && hash.startsWith('#/product/')) {
-      window.location.hash = '#/';
+    const path = window.location.pathname;
+    if (path !== '/') {
+      navigateTo('/');
       setTimeout(() => {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -102,8 +104,8 @@ export default function Navbar() {
   };
 
   const handleLogoClick = () => {
-    if (window.location.hash !== '#/' && window.location.hash !== '') {
-      window.location.hash = '#/';
+    if (window.location.pathname !== '/') {
+      navigateTo('/');
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -161,7 +163,7 @@ export default function Navbar() {
           </button>
 
           <button
-            onClick={() => { window.location.hash = '#/why-wozku'; setActiveDropdown(null); }}
+            onClick={() => { navigateTo('/why-wozku'); setActiveDropdown(null); }}
             className={`${navBase} ${isWhyWozku ? navActive : navInactive}`}
             style={isWhyWozku ? navActiveStyle : undefined}
           >
@@ -208,13 +210,13 @@ export default function Navbar() {
                       <h4 className="text-[11px] font-mono font-bold tracking-wider uppercase text-neutral-400">Product</h4>
                       <ul className="space-y-1">
                         {[
-                          { label: 'Teams & Employees', path: '#/product/teams-employees', desc: 'Help your team share company news and jobs' },
-                          { label: 'Events & Communities', path: '#/product/events-communities', desc: 'Let attendees and fans recommend your brand' }
+                          { label: 'Teams & Employees', path: '/product/teams-employees', desc: 'Help your team share company news and jobs' },
+                          { label: 'Events & Communities', path: '/product/events-communities', desc: 'Let attendees and fans recommend your brand' }
                         ].map((item) => (
                           <li key={item.label}>
                             <button 
                               onClick={() => {
-                                window.location.hash = item.path;
+                                navigateTo(item.path);
                                 setActiveDropdown(null);
                               }}
                               className={`block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-1.5 transition-all ${currentPath === item.path ? 'bg-indigo-500/10' : 'hover:bg-neutral-100/80'}`}
@@ -232,13 +234,13 @@ export default function Navbar() {
                       <h4 className="text-[11px] font-mono font-bold tracking-wider uppercase text-neutral-400">About</h4>
                       <ul className="space-y-1">
                         {[
-                          { label: 'Core Team & Offices', path: '#/about/core-team', desc: 'Meet our team and find our locations' },
-                          { label: 'Security & Safety', path: '#/about/security-compliance', desc: 'Enterprise-grade protection policies' }
+                          { label: 'Core Team & Offices', path: '/about/core-team', desc: 'Meet our team and find our locations' },
+                          { label: 'Security & Safety', path: '/about/security-compliance', desc: 'Enterprise-grade protection policies' }
                         ].map((item) => (
                           <li key={item.label}>
                             <button 
                               onClick={() => {
-                                window.location.hash = item.path;
+                                navigateTo(item.path);
                                 setActiveDropdown(null);
                               }}
                               className={`block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-1.5 transition-all ${currentPath === item.path ? 'bg-indigo-500/10' : 'hover:bg-neutral-100/80'}`}
@@ -256,15 +258,15 @@ export default function Navbar() {
                       <h4 className="text-[11px] font-mono font-bold tracking-wider uppercase text-neutral-400">Resources</h4>
                       <ul className="space-y-1">
                         {[
-                          { label: 'Ecosystem Integrations', path: '#/resources/ecosystem-integrations', desc: 'Connect Slack, Salesforce, HubSpot' },
-                          { label: 'Frequently Asked Questions', path: '#/resources/faq', desc: 'Answers to common questions' },
-                          { label: 'Global Reach Map', path: '#/resources/global-reach-map', desc: 'See shares spread across the map' },
-                          { label: 'ROI Calculator', path: '#/resources/roi-calculator', desc: 'Calculate how much you can save' }
+                          { label: 'Ecosystem Integrations', path: '/resources/ecosystem-integrations', desc: 'Connect Slack, Salesforce, HubSpot' },
+                          { label: 'Frequently Asked Questions', path: '/resources/faq', desc: 'Answers to common questions' },
+                          { label: 'Global Reach Map', path: '/resources/global-reach-map', desc: 'See shares spread across the map' },
+                          { label: 'ROI Calculator', path: '/resources/roi-calculator', desc: 'Calculate how much you can save' }
                         ].map((item) => (
                           <li key={item.label}>
                             <button 
                               onClick={() => {
-                                window.location.hash = item.path;
+                                navigateTo(item.path);
                                 setActiveDropdown(null);
                               }}
                               className={`block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-1.5 transition-all ${currentPath === item.path ? 'bg-indigo-500/10' : 'hover:bg-neutral-100/80'}`}
@@ -280,7 +282,7 @@ export default function Navbar() {
                     {/* Featured Highlight Card */}
                     <div 
                       onClick={() => {
-                        window.location.hash = '#/resources/roi-calculator';
+                        navigateTo('/resources/roi-calculator');
                         setActiveDropdown(null);
                       }}
                       className="w-[230px] rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-700 text-fixed-white p-5 flex flex-col justify-between relative overflow-hidden shrink-0 shadow-md cursor-pointer hover:opacity-95 active:scale-[0.99] transition-all group"
@@ -350,13 +352,13 @@ export default function Navbar() {
                 >
                   <div className="w-[260px] bg-white border border-neutral-200 rounded-3xl p-4 shadow-2xl space-y-1 text-left">
                     {[
-                      { label: 'Case Studies', path: '#/insights/case-studies', desc: 'Real-world customer success metrics' },
-                      { label: 'Blog & Articles', path: '#/insights/blog', desc: 'Advocacy strategy and industry news' }
+                      { label: 'Case Studies', path: '/insights/case-studies', desc: 'Real-world customer success metrics' },
+                      { label: 'Blog & Articles', path: '/insights/blog', desc: 'Advocacy strategy and industry news' }
                     ].map((item) => (
                       <button 
                         key={item.label}
                         onClick={() => {
-                          window.location.hash = item.path;
+                          navigateTo(item.path);
                           setActiveDropdown(null);
                         }}
                         className="w-full block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-2 hover:bg-neutral-100/80 transition-all"
@@ -373,7 +375,7 @@ export default function Navbar() {
 
           <button
             onClick={() => {
-              window.location.hash = '#/pricing';
+              navigateTo('/pricing');
               setActiveDropdown(null);
             }}
             className={`${navBase} ${isPricing ? navActive : navInactive}`}
@@ -525,12 +527,12 @@ export default function Navbar() {
                   <span className="text-[9px] font-mono font-bold text-neutral-400 tracking-wider uppercase px-4 block">Product & Company</span>
                   {[
                     { label: 'Home', action: () => { handleLogoClick(); } },
-                    { label: 'Why Wozku?', action: () => { window.location.hash = '#/why-wozku'; setIsMenuOpen(false); } },
-                    { label: 'For Teams & Employees', action: () => { window.location.hash = '#/product/teams-employees'; setIsMenuOpen(false); } },
-                    { label: 'For Events & Communities', action: () => { window.location.hash = '#/product/events-communities'; setIsMenuOpen(false); } },
-                    { label: 'Core Team & Offices', action: () => { window.location.hash = '#/about/core-team'; setIsMenuOpen(false); } },
-                    { label: 'Security & Safety', action: () => { window.location.hash = '#/about/security-compliance'; setIsMenuOpen(false); } },
-                    { label: 'Pricing', action: () => { window.location.hash = '#/pricing'; setIsMenuOpen(false); } }
+                    { label: 'Why Wozku?', action: () => { navigateTo('/why-wozku'); setIsMenuOpen(false); } },
+                    { label: 'For Teams & Employees', action: () => { navigateTo('/product/teams-employees'); setIsMenuOpen(false); } },
+                    { label: 'For Events & Communities', action: () => { navigateTo('/product/events-communities'); setIsMenuOpen(false); } },
+                    { label: 'Core Team & Offices', action: () => { navigateTo('/about/core-team'); setIsMenuOpen(false); } },
+                    { label: 'Security & Safety', action: () => { navigateTo('/about/security-compliance'); setIsMenuOpen(false); } },
+                    { label: 'Pricing', action: () => { navigateTo('/pricing'); setIsMenuOpen(false); } }
                   ].map((link) => (
                     <button
                       key={link.label}
@@ -543,13 +545,13 @@ export default function Navbar() {
 
                   <span className="text-[9px] font-mono font-bold text-neutral-400 tracking-wider uppercase px-4 pt-3 block">Insights</span>
                   {[
-                    { label: 'Case Studies', path: '#/insights/case-studies' },
-                    { label: 'Blog & Articles', path: '#/insights/blog' }
+                    { label: 'Case Studies', path: '/insights/case-studies' },
+                    { label: 'Blog & Articles', path: '/insights/blog' }
                   ].map((link) => (
                     <button
                       key={link.label}
                       onClick={() => {
-                        window.location.hash = link.path;
+                        navigateTo(link.path);
                         setIsMenuOpen(false);
                       }}
                       className="text-left py-2 px-4 rounded-xl text-xs font-semibold text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50 transition-all cursor-pointer"
@@ -560,15 +562,15 @@ export default function Navbar() {
 
                   <span className="text-[9px] font-mono font-bold text-neutral-400 tracking-wider uppercase px-4 pt-3 block">Resources</span>
                   {[
-                    { label: 'ROI Calculator', path: '#/resources/roi-calculator' },
-                    { label: 'Frequently Asked Questions', path: '#/resources/faq' },
-                    { label: 'Global Reach Map', path: '#/resources/global-reach-map' },
-                    { label: 'Ecosystem Integrations', path: '#/resources/ecosystem-integrations' }
+                    { label: 'ROI Calculator', path: '/resources/roi-calculator' },
+                    { label: 'Frequently Asked Questions', path: '/resources/faq' },
+                    { label: 'Global Reach Map', path: '/resources/global-reach-map' },
+                    { label: 'Ecosystem Integrations', path: '/resources/ecosystem-integrations' }
                   ].map((link) => (
                     <button
                       key={link.label}
                       onClick={() => {
-                        window.location.hash = link.path;
+                        navigateTo(link.path);
                         setIsMenuOpen(false);
                       }}
                       className="text-left py-2 px-4 rounded-xl text-xs font-semibold text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50 transition-all cursor-pointer"

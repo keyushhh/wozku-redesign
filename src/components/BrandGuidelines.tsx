@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './BrandGuidelines.css';
+import { navigateTo } from '../lib/router';
 
 // Import asset files
 import logoBlack from '../assets/Logo_Black_Transparent.png';
@@ -627,7 +628,7 @@ export default function BrandGuidelines({ radiusMode }: BrandGuidelinesProps) {
           <button 
             className="export-btn" 
             style={{ marginTop: '8px', background: '#1c1917', color: '#fff' }} 
-            onClick={() => { window.location.hash = '#/'; }}
+            onClick={() => { navigateTo('/'); }}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ transform: 'rotate(180deg)', width: '14px', height: '14px' }}>
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/>

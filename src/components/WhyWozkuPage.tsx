@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { navigateTo } from '../lib/router';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -143,7 +144,7 @@ export default function WhyWozkuPage() {
               Request a briefing <ArrowRight className="w-3.5 h-3.5" />
             </button>
             <button
-              onClick={() => { window.location.hash = '#/resources/roi-calculator'; }}
+              onClick={() => { navigateTo('/resources/roi-calculator'); }}
               className="w-full sm:w-auto border border-neutral-200 hover:bg-neutral-50 text-neutral-800 text-xs font-bold px-8 py-3 rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5"
             >
               Analyze ROI models <ArrowUpRight className="w-3.5 h-3.5" />
@@ -562,7 +563,7 @@ export default function WhyWozkuPage() {
             {/* Secondary CTA Button linking to Case Studies Page */}
             <div>
               <button
-                onClick={() => { window.location.hash = '#/insights/case-studies'; }}
+                onClick={() => { navigateTo('/insights/case-studies'); }}
                 className="inline-flex items-center gap-1.5 border border-white/20 hover:border-white/35 hover:bg-white/5 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition-all duration-200 cursor-pointer"
               >
                 View all case studies <ArrowUpRight className="w-3.5 h-3.5" />
@@ -668,7 +669,7 @@ export default function WhyWozkuPage() {
                 Schedule a briefing <ArrowRight className="w-3.5 h-3.5" />
               </button>
               <button
-                onClick={() => { window.location.hash = '#/pricing'; }}
+                onClick={() => { navigateTo('/pricing'); }}
                 className="w-full sm:w-auto border border-white/20 hover:border-white/35 text-neutral-350 hover:text-white text-xs font-bold px-8 py-3 rounded-xl transition-all cursor-pointer flex items-center justify-center"
               >
                 View pricing models

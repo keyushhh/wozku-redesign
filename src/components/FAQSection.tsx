@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, HelpCircle, Sparkles, MessageSquare, ArrowRight, Search } from 'lucide-react';
+import { navigateTo } from '../lib/router';
 
 interface FAQItem {
   question: string;
@@ -210,7 +211,7 @@ export default function FAQSection() {
         {/* View More FAQs CTA */}
         <div className="mt-8 text-center">
           <button
-            onClick={() => window.location.hash = '#/resources/faq'}
+            onClick={() => navigateTo('/resources/faq')}
             className="inline-flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold px-6 py-3.5 rounded-full cursor-pointer transition-all border border-neutral-200 hover:scale-[1.02] active:scale-[0.98] shadow-xs"
           >
             <span>View More FAQs</span>

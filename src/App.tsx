@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
+import { navigateTo } from './lib/router';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import InteractiveHeroCRM from './components/InteractiveHeroCRM';
 import EditorialHero from './components/EditorialHero';
 import HeroLinkedIn from './components/HeroLinkedIn';
@@ -57,29 +59,14 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 
 export default function App() {
   // Path routing state
-  const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      // Don't intercept hash changes if it's the modal trigger itself
-      if (window.location.hash === '#/book-demo') {
-        setIsDemoModalOpen(true);
-        window.history.replaceState(null, '', window.location.pathname + '#/');
-        setCurrentPath('#/');
-        return;
-      }
-      if (window.location.hash === '#/sign-in') {
-        setIsAuthModalOpen(true);
-        window.history.replaceState(null, '', window.location.pathname + '#/');
-        setCurrentPath('#/');
-        return;
-      }
-      setCurrentPath(window.location.hash || '#/');
-      window.scrollTo({ top: 0 });
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  const getInitialPath = () => {
+    const path = window.location.pathname;
+    if (path === '/book-demo' || path === '/sign-in') {
+      return '/';
+    }
+    return path || '/';
+  };
+  const [currentPath, setCurrentPath] = useState(getInitialPath);
 
   // Golden circle progressive stage tracker (Why, How, What)
   const [activeCircleStage, setActiveCircleStage] = useState<'why' | 'how' | 'what'>('why');
@@ -89,80 +76,70 @@ export default function App() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const prevPathRef = useRef({
     pathname: (window.location.pathname === '/book-demo' || window.location.pathname === '/sign-in') ? '/' : window.location.pathname,
-    hash: window.location.hash && window.location.hash !== '#/book-demo' && window.location.hash !== '#/sign-in' ? window.location.hash : '#/'
   });
 
   // Handle direct loads on mount
   useEffect(() => {
-    const isBookDemo = window.location.pathname === '/book-demo' || window.location.hash === '#/book-demo';
-    if (isBookDemo) {
+    const path = window.location.pathname;
+    if (path === '/book-demo') {
       setIsDemoModalOpen(true);
-      if (window.location.hash === '#/book-demo') {
-        window.history.replaceState(null, '', '/book-demo' + '#/');
-        setCurrentPath('#/');
-      }
-    }
-    const isSignIn = window.location.pathname === '/sign-in' || window.location.hash === '#/sign-in';
-    if (isSignIn) {
+    } else if (path === '/sign-in') {
       setIsAuthModalOpen(true);
-      if (window.location.hash === '#/sign-in') {
-        window.history.replaceState(null, '', '/sign-in' + '#/');
-        setCurrentPath('#/');
-      }
     }
   }, []);
 
-  // Sync state changes with the URL path
+  // Sync state changes with the URL path for book-demo
   useEffect(() => {
     const currentPathname = window.location.pathname;
-    const currentHash = window.location.hash || '#/';
 
     if (isDemoModalOpen) {
       if (currentPathname !== '/book-demo') {
-        prevPathRef.current = { pathname: currentPathname, hash: currentHash };
-        const cleanHash = currentHash === '#/book-demo' ? '#/' : currentHash;
-        window.history.pushState({ wozkuDemoModal: true }, '', '/book-demo' + cleanHash);
+        prevPathRef.current = { pathname: currentPathname };
+        window.history.pushState({ wozkuDemoModal: true }, '', '/book-demo');
       }
     } else {
       if (currentPathname === '/book-demo') {
         const targetPath = prevPathRef.current.pathname === '/book-demo' ? '/' : prevPathRef.current.pathname;
-        const targetHash = prevPathRef.current.hash === '#/book-demo' ? '#/' : prevPathRef.current.hash;
-        window.history.pushState(null, '', targetPath + targetHash);
-        setCurrentPath(targetHash);
+        window.history.pushState(null, '', targetPath);
+        setCurrentPath(targetPath);
       }
     }
   }, [isDemoModalOpen]);
 
+  // Sync state changes with the URL path for sign-in
   useEffect(() => {
     const currentPathname = window.location.pathname;
-    const currentHash = window.location.hash || '#/';
 
     if (isAuthModalOpen) {
       if (currentPathname !== '/sign-in') {
-        prevPathRef.current = { pathname: currentPathname, hash: currentHash };
-        const cleanHash = currentHash === '#/sign-in' ? '#/' : currentHash;
-        window.history.pushState({ wozkuAuthModal: true }, '', '/sign-in' + cleanHash);
+        prevPathRef.current = { pathname: currentPathname };
+        window.history.pushState({ wozkuAuthModal: true }, '', '/sign-in');
       }
     } else {
       if (currentPathname === '/sign-in') {
         const targetPath = prevPathRef.current.pathname === '/sign-in' ? '/' : prevPathRef.current.pathname;
-        const targetHash = prevPathRef.current.hash === '#/sign-in' ? '#/' : prevPathRef.current.hash;
-        window.history.pushState(null, '', targetPath + targetHash);
-        setCurrentPath(targetHash);
+        window.history.pushState(null, '', targetPath);
+        setCurrentPath(targetPath);
       }
     }
   }, [isAuthModalOpen]);
 
-  // Sync browser back/forward buttons
+  // Sync browser back/forward buttons & custom navigation dispatches
   useEffect(() => {
     const handlePopState = () => {
-      const isBookDemo = window.location.pathname === '/book-demo' || window.location.hash === '#/book-demo';
+      const path = window.location.pathname;
+      if (path !== '/book-demo' && path !== '/sign-in') {
+        setCurrentPath(path || '/');
+      }
+
+      const isBookDemo = path === '/book-demo';
       if (isBookDemo) {
         setIsDemoModalOpen(true);
       } else {
         setIsDemoModalOpen(false);
       }
-      const isSignIn = window.location.pathname === '/sign-in' || window.location.hash === '#/sign-in';
+
+      const isSignIn = path === '/sign-in';
       if (isSignIn) {
         setIsAuthModalOpen(true);
       } else {
@@ -306,7 +283,7 @@ export default function App() {
     }
   };
 
-  const isBrandGuidelines = currentPath === '#/brand-guidelines';
+  const isBrandGuidelines = currentPath.startsWith('/brand-guidelines');
 
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900 selection:bg-indigo-500/10 selection:text-indigo-900">
@@ -326,7 +303,7 @@ export default function App() {
             stiffness: 100,
             mass: 0.6,
           }}
-className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-indigo-500 opacity-[0.05] blur-[110px] pointer-events-none z-30 hidden md:block"
+          className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-indigo-500 opacity-[0.05] blur-[110px] pointer-events-none z-30 hidden md:block"
         />
       )}
 
@@ -339,33 +316,33 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
           </div>
         </div>
       }>
-        {currentPath.startsWith('#/brand-guidelines') ? (
+        {currentPath.startsWith('/brand-guidelines') ? (
           <BrandGuidelines radiusMode={radiusMode} />
-      ) : currentPath === '#/product/teams-employees' ? (
+      ) : currentPath === '/product/teams-employees' ? (
         <TeamsEmployeesPage />
-      ) : currentPath === '#/product/events-communities' ? (
+      ) : currentPath === '/product/events-communities' ? (
         <EventsCommunitiesPage />
-      ) : currentPath === '#/about/core-team' ? (
+      ) : currentPath === '/about/core-team' ? (
         <CoreTeamPage />
-      ) : currentPath === '#/about/security-compliance' ? (
+      ) : currentPath === '/about/security-compliance' ? (
         <SecurityCompliancePage />
-      ) : currentPath === '#/resources/ecosystem-integrations' ? (
+      ) : currentPath === '/resources/ecosystem-integrations' ? (
         <EcosystemIntegrationsPage />
-      ) : currentPath === '#/resources/faq' ? (
+      ) : currentPath === '/resources/faq' ? (
         <FAQPage />
-      ) : currentPath === '#/resources/global-reach-map' ? (
+      ) : currentPath === '/resources/global-reach-map' ? (
         <GlobalReachMapPage />
-      ) : currentPath === '#/resources/roi-calculator' ? (
+      ) : currentPath === '/resources/roi-calculator' ? (
         <ROICalculatorPage />
-      ) : currentPath === '#/pricing' ? (
+      ) : currentPath === '/pricing' ? (
         <PricingPage />
-      ) : currentPath === '#/insights/case-studies' ? (
+      ) : currentPath === '/insights/case-studies' ? (
         <CaseStudiesPage />
-      ) : currentPath === '#/insights/blog' ? (
+      ) : currentPath === '/insights/blog' ? (
         <BlogPage />
-      ) : currentPath === '#/why-wozku' ? (
+      ) : currentPath === '/why-wozku' ? (
         <WhyWozkuPage />
-      ) : (
+      ) : currentPath === '/' ? (
         <>
           {/* 2. MAIN APP CONTAINER */}
           <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -873,7 +850,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
                 {/* Right: CTA */}
                 <div className="flex flex-col items-start lg:items-end gap-4 shrink-0">
                   <button
-                    onClick={() => { window.location.hash = '#/product/events-communities'; }}
+                    onClick={() => { navigateTo('/product/events-communities'); }}
                     className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-bold py-3.5 px-7 rounded-2xl text-sm transition-all shadow-lg shadow-indigo-500/20 cursor-pointer group"
                   >
                     See How It Works
@@ -946,7 +923,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
 
                 <div className="pt-2">
                   <button
-                    onClick={() => window.location.hash = '#/resources/global-reach-map'}
+                    onClick={() => navigateTo('/resources/global-reach-map')}
                     className="inline-flex items-center gap-2 bg-[#141418] hover:bg-[#181b22] text-fixed-white text-sm font-bold py-3.5 px-8 rounded-xl border border-fixed-white/10 shadow-lg shadow-black/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                   >
                     <span>Check How It Works</span>
@@ -1154,7 +1131,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
                 </ul>
               </div>
               <button 
-                onClick={() => window.location.hash = '#/pricing'} 
+                onClick={() => navigateTo('/pricing')} 
                 className="w-full mt-6 bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-2.5 rounded-xl text-xs transition-all cursor-pointer block text-center"
               >
                 View Details
@@ -1177,7 +1154,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
               </div>
               <div className="pt-6">
                 <button 
-                  onClick={() => window.location.hash = '#/pricing'} 
+                  onClick={() => navigateTo('/pricing')} 
                   className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-2.5 rounded-xl text-xs transition-all cursor-pointer block text-center"
                 >
                   View Details
@@ -1203,7 +1180,7 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
                 </ul>
               </div>
               <button 
-                onClick={() => window.location.hash = '#/pricing'} 
+                onClick={() => navigateTo('/pricing')} 
                 className="w-full mt-6 bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-2.5 rounded-xl text-xs transition-all cursor-pointer block text-center"
               >
                 View Details
@@ -1228,6 +1205,26 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
       {/* 3. FAQ ACCORDION SECTION */}
       <FAQSection />
         </>
+      ) : (
+        <div className="min-h-[70vh] flex flex-col items-center justify-center text-center p-6 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans">
+          <div className="max-w-md space-y-4">
+            <h1 className="text-6xl font-black text-indigo-600">404</h1>
+            <h2 className="text-2xl font-bold font-display">Page Not Found</h2>
+            <p className="text-xs text-neutral-550 max-w-sm mx-auto leading-relaxed">
+              We couldn't find the page you're looking for. It might have been moved, deleted, or the URL might be incorrect.
+            </p>
+            <button
+              onClick={() => {
+                window.history.pushState(null, '', '/');
+                window.dispatchEvent(new CustomEvent('popstate'));
+                window.scrollTo({ top: 0 });
+              }}
+              className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-indigo-750 cursor-pointer modal-control-height mx-auto block"
+            >
+              Go Back Home
+            </button>
+          </div>
+        </div>
       )}
       </Suspense>
 
@@ -1240,6 +1237,9 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
 
       {/* 5. SCROLL TO TOP FLOATER */}
       {!isBrandGuidelines && <ScrollToTop />}
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
 
       {/* Global Dev & Design Controls Panel */}
       {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEV_CONTROLS === 'true') && (
@@ -1302,14 +1302,14 @@ className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-
               <div className="border-t border-neutral-100 dark:border-white/5 pt-2 mt-1">
                 {isBrandGuidelines ? (
                   <button 
-                    onClick={() => { window.location.hash = '#/'; }} 
+                    onClick={() => { navigateTo('/'); }} 
                     className="w-full flex items-center justify-center gap-1 bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-100 dark:text-neutral-900 font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
                   >
                     Exit Guidelines
                   </button>
                 ) : (
                   <button 
-                    onClick={() => { window.location.hash = '#/brand-guidelines'; }} 
+                    onClick={() => { navigateTo('/brand-guidelines'); }} 
                     className="w-full flex items-center justify-center gap-1 bg-indigo-650 hover:bg-indigo-500 text-white font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
                   >
                     Brand Guidelines

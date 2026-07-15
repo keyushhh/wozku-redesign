@@ -1,3 +1,5 @@
+import { next } from '@vercel/functions';
+
 /**
  * To configure these environment variables in Vercel:
  * 1. Go to your project dashboard on Vercel.
@@ -19,8 +21,8 @@ export default function middleware(request: Request) {
       const expectedPass = process.env.SITE_AUTH_PASS;
 
       if (user === expectedUser && password === expectedPass) {
-        // Allow request to proceed
-        return new Response(null);
+        // Allow request to proceed to the actual origin/site
+        return next();
       }
     } catch (e) {
       // If decoding fails (malformed base64), fall through to return 401

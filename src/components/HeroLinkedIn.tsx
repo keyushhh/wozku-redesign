@@ -70,6 +70,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
 
   const renderPostCard = (post: LinkedInPost, isClone = false) => {
     const hasPhoto = post.author.avatarUrl && !failedAvatars[post.id];
+    const isLcpPost = post.id === 'post-1' && !isClone;
 
     return (
       <div
@@ -92,6 +93,8 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
               onError={() => setFailedAvatars(prev => ({ ...prev, [post.id]: true }))}
               className="h-9 w-9 rounded-full object-cover border border-neutral-100 dark:border-neutral-800 shrink-0"
               draggable="false"
+              fetchPriority={isLcpPost ? "high" : undefined}
+              loading={isLcpPost ? "eager" : "lazy"}
             />
           ) : (
             <div className={`h-9 w-9 rounded-full flex items-center justify-center font-extrabold text-xs shrink-0 border border-neutral-100 dark:border-neutral-800 ${post.author.avatarColor || 'bg-indigo-650 text-white'}`}>
@@ -144,6 +147,8 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
                 alt="Attachment Preview"
                 className="w-full h-[70px] object-cover"
                 draggable="false"
+                fetchPriority={isLcpPost ? "high" : undefined}
+                loading={isLcpPost ? "eager" : "lazy"}
               />
               {post.attachment.type === 'link' ? (
                 <div className="p-1.5 border-t border-neutral-150 dark:border-neutral-800 leading-tight">

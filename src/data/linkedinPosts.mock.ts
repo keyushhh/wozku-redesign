@@ -31,7 +31,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
     author: {
       name: 'Sarah Jenkins',
       title: 'VP of Growth at FlowState',
-      avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80',
+      avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=72&h=72&q=80',
       initials: 'SJ',
       connectionDegree: '1st',
       followers: '12,450 followers',
@@ -42,7 +42,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
       type: 'link',
       title: 'Join our beta group - Wozku Dev Hub',
       subtitle: 'wozku.com · 2 min read',
-      imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&h=300&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=660&h=140&q=80',
       url: 'wozku.com/beta',
     },
     reactions: {
@@ -56,7 +56,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
     author: {
       name: 'Rahul Sharma',
       title: 'Founder & CEO, ScaleUp India',
-      avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100&q=80',
+      avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=72&h=72&q=80',
       initials: 'RS',
       avatarColor: 'bg-emerald-600 text-white',
       connectionDegree: '2nd',
@@ -75,7 +75,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
     author: {
       name: 'Priyanka Patel',
       title: 'Head of Marketing at TechVeda',
-      avatarUrl: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=100&h=100&q=80',
+      avatarUrl: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=72&h=72&q=80',
       initials: 'PP',
       connectionDegree: '1st',
       followers: '14,120 followers',
@@ -84,7 +84,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
     postText: 'Empowering your remote employees to share safe, on-brand content has always been a legal headache. The compliance verification on Wozku is a masterclass in brand safety.',
     attachment: {
       type: 'image',
-      imageUrl: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&h=300&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=660&h=140&q=80',
     },
     reactions: {
       countText: 'Rahul Sharma and 112 others',
@@ -97,7 +97,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
     author: {
       name: 'Bob Loblaw',
       title: 'Senior Partner, L&L Attorneys',
-      avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80',
+      avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=72&h=72&q=80',
       initials: 'BL',
       avatarColor: 'bg-purple-700 text-white',
       connectionDegree: '1st',
@@ -115,7 +115,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
     author: {
       name: 'Elena Rostova',
       title: 'Chief People Officer, BrightSide',
-      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80',
+      avatarUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=72&h=72&q=80',
       initials: 'ER',
       connectionDegree: '1st',
       followers: '19,340 followers',
@@ -126,7 +126,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
       type: 'link',
       title: 'Our Journey with Wozku Brand Controls',
       subtitle: 'brightside.com · 4 min read',
-      imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&h=300&q=80',
+      imageUrl: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=660&h=140&q=80',
       url: 'brightside.com/wozku',
     },
     reactions: {
@@ -140,7 +140,7 @@ export const MOCK_LINKEDIN_POSTS: LinkedInPost[] = [
     author: {
       name: 'Aditya Rao',
       title: 'Product Lead, FinFlow',
-      avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&h=100&q=80',
+      avatarUrl: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=72&h=72&q=80',
       initials: 'AR',
       avatarColor: 'bg-blue-600 text-white',
       connectionDegree: '2nd',

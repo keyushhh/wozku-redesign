@@ -1,15 +1,30 @@
 import { next } from '@vercel/functions';
 
 /**
- * To configure these environment variables in Vercel:
- * 1. Go to your project dashboard on Vercel.
- * 2. Navigate to Settings > Environment Variables.
- * 3. Add SITE_AUTH_USER with the desired username value.
- * 4. Add SITE_AUTH_PASS with the desired password value.
- * 5. Click Save, and redeploy your project for the changes to take effect.
+ * Constant-time string comparison to prevent timing attacks.
  */
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) {
+    return false;
+  }
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
 
 export default function middleware(request: Request) {
+  // TODO: STAGING-ONLY BYPASS — remove PSI_BYPASS_TOKEN logic and env var before/at production launch
+  // 1. Check for secure PSI bypass token in the URL query parameters
+  const url = new URL(request.url);
+  const psiToken = url.searchParams.get('psi_token');
+  const expectedPsiToken = process.env.PSI_BYPASS_TOKEN;
+
+  if (psiToken && expectedPsiToken && safeCompare(psiToken, expectedPsiToken)) {
+    return next();
+  }
+
   const basicAuth = request.headers.get('authorization');
 
   if (basicAuth) {
@@ -29,11 +44,49 @@ export default function middleware(request: Request) {
     }
   }
 
-  // Deny access and trigger browser login prompt
-  return new Response('Unauthorized', {
+  // 2. Unconditionally return a proper HTML 401 page
+  const html = `<!DOCTYPE html>
+<html>
+  <head>
+    <title>Unauthorized</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f9fafb;
+        color: #111827;
+      }
+      .card {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        max-width: 400px;
+        width: 100%;
+      }
+      h1 { font-size: 1.5rem; margin-bottom: 1rem; }
+      p { color: #6b7280; font-size: 0.875rem; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>401 Unauthorized</h1>
+      <p>Please provide valid credentials to access this area.</p>
+    </div>
+  </body>
+</html>`;
+
+  return new Response(html, {
     status: 401,
     headers: {
       'WWW-Authenticate': 'Basic realm="Secure Area", charset="UTF-8"',
+      'Content-Type': 'text/html; charset=utf-8',
     },
   });
 }

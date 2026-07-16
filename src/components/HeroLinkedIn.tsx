@@ -215,10 +215,10 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
       <div className="pointer-events-none absolute left-1/2 top-0 h-[235px] w-[760px] -translate-x-1/2 rounded-full bg-indigo-500/[0.06] blur-[100px] dark:bg-indigo-500/[0.1] z-0" />
 
       {/* Hero Header Area */}
-      <div className="relative mx-auto max-w-7xl px-6 text-center z-10 flex-shrink-0">
+      <div className="relative mx-auto max-w-8xl px-6 text-center z-10 flex-shrink-0">
         <m.h1
           {...rise(0.06)}
-          className="mx-auto mt-2 max-w-4xl font-display text-[40px] font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[56px] dark:text-white"
+          className="mx-auto mt-2 max-w-4xl 2xl:max-w-5xl font-display text-[40px] font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[56px] 2xl:text-[72px] dark:text-white"
         >
           Your story travels further<br />
           <span className="text-indigo-650 dark:text-indigo-400">when people share it.</span>
@@ -226,7 +226,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
 
         <m.p
           {...rise(0.12)}
-          className="mx-auto mt-2 max-w-xl text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-450"
+          className="mx-auto mt-2 max-w-xl 2xl:max-w-2xl text-[13px] 2xl:text-base leading-relaxed text-neutral-500 dark:text-neutral-450"
         >
           Help the people closest to your brand share with confidence—and see the impact of every conversation.
         </m.p>

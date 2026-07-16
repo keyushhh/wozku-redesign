@@ -3,8 +3,18 @@ import { ArrowRight, Sparkles, ArrowUpRight, Menu, X, Palette, Sun, Moon, Check,
 import { motion, AnimatePresence } from 'motion/react';
 import LogoBlackTransparent from '../assets/Logo_Black_Transparent.png';
 import LogoWhiteTransparent from '../assets/Logo_White_Transparent.png';
-import { THEME_PRESETS, applyCustomTheme, clearCustomTheme, downloadThemeTokens } from '../lib/designSystem';
 import { navigateTo } from '../lib/router';
+
+const THEME_PRESETS = [
+  { id: 'indigo', name: 'Indigo', color: '#6366f1' },
+  { id: 'emerald', name: 'Emerald', color: '#10b981' },
+  { id: 'rose', name: 'Rose', color: '#f43f5e' },
+  { id: 'amber', name: 'Amber', color: '#f59e0b' },
+  { id: 'violet', name: 'Violet', color: '#a855f7' },
+  { id: 'sky', name: 'Sky', color: '#0ea5e9' },
+  { id: 'fuchsia', name: 'Fuchsia', color: '#d946ef' },
+  { id: 'crimson', name: 'Crimson', color: '#dc2626' },
+] as const;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,28 +29,45 @@ export default function Navbar() {
   const [isThemeOpen, setIsThemeOpen] = useState(false);
   const themeDropdownRef = useRef<HTMLDivElement>(null);
 
+  const isFirstMount = useRef(true);
+
   useEffect(() => {
+    if (isFirstMount.current) {
+      return;
+    }
     const root = document.documentElement;
     root.classList.remove('theme-emerald', 'theme-rose', 'theme-amber', 'theme-violet', 'theme-sky', 'theme-fuchsia', 'theme-crimson');
     if (activeTheme === 'custom') {
       if (/^#[0-9A-F]{6}$/i.test(customHex)) {
-        applyCustomTheme(customHex);
+        import('../lib/designSystem').then(({ applyCustomTheme }) => {
+          applyCustomTheme(customHex);
+        });
       }
     } else if (activeTheme !== 'indigo') {
-      clearCustomTheme();
+      import('../lib/designSystem').then(({ clearCustomTheme }) => {
+        clearCustomTheme();
+      });
       root.classList.add(`theme-${activeTheme}`);
     } else {
-      clearCustomTheme();
+      import('../lib/designSystem').then(({ clearCustomTheme }) => {
+        clearCustomTheme();
+      });
     }
     if (/^#[0-9A-F]{6}$/i.test(customHex)) localStorage.setItem('wozku-custom-hex', customHex);
     localStorage.setItem('wozku-theme', activeTheme);
   }, [activeTheme, customHex]);
 
   useEffect(() => {
+    if (isFirstMount.current) {
+      isFirstMount.current = false;
+      return;
+    }
     const root = document.documentElement;
     root.classList.remove('dark');
     if (activeTheme === 'custom' && /^#[0-9A-F]{6}$/i.test(customHex)) {
-      applyCustomTheme(customHex);
+      import('../lib/designSystem').then(({ applyCustomTheme }) => {
+        applyCustomTheme(customHex);
+      });
     }
     localStorage.setItem('wozku-dark', 'false');
   }, [activeTheme, customHex]);
@@ -439,7 +466,14 @@ export default function Navbar() {
                     </div>
 
                     <div className="h-px bg-neutral-200" />
-                    <button onClick={() => downloadThemeTokens(activeTheme, isDark)} className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[10px] font-bold text-indigo-700 transition-colors hover:bg-indigo-100 cursor-pointer">
+                    <button 
+                      onClick={() => {
+                        import('../lib/designSystem').then(({ downloadThemeTokens }) => {
+                          downloadThemeTokens(activeTheme, isDark);
+                        });
+                      }} 
+                      className="w-full inline-flex items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[10px] font-bold text-indigo-700 transition-colors hover:bg-indigo-100 cursor-pointer"
+                    >
                       <Download className="h-3 w-3" />
                       Export .JSON
                     </button>
@@ -610,7 +644,14 @@ export default function Navbar() {
                     <input aria-label="Custom theme hex code" value={customHex} onChange={(e) => handleCustomHexChange(e.target.value)} onFocus={() => setActiveTheme('custom')} maxLength={7} spellCheck={false} className="min-w-0 flex-1 bg-transparent font-mono text-xs font-semibold uppercase text-neutral-800 outline-none" placeholder="#6366F1" />
                     <span className="text-[9px] font-bold text-neutral-400">CUSTOM</span>
                   </div>
-                  <button onClick={() => downloadThemeTokens(activeTheme, isDark)} className="mx-2 flex w-[calc(100%-1rem)] items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[10px] font-bold text-indigo-700 cursor-pointer">
+                  <button 
+                    onClick={() => {
+                      import('../lib/designSystem').then(({ downloadThemeTokens }) => {
+                        downloadThemeTokens(activeTheme, isDark);
+                      });
+                    }} 
+                    className="mx-2 flex w-[calc(100%-1rem)] items-center justify-center gap-1.5 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-2 text-[10px] font-bold text-indigo-700 cursor-pointer"
+                  >
                     <Download className="h-3 w-3" /> Export .JSON
                   </button>
                 </div>

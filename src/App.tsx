@@ -2,20 +2,25 @@ import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import { navigateTo } from './lib/router';
 import { SpeedInsights } from '@vercel/speed-insights/react';
-import InteractiveHeroCRM from './components/InteractiveHeroCRM';
-import EditorialHero from './components/EditorialHero';
-import HeroLinkedIn from './components/HeroLinkedIn';
-import InteractiveProductGrid from './components/InteractiveProductGrid';
-import UseCasesSection from './components/UseCasesSection';
-import CustomerImpact from './components/CustomerImpact';
-import CustomerSuccess from './components/CustomerSuccess';
+import HeroLinkedIn from './components/HeroLinkedIn'; // Keep default Hero synchronous for optimal LCP
 import Footer from './components/Footer';
-import DemoModal from './components/DemoModal';
-import AuthModal from './components/AuthModal';
 import { CustomSelect } from './components/FormControls';
-import FAQSection from './components/FAQSection';
-import NetworkEffectMap from './components/NetworkEffectMap';
 import ScrollToTop from './components/ScrollToTop';
+
+// Lazy load non-default hero variants
+const EditorialHero = lazy(() => import('./components/EditorialHero'));
+const InteractiveHeroCRM = lazy(() => import('./components/InteractiveHeroCRM'));
+
+// Lazy load below-the-fold components
+const InteractiveProductGrid = lazy(() => import('./components/InteractiveProductGrid'));
+const UseCasesSection = lazy(() => import('./components/UseCasesSection'));
+const CustomerImpact = lazy(() => import('./components/CustomerImpact'));
+const CustomerSuccess = lazy(() => import('./components/CustomerSuccess'));
+const FAQSection = lazy(() => import('./components/FAQSection'));
+
+// Lazy load modals
+const DemoModal = lazy(() => import('./components/DemoModal'));
+const AuthModal = lazy(() => import('./components/AuthModal'));
 const NetworkTeaserGlobe = lazy(() => import('./components/NetworkTeaserGlobe'));
 
 const TeamsEmployeesPage = lazy(() => import('./components/TeamsEmployeesPage'));
@@ -56,6 +61,19 @@ import {
   RefreshCw
 } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+const SectionSkeleton = ({ className = '', heightStyle = '400px' }: { className?: string; heightStyle?: string }) => (
+  <div 
+    style={{ minHeight: heightStyle }} 
+    className={`w-full my-8 animate-pulse bg-neutral-100 dark:bg-neutral-900/40 rounded-3xl border border-neutral-200/50 dark:border-neutral-800/40 flex items-center justify-center ${className}`}
+  >
+    <div className="flex flex-col items-center gap-2">
+      <div className="w-12 h-12 rounded-2xl bg-neutral-200/60 dark:bg-neutral-800/60 flex items-center justify-center">
+        <RefreshCw className="w-5 h-5 text-neutral-400 dark:text-neutral-600 animate-spin" />
+      </div>
+      <div className="w-24 h-3 bg-neutral-200/60 dark:bg-neutral-800/60 rounded" />
+    </div>
+  </div>
+);
 
 export default function App() {
   // Path routing state
@@ -449,7 +467,9 @@ export default function App() {
 
         {/* ================= HERO SECTION ================= */}
         {heroVisual === 'network' ? (
-          <EditorialHero onOpenDemo={() => setIsDemoModalOpen(true)} />
+          <Suspense fallback={<div className="w-full min-h-[600px] bg-neutral-100 dark:bg-neutral-900 rounded-3xl animate-pulse" />}>
+            <EditorialHero onOpenDemo={() => setIsDemoModalOpen(true)} />
+          </Suspense>
         ) : heroVisual === 'linkedin' ? (
           <HeroLinkedIn onOpenDemo={() => setIsDemoModalOpen(true)} radiusMode={radiusMode} />
         ) : (
@@ -521,7 +541,9 @@ export default function App() {
           <div className="lg:col-span-6 flex flex-col items-center justify-center lg:items-end">
             <AnimatePresence mode="wait">
               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }} className="w-full flex justify-center lg:justify-end">
-                <InteractiveHeroCRM />
+                <Suspense fallback={<div className="w-full h-[450px] bg-neutral-100 dark:bg-neutral-900 rounded-3xl animate-pulse" />}>
+                  <InteractiveHeroCRM />
+                </Suspense>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -775,7 +797,9 @@ export default function App() {
           </div>
 
           {/* Interactive Bento Grid */}
-          <InteractiveProductGrid />
+          <Suspense fallback={<SectionSkeleton className="min-h-[820px] lg:min-h-[540px]" heightStyle="540px" />}>
+            <InteractiveProductGrid />
+          </Suspense>
 
         </section>
 
@@ -792,7 +816,9 @@ export default function App() {
             </p>
           </div>
 
-          <UseCasesSection />
+          <Suspense fallback={<SectionSkeleton className="min-h-[880px] lg:min-h-[500px]" heightStyle="500px" />}>
+            <UseCasesSection />
+          </Suspense>
 
         </section>
 
@@ -877,7 +903,9 @@ export default function App() {
             </p>
           </div>
 
-          <CustomerImpact />
+          <Suspense fallback={<SectionSkeleton className="min-h-[520px] md:min-h-[240px]" heightStyle="240px" />}>
+            <CustomerImpact />
+          </Suspense>
 
         </section>
 
@@ -896,7 +924,9 @@ export default function App() {
             </p>
           </div>
 
-          <CustomerSuccess />
+          <Suspense fallback={<SectionSkeleton className="min-h-[640px] md:min-h-[450px]" heightStyle="450px" />}>
+            <CustomerSuccess />
+          </Suspense>
 
         </section>
 
@@ -1203,7 +1233,9 @@ export default function App() {
       </main>
 
       {/* 3. FAQ ACCORDION SECTION */}
-      <FAQSection />
+      <Suspense fallback={<SectionSkeleton className="min-h-[760px] lg:min-h-[580px]" heightStyle="580px" />}>
+        <FAQSection />
+      </Suspense>
         </>
       ) : (
         <div className="min-h-[70vh] flex flex-col items-center justify-center text-center p-6 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans">
@@ -1232,8 +1264,12 @@ export default function App() {
       {!isBrandGuidelines && <Footer />}
 
       {/* 4. STRATEGY DEMO BOOKING MODAL */}
-      <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+      <Suspense fallback={null}>
+        <DemoModal isOpen={isDemoModalOpen} onClose={() => setIsDemoModalOpen(false)} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+      </Suspense>
 
       {/* 5. SCROLL TO TOP FLOATER */}
       {!isBrandGuidelines && <ScrollToTop />}

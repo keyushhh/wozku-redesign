@@ -243,12 +243,11 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
       </div>
 
       {/* LinkedIn Post Carousel Section (breaks out of max-w constraints to achieve genuine edge-to-edge scrolling) */}
-      <m.div
-          {...rise(0.25)}
+      <div
           className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible mt-auto h-[360px] flex items-end z-10"
           style={{
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
-            maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, red 30%, red 70%, transparent 100%)',
+            maskImage: 'linear-gradient(to right, transparent 0%, red 30%, red 70%, transparent 100%)',
             WebkitMaskRepeat: 'no-repeat',
             maskRepeat: 'no-repeat',
             WebkitMaskSize: '100% 100%',
@@ -271,7 +270,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
           {/* Duplicated set for seamless loop (hidden from screen readers) */}
           {MOCK_LINKEDIN_POSTS.map((post) => renderPostCard(post, true))}
         </div>
-      </m.div>
+      </div>
 
       {/* Bottom Fade Mask Gradient relative to the section root (taller h-44 for extra soft layout blend) */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-neutral-50 to-transparent dark:from-neutral-950 z-20" />

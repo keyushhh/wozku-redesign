@@ -218,7 +218,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
       <div className="relative mx-auto max-w-8xl px-6 text-center z-10 flex-shrink-0">
         <m.h1
           {...rise(0.06)}
-          className="mx-auto mt-2 max-w-4xl 2xl:max-w-5xl font-display text-[40px] font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[56px] 2xl:text-[72px] dark:text-white"
+          className="mx-auto mt-2 max-w-4xl font-display text-[40px] font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[56px] dark:text-white"
         >
           Your story travels further<br />
           <span className="text-indigo-650 dark:text-indigo-400">when people share it.</span>
@@ -226,7 +226,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
 
         <m.p
           {...rise(0.12)}
-          className="mx-auto mt-2 max-w-xl 2xl:max-w-2xl text-[13px] 2xl:text-base leading-relaxed text-neutral-500 dark:text-neutral-450"
+          className="mx-auto mt-2 max-w-xl text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-450"
         >
           Help the people closest to your brand share with confidence—and see the impact of every conversation.
         </m.p>
@@ -246,6 +246,10 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
       <m.div
           {...rise(0.25)}
           className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible mt-auto h-[360px] flex items-end z-10"
+          style={{
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
+            maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
+          }}
           role="region"
           aria-label="LinkedIn advocacy posts loop"
       >
@@ -263,10 +267,6 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
           {/* Duplicated set for seamless loop (hidden from screen readers) */}
           {MOCK_LINKEDIN_POSTS.map((post) => renderPostCard(post, true))}
         </div>
-
-        {/* Left/Right Side Viewport Fades (placed inside the breakout wrapper to stretch perfectly to viewport edges) */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-44 bg-gradient-to-r from-neutral-50 to-transparent dark:from-neutral-950 z-20" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 sm:w-44 bg-gradient-to-l from-neutral-50 to-transparent dark:from-neutral-950 z-20" />
       </m.div>
 
       {/* Bottom Fade Mask Gradient relative to the section root (taller h-44 for extra soft layout blend) */}

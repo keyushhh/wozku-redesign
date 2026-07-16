@@ -246,10 +246,6 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
       <m.div
           {...rise(0.25)}
           className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible mt-auto h-[360px] flex items-end z-10"
-          style={{
-            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-            maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
-          }}
           role="region"
           aria-label="LinkedIn advocacy posts loop"
       >
@@ -267,6 +263,10 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
           {/* Duplicated set for seamless loop (hidden from screen readers) */}
           {MOCK_LINKEDIN_POSTS.map((post) => renderPostCard(post, true))}
         </div>
+
+        {/* Left/Right Side Viewport Fades (placed inside the breakout wrapper to stretch perfectly to viewport edges) */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 sm:w-56 bg-gradient-to-r from-neutral-50 to-transparent dark:from-[#0a0a0c] z-30" />
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 sm:w-56 bg-gradient-to-l from-neutral-50 to-transparent dark:from-[#0a0a0c] z-30" />
       </m.div>
 
       {/* Bottom Fade Mask Gradient relative to the section root (taller h-44 for extra soft layout blend) */}

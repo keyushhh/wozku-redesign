@@ -210,7 +210,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
   };
 
   return (
-    <section className="relative z-10 h-[calc(100svh-76px)] min-h-[640px] overflow-hidden pt-9 lg:pt-10 flex flex-col justify-between">
+    <section className="relative z-10 min-h-[640px] overflow-hidden pt-9 lg:pt-10 flex flex-col justify-start gap-12 lg:gap-16">
       {/* Background glow */}
       <div className="pointer-events-none absolute left-1/2 top-0 h-[235px] w-[760px] -translate-x-1/2 rounded-full bg-indigo-500/[0.06] blur-[100px] dark:bg-indigo-500/[0.1] z-0" />
 
@@ -244,10 +244,10 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
 
       {/* LinkedIn Post Carousel Section (breaks out of max-w constraints to achieve genuine edge-to-edge scrolling) */}
       <m.div
-        {...rise(0.25)}
-        className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible mt-2 h-[360px] flex items-end z-10"
-        role="region"
-        aria-label="LinkedIn advocacy posts loop"
+          {...rise(0.25)}
+          className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible mt-auto h-[360px] flex items-end z-10"
+          role="region"
+          aria-label="LinkedIn advocacy posts loop"
       >
         {/* Infinite Scrolling Marquee Wrapper */}
         <div

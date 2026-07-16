@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, m } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 
 export function Label({ children, optional, required }: { children: React.ReactNode; optional?: boolean; required?: boolean }) {
@@ -43,9 +43,9 @@ export function CustomSelect({ label, options, value, onChange, tone = 'light', 
       </button>
       <AnimatePresence>
         {isOpen && (
-          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.15 }} className={`mt-1.5 overflow-hidden rounded-xl py-1 shadow-xl ${tone === 'light' ? 'border border-neutral-200 bg-white' : 'border border-fixed-white/10 bg-[#141418]'}`}>
+          <m.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.15 }} className={`mt-1.5 overflow-hidden rounded-xl py-1 shadow-xl ${tone === 'light' ? 'border border-neutral-200 bg-white' : 'border border-fixed-white/10 bg-[#141418]'}`}>
             {options.map((option) => <button key={option} type="button" onClick={() => { onChange(option); setOpen(false); }} className={`block w-full px-3.5 py-2.5 text-left text-[11px] transition-colors ${tone === 'light' ? `hover:bg-indigo-50 ${option === value ? 'bg-indigo-50 font-bold text-indigo-700' : 'text-neutral-700'}` : `hover:bg-indigo-600/10 ${option === value ? 'bg-indigo-600/5 font-bold text-indigo-400' : 'text-fixed-white'}`}`}>{option}</button>)}
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Sparkles, ArrowUpRight, Menu, X, Palette, Sun, Moon, Check, ChevronDown, Download } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import LogoBlackTransparent from '../assets/Logo_Black_Transparent.png';
 import LogoWhiteTransparent from '../assets/Logo_White_Transparent.png';
 import { navigateTo } from '../lib/router';
@@ -224,7 +224,7 @@ export default function Navbar() {
             {/* Mega Menu Dropdown */}
             <AnimatePresence>
               {activeDropdown === 'solutions' && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -339,7 +339,7 @@ export default function Navbar() {
                     </div>
 
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>
@@ -370,7 +370,7 @@ export default function Navbar() {
 
             <AnimatePresence>
               {activeDropdown === 'insights' && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -395,7 +395,7 @@ export default function Navbar() {
                       </button>
                     ))}
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>
@@ -523,7 +523,7 @@ export default function Navbar() {
         {isMenuOpen && (
           <>
             {/* Backdrop Blur Overlay */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -532,7 +532,7 @@ export default function Navbar() {
             />
 
             {/* Slide-out Drawer Panel */}
-            <motion.div
+            <m.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
@@ -676,7 +676,7 @@ export default function Navbar() {
                   <span className="text-indigo-400 font-bold">»</span>
                 </button>
               </div>
-            </motion.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>

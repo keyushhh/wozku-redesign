@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import {
   ArrowUpRight,
   ThumbsUp,
@@ -216,22 +216,22 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
 
       {/* Hero Header Area */}
       <div className="relative mx-auto max-w-5xl px-6 text-center z-10 flex-shrink-0">
-        <motion.h1
+        <m.h1
           {...rise(0.06)}
           className="mx-auto mt-2 max-w-4xl font-display text-[40px] font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[56px] dark:text-white"
         >
           Your story travels further<br />
           <span className="text-indigo-650 dark:text-indigo-400">when people share it.</span>
-        </motion.h1>
+        </m.h1>
 
-        <motion.p
+        <m.p
           {...rise(0.12)}
           className="mx-auto mt-2 max-w-xl text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-450"
         >
           Help the people closest to your brand share with confidence—and see the impact of every conversation.
-        </motion.p>
+        </m.p>
 
-        <motion.div {...rise(0.18)} className="mt-3 flex justify-center">
+        <m.div {...rise(0.18)} className="mt-3 flex justify-center">
           <button
             onClick={onOpenDemo}
             className="group inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-neutral-950/15 transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-neutral-950 cursor-pointer"
@@ -239,11 +239,11 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
             Book a demo
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* LinkedIn Post Carousel Section (breaks out of max-w constraints to achieve genuine edge-to-edge scrolling) */}
-      <motion.div
+      <m.div
         {...rise(0.25)}
         className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible mt-2 h-[360px] flex items-end z-10"
         role="region"
@@ -267,7 +267,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
         {/* Left/Right Side Viewport Fades (placed inside the breakout wrapper to stretch perfectly to viewport edges) */}
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 sm:w-44 bg-gradient-to-r from-neutral-50 to-transparent dark:from-neutral-950 z-20" />
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 sm:w-44 bg-gradient-to-l from-neutral-50 to-transparent dark:from-neutral-950 z-20" />
-      </motion.div>
+      </m.div>
 
       {/* Bottom Fade Mask Gradient relative to the section root (taller h-44 for extra soft layout blend) */}
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-neutral-50 to-transparent dark:from-neutral-950 z-20" />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import { ArrowUp } from 'lucide-react';
 
 export default function ScrollToTop() {
@@ -29,7 +29,7 @@ export default function ScrollToTop() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.button
+        <m.button
           id="scroll-to-top-button"
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0.8, y: 10 }}
@@ -42,7 +42,7 @@ export default function ScrollToTop() {
           aria-label="Scroll back to top of the page"
         >
           <ArrowUp className="w-5 h-5 text-indigo-400 group-hover:text-white transition-colors" />
-        </motion.button>
+        </m.button>
       )}
     </AnimatePresence>
   );

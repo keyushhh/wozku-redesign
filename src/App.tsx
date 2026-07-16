@@ -60,7 +60,7 @@ import {
   ChevronDown,
   RefreshCw
 } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
+import { m, AnimatePresence, useScroll, useTransform } from 'motion/react';
 const SectionSkeleton = ({ className = '', heightStyle = '400px' }: { className?: string; heightStyle?: string }) => (
   <div 
     style={{ minHeight: heightStyle }} 
@@ -310,7 +310,7 @@ export default function App() {
 
       {/* Interactive mouse follow blur orb */}
       {isHovering && !isBrandGuidelines && (
-        <motion.div
+        <m.div
           animate={{
             x: mousePos.x,
             y: mousePos.y,
@@ -371,97 +371,50 @@ export default function App() {
         {/* Soft Animated Ambient Blur Orbs */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           {/* Top-Left Soft Drift Orb (Starts right behind the Hero content) */}
-          <motion.div
-            animate={{
-              x: [0, 60, -40, 0],
-              y: [0, -40, 40, 0],
-              scale: [1, 1.2, 0.9, 1],
-            }}
-            transition={{
-              duration: 18,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-[3%] left-[10%] w-[450px] h-[450px] rounded-full bg-indigo-500 opacity-[0.09] blur-[100px]"
-          />
+          {/* Top-Left Soft Drift Orb (Starts right behind the Hero content) */}
+          <div className="absolute top-[3%] left-[10%] w-[450px] h-[450px] rounded-full bg-indigo-500 opacity-[0.09] blur-[100px] animate-orb-top-left" />
 
           {/* Top-Right Soft Drift Orb (Hero right side) */}
-          <motion.div
-            animate={{
-              x: [0, -60, 40, 0],
-              y: [0, 50, -30, 0],
-              scale: [1, 0.95, 1.15, 1],
-            }}
-            transition={{
-              duration: 22,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute top-[8%] right-[10%] w-[500px] h-[500px] rounded-full bg-indigo-400 opacity-[0.08] blur-[120px]"
-          />
+          <div className="absolute top-[8%] right-[10%] w-[500px] h-[500px] rounded-full bg-indigo-400 opacity-[0.08] blur-[120px] animate-orb-top-right" />
 
           {/* Center Subtle Deep Orb (Behind the CRM dashboard preview) */}
-          <motion.div
+          <m.div
             style={{
               translateY: parallax1,
               x: mouseOffset.x,
               y: mouseOffset.y,
             }}
-            animate={{
-              scale: [1, 1.18, 0.88, 1],
-            }}
-            transition={{
-              scale: { duration: 28, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute top-[22%] left-[15%] w-[600px] h-[600px] rounded-full bg-indigo-600 opacity-[0.07] blur-[130px] pointer-events-none"
+            className="absolute top-[22%] left-[15%] w-[600px] h-[600px] rounded-full bg-indigo-600 opacity-[0.07] blur-[130px] pointer-events-none animate-orb-center"
           />
 
           {/* Mid Section Left Warm Pink/Orange Orb */}
-          <motion.div
+          <m.div
             style={{
               translateY: parallax2,
               x: mouseOffset.x * -0.7,
               y: mouseOffset.y * -0.7,
             }}
-            animate={{
-              scale: [1, 0.9, 1.1, 1],
-            }}
-            transition={{
-              scale: { duration: 24, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute top-[45%] left-[5%] w-[450px] h-[450px] rounded-full bg-indigo-500 opacity-[0.05] blur-[120px] pointer-events-none"
+            className="absolute top-[45%] left-[5%] w-[450px] h-[450px] rounded-full bg-indigo-500 opacity-[0.05] blur-[120px] pointer-events-none animate-orb-mid-left"
           />
 
           {/* Lower Section Warm Orb (Behind Event Loop Simulator) */}
-          <motion.div
+          <m.div
             style={{
               translateY: parallax3,
               x: mouseOffset.x * 1.2,
               y: mouseOffset.y * 1.2,
             }}
-            animate={{
-              scale: [1, 0.98, 1.12, 1],
-            }}
-            transition={{
-              scale: { duration: 20, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute top-[65%] right-[10%] w-[550px] h-[550px] rounded-full bg-indigo-400 opacity-[0.06] blur-[130px] pointer-events-none"
+            className="absolute top-[65%] right-[10%] w-[550px] h-[550px] rounded-full bg-indigo-400 opacity-[0.06] blur-[130px] pointer-events-none animate-orb-lower"
           />
 
           {/* Bottom Near Footer Deep Blue Orb */}
-          <motion.div
+          <m.div
             style={{
               translateY: parallax4,
               x: mouseOffset.x * -0.5,
               y: mouseOffset.y * -0.5,
             }}
-            animate={{
-              scale: [1, 1.15, 0.95, 1],
-            }}
-            transition={{
-              scale: { duration: 26, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute bottom-[5%] left-[25%] w-[600px] h-[600px] rounded-full bg-indigo-600 opacity-[0.05] blur-[140px] pointer-events-none"
+            className="absolute bottom-[5%] left-[25%] w-[600px] h-[600px] rounded-full bg-indigo-600 opacity-[0.05] blur-[140px] pointer-events-none animate-orb-bottom"
           />
         </div>
 
@@ -477,7 +430,7 @@ export default function App() {
           {/* Left Column: Copy & CTA & Metrics */}
           <div className="lg:col-span-6 text-left space-y-7 flex flex-col justify-center">
             <div className="space-y-3">
-              <motion.h1 
+              <m.h1 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -487,20 +440,20 @@ export default function App() {
                 <span className="text-indigo-650 dark:text-indigo-400">
                   Your community is the antidote.
                 </span>
-              </motion.h1>
+              </m.h1>
               
-              <motion.p 
+              <m.p 
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="text-sm sm:text-base text-neutral-500 dark:text-fixed-light leading-relaxed font-sans max-w-lg"
               >
                 Paid ads are losing trust. Your employees, partners, and customers already have the audience. Wozku activates them to share your story at scale while attributing every dollar of organic pipeline.
-              </motion.p>
+              </m.p>
             </div>
 
             {/* Email Capture CTA capsule form */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -517,10 +470,10 @@ export default function App() {
               >
                 Book a demo
               </button>
-            </motion.div>
+            </m.div>
 
             {/* Metrics Row */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
@@ -534,17 +487,17 @@ export default function App() {
                 <span className="text-3xl font-black font-display text-neutral-900 dark:text-fixed-white">2.1M+</span>
                 <span className="text-[10px] font-mono font-bold text-neutral-450 dark:text-fixed-muted uppercase tracking-wider block mt-1">Organic reach scaled</span>
               </div>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Right Column: Original visual illustration. */}
           <div className="lg:col-span-6 flex flex-col items-center justify-center lg:items-end">
             <AnimatePresence mode="wait">
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }} className="w-full flex justify-center lg:justify-end">
+              <m.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }} className="w-full flex justify-center lg:justify-end">
                 <Suspense fallback={<div className="w-full h-[450px] bg-neutral-100 dark:bg-neutral-900 rounded-3xl animate-pulse" />}>
                   <InteractiveHeroCRM />
                 </Suspense>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
           </section>
@@ -746,7 +699,7 @@ export default function App() {
                   dot: 'bg-amber-500',
                 },
               ].map((s, i) => (
-                <motion.div
+                <m.div
                   key={s.step}
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -765,7 +718,7 @@ export default function App() {
                   </div>
                   <h3 className="text-xs font-bold text-neutral-900 dark:text-fixed-white mb-1.5 tracking-tight">{s.title}</h3>
                   <p className="text-[11px] text-neutral-500 dark:text-fixed-light leading-relaxed font-medium">{s.body}</p>
-                </motion.div>
+                </m.div>
               ))}
             </div>
 
@@ -1083,7 +1036,7 @@ export default function App() {
               {/* Proposal Results display */}
               <AnimatePresence>
                 {proposalResult && (
-                  <motion.div 
+                  <m.div 
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
@@ -1119,7 +1072,7 @@ export default function App() {
                     <div className="bg-indigo-600/10 border border-indigo-500/20 rounded-xl p-3 text-[11px] text-indigo-300 leading-normal text-center">
                       🌟 Excellent! This configuration yields an estimated **{proposalResult.savings}** in Equivalent Paid Search Cost Savings.
                     </div>
-                  </motion.div>
+                  </m.div>
                 )}
               </AnimatePresence>
 

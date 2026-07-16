@@ -485,4 +485,60 @@ span.font-mono.uppercase[class*="bg-"] {
   box-sizing: border-box !important;
 }
 
+/* Ambient background blur orbs compositor-friendly animations */
+.animate-orb-top-left {
+  animation: orb-drift-top-left 18s ease-in-out infinite;
+}
+.animate-orb-top-right {
+  animation: orb-drift-top-right 22s ease-in-out infinite;
+}
+.animate-orb-center {
+  animation: orb-pulse-center 28s ease-in-out infinite;
+}
+.animate-orb-mid-left {
+  animation: orb-pulse-mid-left 24s ease-in-out infinite;
+}
+.animate-orb-lower {
+  animation: orb-pulse-lower 20s ease-in-out infinite;
+}
+.animate-orb-bottom {
+  animation: orb-pulse-bottom 26s ease-in-out infinite;
+}
+
+@keyframes orb-drift-top-left {
+  0%, 100% { translate: 0 0; scale: 1; }
+  33% { translate: 60px -40px; scale: 1.2; }
+  66% { translate: -40px 40px; scale: 0.9; }
+}
+
+@keyframes orb-drift-top-right {
+  0%, 100% { translate: 0 0; scale: 1; }
+  33% { translate: -60px 50px; scale: 0.95; }
+  66% { translate: 40px -30px; scale: 1.15; }
+}
+
+@keyframes orb-pulse-center {
+  0%, 100% { scale: 1; }
+  50% { scale: 1.18; }
+  75% { scale: 0.88; }
+}
+
+@keyframes orb-pulse-mid-left {
+  0%, 100% { scale: 1; }
+  50% { scale: 0.9; }
+  75% { scale: 1.1; }
+}
+
+@keyframes orb-pulse-lower {
+  0%, 100% { scale: 1; }
+  50% { scale: 0.98; }
+  75% { scale: 1.12; }
+}
+
+@keyframes orb-pulse-bottom {
+  0%, 100% { scale: 1; }
+  50% { scale: 1.15; }
+  75% { scale: 0.95; }
+}
+
 

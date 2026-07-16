@@ -46,15 +46,15 @@ export default function EditorialHero({ onOpenDemo }: { onOpenDemo: () => void }
   const rise = (delay: number) => ({ initial: { opacity: 0, y: 14 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] } });
 
   return (
-    <section className="relative z-10 h-[calc(100svh-76px)] min-h-[640px] overflow-hidden pt-9 lg:pt-10">
+    <section className="relative z-10 min-h-[640px] overflow-hidden pt-9 lg:pt-10 flex flex-col justify-start gap-12 lg:gap-16">
       <div className="pointer-events-none absolute left-1/2 top-0 h-[235px] w-[760px] -translate-x-1/2 rounded-full bg-indigo-500/[0.06] blur-[100px] dark:bg-indigo-500/[0.1]" />
-      <div className="relative mx-auto max-w-5xl px-6 text-center">
+      <div className="relative mx-auto max-w-7xl px-6 text-center">
         <motion.h1 {...rise(0.06)} className="mx-auto mt-2 max-w-4xl font-display text-[40px] font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[56px] dark:text-white">Your story travels further<br /><span className="text-indigo-650 dark:text-indigo-400">when people share it.</span></motion.h1>
         <motion.p {...rise(0.12)} className="mx-auto mt-2 max-w-xl text-[13px] leading-relaxed text-neutral-500 dark:text-neutral-400">Help the people closest to your brand share with confidence—and see the impact of every conversation.</motion.p>
         <motion.div {...rise(0.18)} className="mt-3 flex justify-center"><button onClick={onOpenDemo} className="group inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-neutral-950/15 transition-transform hover:-translate-y-0.5 dark:bg-white dark:text-neutral-950">Book a demo <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></button></motion.div>
       </div>
 
-      <motion.div {...rise(0.25)} className="relative mx-auto -mt-8 grid h-[384px] max-w-[1280px] grid-cols-[1.02fr_1.12fr_.98fr_1.12fr_1.02fr] items-end gap-3 px-4 sm:gap-4 sm:px-6">
+      <motion.div {...rise(0.25)} className="relative mx-auto mt-auto grid h-[384px] max-w-[1440px] w-full grid-cols-[1.02fr_1.12fr_.98fr_1.12fr_1.02fr] items-end gap-3 px-4 sm:gap-4 sm:px-6">
         <div className="flex h-full flex-col gap-3">
           <FolderCardA surface="var(--indigo-900)" className="min-h-0 flex-1">
             <div className="relative flex h-full flex-col justify-between p-4 text-white sm:p-5"><svg className="absolute inset-x-0 top-6 h-20 w-full fill-none stroke-[var(--accent-300)] opacity-20" viewBox="0 0 200 80"><path d="M-6 60 L50 27 L108 50 L206 11" strokeWidth="8" /><path d="M-6 76 L50 43 L108 66 L206 27" strokeWidth="8" /></svg><div className="relative"><p className="pt-5 font-display text-5xl font-black leading-none">8×</p><p className="mt-3 max-w-[130px] text-[10px] leading-snug text-white/75">More trusted than paid ads.</p></div><div className="relative flex items-center justify-between rounded-2xl bg-white/10 px-3 py-2.5 text-[10px] font-bold"><span>Share with trust</span><ArrowUpRight className="h-5 w-5 rounded-full bg-[var(--accent-300)] p-1 text-[var(--indigo-950)]" /></div></div>

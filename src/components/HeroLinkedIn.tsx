@@ -215,7 +215,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
       <div className="pointer-events-none absolute left-1/2 top-0 h-[235px] w-[760px] -translate-x-1/2 rounded-full bg-indigo-500/[0.06] blur-[100px] dark:bg-indigo-500/[0.1] z-0" />
 
       {/* Hero Header Area */}
-      <div className="relative mx-auto max-w-5xl px-6 text-center z-10 flex-shrink-0">
+      <div className="relative mx-auto max-w-7xl px-6 text-center z-10 flex-shrink-0">
         <m.h1
           {...rise(0.06)}
           className="mx-auto mt-2 max-w-4xl font-display text-[40px] font-black leading-[0.98] tracking-[-0.055em] text-neutral-950 sm:text-5xl lg:text-[56px] dark:text-white"

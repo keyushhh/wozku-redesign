@@ -426,7 +426,7 @@ export default function App() {
         ) : heroVisual === 'linkedin' ? (
           <HeroLinkedIn onOpenDemo={() => setIsDemoModalOpen(true)} radiusMode={radiusMode} />
         ) : (
-          <section className="pt-20 pb-20 max-w-7xl mx-auto px-6 sm:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[calc(100vh-100px)]">
+          <section className="pt-20 pb-20 max-w-[1440px] mx-auto px-6 sm:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[640px]">
           {/* Left Column: Copy & CTA & Metrics */}
           <div className="lg:col-span-6 text-left space-y-7 flex flex-col justify-center">
             <div className="space-y-3">

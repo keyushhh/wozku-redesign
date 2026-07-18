@@ -179,20 +179,20 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             animate={modalAnimation}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 16 }}
             transition={modalTransition}
-            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl bg-white shadow-2xl flex flex-col md:flex-row h-auto max-h-[90vh] md:max-h-[85vh] focus:outline-hidden"
+            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl bg-white shadow-2xl flex flex-col md:flex-row h-auto max-h-[75vh] md:max-h-[85vh] focus:outline-hidden"
           >
             {/* Top Close button */}
             <button
               onClick={onClose}
               aria-label="Close authentication modal"
-              className="absolute right-4 top-4 z-30 rounded-full p-2 text-white transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-550 focus-visible:text-red-600 focus-visible:outline-none md:text-neutral-500"
+              className="absolute right-4 top-4 z-30 rounded-full p-2 text-neutral-500 transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-550 focus-visible:text-red-600 focus-visible:outline-none"
             >
               <X className="h-5 w-5" />
             </button>
 
             <div className="flex w-full min-h-0 flex-1 flex-col md:flex-row">
-              {/* Left Panel (Branding & Features) */}
-              <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
+              {/* Left Panel (Branding & Features) - hidden on mobile to keep the modal compact; shown from md: up */}
+              <aside className="relative hidden shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:flex md:w-[42%] md:px-9 md:py-9 justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />
                 <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-3xl" />
                 

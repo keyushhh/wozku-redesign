@@ -244,7 +244,7 @@ export default function HeroLinkedIn({ onOpenDemo, radiusMode }: HeroLinkedInPro
 
       {/* LinkedIn Post Carousel Section (breaks out of max-w constraints to achieve genuine edge-to-edge scrolling) */}
       <div
-          className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible mt-auto h-[360px] flex items-end z-10"
+          className="relative w-[100vw] left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] overflow-x-hidden overflow-y-visible touch-pan-y mt-auto h-[360px] flex items-end z-10"
           style={{
             WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',
             maskImage: 'linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)',

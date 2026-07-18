@@ -48,9 +48,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       const focusTimeout = setTimeout(() => {
         const firstInput = modalRef.current?.querySelector('input');
         if (firstInput) {
-          (firstInput as HTMLElement).focus();
+          (firstInput as HTMLElement).focus({ preventScroll: true });
         } else {
-          modalRef.current?.focus();
+          modalRef.current?.focus({ preventScroll: true });
         }
       }, 50);
 
@@ -90,7 +90,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         clearTimeout(focusTimeout);
         window.removeEventListener('keydown', handleKeyDown);
         if (previouslyFocusedElement.current) {
-          previouslyFocusedElement.current.focus();
+          previouslyFocusedElement.current.focus({ preventScroll: true });
         }
       };
     }
@@ -190,7 +190,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <X className="h-5 w-5" />
             </button>
 
-            <div className="flex w-full flex-col md:flex-row h-full">
+            <div className="flex w-full min-h-0 flex-1 flex-col md:flex-row">
               {/* Left Panel (Branding & Features) */}
               <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />
@@ -235,7 +235,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               </aside>
 
               {/* Right Panel (Form / Confirmation) */}
-              <main className="min-h-0 flex-1 overflow-y-auto bg-white px-6 py-8 sm:px-9 md:py-8 flex flex-col justify-center">
+              <main className="min-h-0 flex-1 overflow-y-auto bg-white px-6 py-8 sm:px-9 md:py-8 flex flex-col">
                 <AnimatePresence mode="wait">
                   {step === 'form' ? (
                     <motion.div
@@ -244,7 +244,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                       animate={{ opacity: 1, y: 0 }}
                       exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
                       transition={{ duration: 0.2 }}
-                      className="space-y-5"
+                      className="my-auto space-y-5"
                     >
                       <div className="pr-7">
                         <h3 id="auth-modal-title" className="font-display text-3xl font-black tracking-tight text-neutral-900">
@@ -402,7 +402,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.2 }}
-                      className="flex flex-col items-center justify-center text-center py-8 space-y-5"
+                      className="my-auto flex flex-col items-center justify-center text-center py-8 space-y-5"
                     >
                       <div className="rounded-full border border-emerald-100 bg-emerald-50 p-3 text-emerald-600">
                         <CheckCircle2 className="h-10 w-10" />

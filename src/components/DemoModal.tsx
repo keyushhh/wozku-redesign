@@ -31,9 +31,9 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
       const focusTimeout = setTimeout(() => {
         const firstInput = modalRef.current?.querySelector('input');
         if (firstInput) {
-          (firstInput as HTMLElement).focus();
+          (firstInput as HTMLElement).focus({ preventScroll: true });
         } else {
-          modalRef.current?.focus();
+          modalRef.current?.focus({ preventScroll: true });
         }
       }, 50);
 
@@ -73,7 +73,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         clearTimeout(focusTimeout);
         window.removeEventListener('keydown', handleKeyDown);
         if (previouslyFocusedElement.current) {
-          previouslyFocusedElement.current.focus();
+          previouslyFocusedElement.current.focus({ preventScroll: true });
         }
       };
     }
@@ -161,7 +161,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
               <X className="h-5 w-5" />
             </button>
 
-            <div className="flex w-full flex-col md:flex-row h-full">
+            <div className="flex w-full min-h-0 flex-1 flex-col md:flex-row">
               {/* Left Panel (Branding & Stats) */}
               <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />
@@ -213,7 +213,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
               </aside>
 
               {/* Right Panel (Form / Confirmation) */}
-              <main className="min-h-0 flex-1 overflow-y-auto bg-white px-6 py-8 sm:px-9 md:py-8 flex flex-col justify-center">
+              <main className="min-h-0 flex-1 overflow-y-auto bg-white px-6 py-8 sm:px-9 md:py-8 flex flex-col">
                 <AnimatePresence mode="wait">
                   {step === 'form' && (
                     <motion.div
@@ -222,7 +222,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 12 }}
                       transition={{ duration: 0.2 }}
-                      className="space-y-5"
+                      className="my-auto space-y-5"
                     >
                       <div className="pr-7">
                         <h3 id="demo-modal-title" className="font-display text-3xl font-black tracking-tight text-neutral-900">Experience Wozku Live</h3>
@@ -288,7 +288,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="flex h-full min-h-[300px] flex-col items-center justify-center space-y-4 text-center"
+                      className="my-auto flex h-full min-h-[300px] flex-col items-center justify-center space-y-4 text-center"
                     >
                       <div className="rounded-full border border-indigo-100 bg-indigo-50 p-4">
                         <RefreshCw className="h-8 w-8 animate-spin text-indigo-600" />
@@ -305,7 +305,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       key="confirmed-view"
                       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className="flex h-full min-h-[300px] flex-col items-center justify-center space-y-5 text-center py-4"
+                      className="my-auto flex h-full min-h-[300px] flex-col items-center justify-center space-y-5 text-center py-4"
                     >
                       <div className="rounded-full border border-emerald-100 bg-emerald-50 p-3 text-emerald-600">
                         <CheckCircle2 className="h-10 w-10" />

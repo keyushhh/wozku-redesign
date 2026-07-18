@@ -31,9 +31,9 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
       const focusTimeout = setTimeout(() => {
         const firstInput = modalRef.current?.querySelector('input');
         if (firstInput) {
-          (firstInput as HTMLElement).focus();
+          (firstInput as HTMLElement).focus({ preventScroll: true });
         } else {
-          modalRef.current?.focus();
+          modalRef.current?.focus({ preventScroll: true });
         }
       }, 50);
 
@@ -73,7 +73,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         clearTimeout(focusTimeout);
         window.removeEventListener('keydown', handleKeyDown);
         if (previouslyFocusedElement.current) {
-          previouslyFocusedElement.current.focus();
+          previouslyFocusedElement.current.focus({ preventScroll: true });
         }
       };
     }
@@ -161,7 +161,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
               <X className="h-5 w-5" />
             </button>
 
-            <div className="flex w-full flex-col md:flex-row h-full">
+            <div className="flex w-full min-h-0 flex-1 flex-col md:flex-row">
               {/* Left Panel (Branding & Stats) */}
               <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />

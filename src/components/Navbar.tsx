@@ -507,6 +507,22 @@ export default function Navbar() {
             </button>
           </div>
 
+          {/* Mobile Action CTAs - compact versions of the desktop Sign In / Book a Demo buttons */}
+          <div className="flex lg:hidden items-center gap-1 shrink-0">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-auth-modal'))}
+              className="whitespace-nowrap text-xs font-semibold text-neutral-500 hover:text-neutral-900 px-2 py-1.5 transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-full"
+            >
+              Sign In
+            </button>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+              className="whitespace-nowrap inline-flex items-center bg-neutral-950 hover:bg-neutral-900 text-white px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+            >
+              Demo
+            </button>
+          </div>
+
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}

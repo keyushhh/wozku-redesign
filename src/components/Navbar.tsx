@@ -58,9 +58,10 @@ export default function Navbar() {
   };
 
   return (
+    <>
     <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-      scrolled 
-        ? 'border-b border-neutral-200/50 bg-white/75 backdrop-blur-md py-3 shadow-xs' 
+      scrolled
+        ? 'border-b border-neutral-200/50 bg-white/75 backdrop-blur-md py-3 shadow-xs'
         : 'border-b border-transparent bg-white/40 backdrop-blur-xs py-4'
     }`}>
       {/* Per-page gradient glow band */}
@@ -343,6 +344,22 @@ export default function Navbar() {
             </button>
           </div>
 
+          {/* Mobile Action CTAs - compact versions of the desktop Sign In / Book a Demo buttons */}
+          <div className="flex lg:hidden items-center gap-1 shrink-0">
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-auth-modal'))}
+              className="whitespace-nowrap text-xs font-semibold text-neutral-500 hover:text-neutral-900 px-2 py-1.5 transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full"
+            >
+              Sign In
+            </button>
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+              className="whitespace-nowrap inline-flex items-center bg-neutral-950 hover:bg-neutral-900 text-white px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+            >
+              Demo
+            </button>
+          </div>
+
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -354,18 +371,19 @@ export default function Navbar() {
         </div>
 
       </div>
+    </header>
 
-      {/* Slide-out Mobile Drawer Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <>
-            {/* Backdrop Blur Overlay */}
-            <m.div
+    {/* Slide-out Mobile Drawer Menu */}
+    <AnimatePresence>
+      {isMenuOpen && (
+        <>
+          {/* Backdrop Blur Overlay */}
+          <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMenuOpen(false)}
-              className="fixed inset-0 z-40 bg-neutral-950/40 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[60] bg-neutral-950/40 backdrop-blur-sm lg:hidden"
             />
 
             {/* Slide-out Drawer Panel */}
@@ -374,7 +392,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-xs bg-white border-l border-neutral-200 shadow-2xl p-6 flex flex-col justify-between lg:hidden"
+              className="fixed top-0 right-0 bottom-0 z-[70] w-full max-w-xs bg-white border-l border-neutral-200 shadow-2xl p-6 flex flex-col justify-between lg:hidden"
             >
               <div className="space-y-8">
                 {/* Drawer Header */}
@@ -475,9 +493,9 @@ export default function Navbar() {
                 </button>
               </div>
             </m.div>
-          </>
-        )}
-      </AnimatePresence>
-    </header>
+        </>
+      )}
+    </AnimatePresence>
+    </>
   );
 }

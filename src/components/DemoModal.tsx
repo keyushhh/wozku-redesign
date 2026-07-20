@@ -31,9 +31,9 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
       const focusTimeout = setTimeout(() => {
         const firstInput = modalRef.current?.querySelector('input');
         if (firstInput) {
-          (firstInput as HTMLElement).focus();
+          (firstInput as HTMLElement).focus({ preventScroll: true });
         } else {
-          modalRef.current?.focus();
+          modalRef.current?.focus({ preventScroll: true });
         }
       }, 50);
 
@@ -73,7 +73,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
         clearTimeout(focusTimeout);
         window.removeEventListener('keydown', handleKeyDown);
         if (previouslyFocusedElement.current) {
-          previouslyFocusedElement.current.focus();
+          previouslyFocusedElement.current.focus({ preventScroll: true });
         }
       };
     }
@@ -150,20 +150,20 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
             animate={modalAnimation}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 16 }}
             transition={modalTransition}
-            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl bg-white shadow-2xl flex flex-col md:flex-row h-auto max-h-[90vh] md:max-h-[85vh] focus:outline-hidden"
+            className="relative z-10 w-full max-w-4xl overflow-hidden rounded-3xl bg-white shadow-2xl flex flex-col md:flex-row h-auto max-h-[75vh] md:max-h-[85vh] focus:outline-hidden"
           >
             {/* Top Close button */}
             <button
               onClick={onClose}
               aria-label="Close demo form"
-              className="absolute right-4 top-4 z-30 rounded-full p-2 text-white transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-50 focus-visible:text-red-600 focus-visible:outline-none md:text-neutral-500"
+              className="absolute right-4 top-4 z-30 rounded-full p-2 text-neutral-500 transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-50 focus-visible:text-red-600 focus-visible:outline-none"
             >
               <X className="h-5 w-5" />
             </button>
 
-            <div className="flex w-full flex-col md:flex-row h-full">
-              {/* Left Panel (Branding & Stats) */}
-              <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
+            <div className="flex w-full min-h-0 flex-1 flex-col md:flex-row">
+              {/* Left Panel (Branding & Stats) - hidden on mobile to keep the modal compact; shown from md: up */}
+              <aside className="relative hidden shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:flex md:w-[42%] md:px-9 md:py-9 justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />
                 <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-primary-500/10 blur-3xl" />
                 
@@ -213,7 +213,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
               </aside>
 
               {/* Right Panel (Form / Confirmation) */}
-              <main className="min-h-0 flex-1 overflow-y-auto bg-white px-6 py-8 sm:px-9 md:py-8 flex flex-col justify-center">
+              <main className="min-h-0 flex-1 overflow-y-auto bg-white px-6 py-8 sm:px-9 md:py-8 flex flex-col">
                 <AnimatePresence mode="wait">
                   {step === 'form' && (
                     <motion.div
@@ -222,7 +222,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       animate={{ opacity: 1, x: 0 }}
                       exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 12 }}
                       transition={{ duration: 0.2 }}
-                      className="space-y-5"
+                      className="my-auto space-y-5"
                     >
                       <div className="pr-7">
                         <h3 id="demo-modal-title" className="font-display text-3xl font-black tracking-tight text-neutral-900">Experience Wozku Live</h3>
@@ -288,7 +288,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="flex h-full min-h-[300px] flex-col items-center justify-center space-y-4 text-center"
+                      className="my-auto flex h-full min-h-[300px] flex-col items-center justify-center space-y-4 text-center"
                     >
                       <div className="rounded-full border border-primary-100 bg-primary-50 p-4">
                         <RefreshCw className="h-8 w-8 animate-spin text-primary-600" />
@@ -305,7 +305,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       key="confirmed-view"
                       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      className="flex h-full min-h-[300px] flex-col items-center justify-center space-y-5 text-center py-4"
+                      className="my-auto flex h-full min-h-[300px] flex-col items-center justify-center space-y-5 text-center py-4"
                     >
                       <div className="rounded-full border border-emerald-100 bg-emerald-50 p-3 text-emerald-600">
                         <CheckCircle2 className="h-10 w-10" />

@@ -1083,7 +1083,7 @@ export default function App() {
         </section>
 
         {/* ================= COMPACT PRICING SECTION ================= */}
-        <section id="pricing" className="py-24 border-t border-neutral-200 relative">
+        <section id="pricing" className="py-24 border-t border-neutral-200 relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-primary-500 opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">

@@ -166,18 +166,6 @@ export default function CoreTeamPage() {
   const activeOffice = selectedOfficeId ? OFFICES[selectedOfficeId] : null;
   const targetVB = activeOffice ? getTargetVB(activeOffice) : '0 0 612 696';
 
-  const getBeforeBorderClass = (idx: number) => {
-    const dist = activeIndex - (idx + 1);
-    if (dist === 0) return 'dark:border-white/10';
-    return 'dark:border-white/5';
-  };
-
-  const getAfterBorderClass = (idx: number) => {
-    const dist = idx - 1 - activeIndex;
-    if (dist === 0) return 'dark:border-white/10';
-    return 'dark:border-white/5';
-  };
-
   const activeMember = TEAM_MEMBERS[activeIndex];
   const [selectedModule, setSelectedModule] = useState<FocusModule>(activeMember.focusModules[0]);
 
@@ -189,21 +177,19 @@ export default function CoreTeamPage() {
   const beforeActive = TEAM_MEMBERS.slice(0, activeIndex);
   const afterActive = TEAM_MEMBERS.slice(activeIndex + 1);
 
-  const isDarkMode = false;
-
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500/10 selection:text-indigo-900">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary-500/10 selection:text-primary-900">
       
       {/* Hero */}
       <section className="relative pt-16 pb-20 text-center">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(99,102,241,0.07),transparent)] pointer-events-none" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
-          <span className="inline-flex items-center gap-1.5 text-[9.5px] uppercase font-mono tracking-widest text-indigo-650 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-[9.5px] uppercase font-mono tracking-widest text-primary-650 font-extrabold bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full">
             <Users className="w-3.5 h-3.5" /> Meet the Authors
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-neutral-950 tracking-tight leading-tight">
             We build tools for<br />
-            <span className="text-indigo-600">people-powered growth.</span>
+            <span className="text-primary-600">people-powered growth.</span>
           </h1>
           <p className="text-base text-slate-500 max-w-xl mx-auto leading-relaxed font-medium">
             Learn more about the team behind Wozku and explore our office locations across India.
@@ -214,11 +200,11 @@ export default function CoreTeamPage() {
       {/* Team Bios section */}
       <section className="py-12 border-t border-slate-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-stretch border border-slate-200/20 dark:border-white/5 rounded-[2rem] overflow-hidden bg-slate-100/50 shadow-inner">
+          <div className="flex flex-col lg:flex-row items-stretch border border-slate-200/20 rounded-[2rem] overflow-hidden bg-slate-100/50 shadow-inner">
             
             {/* Columns before active */}
             {beforeActive.map((member) => (
-              <div key={member.id} className={`flex border-r border-slate-200/10 ${getBeforeBorderClass(TEAM_MEMBERS.indexOf(member))}`}>
+              <div key={member.id} className="flex border-r border-slate-200/10">
                 <InactiveCol member={member} idx={TEAM_MEMBERS.indexOf(member)} onClick={() => handleMemberChange(TEAM_MEMBERS.indexOf(member))} />
               </div>
             ))}
@@ -232,7 +218,7 @@ export default function CoreTeamPage() {
                   </span>
                   <div>
                     <h3 className="text-lg font-bold text-neutral-900">{activeMember.name}</h3>
-                    <p className="text-xs text-indigo-650 font-bold">{activeMember.role}</p>
+                    <p className="text-xs text-primary-650 font-bold">{activeMember.role}</p>
                   </div>
                 </div>
 
@@ -251,7 +237,7 @@ export default function CoreTeamPage() {
                         onClick={() => setSelectedModule(m)}
                         className={`text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all cursor-pointer ${
                           selectedModule.name === m.name
-                            ? 'bg-indigo-600 border-indigo-600 text-white shadow-xs'
+                            ? 'bg-primary-600 border-primary-600 text-white shadow-xs'
                             : 'bg-slate-50 border-slate-200 hover:border-slate-350 text-neutral-650'
                         }`}
                       >
@@ -280,7 +266,7 @@ export default function CoreTeamPage() {
 
             {/* Columns after active */}
             {afterActive.map((member) => (
-              <div key={member.id} className={`flex border-l border-slate-200/10 ${getAfterBorderClass(TEAM_MEMBERS.indexOf(member))}`}>
+              <div key={member.id} className="flex border-l border-slate-200/10">
                 <InactiveCol member={member} idx={TEAM_MEMBERS.indexOf(member)} onClick={() => handleMemberChange(TEAM_MEMBERS.indexOf(member))} />
               </div>
             ))}
@@ -294,21 +280,21 @@ export default function CoreTeamPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="space-y-3">
-              <span className="text-[10px] font-mono font-extrabold text-indigo-600 uppercase tracking-widest block">Core Principle 01</span>
+              <span className="text-[10px] font-mono font-extrabold text-primary-600 uppercase tracking-widest block">Core Principle 01</span>
               <h4 className="text-sm font-bold text-slate-800">Trust in People</h4>
               <p className="text-xs text-slate-500 leading-relaxed">
                 We believe sharing visibility should reflect authentic connections, not paid bidding wars or algorithm traps.
               </p>
             </div>
             <div className="space-y-3">
-              <span className="text-[10px] font-mono font-extrabold text-indigo-600 uppercase tracking-widest block">Core Principle 02</span>
+              <span className="text-[10px] font-mono font-extrabold text-primary-600 uppercase tracking-widest block">Core Principle 02</span>
               <h4 className="text-sm font-bold text-slate-800">Safety First</h4>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Users never expose accounts or passwords. Feeds connect safely through secure system authorization guidelines.
               </p>
             </div>
             <div className="space-y-3">
-              <span className="text-[10px] font-mono font-extrabold text-indigo-600 uppercase tracking-widest block">Core Principle 03</span>
+              <span className="text-[10px] font-mono font-extrabold text-primary-600 uppercase tracking-widest block">Core Principle 03</span>
               <h4 className="text-sm font-bold text-slate-800">Easy to Use</h4>
               <p className="text-xs text-slate-500 leading-relaxed">
                 Sharing works when it fits standard habits. Wozku lives inside Slack and email, requiring no new app installations.
@@ -323,7 +309,7 @@ export default function CoreTeamPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-[9.5px] uppercase font-mono tracking-widest text-indigo-600 font-extrabold block">OUR LOCATIONS</span>
+            <span className="text-[9.5px] uppercase font-mono tracking-widest text-primary-600 font-extrabold block">OUR LOCATIONS</span>
             <h2 className="text-3xl font-display font-extrabold text-neutral-900 tracking-tight">
               Engineering & Support Hubs
             </h2>
@@ -339,7 +325,7 @@ export default function CoreTeamPage() {
               <div className="relative w-full max-w-[450px] aspect-[612/696] rounded-2xl bg-white border border-slate-200 p-6 shadow-xs overflow-hidden">
                 <svg
                   viewBox={targetVB}
-                  className="w-full h-full stroke-indigo-200 fill-slate-100 transition-all duration-700 ease-in-out"
+                  className="w-full h-full stroke-primary-200 fill-slate-100 transition-all duration-700 ease-in-out"
                 >
                   {india.locations.map((loc: any) => {
                     const isKa = loc.id === 'ka';
@@ -355,8 +341,8 @@ export default function CoreTeamPage() {
                         className={`transition-colors duration-300 ${
                           isOffice 
                             ? isSelected
-                              ? 'fill-indigo-500 stroke-indigo-650 cursor-pointer'
-                              : 'fill-indigo-50 hover:fill-indigo-100 stroke-indigo-300 cursor-pointer'
+                              ? 'fill-primary-500 stroke-primary-650 cursor-pointer'
+                              : 'fill-primary-50 hover:fill-primary-100 stroke-primary-300 cursor-pointer'
                             : 'fill-slate-100 stroke-slate-200'
                         }`}
                       />
@@ -373,14 +359,14 @@ export default function CoreTeamPage() {
                           cy={off.markerY}
                           r={isSelected ? 10 : 7}
                           className={`stroke-white stroke-2 transition-all duration-300 ${
-                            isSelected ? 'fill-indigo-600' : 'fill-indigo-500 group-hover:fill-indigo-650'
+                            isSelected ? 'fill-primary-600' : 'fill-primary-500 group-hover:fill-primary-650'
                           }`}
                         />
                         <circle
                           cx={off.markerX}
                           cy={off.markerY}
                           r={isSelected ? 20 : 14}
-                          className={`fill-indigo-500/20 stroke-none animate-ping ${isSelected ? 'inline' : 'hidden group-hover:inline'}`}
+                          className={`fill-primary-500/20 stroke-none animate-ping ${isSelected ? 'inline' : 'hidden group-hover:inline'}`}
                         />
                       </g>
                     );
@@ -402,19 +388,19 @@ export default function CoreTeamPage() {
                       onClick={() => setSelectedOfficeId(isSelected ? null : off.stateId)}
                       className={`p-5 rounded-2xl border transition-all cursor-pointer ${
                         isSelected 
-                          ? 'bg-indigo-50/70 border-indigo-550 shadow-xs scale-[1.01]'
+                          ? 'bg-primary-50/70 border-primary-550 shadow-xs scale-[1.01]'
                           : 'bg-white border-slate-200/80 hover:border-slate-350 hover:bg-slate-50/30'
                       }`}
                     >
                       <div className="flex items-start justify-between">
                         <div className="space-y-1">
                           <div className="flex items-center gap-1.5">
-                            <MapPin className={`h-4.5 w-4.5 shrink-0 ${isSelected ? 'text-indigo-650' : 'text-neutral-400'}`} />
+                            <MapPin className={`h-4.5 w-4.5 shrink-0 ${isSelected ? 'text-primary-650' : 'text-neutral-400'}`} />
                             <h4 className="text-sm font-extrabold text-neutral-900">{off.city} Office</h4>
                           </div>
-                          <p className="text-[9.5px] text-indigo-650 font-bold uppercase tracking-wider pl-6">{off.role}</p>
+                          <p className="text-[9.5px] text-primary-650 font-bold uppercase tracking-wider pl-6">{off.role}</p>
                         </div>
-                        <span className={`text-[9px] px-2.5 py-0.5 rounded-full font-mono font-bold ${isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-500'}`}>
+                        <span className={`text-[9px] px-2.5 py-0.5 rounded-full font-mono font-bold ${isSelected ? 'bg-primary-600 text-white' : 'bg-slate-100 text-slate-500'}`}>
                           {off.stateId.toUpperCase()}
                         </span>
                       </div>
@@ -440,9 +426,9 @@ export default function CoreTeamPage() {
 
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden bg-[#09090f] text-fixed-white">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--indigo-500) 14%, transparent), transparent 65%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--primary-500) 14%, transparent), transparent 65%)' }} />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-widest text-indigo-400">
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-500/10 border border-primary-500/20 px-4 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-widest text-primary-400">
             <Cpu className="w-3.5 h-3.5" /> Technical Support
           </span>
           <h2 className="text-3xl font-display font-extrabold text-fixed-white">Have questions about setting up?</h2>
@@ -454,11 +440,11 @@ export default function CoreTeamPage() {
             <input
               type="email"
               placeholder="support@yourcompany.com"
-              className="flex-1 w-full sm:w-auto bg-[#141418] border border-fixed-white/10 focus:border-indigo-500/50 rounded-xl px-4 py-3 text-sm text-fixed-white placeholder:text-fixed-muted focus:outline-none transition-all"
+              className="flex-1 w-full sm:w-auto bg-[#141418] border border-fixed-white/10 focus:border-primary-500/50 rounded-xl px-4 py-3 text-sm text-fixed-white placeholder:text-fixed-muted focus:outline-none transition-all"
             />
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-indigo-650 hover:bg-indigo-550 text-fixed-white font-bold py-3 px-6 rounded-xl text-sm transition-all shadow-xl shadow-indigo-600/20 hover:scale-[1.02] cursor-pointer whitespace-nowrap"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary-650 hover:bg-primary-550 text-fixed-white font-bold py-3 px-6 rounded-xl text-sm transition-all shadow-xl shadow-primary-600/20 hover:scale-[1.02] cursor-pointer whitespace-nowrap"
             >
               Contact Support <ArrowRight className="w-4 h-4" />
             </button>

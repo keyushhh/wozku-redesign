@@ -22,7 +22,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-3 text-xs text-neutral-500 font-mono">
               <span className="flex items-center gap-1">
-                <ShieldCheck className="h-3.5 w-3.5 text-indigo-400" />
+                <ShieldCheck className="h-3.5 w-3.5 text-primary-400" />
                 SOC2 Ready
               </span>
               <span className="h-1 w-1 bg-neutral-800 rounded-full" />
@@ -67,11 +67,11 @@ export default function Footer() {
             <h5 className="text-[10px] font-mono uppercase tracking-widest text-neutral-500">Global Offices</h5>
             <ul className="space-y-2 text-xs text-neutral-400 font-mono">
               <li className="flex items-start gap-2">
-                <MapPin className="h-3.5 w-3.5 text-indigo-400 shrink-0 mt-0.5" />
+                <MapPin className="h-3.5 w-3.5 text-primary-400 shrink-0 mt-0.5" />
                 <span>S-4, 269 Panchanantala Road, Kolkata 700041</span>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="h-3.5 w-3.5 text-indigo-400 shrink-0" />
+                <Mail className="h-3.5 w-3.5 text-primary-400 shrink-0" />
                 <span>contact@wozku.com</span>
               </li>
             </ul>

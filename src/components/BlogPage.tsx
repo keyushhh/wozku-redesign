@@ -145,17 +145,17 @@ export default function BlogPage() {
   const regularPosts = filteredPosts.filter(p => !p.featured);
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-indigo-500/10 selection:text-indigo-900 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-primary-500/10 selection:text-primary-900 relative overflow-hidden">
 
       {/* Background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--indigo-500) 5%, transparent), transparent 60%)' }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--primary-500) 5%, transparent), transparent 60%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-600 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
-            <Rss className="w-3.5 h-3.5 text-indigo-500" /> BLOG & ARTICLES
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-primary-600 font-extrabold bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full">
+            <Rss className="w-3.5 h-3.5 text-primary-500" /> BLOG & ARTICLES
           </span>
           <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
             Advocacy Strategy &<br className="hidden sm:block" /> Industry Intelligence
@@ -178,7 +178,7 @@ export default function BlogPage() {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'bg-indigo-600 text-fixed-white shadow-xs shadow-indigo-500/20'
+                      ? 'bg-primary-600 text-fixed-white shadow-xs shadow-primary-500/20'
                       : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                   }`}
                 >
@@ -196,7 +196,7 @@ export default function BlogPage() {
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder="Search articles…"
-              className="w-full sm:w-[220px] bg-white border border-slate-200 rounded-xl pl-9 pr-8 py-2 text-xs text-slate-800 placeholder:text-slate-400 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 shadow-sm transition-all"
+              className="w-full sm:w-[220px] bg-white border border-slate-200 rounded-xl pl-9 pr-8 py-2 text-xs text-slate-800 placeholder:text-slate-400 font-medium focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:border-primary-400 shadow-sm transition-all"
             />
             {searchQuery && (
               <button
@@ -234,10 +234,10 @@ export default function BlogPage() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 12 }}
                   transition={{ duration: 0.25 }}
-                  className="group bg-white border border-slate-200 hover:border-indigo-500/40 rounded-3xl p-8 sm:p-10 flex flex-col lg:flex-row items-start gap-8 shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer relative overflow-hidden"
+                  className="group bg-white border border-slate-200 hover:border-primary-500/40 rounded-3xl p-8 sm:p-10 flex flex-col lg:flex-row items-start gap-8 shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer relative overflow-hidden"
                 >
                   {/* Subtle glow */}
-                  <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/[0.025] rounded-full blur-3xl pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-primary-500/[0.025] rounded-full blur-3xl pointer-events-none" />
 
                   {/* Left: Meta Column */}
                   <div className="flex-1 min-w-0 space-y-4">
@@ -245,12 +245,12 @@ export default function BlogPage() {
                       <span className={`text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border font-mono ${CATEGORY_COLORS[post.category] ?? 'text-slate-500 bg-slate-50 border-slate-100'}`}>
                         {post.category}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 border border-indigo-100 px-2.5 py-1 rounded-full font-mono">
+                      <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-primary-600 bg-primary-50 border border-primary-100 px-2.5 py-1 rounded-full font-mono">
                         ★ Featured
                       </span>
                     </div>
 
-                    <h2 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 leading-tight group-hover:text-indigo-600 transition-colors tracking-tight">
+                    <h2 className="text-xl sm:text-2xl font-display font-extrabold text-neutral-900 leading-tight group-hover:text-primary-600 transition-colors tracking-tight">
                       {post.title}
                     </h2>
                     <p className="text-sm text-neutral-600 leading-relaxed font-sans font-medium">
@@ -290,7 +290,7 @@ export default function BlogPage() {
                         </div>
                       </div>
                     </div>
-                    <span className="text-indigo-600 group-hover:text-indigo-500 transition-colors flex items-center gap-1 font-bold text-xs">
+                    <span className="text-primary-600 group-hover:text-primary-500 transition-colors flex items-center gap-1 font-bold text-xs">
                       Read Article
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                     </span>
@@ -319,7 +319,7 @@ export default function BlogPage() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 12 }}
                     transition={{ duration: 0.2, delay: i * 0.04 }}
-                    className="group bg-white border border-slate-200 hover:border-indigo-500/40 rounded-3xl p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.01]"
+                    className="group bg-white border border-slate-200 hover:border-primary-500/40 rounded-3xl p-6 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer hover:scale-[1.01]"
                   >
                     <div className="space-y-3 mb-6">
                       {/* Category Badge */}
@@ -327,7 +327,7 @@ export default function BlogPage() {
                         {post.category}
                       </span>
 
-                      <h3 className="text-sm font-bold text-neutral-900 leading-snug group-hover:text-indigo-600 transition-colors min-h-[40px]">
+                      <h3 className="text-sm font-bold text-neutral-900 leading-snug group-hover:text-primary-600 transition-colors min-h-[40px]">
                         {post.title}
                       </h3>
                       <p className="text-[11px] text-slate-550 leading-relaxed font-medium line-clamp-3">
@@ -360,7 +360,7 @@ export default function BlogPage() {
                             </div>
                           </div>
                         </div>
-                        <span className="text-indigo-600 group-hover:text-indigo-500 transition-colors flex items-center gap-0.5 font-bold text-[10px] shrink-0">
+                        <span className="text-primary-600 group-hover:text-primary-500 transition-colors flex items-center gap-0.5 font-bold text-[10px] shrink-0">
                           Read
                           <ArrowUpRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </span>
@@ -376,12 +376,12 @@ export default function BlogPage() {
         {/* Newsletter CTA */}
         <div className="mt-28 max-w-5xl mx-auto bg-[#09090f] text-fixed-white rounded-[2.5rem] p-8 sm:p-12 border border-fixed-white/10 shadow-2xl relative overflow-hidden">
           <div className="absolute inset-0 bg-grid-dots-accent opacity-15 pointer-events-none" />
-          <div className="absolute top-0 right-0 h-48 w-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 h-48 w-48 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 h-32 w-32 bg-secondary-500/[0.06] rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="space-y-3 text-center lg:text-left">
-              <span className="inline-flex items-center gap-1.5 text-[8.5px] uppercase font-mono tracking-widest text-indigo-400 font-extrabold bg-indigo-950 border border-indigo-900/50 px-3.5 py-1 rounded-full">
+              <span className="inline-flex items-center gap-1.5 text-[8.5px] uppercase font-mono tracking-widest text-primary-400 font-extrabold bg-primary-950 border border-primary-900/50 px-3.5 py-1 rounded-full">
                 <Rss className="w-3.5 h-3.5" /> WEEKLY DISPATCH
               </span>
               <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-fixed-white leading-tight">
@@ -397,10 +397,10 @@ export default function BlogPage() {
                 <input
                   type="email"
                   placeholder="you@company.com"
-                  className="flex-1 bg-[#141418] border border-fixed-white/10 text-fixed-white text-xs placeholder:text-fixed-muted rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-700 transition-all font-medium"
+                  className="flex-1 bg-[#141418] border border-fixed-white/10 text-fixed-white text-xs placeholder:text-fixed-muted rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500/40 focus:border-primary-700 transition-all font-medium"
                 />
                 <button
-                  className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-5 py-3 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-indigo-500/20 shrink-0"
+                  className="bg-primary-600 hover:bg-primary-500 text-white text-xs font-bold px-5 py-3 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-primary-500/20 shrink-0"
                 >
                   Subscribe
                   <ArrowRight className="w-3.5 h-3.5" />

@@ -152,7 +152,7 @@ export default function ROICalculatorPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-indigo-500/10 selection:text-indigo-900 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-primary-500/10 selection:text-primary-900 relative overflow-hidden">
       
       {/* Background gradients and meshes */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] bg-[radial-gradient(ellipse_at_50%_0%,rgba(99,102,241,0.06),transparent_60%)] pointer-events-none" />
@@ -165,8 +165,8 @@ export default function ROICalculatorPage() {
         
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-4">
-          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-600 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
-            <Calculator className="w-3.5 h-3.5 text-indigo-500" /> B2B financial impact modeling
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-primary-600 font-extrabold bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full">
+            <Calculator className="w-3.5 h-3.5 text-primary-500" /> B2B financial impact modeling
           </span>
           <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
             Referral ROI Calculator
@@ -197,20 +197,20 @@ export default function ROICalculatorPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Column 1: Input Parameters (4 cols) */}
-          <div className="lg:col-span-4 bg-white dark:bg-[#0f1115] border border-slate-200 dark:border-fixed-white/8 rounded-3xl p-6 shadow-xs flex flex-col justify-between space-y-8">
+          <div className="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-6 shadow-xs flex flex-col justify-between space-y-8">
             <div className="space-y-6">
               <div className="space-y-1">
-                <h3 className="text-sm font-bold text-neutral-900 dark:text-fixed-white">Input Parameters</h3>
-                <p className="text-[10px] text-neutral-400 dark:text-fixed-muted">Tweak inputs to match your target brand size.</p>
+                <h3 className="text-sm font-bold text-neutral-900">Input Parameters</h3>
+                <p className="text-[10px] text-neutral-400">Tweak inputs to match your target brand size.</p>
               </div>
 
-              <hr className="border-slate-100 dark:border-fixed-white/6" />
+              <hr className="border-slate-100" />
 
               {/* Slider 1: Advocates */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Users className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> People Sharing</span>
-                  <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{advocates.toLocaleString()}</span>
+                  <span className="text-slate-700 flex items-center gap-1.5"><Users className="w-4 h-4 text-slate-400" /> People Sharing</span>
+                  <span className="text-primary-650 bg-primary-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{advocates.toLocaleString()}</span>
                 </div>
                 <input 
                   type="range" min="10" max="2500" step="10" 
@@ -219,9 +219,9 @@ export default function ROICalculatorPage() {
                     setAdvocates(Number(e.target.value));
                     setActivePreset('');
                   }}
-                  className="w-full accent-indigo-650 h-1.5 bg-slate-100 dark:bg-[#20232b] rounded-lg cursor-pointer"
+                  className="w-full accent-primary-650 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
                 />
-                <div className="flex justify-between text-[9px] font-mono text-slate-400 dark:text-fixed-muted">
+                <div className="flex justify-between text-[9px] font-mono text-slate-400">
                   <span>10</span>
                   <span>2,500</span>
                 </div>
@@ -230,8 +230,8 @@ export default function ROICalculatorPage() {
               {/* Slider 2: Average Followers */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Eye className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Avg. Connections</span>
-                  <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{followers.toLocaleString()}</span>
+                  <span className="text-slate-700 flex items-center gap-1.5"><Eye className="w-4 h-4 text-slate-400" /> Avg. Connections</span>
+                  <span className="text-primary-650 bg-primary-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{followers.toLocaleString()}</span>
                 </div>
                 <input 
                   type="range" min="100" max="5000" step="50" 
@@ -240,9 +240,9 @@ export default function ROICalculatorPage() {
                     setFollowers(Number(e.target.value));
                     setActivePreset('');
                   }}
-                  className="w-full accent-indigo-650 h-1.5 bg-slate-100 dark:bg-[#20232b] rounded-lg cursor-pointer"
+                  className="w-full accent-primary-650 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
                 />
-                <div className="flex justify-between text-[9px] font-mono text-slate-400 dark:text-fixed-muted">
+                <div className="flex justify-between text-[9px] font-mono text-slate-400">
                   <span>100</span>
                   <span>5,000</span>
                 </div>
@@ -251,8 +251,8 @@ export default function ROICalculatorPage() {
               {/* Slider 3: Share Frequency */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><RefreshCw className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Posts Shared Monthly</span>
-                  <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{shares} / mo</span>
+                  <span className="text-slate-700 flex items-center gap-1.5"><RefreshCw className="w-4 h-4 text-slate-400" /> Posts Shared Monthly</span>
+                  <span className="text-primary-650 bg-primary-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{shares} / mo</span>
                 </div>
                 <input 
                   type="range" min="1" max="10" step="1" 
@@ -261,9 +261,9 @@ export default function ROICalculatorPage() {
                     setShares(Number(e.target.value));
                     setActivePreset('');
                   }}
-                  className="w-full accent-indigo-650 h-1.5 bg-slate-100 dark:bg-[#20232b] rounded-lg cursor-pointer"
+                  className="w-full accent-primary-650 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
                 />
-                <div className="flex justify-between text-[9px] font-mono text-slate-400 dark:text-fixed-muted">
+                <div className="flex justify-between text-[9px] font-mono text-slate-400">
                   <span>1 / mo</span>
                   <span>10 / mo</span>
                 </div>
@@ -272,8 +272,8 @@ export default function ROICalculatorPage() {
               {/* Slider 4: Click-Through Rate */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Target className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Click-Through Rate (CTR %)</span>
-                  <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{ctr.toFixed(1)}%</span>
+                  <span className="text-slate-700 flex items-center gap-1.5"><Target className="w-4 h-4 text-slate-400" /> Click-Through Rate (CTR %)</span>
+                  <span className="text-primary-650 bg-primary-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">{ctr.toFixed(1)}%</span>
                 </div>
                 <input 
                   type="range" min="0.5" max="10.0" step="0.1" 
@@ -282,9 +282,9 @@ export default function ROICalculatorPage() {
                     setCtr(Number(e.target.value));
                     setActivePreset('');
                   }}
-                  className="w-full accent-indigo-650 h-1.5 bg-slate-100 dark:bg-[#20232b] rounded-lg cursor-pointer"
+                  className="w-full accent-primary-650 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
                 />
-                <div className="flex justify-between text-[9px] font-mono text-slate-400 dark:text-fixed-muted">
+                <div className="flex justify-between text-[9px] font-mono text-slate-400">
                   <span>0.5%</span>
                   <span>10.0%</span>
                 </div>
@@ -293,8 +293,8 @@ export default function ROICalculatorPage() {
               {/* Slider 5: Click Value CPC */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-slate-700 dark:text-fixed-light flex items-center gap-1.5"><Coins className="w-4 h-4 text-slate-400 dark:text-fixed-muted" /> Ad Cost per Click</span>
-                  <span className="text-indigo-650 bg-indigo-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">${cpc.toFixed(2)}</span>
+                  <span className="text-slate-700 flex items-center gap-1.5"><Coins className="w-4 h-4 text-slate-400" /> Ad Cost per Click</span>
+                  <span className="text-primary-650 bg-primary-50 px-2.5 py-0.5 rounded-lg text-[10.5px] font-mono">${cpc.toFixed(2)}</span>
                 </div>
                 <input 
                   type="range" min="1.00" max="15.00" step="0.25" 
@@ -303,17 +303,17 @@ export default function ROICalculatorPage() {
                     setCpc(Number(e.target.value));
                     setActivePreset('');
                   }}
-                  className="w-full accent-indigo-650 h-1.5 bg-slate-100 dark:bg-[#20232b] rounded-lg cursor-pointer"
+                  className="w-full accent-primary-650 h-1.5 bg-slate-100 rounded-lg cursor-pointer"
                 />
-                <div className="flex justify-between text-[9px] font-mono text-slate-400 dark:text-fixed-muted">
+                <div className="flex justify-between text-[9px] font-mono text-slate-400">
                   <span>$1.00</span>
                   <span>$15.00</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-50 dark:bg-[#141418] border border-slate-150 dark:border-fixed-white/8 p-4.5 rounded-2xl text-[10px] text-slate-500 dark:text-fixed-muted leading-relaxed font-sans mt-4 flex gap-2">
-              <Info className="w-4.5 h-4.5 text-indigo-500 shrink-0 mt-0.5" />
+            <div className="bg-slate-50 border border-slate-150 p-4.5 rounded-2xl text-[10px] text-slate-500 leading-relaxed font-sans mt-4 flex gap-2">
+              <Info className="w-4.5 h-4.5 text-primary-500 shrink-0 mt-0.5" />
               <p>
                 Calculations are modeled on average ad cost offsets. Equivalent Ad Savings represents the budget saved by generating views naturally instead of buying standard search or social ads.
               </p>
@@ -321,21 +321,21 @@ export default function ROICalculatorPage() {
           </div>
 
           {/* Column 2: Dashboard & Comparisons (5 cols) */}
-          <div className="lg:col-span-5 bg-white dark:bg-[#0f1115] border border-slate-100/60 dark:border-fixed-white/8 rounded-3xl p-6 shadow-xs flex flex-col justify-between space-y-8">
+          <div className="lg:col-span-5 bg-white border border-slate-100/60 rounded-3xl p-6 shadow-xs flex flex-col justify-between space-y-8">
             <div className="space-y-6">
               
               <div className="space-y-1">
-                <h3 className="text-sm font-bold text-neutral-900 dark:text-fixed-white">Financial Impact Dashboard</h3>
-                <p className="text-[10px] text-neutral-400 dark:text-fixed-muted">Real-time aggregate return projections from your advocacy network.</p>
+                <h3 className="text-sm font-bold text-neutral-900">Financial Impact Dashboard</h3>
+                <p className="text-[10px] text-neutral-400">Real-time aggregate return projections from your advocacy network.</p>
               </div>
 
-              <hr className="border-slate-100 dark:border-fixed-white/6" />
+              <hr className="border-slate-100" />
 
               {/* Metric 1: Yearly EAV */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-50 border border-slate-100/50 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Equivalent Ad Savings</span>
-                  <div className="text-2xl font-display font-extrabold text-indigo-950">
+                  <div className="text-2xl font-display font-extrabold text-primary-950">
                     <AnimatedNumber value={yearlyEAV} prefix="$" />
                   </div>
                   <span className="text-[9.5px] text-emerald-600 font-semibold block font-mono">
@@ -344,9 +344,9 @@ export default function ROICalculatorPage() {
                 </div>
 
                 {/* Metric 2: Net ROI */}
-                <div className="bg-slate-55 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-55 border border-slate-100/50 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">ROI Cost Recovery</span>
-                  <div className="text-2xl font-display font-extrabold text-indigo-950">
+                  <div className="text-2xl font-display font-extrabold text-primary-950">
                     <AnimatedNumber value={roiPercentage} suffix="%" />
                   </div>
                   <span className="text-[9.5px] text-slate-500 font-semibold block font-mono">
@@ -357,7 +357,7 @@ export default function ROICalculatorPage() {
 
               {/* Metric 3: Reach & Clicks */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-50 border border-slate-100/50 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Message Views</span>
                   <div className="text-lg font-mono font-bold text-slate-900">
                     <AnimatedNumber value={yearlyImpressions} />
@@ -367,7 +367,7 @@ export default function ROICalculatorPage() {
                   </span>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-[#141418] border border-slate-100/50 dark:border-fixed-white/6 p-4.5 rounded-2xl space-y-1">
+                <div className="bg-slate-50 border border-slate-100/50 p-4.5 rounded-2xl space-y-1">
                   <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider block">Yearly Clicks Generated</span>
                   <div className="text-lg font-mono font-bold text-slate-900">
                     <AnimatedNumber value={yearlyClicks} />
@@ -401,12 +401,12 @@ export default function ROICalculatorPage() {
                   {/* Bar 2: Wozku Cost */}
                   <div className="space-y-1">
                     <div className="flex justify-between text-[10px] font-bold">
-                      <span className="text-indigo-650">Wozku Annual License Cost</span>
-                      <span className="text-indigo-900"><AnimatedNumber value={wozkuAnnualLicense} prefix="$" /></span>
+                      <span className="text-primary-650">Wozku Annual License Cost</span>
+                      <span className="text-primary-900"><AnimatedNumber value={wozkuAnnualLicense} prefix="$" /></span>
                     </div>
                     <div className="h-5 bg-slate-100 rounded-lg overflow-hidden flex">
                       <div 
-                        className="bg-indigo-600 h-full rounded-lg transition-all duration-500 ease-out" 
+                        className="bg-primary-600 h-full rounded-lg transition-all duration-500 ease-out" 
                         style={{ width: `${Math.max(2, Math.min(100, (wozkuAnnualLicense / yearlyEAV) * 100))}%` }} 
                       />
                     </div>
@@ -418,7 +418,7 @@ export default function ROICalculatorPage() {
             </div>
 
             <div className="text-[9.5px] text-slate-400 font-mono text-center flex items-center justify-center gap-1.5 border-t border-slate-100 pt-4">
-              <PieChart className="w-3.5 h-3.5 text-indigo-500" /> MODEL UPDATES DYNAMICALLY ON SLIDER MOVEMENT
+              <PieChart className="w-3.5 h-3.5 text-primary-500" /> MODEL UPDATES DYNAMICALLY ON SLIDER MOVEMENT
             </div>
           </div>
 
@@ -427,8 +427,8 @@ export default function ROICalculatorPage() {
             <div className="space-y-6">
               
               <div className="space-y-1">
-                <div className="flex items-center gap-1.5 text-[9px] font-mono text-indigo-400 font-bold uppercase tracking-widest">
-                  <Award className="w-3.5 h-3.5 text-indigo-500" /> PIPELINE CAPABILITIES
+                <div className="flex items-center gap-1.5 text-[9px] font-mono text-primary-400 font-bold uppercase tracking-widest">
+                  <Award className="w-3.5 h-3.5 text-primary-500" /> PIPELINE CAPABILITIES
                 </div>
                 <h3 className="text-sm font-bold text-white">Revenue Multiplier</h3>
                 <p className="text-[10px] text-fixed-light leading-relaxed">Estimate how many clicks convert into closed sales deals.</p>
@@ -443,13 +443,13 @@ export default function ROICalculatorPage() {
                 <div className="space-y-1.5">
                   <div className="flex justify-between font-bold">
                     <span className="text-fixed-light text-[11px]">Avg. Deal Size (ACV)</span>
-                    <span className="text-indigo-400 font-mono">${acv.toLocaleString()}</span>
+                    <span className="text-primary-400 font-mono">${acv.toLocaleString()}</span>
                   </div>
                   <input 
                     type="range" min="5000" max="150000" step="5000"
                     value={acv} 
                     onChange={(e) => setAcv(Number(e.target.value))}
-                    className="w-full accent-indigo-500 h-1 bg-[#141418] rounded-lg cursor-pointer"
+                    className="w-full accent-primary-500 h-1 bg-[#141418] rounded-lg cursor-pointer"
                   />
                 </div>
 
@@ -457,20 +457,20 @@ export default function ROICalculatorPage() {
                 <div className="space-y-1.5">
                   <div className="flex justify-between font-bold">
                     <span className="text-fixed-light text-[11px]">Click-to-Lead Conv %</span>
-                    <span className="text-indigo-400 font-mono">{leadConv.toFixed(1)}%</span>
+                    <span className="text-primary-400 font-mono">{leadConv.toFixed(1)}%</span>
                   </div>
                   <input 
                     type="range" min="0.1" max="5.0" step="0.1"
                     value={leadConv} 
                     onChange={(e) => setLeadConv(Number(e.target.value))}
-                    className="w-full accent-indigo-500 h-1 bg-[#141418] rounded-lg cursor-pointer"
+                    className="w-full accent-primary-500 h-1 bg-[#141418] rounded-lg cursor-pointer"
                   />
                 </div>
 
                 {/* Outcome Sourced Pipeline */}
                 <div className="bg-[#141418] border border-white/10 p-4.5 rounded-2xl text-center space-y-2 mt-4">
                   <span className="text-[9px] font-mono text-fixed-muted uppercase tracking-widest block font-bold">Influenced Annual Pipeline</span>
-                  <div className="text-2xl font-mono font-extrabold text-indigo-400">
+                  <div className="text-2xl font-mono font-extrabold text-primary-400">
                     <AnimatedNumber value={influencedPipeline} prefix="$" />
                   </div>
                   <span className="text-[8.5px] text-fixed-muted block font-sans">

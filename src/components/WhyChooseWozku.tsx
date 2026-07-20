@@ -89,14 +89,14 @@ export default function WhyChooseWozku() {
           </div>
 
           {/* Card B: Foreground Role Policy card */}
-          <div className="absolute top-7 right-4 w-[75%] bg-white border border-indigo-500/25 rounded-xl px-4 py-2.5 shadow-[0_8px_30px_rgba(99,102,241,0.06)] translate-x-[12px] z-10">
+          <div className="absolute top-7 right-4 w-[75%] bg-white border border-primary-500/25 rounded-xl px-4 py-2.5 shadow-[0_8px_30px_rgba(99,102,241,0.06)] translate-x-[12px] z-10">
             <div className="flex justify-between items-center mb-1">
-              <span className="text-[8px] font-mono font-bold text-indigo-600 tracking-wider">POLICY ACCESS CONTROL</span>
+              <span className="text-[8px] font-mono font-bold text-primary-600 tracking-wider">POLICY ACCESS CONTROL</span>
               <span className="text-[8px] font-mono font-bold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-100/50">Verified</span>
             </div>
             <div className="text-[11px] font-bold text-neutral-850 font-sans">Role-Based SAML 2.0 Policy</div>
             <div className="text-[8.5px] text-neutral-500 mt-0.5 flex items-center gap-1">
-              <Lock className="w-2.5 h-2.5 text-indigo-500" /> Whitelisted IP Access Rules
+              <Lock className="w-2.5 h-2.5 text-primary-500" /> Whitelisted IP Access Rules
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export default function WhyChooseWozku() {
         <div className="space-y-2 pt-3 border-t border-neutral-200">
           <div className="flex items-center justify-between">
             <h4 className="font-display font-bold text-base text-neutral-900">Enterprise Security</h4>
-            <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100/50 px-2 py-0.5 rounded">
+            <span className="text-[9px] font-mono font-bold text-primary-700 bg-primary-50 border border-primary-100/50 px-2 py-0.5 rounded">
               SOC2 Ready
             </span>
           </div>
@@ -133,13 +133,13 @@ export default function WhyChooseWozku() {
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="absolute top-0 w-16 h-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent"
+              className="absolute top-0 w-16 h-full bg-gradient-to-r from-transparent via-primary-500 to-transparent"
             />
           </div>
 
           <div className="flex items-center justify-between w-full px-4 relative z-10">
             {[
-              { id: 1, label: 'Trigger', icon: <Zap className="w-4 h-4" />, bg: 'bg-indigo-50 text-indigo-600 border-indigo-100' },
+              { id: 1, label: 'Trigger', icon: <Zap className="w-4 h-4" />, bg: 'bg-primary-50 text-primary-600 border-primary-100' },
               { id: 2, label: 'Points', icon: <Trophy className="w-4 h-4" />, bg: 'bg-amber-50 text-amber-600 border-amber-100' },
               { id: 3, label: 'Reward', icon: <Gift className="w-4 h-4" />, bg: 'bg-emerald-50 text-emerald-600 border-emerald-100' }
             ].map((step, idx) => (
@@ -148,7 +148,7 @@ export default function WhyChooseWozku() {
                   onClick={() => setActiveStep(step.id)}
                   className={`h-10 w-10 rounded-xl border flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer ${
                     activeStep === step.id
-                      ? 'bg-indigo-600 text-white border-indigo-650 shadow-md'
+                      ? 'bg-primary-600 text-white border-primary-650 shadow-md'
                       : `${step.bg}`
                   }`}
                 >
@@ -165,7 +165,7 @@ export default function WhyChooseWozku() {
         <div className="space-y-2 pt-3 border-t border-neutral-200">
           <div className="flex items-center justify-between">
             <h4 className="font-display font-bold text-base text-neutral-900">Cognitive Automation</h4>
-            <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100/50 px-2 py-0.5 rounded">
+            <span className="text-[9px] font-mono font-bold text-primary-700 bg-primary-50 border border-primary-100/50 px-2 py-0.5 rounded">
               Zero-touch
             </span>
           </div>
@@ -185,8 +185,8 @@ export default function WhyChooseWozku() {
           
           {/* Top Left Title info */}
           <div className="absolute top-2.5 left-3 z-20 flex flex-col">
-            <span className="text-[9px] font-mono font-extrabold uppercase tracking-widest text-indigo-400 flex items-center gap-1.5">
-              <Activity className="w-3 h-3 text-indigo-500 animate-pulse" /> Live Telemetry Clicks
+            <span className="text-[9px] font-mono font-extrabold uppercase tracking-widest text-primary-400 flex items-center gap-1.5">
+              <Activity className="w-3 h-3 text-primary-500 animate-pulse" /> Live Telemetry Clicks
             </span>
             <span className="text-[8px] font-mono text-fixed-light/60 mt-0.5">Organic Click Attribution</span>
           </div>
@@ -223,8 +223,8 @@ export default function WhyChooseWozku() {
           <svg className="w-[85%] h-[60%] mt-4 ml-4" viewBox="0 0 100 100" fill="none" preserveAspectRatio="none">
             <defs>
               <linearGradient id="glowGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" className="text-indigo-500" stopColor="currentColor" stopOpacity="0.25" />
-                <stop offset="100%" className="text-indigo-500" stopColor="currentColor" stopOpacity="0" />
+                <stop offset="0%" className="text-primary-500" stopColor="currentColor" stopOpacity="0.25" />
+                <stop offset="100%" className="text-primary-500" stopColor="currentColor" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d="M0 80 Q 25 30, 50 60 T 100 20 L 100 100 L 0 100 Z" fill="url(#glowGrad)" />
@@ -237,7 +237,7 @@ export default function WhyChooseWozku() {
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeOut" }}
               d="M0 80 Q 25 30, 50 60 T 100 20"
-              className="text-indigo-500"
+              className="text-primary-500"
               stroke="currentColor"
               strokeWidth="2.5"
               strokeLinecap="round"
@@ -247,7 +247,7 @@ export default function WhyChooseWozku() {
           {/* Tracker dot - absolutely positioned in container space using real pixel coords from getPointAtLength() */}
           {dotPos && (
             <div
-              className="absolute h-3 w-3 rounded-full bg-indigo-500 border-2 border-fixed-white shadow-[0_0_12px_var(--indigo-500)] flex items-center justify-center pointer-events-none"
+              className="absolute h-3 w-3 rounded-full bg-primary-500 border-2 border-fixed-white shadow-[0_0_12px_var(--primary-500)] flex items-center justify-center pointer-events-none"
               style={{
                 left: dotPos.x,
                 top: dotPos.y,
@@ -286,14 +286,14 @@ export default function WhyChooseWozku() {
                 key={i}
                 animate={{ scale: [0.8, 1.6], opacity: [0.15, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: i * 1.5, ease: "easeOut" }}
-                className="absolute h-14 w-14 border border-indigo-500/15 rounded-full"
+                className="absolute h-14 w-14 border border-primary-500/15 rounded-full"
               />
             ))}
           </div>
 
           <div className="relative flex items-center justify-center h-12 w-12 bg-neutral-50 rounded-full border border-neutral-100 shadow-2xs z-10">
             {/* Speedometer ring gauge */}
-            <div className="absolute inset-0 rounded-full border-[2.5px] border-neutral-100/65 border-t-indigo-500 border-r-indigo-500 border-l-indigo-500/80 rotate-45" />
+            <div className="absolute inset-0 rounded-full border-[2.5px] border-neutral-100/65 border-t-primary-500 border-r-primary-500 border-l-primary-500/80 rotate-45" />
             
             <div className="flex flex-col items-center justify-center text-center">
               <span className="text-[10px] font-mono font-black text-neutral-800 leading-none">99.9%</span>
@@ -309,7 +309,7 @@ export default function WhyChooseWozku() {
         <div className="space-y-2 pt-3 border-t border-neutral-100">
           <div className="flex items-center justify-between">
             <h4 className="font-display font-bold text-base text-neutral-900">Hyper Scalability</h4>
-            <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100/50 px-2 py-0.5 rounded">
+            <span className="text-[9px] font-mono font-bold text-primary-700 bg-primary-50 border border-primary-100/50 px-2 py-0.5 rounded">
               SLA Guarantee
             </span>
           </div>
@@ -340,7 +340,7 @@ export default function WhyChooseWozku() {
         <div className="space-y-2 pt-3 border-t border-neutral-100">
           <div className="flex items-center justify-between">
             <h4 className="font-display font-bold text-base text-neutral-900">Global Compliance</h4>
-            <span className="text-[9px] font-mono font-bold text-indigo-700 bg-indigo-50 border border-indigo-100/50 px-2 py-0.5 rounded">
+            <span className="text-[9px] font-mono font-bold text-primary-700 bg-primary-50 border border-primary-100/50 px-2 py-0.5 rounded">
               150+ Countries
             </span>
           </div>
@@ -359,7 +359,7 @@ export default function WhyChooseWozku() {
         <div className="relative h-32 w-full flex flex-col justify-center gap-3 z-10 px-2">
           
           <div className="flex items-start gap-3 bg-[#141418] border border-fixed-white/10 rounded-xl px-4 py-2.5 max-w-[90%] md:max-w-[75%]">
-            <div className="h-6 w-6 bg-indigo-600 text-fixed-white rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 shadow-sm font-mono mt-0.5">
+            <div className="h-6 w-6 bg-primary-600 text-fixed-white rounded-full flex items-center justify-center text-[10px] font-extrabold shrink-0 shadow-sm font-mono mt-0.5">
               W
             </div>
             <div>
@@ -384,7 +384,7 @@ export default function WhyChooseWozku() {
         <div className="space-y-2 pt-3 border-t border-fixed-white/10 relative z-10">
           <div className="flex items-center justify-between">
           <h4 className="font-display font-bold text-base text-fixed-white/90">Concierge Success Support</h4>
-            <span className="text-[9px] font-mono font-bold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded">
+            <span className="text-[9px] font-mono font-bold text-primary-400 bg-primary-500/10 border border-primary-500/20 px-2 py-0.5 rounded">
               24/7 Slack
             </span>
           </div>

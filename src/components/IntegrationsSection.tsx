@@ -67,7 +67,7 @@ const DRAGGABLE_APPS: AppIcon[] = [
   { 
     id: 'stripe', 
     name: 'Stripe', 
-    color: 'border-indigo-200 text-indigo-700 bg-indigo-50/50 hover:border-indigo-400', 
+    color: 'border-primary-200 text-primary-700 bg-primary-50/50 hover:border-primary-400', 
     logo: (
       <img src={stripeLogo} className="w-6 h-6 object-contain shrink-0" alt="Stripe" />
     ),
@@ -267,7 +267,7 @@ export default function IntegrationsSection() {
       {/* ================= COLUMN 1 (Left): Narrative & Copy ================= */}
       <div className="md:col-span-3 p-8 md:p-10 flex flex-col justify-between border-b md:border-b-0 md:border-r border-neutral-200 bg-white">
         <div className="space-y-4">
-          <span className="text-[10px] font-mono font-bold tracking-widest text-indigo-600 uppercase">
+          <span className="text-[10px] font-mono font-bold tracking-widest text-primary-600 uppercase">
             Ecosystem Connectivity
           </span>
           <h3 className="font-display font-semibold text-2xl tracking-tight text-neutral-900 leading-tight">
@@ -290,7 +290,7 @@ export default function IntegrationsSection() {
         <div className="pt-8">
           <button 
             onClick={handleReset}
-            className="inline-flex items-center gap-1 text-xs font-bold text-neutral-500 hover:text-indigo-600 transition-colors cursor-pointer group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-md px-1.5 py-0.5"
+            className="inline-flex items-center gap-1 text-xs font-bold text-neutral-500 hover:text-primary-600 transition-colors cursor-pointer group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 rounded-md px-1.5 py-0.5"
           >
             <RefreshCw className="w-3.5 h-3.5 transition-transform group-hover:rotate-45" />
             Reset Sandbox
@@ -308,7 +308,7 @@ export default function IntegrationsSection() {
           backgroundSize: '24px 24px',
         }}
         className={`md:col-span-6 p-8 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-neutral-200 bg-slate-50/20 relative overflow-hidden min-h-[580px] transition-all duration-300 ${
-          isDragOver ? 'bg-indigo-50/40 ring-2 ring-indigo-500 ring-inset' : ''
+          isDragOver ? 'bg-primary-50/40 ring-2 ring-primary-500 ring-inset' : ''
         }`}
       >
         {/* Connection Animation Lines (Animated SVG Overlay) */}
@@ -327,14 +327,14 @@ export default function IntegrationsSection() {
                       x2={x2} 
                       y2={y2} 
                       className={`transition-colors duration-500 ${
-                        isConnected ? 'stroke-indigo-500 stroke-[0.4]' : 'stroke-neutral-200 stroke-[0.2]'
+                        isConnected ? 'stroke-primary-500 stroke-[0.4]' : 'stroke-neutral-200 stroke-[0.2]'
                       }`}
                       strokeDasharray={isConnected ? 'none' : '1 1'}
                     />
                     
                     {/* Animated running pulse for active connection */}
                     {isConnected && (
-                      <circle cx={x1} cy={y1} r="1.2" className="fill-indigo-600">
+                      <circle cx={x1} cy={y1} r="1.2" className="fill-primary-600">
                         <animateMotion 
                           path={trimmedPath} 
                           dur="1.5s" 
@@ -356,25 +356,25 @@ export default function IntegrationsSection() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.98 }}
-              className="absolute inset-0 bg-indigo-50/80 backdrop-blur-xs flex flex-col items-center justify-center p-6 z-30 text-center"
+              className="absolute inset-0 bg-primary-50/80 backdrop-blur-xs flex flex-col items-center justify-center p-6 z-30 text-center"
             >
-              <div className="h-14 w-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-lg animate-bounce mb-3">
+              <div className="h-14 w-14 rounded-2xl bg-primary-600 text-white flex items-center justify-center shadow-lg animate-bounce mb-3">
                 <Plus className="w-7 h-7" />
               </div>
-              <p className="font-display font-semibold text-indigo-950 text-sm">
+              <p className="font-display font-semibold text-primary-950 text-sm">
                 Drop app here to integrate with Wozku!
               </p>
-              <p className="text-xs text-indigo-600 mt-1">
+              <p className="text-xs text-primary-600 mt-1">
                 Snaps automatically into the next available channel
               </p>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <div className="relative z-20 bg-white border border-neutral-200 shadow-md p-3 rounded-2xl w-16 h-16 flex items-center justify-center hover:border-indigo-500 hover:shadow-lg hover:scale-105 transition-all duration-300">
+        <div className="relative z-20 bg-white border border-neutral-200 shadow-md p-3 rounded-2xl w-16 h-16 flex items-center justify-center hover:border-primary-500 hover:shadow-lg hover:scale-105 transition-all duration-300">
           <img src={logoMarkWhite} className="w-10 h-10 object-contain" alt="Wozku Logo" />
           {connectedCount > 0 && (
-            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-emerald-500 border-2 border-white dark:border-[#0c0c0e] animate-pulse" />
+            <span className="absolute -top-1 -right-1 h-3.5 w-3.5 rounded-full bg-emerald-500 border-2 border-white animate-pulse" />
           )}
         </div>
 
@@ -411,7 +411,7 @@ export default function IntegrationsSection() {
                             removeSlot(index);
                           }
                         }}
-                        className={`group relative z-10 bg-white border border-indigo-400 rounded-2xl p-3.5 shadow-md flex items-center justify-center cursor-pointer hover:border-red-400 hover:scale-105 transition-all w-16 h-16 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500`}
+                        className={`group relative z-10 bg-white border border-primary-400 rounded-2xl p-3.5 shadow-md flex items-center justify-center cursor-pointer hover:border-red-400 hover:scale-105 transition-all w-16 h-16 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-red-500`}
                       >
                         {activeApp.logo}
                         
@@ -421,11 +421,11 @@ export default function IntegrationsSection() {
                         </div>
  
                         {/* Connection indicator */}
-                        <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-indigo-500 border-2 border-white dark:border-[#0c0c0e]" />
+                        <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-primary-500 border-2 border-white" />
                       </motion.div>
                     ) : (
                       <div 
-                        className="w-16 h-16 rounded-2xl relative z-10 border border-dashed border-neutral-300 bg-neutral-50/50 flex items-center justify-center transition-colors hover:border-indigo-400/80 hover:bg-indigo-50/10 cursor-default"
+                        className="w-16 h-16 rounded-2xl relative z-10 border border-dashed border-neutral-300 bg-neutral-50/50 flex items-center justify-center transition-colors hover:border-primary-400/80 hover:bg-primary-50/10 cursor-default"
                         title="Empty Connection Slot"
                       >
                         <Plus className="w-5 h-5 text-neutral-300" />
@@ -440,7 +440,7 @@ export default function IntegrationsSection() {
 
         {/* Sandbox Help Banner */}
         <div className="absolute bottom-6 bg-white/95 border border-neutral-150 px-4 py-2.5 rounded-xl shadow-2xs text-[11px] text-neutral-500 z-10 flex items-center gap-2 max-w-xs text-center justify-center">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-500 animate-pulse shrink-0" />
+          <Sparkles className="w-3.5 h-3.5 text-primary-500 animate-pulse shrink-0" />
           <span className="font-medium">
             {connectedCount === 0 
               ? 'Status: Drag apps here to connect live streams.' 
@@ -519,10 +519,10 @@ export default function IntegrationsSection() {
                       showToast(`Successfully integrated ${app.name} with Wozku!`, true);
                     }
                   }}
-                  className={`group relative border rounded-2xl p-4 flex items-center justify-center transition-all duration-200 shadow-3xs select-none focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                  className={`group relative border rounded-2xl p-4 flex items-center justify-center transition-all duration-200 shadow-3xs select-none focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 ${
                     isUsed 
-                      ? 'bg-neutral-50/50 dark:bg-neutral-100/20 border-neutral-200 dark:border-neutral-800/40 opacity-30 cursor-not-allowed' 
-                      : `${app.color} border-neutral-200 dark:bg-neutral-100 dark:border-neutral-200 hover:shadow-xs cursor-grab active:cursor-grabbing`
+                      ? 'bg-neutral-50/50 border-neutral-200 opacity-30 cursor-not-allowed' 
+                      : `${app.color} border-neutral-200 hover:shadow-xs cursor-grab active:cursor-grabbing`
                   }`}
                 >
                   {app.logo}

@@ -250,16 +250,16 @@ export default function EventsCommunitiesPage() {
   const leaderboardRows = getLeaderboardRows();
 
   return (
-    <main className="min-h-screen bg-white text-neutral-900 font-sans overflow-hidden selection:bg-indigo-500/10 selection:text-indigo-900">
+    <main className="min-h-screen bg-white text-neutral-900 font-sans overflow-hidden selection:bg-primary-500/10 selection:text-primary-900">
       
       {/* ── Hero Section ── */}
       <section className="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(99,102,241,0.07),transparent)] pointer-events-none" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-indigo-300/50 to-transparent" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-px bg-gradient-to-r from-transparent via-primary-300/50 to-transparent" />
         
         <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
           <FadeIn>
-            <span className="inline-flex items-center gap-1.5 text-[9.5px] uppercase font-mono tracking-widest text-indigo-600 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
+            <span className="inline-flex items-center gap-1.5 text-[9.5px] uppercase font-mono tracking-widest text-primary-600 font-extrabold bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full">
               <Sparkles className="w-3 h-3" /> For Events & Communities
             </span>
           </FadeIn>
@@ -267,7 +267,7 @@ export default function EventsCommunitiesPage() {
           <FadeIn delay={0.05}>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold text-neutral-950 tracking-tight leading-tight">
               Turn event attendees and fans<br />
-              <span className="text-indigo-600">into active recommenders.</span>
+              <span className="text-primary-600">into active recommenders.</span>
             </h1>
           </FadeIn>
           
@@ -281,7 +281,7 @@ export default function EventsCommunitiesPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
-                className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-7 py-3.5 rounded-xl transition-all cursor-pointer flex items-center gap-2 shadow-md shadow-indigo-500/20"
+                className="bg-primary-600 hover:bg-primary-500 text-white text-xs font-bold px-7 py-3.5 rounded-xl transition-all cursor-pointer flex items-center gap-2 shadow-md shadow-primary-500/20"
               >
                 Schedule a Demo <ArrowRight className="w-3.5 h-3.5" />
               </button>
@@ -301,7 +301,7 @@ export default function EventsCommunitiesPage() {
         <div className="max-w-6xl mx-auto space-y-12">
           
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-[9.5px] uppercase font-mono tracking-widest text-indigo-650 font-extrabold block">TRY IT YOURSELF</span>
+            <span className="text-[9.5px] uppercase font-mono tracking-widest text-primary-650 font-extrabold block">TRY IT YOURSELF</span>
             <h2 className="text-3xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
               Experience the sharing loop live
             </h2>
@@ -325,7 +325,7 @@ export default function EventsCommunitiesPage() {
                   ].map((s) => (
                     <div key={s.step} className="flex gap-3">
                       <span className={`h-5 w-5 rounded-full flex items-center justify-center text-[10px] font-bold font-mono shrink-0 ${
-                        simStep === s.step ? 'bg-indigo-650 text-white' : 'bg-slate-200 text-slate-500'
+                        simStep === s.step ? 'bg-primary-650 text-white' : 'bg-slate-200 text-slate-500'
                       }`}>
                         {s.step}
                       </span>
@@ -370,8 +370,8 @@ export default function EventsCommunitiesPage() {
                       >
                         <div className="space-y-4 pt-1">
                           <div className="flex items-center gap-1.5 justify-center">
-                            <QrCode className="w-4 h-4 text-indigo-650" />
-                            <span className="text-[10px] font-bold text-indigo-700 uppercase tracking-widest font-mono">Scan Booth QR</span>
+                            <QrCode className="w-4 h-4 text-primary-650" />
+                            <span className="text-[10px] font-bold text-primary-700 uppercase tracking-widest font-mono">Scan Booth QR</span>
                           </div>
                           
                           <div className="bg-white border border-neutral-200 rounded-2xl p-3.5 text-center space-y-3">
@@ -391,12 +391,12 @@ export default function EventsCommunitiesPage() {
                             value={attendeeName}
                             onChange={(e) => setAttendeeName(e.target.value)}
                             placeholder="Your Name"
-                            className="w-full bg-white border border-neutral-200 rounded-xl px-3 py-2 text-xs font-bold text-neutral-800 focus:outline-hidden focus:border-indigo-500 text-center"
+                            className="w-full bg-white border border-neutral-200 rounded-xl px-3 py-2 text-xs font-bold text-neutral-800 focus:outline-hidden focus:border-primary-500 text-center"
                           />
                           <button
                             onClick={handleSimulateScan}
                             disabled={!attendeeName.trim()}
-                            className="w-full py-2.5 bg-indigo-650 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-colors"
+                            className="w-full py-2.5 bg-primary-650 hover:bg-primary-500 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-colors"
                           >
                             Simulate Scan
                           </button>
@@ -417,7 +417,7 @@ export default function EventsCommunitiesPage() {
                           
                           <div className="bg-white border border-neutral-200 rounded-xl p-3 space-y-3 shadow-3xs">
                             <div className="flex items-center gap-2">
-                              <span className="h-6 w-6 rounded-full bg-indigo-50 flex items-center justify-center font-bold text-[9px] text-indigo-700">
+                              <span className="h-6 w-6 rounded-full bg-primary-50 flex items-center justify-center font-bold text-[9px] text-primary-700">
                                 {attendeeName.split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2)}
                               </span>
                               <div>
@@ -433,7 +433,7 @@ export default function EventsCommunitiesPage() {
 
                         <button
                           onClick={handleSimulateShare}
-                          className="w-full py-2.5 bg-indigo-650 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-colors"
+                          className="w-full py-2.5 bg-primary-650 hover:bg-primary-500 text-white font-bold text-xs rounded-xl shadow-md cursor-pointer transition-colors"
                         >
                           Share on LinkedIn
                         </button>
@@ -448,8 +448,8 @@ export default function EventsCommunitiesPage() {
                         exit={{ opacity: 0 }}
                         className="h-full flex flex-col items-center justify-center space-y-3"
                       >
-                        <div className="h-10 w-10 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center animate-spin">
-                          <RefreshCw className="h-4.5 w-4.5 text-indigo-650" />
+                        <div className="h-10 w-10 rounded-full bg-primary-50 border border-primary-100 flex items-center justify-center animate-spin">
+                          <RefreshCw className="h-4.5 w-4.5 text-primary-650" />
                         </div>
                         <h4 className="text-xs font-bold text-neutral-800">Delivering share...</h4>
                         <p className="text-[9px] text-neutral-400 text-center">
@@ -476,8 +476,8 @@ export default function EventsCommunitiesPage() {
                           </div>
 
                           <div className="bg-white border border-slate-200 rounded-2xl p-3.5 space-y-1 shadow-3xs">
-                            <span className="text-[8px] font-mono font-bold text-indigo-600 block uppercase">YOUR SCORE</span>
-                            <div className="text-2xl font-mono font-bold text-indigo-950">1,450 XP</div>
+                            <span className="text-[8px] font-mono font-bold text-primary-600 block uppercase">YOUR SCORE</span>
+                            <div className="text-2xl font-mono font-bold text-primary-950">1,450 XP</div>
                             <div className="text-[8px] text-neutral-400 font-sans">Wait a few seconds for leaderboard sync...</div>
                           </div>
                         </div>
@@ -494,7 +494,7 @@ export default function EventsCommunitiesPage() {
                               className={`text-[8.5px] font-bold px-2 py-0.5 rounded border transition-all cursor-pointer ${
                                 userClaimedReward
                                   ? 'bg-slate-50 border-slate-200 text-neutral-400 cursor-not-allowed'
-                                  : 'bg-indigo-50 border-indigo-200 text-indigo-750 hover:bg-indigo-100'
+                                  : 'bg-primary-50 border-primary-200 text-primary-750 hover:bg-primary-100'
                               }`}
                             >
                               {userClaimedReward ? 'Claimed' : 'Claim'}
@@ -523,7 +523,7 @@ export default function EventsCommunitiesPage() {
               <div className="space-y-6 relative z-10">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-2">
-                    <Tv className="w-5 h-5 text-indigo-400" />
+                    <Tv className="w-5 h-5 text-primary-400" />
                     <div>
                       <h4 className="text-xs font-bold font-display text-white">Event Leaderboard</h4>
                       <p className="text-[9px] text-neutral-400">Live Stage Screen View</p>
@@ -543,20 +543,20 @@ export default function EventsCommunitiesPage() {
                         row.isUser
                           ? leaderboardFlash
                             ? 'bg-emerald-500/30 border-emerald-500 text-white scale-[1.03] shadow-md shadow-emerald-500/10'
-                            : 'bg-indigo-500/20 border-indigo-500 text-indigo-100 scale-[1.01] shadow-md'
+                            : 'bg-primary-500/20 border-primary-500 text-primary-100 scale-[1.01] shadow-md'
                           : 'bg-white/5 border-white/5 text-neutral-300'
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span className="text-xs font-mono font-bold text-neutral-500">#{row.rank}</span>
                         <div className={`h-6.5 w-6.5 rounded-full flex items-center justify-center text-[10px] font-bold font-mono ${
-                          row.isUser ? 'bg-indigo-650 text-white' : 'bg-white/10 text-white'
+                          row.isUser ? 'bg-primary-650 text-white' : 'bg-white/10 text-white'
                         }`}>
                           {row.avatar}
                         </div>
                         <span className="text-xs font-bold">{row.name}</span>
                       </div>
-                      <span className="text-xs font-mono font-bold text-indigo-400">
+                      <span className="text-xs font-mono font-bold text-primary-400">
                         {row.xp} XP
                       </span>
                     </motion.div>
@@ -591,7 +591,7 @@ export default function EventsCommunitiesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6.5">
             <div className="bg-white border border-slate-200 rounded-3xl p-6.5 space-y-3 shadow-3xs">
-              <div className="h-9 w-9 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+              <div className="h-9 w-9 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600">
                 <QrCode className="h-5 w-5" />
               </div>
               <h3 className="text-sm font-bold text-neutral-900">QR Code Portals</h3>
@@ -601,7 +601,7 @@ export default function EventsCommunitiesPage() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-3xl p-6.5 space-y-3 shadow-3xs">
-              <div className="h-9 w-9 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+              <div className="h-9 w-9 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600">
                 <Zap className="h-5 w-5" />
               </div>
               <h3 className="text-sm font-bold text-neutral-900">Sponsor Visibility Boost</h3>
@@ -611,7 +611,7 @@ export default function EventsCommunitiesPage() {
             </div>
 
             <div className="bg-white border border-slate-200 rounded-3xl p-6.5 space-y-3 shadow-3xs">
-              <div className="h-9 w-9 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+              <div className="h-9 w-9 rounded-xl bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               <h3 className="text-sm font-bold text-neutral-900">Pre-Approved Post Catalog</h3>

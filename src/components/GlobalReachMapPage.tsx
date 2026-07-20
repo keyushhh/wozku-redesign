@@ -108,7 +108,7 @@ export default function GlobalReachMapPage() {
   const pointerInteractionMovement = useRef(0);
   const currentPhi = useRef(2.8);
 
-  // Theme-reactive color ref: stores the current --indigo-500 as fractional [R,G,B]
+  // Theme-reactive color ref: stores the current --primary-500 as fractional [R,G,B]
   const themeColorRef = useRef<[number, number, number]>([0.38, 0.4, 0.95]);
   const themeColorValueRef = useRef('');
   const themeColorFrameRef = useRef<number | null>(null);
@@ -117,7 +117,7 @@ export default function GlobalReachMapPage() {
   const readThemeColor = () => {
     try {
       const raw = getComputedStyle(document.documentElement)
-        .getPropertyValue('--indigo-500')
+        .getPropertyValue('--primary-500')
         .trim();
       if (!raw) return;
       if (raw === themeColorValueRef.current) return;
@@ -385,8 +385,8 @@ export default function GlobalReachMapPage() {
               position: absolute;
               width: 90px;
               height: 90px;
-              border: 1.5px solid color-mix(in srgb, var(--indigo-500) 40%, transparent);
-              background: radial-gradient(circle, color-mix(in srgb, var(--indigo-500) 10%, transparent) 0%, transparent 75%);
+              border: 1.5px solid color-mix(in srgb, var(--primary-500) 40%, transparent);
+              background: radial-gradient(circle, color-mix(in srgb, var(--primary-500) 10%, transparent) 0%, transparent 75%);
               border-radius: 50%;
               filter: blur(4px);
               transform: translate(-50%, -50%);
@@ -424,18 +424,18 @@ export default function GlobalReachMapPage() {
   }, [reachedNodes, hoveredNode, isSimulating]);
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500/10 selection:text-indigo-900 pb-20">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary-500/10 selection:text-primary-900 pb-20">
       
       {/* ── 1. HERO HEADER ───────────────────────────────────────── */}
       <section className="relative overflow-hidden pt-16 pb-10 text-center">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--indigo-500) 6%, transparent), transparent 60%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--primary-500) 6%, transparent), transparent 60%)' }} />
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
           backgroundImage: 'linear-gradient(rgba(148,163,184,0.3) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,0.3) 1px,transparent 1px)',
           backgroundSize: '48px 48px',
         }} />
         
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-50 border border-indigo-100 px-4 py-1.5 text-[10px] font-mono font-extrabold uppercase tracking-widest text-indigo-600 mb-8">
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-50 border border-primary-100 px-4 py-1.5 text-[10px] font-mono font-extrabold uppercase tracking-widest text-primary-600 mb-8">
             <Globe2 className="w-3.5 h-3.5" /> Network Simulation
           </span>
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
@@ -458,7 +458,7 @@ export default function GlobalReachMapPage() {
               {/* Header stats block */}
               <div className="flex items-center justify-between border-b border-slate-100 pb-5">
                 <div className="flex items-center gap-2">
-                  <Radio className="w-4 h-4 text-indigo-500 animate-pulse" />
+                  <Radio className="w-4 h-4 text-primary-500 animate-pulse" />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">Simulation Status</span>
                 </div>
                 
@@ -515,7 +515,7 @@ export default function GlobalReachMapPage() {
                           isReached 
                             ? 'bg-white border-slate-200' 
                             : 'bg-white/40 border-slate-100 opacity-60',
-                          isHovered ? 'ring-2 ring-indigo-500/10 border-indigo-200' : ''
+                          isHovered ? 'ring-2 ring-primary-500/10 border-primary-200' : ''
                         ].join(' ')}
                       >
                         <div className="flex items-center justify-between">
@@ -524,7 +524,7 @@ export default function GlobalReachMapPage() {
                         </div>
                         <div className="flex items-center justify-between mt-2">
                           <span className="text-[10px] text-slate-500 italic">Owner: {node.employee}</span>
-                          <span className="text-[10px] font-mono font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">
+                          <span className="text-[10px] font-mono font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full">
                             Reach: {node.reach}
                           </span>
                         </div>
@@ -549,7 +549,7 @@ export default function GlobalReachMapPage() {
                   className="flex-1 bg-slate-900 hover:bg-slate-800 disabled:bg-slate-350 text-white font-mono text-[10px] uppercase font-extrabold py-3.5 px-6 rounded-xl flex items-center justify-center gap-1.5 transition-all shadow-md active:scale-[0.98] cursor-pointer"
                 >
                   <RefreshCw className={[
-                    'w-3.5 h-3.5 text-indigo-400',
+                    'w-3.5 h-3.5 text-primary-400',
                     isSimulating ? 'animate-spin' : ''
                   ].join(' ')} />
                   <span>{isSimulating ? 'Simulating...' : 'Run Simulation'}</span>
@@ -584,13 +584,13 @@ export default function GlobalReachMapPage() {
             {/* Top info badge */}
             <div className="flex items-center justify-between relative z-10 text-white/60">
               <div className="flex items-center gap-2">
-                <Compass className="w-4 h-4 text-indigo-400 animate-spin-slow" />
+                <Compass className="w-4 h-4 text-primary-400 animate-spin-slow" />
                 <span className="text-[9px] font-mono tracking-wider uppercase font-bold text-white/50">
                   Interactive 3D WebGL Globe
                 </span>
               </div>
               
-              <span className="inline-flex items-center gap-1 text-[8px] uppercase font-mono tracking-widest text-indigo-300 font-extrabold bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20">
+              <span className="inline-flex items-center gap-1 text-[8px] uppercase font-mono tracking-widest text-primary-300 font-extrabold bg-primary-500/10 px-2 py-0.5 rounded-full border border-primary-500/20">
                 <ShieldCheck className="w-2.5 h-2.5" /> SOC2 Verified Linkages
               </span>
             </div>
@@ -633,7 +633,7 @@ export default function GlobalReachMapPage() {
             {/* Bottom Panel Console Logs Terminal */}
             <div className="relative z-10 border border-white/[0.06] bg-black/40 rounded-2xl p-4 font-mono text-[9px] text-slate-400 space-y-1 max-h-[110px] overflow-y-auto scrollbar-none shadow-inner">
               <div className="flex items-center gap-1.5 border-b border-white/[0.04] pb-1.5 mb-1.5 text-white/60">
-                <Terminal className="w-3 h-3 text-indigo-400" />
+                <Terminal className="w-3 h-3 text-primary-400" />
                 <span>PROPAGATION NETWORK FEED</span>
               </div>
               {consoleLogs.map((log, index) => (
@@ -651,10 +651,10 @@ export default function GlobalReachMapPage() {
       {/* ── 3. BOTTOM INFO FOOTER CTA ────────────────────────────── */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 text-center">
         <div className="bg-[#09090f] text-fixed-white rounded-[32px] border border-fixed-white/[0.08] p-8 relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
           
           <div className="max-w-2xl mx-auto relative z-10 space-y-6">
-            <span className="inline-flex items-center gap-1.5 text-[8px] uppercase font-mono tracking-widest text-indigo-300 font-extrabold bg-indigo-500/10 px-3.5 py-1 rounded-full border border-indigo-500/20">
+            <span className="inline-flex items-center gap-1.5 text-[8px] uppercase font-mono tracking-widest text-primary-300 font-extrabold bg-primary-500/10 px-3.5 py-1 rounded-full border border-primary-500/20">
               <Sparkles className="w-3 h-3" /> Zero-Trust Transit
             </span>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight leading-tight">

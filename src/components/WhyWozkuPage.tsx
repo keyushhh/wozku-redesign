@@ -92,7 +92,7 @@ export default function WhyWozkuPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-white text-neutral-900 font-sans overflow-hidden selection:bg-indigo-500/10 selection:text-indigo-900 animate-fadeIn">
+    <main className="min-h-screen bg-white text-neutral-900 font-sans overflow-hidden selection:bg-primary-500/10 selection:text-primary-900 animate-fadeIn">
       
       {/* ── 1. HERO SECTION (Tighter Spacing, Solid Color Heading) ───────── */}
       <section className="relative pt-16 pb-12 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
@@ -117,7 +117,7 @@ export default function WhyWozkuPage() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.05] text-neutral-900"
           >
             The shift from paid reach <br />
-            <span className="text-emerald-600 dark:text-emerald-500">
+            <span className="text-emerald-600">
               to trusted advocacy.
             </span>
           </motion.h1>
@@ -228,7 +228,7 @@ export default function WhyWozkuPage() {
           <div className="bg-[#09090f] text-white border border-white/10 rounded-[2rem] p-6 sm:p-10 flex flex-col justify-between space-y-10 relative overflow-hidden">
             {/* Subtle background glow */}
             <div className="absolute top-0 right-0 h-48 w-48 bg-emerald-500/[0.04] rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 h-32 w-32 bg-indigo-500/[0.03] rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 h-32 w-32 bg-primary-500/[0.03] rounded-full blur-2xl pointer-events-none" />
             
             <div className="space-y-3 relative z-10">
               <span className="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-widest text-emerald-400 font-bold uppercase bg-emerald-950/45 border border-emerald-900/30 px-3 py-1 rounded-full">
@@ -267,7 +267,7 @@ export default function WhyWozkuPage() {
       <section className="py-24 bg-neutral-50/50 border-y border-neutral-100 px-6 sm:px-8 lg:px-12">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="max-w-3xl space-y-2">
-            <span className="text-[9px] font-mono tracking-widest text-indigo-600 font-extrabold uppercase">
+            <span className="text-[9px] font-mono tracking-widest text-primary-600 font-extrabold uppercase">
               Guided UGC Architecture
             </span>
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
@@ -287,17 +287,17 @@ export default function WhyWozkuPage() {
                   onClick={() => setActiveUgcStep(idx)}
                   className={`w-full text-left px-4 py-3.5 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col gap-1 ${
                     activeUgcStep === idx
-                      ? 'bg-indigo-50/50 dark:bg-indigo-950/20 border-indigo-500/60 dark:border-indigo-500/40 shadow-xs'
-                      : 'bg-transparent border-transparent hover:bg-neutral-50 dark:hover:bg-neutral-800/45'
+                      ? 'bg-primary-50/50 border-primary-500/60 shadow-xs'
+                      : 'bg-transparent border-transparent hover:bg-neutral-50'
                   }`}
                 >
                   <h3 className={`text-xs font-bold transition-colors ${
-                    activeUgcStep === idx ? 'text-indigo-650 dark:text-indigo-400' : 'text-neutral-700 dark:text-neutral-300'
+                    activeUgcStep === idx ? 'text-primary-650' : 'text-neutral-700'
                   }`}>
                     {step.title}
                   </h3>
                   <p className={`text-[10px] leading-relaxed font-normal transition-colors ${
-                    activeUgcStep === idx ? 'text-indigo-900/70 dark:text-indigo-200/70' : 'text-neutral-500 dark:text-neutral-400'
+                    activeUgcStep === idx ? 'text-primary-900/70' : 'text-neutral-500'
                   }`}>
                     {step.desc}
                   </p>
@@ -307,7 +307,7 @@ export default function WhyWozkuPage() {
 
             {/* Illustration Board - Right (Clean UI Visual) */}
             <div className="lg:col-span-7 bg-white border border-neutral-200 rounded-2xl p-5 sm:p-8 shadow-xs relative min-h-[320px] flex flex-col justify-between overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl pointer-events-none" />
               
               {/* Pagination Chevrons on Bottom Corners */}
               <button
@@ -349,7 +349,7 @@ export default function WhyWozkuPage() {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center pb-2.5 border-b border-neutral-100">
                         <span className="text-[9px] font-mono font-bold text-neutral-400 uppercase tracking-wider">MARKETER DASHBOARD</span>
-                        <span className="text-[9px] font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">Config Active</span>
+                        <span className="text-[9px] font-semibold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-md">Config Active</span>
                       </div>
                       <div className="space-y-3 bg-neutral-50/80 p-4 rounded-xl border border-neutral-150/70">
                         <div className="text-[11px] font-bold text-neutral-800">Campaign: "Product Launch 2026"</div>
@@ -374,8 +374,8 @@ export default function WhyWozkuPage() {
                         <span className="text-[9px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-0.5 rounded-md">Vetted</span>
                       </div>
                       <div className="space-y-2">
-                        <div className="p-3 bg-indigo-50/40 border border-indigo-150 rounded-xl text-[11px] space-y-0.5">
-                          <span className="text-[8px] font-mono font-bold text-indigo-600 uppercase">Path A: Technical</span>
+                        <div className="p-3 bg-primary-50/40 border border-primary-150 rounded-xl text-[11px] space-y-0.5">
+                          <span className="text-[8px] font-mono font-bold text-primary-600 uppercase">Path A: Technical</span>
                           <p className="text-neutral-750 font-sans">"We just scaled our network infrastructure to serve millions. Read the engineering design..."</p>
                         </div>
                         <div className="p-3 bg-neutral-50 border border-neutral-200 rounded-xl text-[11px] space-y-0.5 opacity-70">
@@ -401,9 +401,9 @@ export default function WhyWozkuPage() {
                           </div>
                         </div>
                         <div className="p-2.5 bg-white border border-neutral-350/50 rounded-lg text-[11px] relative">
-                          <span className="absolute -top-1.5 -right-1 text-[8px] bg-indigo-500 text-white font-bold px-1 py-0.5 rounded">Edited</span>
+                          <span className="absolute -top-1.5 -right-1 text-[8px] bg-primary-500 text-white font-bold px-1 py-0.5 rounded">Edited</span>
                           <p className="text-neutral-800 font-medium">
-                            "We just scaled our network infrastructure. <span className="bg-indigo-50 text-indigo-700 font-semibold px-1 rounded">Thrilled with how our squad handled it!</span> Read the engineering design..."
+                            "We just scaled our network infrastructure. <span className="bg-primary-50 text-primary-700 font-semibold px-1 rounded">Thrilled with how our squad handled it!</span> Read the engineering design..."
                           </p>
                         </div>
                       </div>
@@ -414,7 +414,7 @@ export default function WhyWozkuPage() {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center pb-2.5 border-b border-neutral-100">
                         <span className="text-[9px] font-mono font-bold text-neutral-400 uppercase tracking-wider">LINKEDIN BROADCAST</span>
-                        <span className="text-[9px] font-semibold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">Live Stream</span>
+                        <span className="text-[9px] font-semibold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-md">Live Stream</span>
                       </div>
                       <div className="p-3.5 border border-neutral-200/80 rounded-xl shadow-xs space-y-2.5">
                         <div className="flex items-center gap-2">
@@ -448,7 +448,7 @@ export default function WhyWozkuPage() {
                         </div>
                         <div className="p-2.5 bg-neutral-50 rounded-xl border border-neutral-200 text-center">
                           <span className="text-[8px] font-mono text-neutral-400 block font-bold">NEW PIPELINE</span>
-                          <span className="text-sm font-black text-indigo-600 block mt-0.5">$124K</span>
+                          <span className="text-sm font-black text-primary-600 block mt-0.5">$124K</span>
                         </div>
                       </div>
                     </div>
@@ -477,7 +477,7 @@ export default function WhyWozkuPage() {
       <section className="py-24 px-6 sm:px-8 lg:px-12 max-w-6xl mx-auto">
         <div className="space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-[9px] font-mono tracking-widest text-indigo-600 font-extrabold uppercase">
+            <span className="text-[9px] font-mono tracking-widest text-primary-600 font-extrabold uppercase">
               Positioning Clear
             </span>
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
@@ -526,7 +526,7 @@ export default function WhyWozkuPage() {
                     </p>
 
                     <div className="pt-3.5 border-t border-neutral-200 flex items-center gap-2.5">
-                      <div className="h-4.5 w-4.5 rounded bg-indigo-50 border border-indigo-150 flex items-center justify-center text-indigo-650 shrink-0">
+                      <div className="h-4.5 w-4.5 rounded bg-primary-50 border border-primary-150 flex items-center justify-center text-primary-650 shrink-0">
                         <Check className="h-3 w-3 stroke-[2.5]" />
                       </div>
                       <span className="text-xs font-bold text-neutral-850">
@@ -544,12 +544,12 @@ export default function WhyWozkuPage() {
       {/* ── 6. EDITORIAL CASE STUDIES (Salesforce Featured) ────────────────── */}
       <section className="py-24 bg-neutral-900 text-white px-6 sm:px-8 lg:px-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-dots-accent opacity-5 pointer-events-none" />
-        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="max-w-7xl mx-auto space-y-14">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div className="space-y-2">
-              <span className="text-[9px] font-mono tracking-widest text-indigo-400 font-extrabold uppercase">
+              <span className="text-[9px] font-mono tracking-widest text-primary-400 font-extrabold uppercase">
                 Case Briefings
               </span>
               <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight leading-tight">
@@ -574,11 +574,11 @@ export default function WhyWozkuPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             {/* Featured Story: Salesforce (col-span-7) */}
             <div className="lg:col-span-7 bg-[#141418] border border-white/10 rounded-2xl p-6 sm:p-10 flex flex-col justify-between space-y-8 relative overflow-hidden">
-              <div className="absolute top-0 right-0 h-32 w-32 bg-indigo-500/[0.03] rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute top-0 right-0 h-32 w-32 bg-primary-500/[0.03] rounded-full blur-3xl pointer-events-none" />
               
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-[9px] font-mono text-indigo-400 font-bold bg-indigo-950 border border-indigo-900 px-3 py-1 rounded-full uppercase tracking-wider">
+                  <span className="text-[9px] font-mono text-primary-400 font-bold bg-primary-950 border border-primary-900 px-3 py-1 rounded-full uppercase tracking-wider">
                     FEATURED OUTCOME
                   </span>
                   <span className="text-[10px] font-mono text-neutral-450 font-bold">11× ROI</span>
@@ -602,7 +602,7 @@ export default function WhyWozkuPage() {
                 </div>
                 <div>
                   <span className="text-[8px] font-mono text-neutral-500 block uppercase">ROI Multiplier</span>
-                  <span className="text-lg sm:text-xl font-black text-indigo-455 block mt-0.5">11×</span>
+                  <span className="text-lg sm:text-xl font-black text-primary-455 block mt-0.5">11×</span>
                 </div>
               </div>
             </div>
@@ -630,7 +630,7 @@ export default function WhyWozkuPage() {
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-[8px] font-mono text-neutral-500 font-bold uppercase tracking-wider">Community Scale</span>
-                    <span className="text-[9px] font-mono text-indigo-450 bg-indigo-950/30 px-2 py-0.5 rounded border border-indigo-900/30 font-bold">Guinness Records</span>
+                    <span className="text-[9px] font-mono text-primary-450 bg-primary-950/30 px-2 py-0.5 rounded border border-primary-900/30 font-bold">Guinness Records</span>
                   </div>
                   <h4 className="text-base font-bold text-white font-sans leading-snug">
                     Women in Cloud scales reach to 3.9M across 80+ countries.
@@ -649,10 +649,10 @@ export default function WhyWozkuPage() {
       <section className="px-6 sm:px-8 lg:px-12 pb-24 pt-16">
         <div className="max-w-5xl mx-auto bg-neutral-950 text-white rounded-[2rem] p-8 sm:p-12 border border-white/10 shadow-2xl relative overflow-hidden text-center space-y-6">
           <div className="absolute inset-0 bg-grid-dots-accent opacity-5 pointer-events-none" />
-          <div className="absolute top-0 right-0 h-64 w-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 h-64 w-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
           
           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-            <span className="inline-flex items-center gap-1.5 text-[8px] uppercase font-mono tracking-widest text-indigo-400 font-extrabold bg-indigo-950 border border-indigo-900/50 px-4 py-1.5 rounded-full">
+            <span className="inline-flex items-center gap-1.5 text-[8px] uppercase font-mono tracking-widest text-primary-400 font-extrabold bg-primary-950 border border-primary-900/50 px-4 py-1.5 rounded-full">
               Let\'s talk strategy
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-white tracking-tight leading-tight">

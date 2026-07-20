@@ -123,7 +123,7 @@ export default function SecurityCompliancePage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500/10 selection:text-indigo-900">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary-500/10 selection:text-primary-900">
       
       {/* ── 1. HERO HEADER ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden pt-16 pb-14 text-center">
@@ -140,7 +140,7 @@ export default function SecurityCompliancePage() {
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
             Enterprise-grade trust.{' '}
-            <span className="text-indigo-600 dark:text-indigo-400">By design.</span>
+            <span className="text-primary-600">By design.</span>
           </h1>
 
 
@@ -173,14 +173,14 @@ export default function SecurityCompliancePage() {
                         onClick={() => setActiveLayerId(layer.id)}
                         className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${
                           isActive
-                            ? 'bg-slate-50 border-indigo-500 shadow-sm'
+                            ? 'bg-slate-50 border-primary-500 shadow-sm'
                             : 'border-slate-100 bg-white hover:border-slate-350 hover:bg-slate-50/50'
                         }`}
                       >
                         <div className="flex items-center gap-4">
                           <div className={`p-2.5 rounded-lg border transition-colors ${
                             isActive 
-                              ? 'bg-indigo-500 border-indigo-400 text-white' 
+                              ? 'bg-primary-500 border-primary-400 text-white' 
                               : 'bg-slate-50 border-slate-100 text-slate-400 group-hover:text-slate-700'
                           }`}>
                             {layer.id === 'oauth-vault' && <Key className="w-5 h-5" />}
@@ -203,7 +203,7 @@ export default function SecurityCompliancePage() {
                             {layer.status}
                           </span>
                           <ChevronRight className={`w-4 h-4 transition-transform ${
-                            isActive ? 'text-indigo-500 translate-x-0.5' : 'text-slate-300 group-hover:text-slate-400'
+                            isActive ? 'text-primary-500 translate-x-0.5' : 'text-slate-300 group-hover:text-slate-400'
                           }`} />
                         </div>
                       </button>
@@ -238,7 +238,7 @@ export default function SecurityCompliancePage() {
               <div className="bg-white border border-slate-200/80 rounded-2xl p-6 sm:p-8 flex-1 flex flex-col justify-between">
                 <div className="space-y-6">
                   <div className="flex items-baseline justify-between border-b border-slate-100 pb-4">
-                    <span className="text-[10px] font-mono font-extrabold uppercase text-indigo-500 tracking-wider">Protocol Specifications</span>
+                    <span className="text-[10px] font-mono font-extrabold uppercase text-primary-500 tracking-wider">Protocol Specifications</span>
                     <span className="text-[9px] font-mono text-slate-400 font-medium">Cipher: {activeLayer.cipher}</span>
                   </div>
 
@@ -254,7 +254,7 @@ export default function SecurityCompliancePage() {
                     <ul className="space-y-2">
                       {activeLayer.specs.map((spec, i) => (
                         <li key={i} className="flex items-start gap-2.5 text-xs text-slate-500 leading-relaxed">
-                          <CheckCircle2 className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-4 h-4 text-primary-500 shrink-0 mt-0.5" />
                           <span>{spec}</span>
                         </li>
                       ))}
@@ -301,7 +301,7 @@ export default function SecurityCompliancePage() {
                 {isSimulating && (
                   <div className="mt-3 pt-2 border-t border-white/10">
                     <div className="h-1 bg-[#141418] rounded-full overflow-hidden">
-                      <div className="h-full bg-indigo-500 transition-all duration-300" style={{ width: `${simProgress}%` }} />
+                      <div className="h-full bg-primary-500 transition-all duration-300" style={{ width: `${simProgress}%` }} />
                     </div>
                   </div>
                 )}
@@ -318,7 +318,7 @@ export default function SecurityCompliancePage() {
       <section className="py-20 bg-white border-y border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-[10px] font-mono font-extrabold text-indigo-600 uppercase tracking-widest block mb-2">Compliance Frameworks</span>
+            <span className="text-[10px] font-mono font-extrabold text-primary-600 uppercase tracking-widest block mb-2">Compliance Frameworks</span>
             <h3 className="text-2xl font-extrabold text-slate-850">Trust seals &amp; framework alignments</h3>
           </div>
 
@@ -330,7 +330,7 @@ export default function SecurityCompliancePage() {
               { name: 'CCPA COMPLIANT', desc: 'Enabling consumers right to opt-out and erase records.', icon: UserCheck }
             ].map(badge => (
               <div key={badge.name} className="border border-slate-100 bg-slate-50/30 hover:bg-slate-50 rounded-xl p-5 text-center transition-colors group">
-                <div className="inline-flex p-3 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100/60 mb-4 group-hover:scale-105 transition-transform">
+                <div className="inline-flex p-3 rounded-full bg-primary-50 text-primary-600 border border-primary-100/60 mb-4 group-hover:scale-105 transition-transform">
                   <badge.icon className="w-5 h-5" />
                 </div>
                 <h4 className="text-xs font-mono font-extrabold text-slate-800 uppercase tracking-wider mb-1.5">{badge.name}</h4>
@@ -346,7 +346,7 @@ export default function SecurityCompliancePage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="space-y-3">
-              <div className="p-2 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-lg w-fit">
+              <div className="p-2 bg-primary-50 border border-primary-100 text-primary-600 rounded-lg w-fit">
                 <EyeOff className="w-4 h-4" />
               </div>
               <h4 className="text-base font-extrabold text-slate-850">Data Minimization</h4>
@@ -356,7 +356,7 @@ export default function SecurityCompliancePage() {
             </div>
 
             <div className="space-y-3">
-              <div className="p-2 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-lg w-fit">
+              <div className="p-2 bg-primary-50 border border-primary-100 text-primary-600 rounded-lg w-fit">
                 <UserCheck className="w-4 h-4" />
               </div>
               <h4 className="text-base font-extrabold text-slate-850">Zero-Pass Authentication</h4>
@@ -366,7 +366,7 @@ export default function SecurityCompliancePage() {
             </div>
 
             <div className="space-y-3">
-              <div className="p-2 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-lg w-fit">
+              <div className="p-2 bg-primary-50 border border-primary-100 text-primary-600 rounded-lg w-fit">
                 <Database className="w-4 h-4" />
               </div>
               <h4 className="text-base font-extrabold text-slate-850">Tamper-Proof Audit Log</h4>
@@ -380,9 +380,9 @@ export default function SecurityCompliancePage() {
 
       {/* ── 5. CTA COMPLIANCE PACKAGE (Dark Theme) ────────────────────── */}
       <section className="py-24 relative overflow-hidden bg-[#09090f] text-fixed-white">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--indigo-500) 12%, transparent), transparent 65%)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 50%, color-mix(in srgb, var(--primary-500) 12%, transparent), transparent 65%)' }} />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 px-4 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-widest text-indigo-400 mb-6">
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-500/10 border border-primary-500/20 px-4 py-1.5 text-[9px] font-mono font-extrabold uppercase tracking-widest text-primary-400 mb-6">
             <Lock className="w-3.5 h-3.5" /> Security Assets
           </span>
           <h2 className="text-4xl font-display font-extrabold text-fixed-white mb-4">Request Wozku's compliance pack</h2>
@@ -394,11 +394,11 @@ export default function SecurityCompliancePage() {
             <input
               type="email"
               placeholder="compliance@company.com"
-              className="flex-1 w-full sm:w-auto bg-[#141418] border border-fixed-white/10 focus:border-indigo-500/50 rounded-xl px-4 py-3 text-sm text-fixed-white placeholder:text-fixed-muted focus:outline-none transition-all"
+              className="flex-1 w-full sm:w-auto bg-[#141418] border border-fixed-white/10 focus:border-primary-500/50 rounded-xl px-4 py-3 text-sm text-fixed-white placeholder:text-fixed-muted focus:outline-none transition-all"
             />
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-bold py-3 px-6 rounded-xl text-sm transition-all shadow-xl shadow-indigo-600/20 hover:scale-[1.02] cursor-pointer whitespace-nowrap"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-500 text-fixed-white font-bold py-3 px-6 rounded-xl text-sm transition-all shadow-xl shadow-primary-600/20 hover:scale-[1.02] cursor-pointer whitespace-nowrap"
             >
               Request Compliance Pack <ArrowRight className="w-4 h-4" />
             </button>
@@ -407,7 +407,7 @@ export default function SecurityCompliancePage() {
           <div className="flex items-center justify-center gap-6 mt-8 flex-wrap">
             {['SOC 2 Type II summary', 'SIEM integration details', 'GDPR DPA Template'].map(t => (
               <span key={t} className="flex items-center gap-1.5 text-[10px] text-fixed-muted font-semibold">
-                <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400/60" />{t}
+                <CheckCircle2 className="w-3.5 h-3.5 text-primary-400/60" />{t}
               </span>
             ))}
           </div>

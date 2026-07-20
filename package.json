@@ -18,7 +18,6 @@
     "@vercel/speed-insights": "^2.0.0",
     "@vitejs/plugin-react": "^5.0.4",
     "cobe": "^2.0.1",
-    "culori": "^4.0.2",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
     "lucide-react": "^0.546.0",

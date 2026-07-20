@@ -119,9 +119,9 @@ export default function CustomerSuccess() {
             <button
               key={tab.id}
               onClick={() => setActiveIdx(idx)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-250 cursor-pointer border border-transparent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-250 cursor-pointer border border-transparent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 ${
                 isActive
-                  ? 'bg-[#202927] text-white shadow-xs dark:bg-indigo-600/20 dark:text-indigo-300 dark:border-indigo-500/40'
+                  ? 'bg-[#202927] text-white shadow-xs'
                   : 'bg-neutral-100 text-neutral-500 hover:bg-neutral-200/85 hover:text-neutral-700'
               }`}
             >

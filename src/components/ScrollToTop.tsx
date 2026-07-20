@@ -41,7 +41,7 @@ export default function ScrollToTop() {
           className="fixed bottom-6 right-6 z-50 p-3.5 bg-neutral-950 text-white rounded-full border border-neutral-800 shadow-xl hover:bg-neutral-900 hover:border-neutral-700 focus:outline-hidden group cursor-pointer transition-colors"
           aria-label="Scroll back to top of the page"
         >
-          <ArrowUp className="w-5 h-5 text-indigo-400 group-hover:text-white transition-colors" />
+          <ArrowUp className="w-5 h-5 text-primary-400 group-hover:text-white transition-colors" />
         </m.button>
       )}
     </AnimatePresence>

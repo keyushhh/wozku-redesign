@@ -67,11 +67,11 @@ interface BlockDefinition {
 
 const BLOCK_LIBRARY: BlockDefinition[] = [
   // Triggers
-  { id: 'trigger-product_launch', label: 'Product Launch', category: 'trigger', icon: Megaphone, desc: 'Major release announcement with peak interest.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
-  { id: 'trigger-webinar', label: 'Webinar', category: 'trigger', icon: Video, desc: 'Educational panel or live webinar demonstration.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
-  { id: 'trigger-event', label: 'Event', category: 'trigger', icon: Calendar, desc: 'Global conference, community summit, or keynotes.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
-  { id: 'trigger-csr', label: 'CSR Initiative', category: 'trigger', icon: Heart, desc: 'Environmental, social pledge, or foundation news.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
-  { id: 'trigger-product_update', label: 'Product Update', category: 'trigger', icon: Sparkles, desc: 'Incremental cool feature additions or enhancements.', color: 'indigo', badgeBg: 'bg-indigo-50 text-indigo-700 border-indigo-100', borderCol: 'border-indigo-200', textCol: 'text-indigo-600' },
+  { id: 'trigger-product_launch', label: 'Product Launch', category: 'trigger', icon: Megaphone, desc: 'Major release announcement with peak interest.', color: 'indigo', badgeBg: 'bg-primary-50 text-primary-700 border-primary-100', borderCol: 'border-primary-200', textCol: 'text-primary-600' },
+  { id: 'trigger-webinar', label: 'Webinar', category: 'trigger', icon: Video, desc: 'Educational panel or live webinar demonstration.', color: 'indigo', badgeBg: 'bg-primary-50 text-primary-700 border-primary-100', borderCol: 'border-primary-200', textCol: 'text-primary-600' },
+  { id: 'trigger-event', label: 'Event', category: 'trigger', icon: Calendar, desc: 'Global conference, community summit, or keynotes.', color: 'indigo', badgeBg: 'bg-primary-50 text-primary-700 border-primary-100', borderCol: 'border-primary-200', textCol: 'text-primary-600' },
+  { id: 'trigger-csr', label: 'CSR Initiative', category: 'trigger', icon: Heart, desc: 'Environmental, social pledge, or foundation news.', color: 'indigo', badgeBg: 'bg-primary-50 text-primary-700 border-primary-100', borderCol: 'border-primary-200', textCol: 'text-primary-600' },
+  { id: 'trigger-product_update', label: 'Product Update', category: 'trigger', icon: Sparkles, desc: 'Incremental cool feature additions or enhancements.', color: 'indigo', badgeBg: 'bg-primary-50 text-primary-700 border-primary-100', borderCol: 'border-primary-200', textCol: 'text-primary-600' },
 
   // Audience
   { id: 'audience-employees', label: 'Employees', category: 'audience', icon: Users, desc: 'Internal colleagues and staff amplification.', color: 'blue', badgeBg: 'bg-blue-50 text-blue-700 border-blue-100', borderCol: 'border-blue-150', textCol: 'text-blue-600' },
@@ -691,40 +691,40 @@ export default function InteractiveROIBuilder() {
   ] as const;
 
   return (
-    <div id="interactive-roi-engine" className="w-full bg-white dark:bg-[#0d0f13] border border-neutral-150 dark:border-fixed-white/8 rounded-[2.5rem] p-5 sm:p-8 lg:p-10 space-y-8 shadow-sm relative overflow-hidden">
+    <div id="interactive-roi-engine" className="w-full bg-white border border-neutral-150 rounded-[2.5rem] p-5 sm:p-8 lg:p-10 space-y-8 shadow-sm relative overflow-hidden">
       
       {/* Visual Header */}
-      <div id="roi-header" className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-100 dark:border-fixed-white/6">
+      <div id="roi-header" className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-100">
         <div>
-          <h3 className="font-display font-extrabold text-neutral-900 dark:text-fixed-white text-3xl tracking-tight">
+          <h3 className="font-display font-extrabold text-neutral-900 text-3xl tracking-tight">
             Referral Strategy Workspace
           </h3>
-          <p className="text-sm text-neutral-500 dark:text-fixed-light mt-1 max-w-2xl">
+          <p className="text-sm text-neutral-500 mt-1 max-w-2xl">
             Connect blocks below to see how sharing flows from templates to business results in real-time.
           </p>
         </div>
 
         {/* Info Indicator */}
-        <div className="flex items-center gap-3 bg-neutral-50 dark:bg-[#141418] border border-neutral-150 dark:border-fixed-white/8 rounded-2xl p-3 text-xs text-neutral-600 dark:text-fixed-light">
-          <HelpCircle className="h-4 w-4 text-indigo-600 dark:text-indigo-300 shrink-0" />
+        <div className="flex items-center gap-3 bg-neutral-50 border border-neutral-150 rounded-2xl p-3 text-xs text-neutral-600">
+          <HelpCircle className="h-4 w-4 text-primary-600 shrink-0" />
           <div>
-            <span className="font-semibold text-neutral-900 dark:text-fixed-white block">Workspace Controls</span>
-            <span className="text-[11px] text-neutral-500 dark:text-fixed-muted">
-              Select any link line to edit or <strong className="text-neutral-800 dark:text-fixed-light">drag endpoints</strong> to reconnect nodes.
+            <span className="font-semibold text-neutral-900 block">Workspace Controls</span>
+            <span className="text-[11px] text-neutral-500">
+              Select any link line to edit or <strong className="text-neutral-800">drag endpoints</strong> to reconnect nodes.
             </span>
           </div>
         </div>
       </div>
 
       {/* ================= TOP ROW: STRATEGY COMPONENTS LIBRARY ================= */}
-      <div className="bg-neutral-50/75 dark:bg-[#101216] border border-neutral-150 dark:border-fixed-white/8 rounded-3xl p-5 space-y-4">
+      <div className="bg-neutral-50/75 border border-neutral-150 rounded-3xl p-5 space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <h4 className="text-xs font-mono font-bold text-neutral-500 dark:text-fixed-light uppercase tracking-wider flex items-center gap-1.5">
-              <Sparkle className="h-3.5 w-3.5 text-indigo-500 dark:text-indigo-300 animate-pulse" />
+            <h4 className="text-xs font-mono font-bold text-neutral-500 uppercase tracking-wider flex items-center gap-1.5">
+              <Sparkle className="h-3.5 w-3.5 text-primary-500 animate-pulse" />
               Strategy Components Library
             </h4>
-            <p className="text-[11px] text-neutral-400 dark:text-fixed-light/90">
+            <p className="text-[11px] text-neutral-400">
               Select key templates below to spawn nodes in the workspace. The engine automatically connects compatible building blocks.
             </p>
           </div>
@@ -738,12 +738,12 @@ export default function InteractiveROIBuilder() {
                 placeholder="Search components..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full text-xs px-3 py-2 border border-neutral-200 dark:border-fixed-white/8 rounded-xl bg-white dark:bg-[#141418] text-neutral-900 dark:text-fixed-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-shadow placeholder:text-neutral-400 dark:placeholder:text-fixed-muted"
+                className="w-full text-xs px-3 py-2 border border-neutral-200 rounded-xl bg-white text-neutral-900 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-shadow placeholder:text-neutral-400"
               />
               {searchQuery ? (
                 <button 
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-fixed-muted hover:text-neutral-600 dark:hover:text-fixed-white cursor-pointer"
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-600 cursor-pointer"
                 >
                   <X className="h-3.5 w-3.5" />
                 </button>
@@ -751,7 +751,7 @@ export default function InteractiveROIBuilder() {
             </div>
 
             {/* Premium Category Filter Pills */}
-            <div className="flex flex-wrap gap-1 bg-neutral-100 dark:bg-[#171920] p-1 rounded-xl border border-neutral-200/50 dark:border-fixed-white/8">
+            <div className="flex flex-wrap gap-1 bg-neutral-100 p-1 rounded-xl border border-neutral-200/50">
               {CATEGORIES.map((cat) => {
                 const isActive = libraryTab === cat.id;
                 const IconComp = cat.icon;
@@ -764,15 +764,15 @@ export default function InteractiveROIBuilder() {
                     {isActive && (
                       <motion.div
                         layoutId="activeCategoryTab"
-                        className="absolute inset-0 bg-white dark:bg-[#141418] rounded-md shadow-2xs border border-neutral-200 dark:border-fixed-white/10"
+                        className="absolute inset-0 bg-white rounded-md shadow-2xs border border-neutral-200"
                         transition={{ type: 'spring', stiffness: 350, damping: 30 }}
                       />
                     )}
-                    <span className={`relative z-10 flex items-center gap-1 ${isActive ? 'text-indigo-600 dark:text-indigo-300 font-bold' : 'text-neutral-500 dark:text-fixed-muted group-hover:text-neutral-800 dark:group-hover:text-fixed-white'}`}>
+                    <span className={`relative z-10 flex items-center gap-1 ${isActive ? 'text-primary-600 font-bold' : 'text-neutral-500 group-hover:text-neutral-800'}`}>
                       <IconComp className="h-3 w-3 shrink-0" />
                       {cat.label.replace(/⚡\s|👥\s|📢\s|🎯\s|📈\s/, '')}
                     </span>
-                    <span className={`relative z-10 text-[9px] px-1 rounded-sm font-mono ${isActive ? 'bg-indigo-50 dark:bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] text-indigo-700 dark:text-indigo-200 font-bold' : 'bg-neutral-200/70 dark:bg-[#22242b] text-neutral-600 dark:text-fixed-muted'}`}>
+                    <span className={`relative z-10 text-[9px] px-1 rounded-sm font-mono ${isActive ? 'bg-primary-50 text-primary-700 font-bold' : 'bg-neutral-200/70 text-neutral-600'}`}>
                       {cat.count}
                     </span>
                   </button>
@@ -795,22 +795,22 @@ export default function InteractiveROIBuilder() {
                   exit={{ opacity: 0, scale: 0.95 }}
                   key={block.id}
                   onClick={() => spawnNode(block.id)}
-                  className="min-w-[170px] max-w-[200px] snap-start bg-white dark:bg-[#141418] hover:bg-neutral-50/50 dark:hover:bg-[#191b20] border border-neutral-150 dark:border-fixed-white/8 rounded-2xl p-3 text-left transition-all duration-200 group hover:shadow-2xs hover:border-indigo-200 dark:hover:border-indigo-500/30 relative flex flex-col justify-between min-h-[90px] cursor-pointer"
+                  className="min-w-[170px] max-w-[200px] snap-start bg-white hover:bg-neutral-50/50 border border-neutral-150 rounded-2xl p-3 text-left transition-all duration-200 group hover:shadow-2xs hover:border-primary-200 relative flex flex-col justify-between min-h-[90px] cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
                     <div className={`h-7 w-7 rounded-lg flex items-center justify-center border shrink-0 ${block.badgeBg}`}>
                       <IconComp className="h-3.5 w-3.5" />
                     </div>
                     <div className="min-w-0">
-                      <span className="text-xs font-bold text-neutral-900 dark:text-fixed-white truncate block group-hover:text-indigo-600">
+                      <span className="text-xs font-bold text-neutral-900 truncate block group-hover:text-primary-600">
                         {block.label}
                       </span>
-                      <span className="text-[9px] text-neutral-400 dark:text-fixed-muted font-mono tracking-wider block uppercase">
+                      <span className="text-[9px] text-neutral-400 font-mono tracking-wider block uppercase">
                         {block.category}
                       </span>
                     </div>
                   </div>
-                  <p className="text-[10px] text-neutral-400 dark:text-fixed-muted mt-2 leading-snug line-clamp-2">
+                  <p className="text-[10px] text-neutral-400 mt-2 leading-snug line-clamp-2">
                     {block.desc}
                   </p>
                 </motion.button>
@@ -828,38 +828,38 @@ export default function InteractiveROIBuilder() {
           
           <div className="flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
-              <h4 className="text-xs font-mono font-bold text-neutral-400 dark:text-fixed-muted uppercase tracking-widest">
+              <h4 className="text-xs font-mono font-bold text-neutral-400 uppercase tracking-widest">
                 Interactive Strategy Canvas
               </h4>
-              <span className="text-[10px] bg-neutral-100 dark:bg-[#141418] text-neutral-600 dark:text-fixed-light px-2 py-0.5 rounded-full font-mono">
+              <span className="text-[10px] bg-neutral-100 text-neutral-600 px-2 py-0.5 rounded-full font-mono">
                 Scale: {Math.round(zoom * 100)}%
               </span>
             </div>
 
             {/* Quick Controls */}
-            <div className="flex items-center gap-1.5 bg-neutral-50 dark:bg-[#101216] border border-neutral-150 dark:border-fixed-white/8 p-1.5 rounded-xl z-20">
+            <div className="flex items-center gap-1.5 bg-neutral-50 border border-neutral-150 p-1.5 rounded-xl z-20">
               <button
                 onClick={handleZoomIn}
-                className="p-1.5 hover:bg-white dark:hover:bg-[#141418] rounded-lg text-neutral-600 dark:text-fixed-muted hover:text-neutral-900 dark:hover:text-fixed-white cursor-pointer shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="p-1.5 hover:bg-white rounded-lg text-neutral-600 hover:text-neutral-900 cursor-pointer shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500"
                 title="Zoom In"
               >
                 <ZoomIn className="h-4 w-4" />
               </button>
               <button
                 onClick={handleZoomOut}
-                className="p-1.5 hover:bg-white dark:hover:bg-[#141418] rounded-lg text-neutral-600 dark:text-fixed-muted hover:text-neutral-900 dark:hover:text-fixed-white cursor-pointer shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="p-1.5 hover:bg-white rounded-lg text-neutral-600 hover:text-neutral-900 cursor-pointer shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500"
                 title="Zoom Out"
               >
                 <ZoomOut className="h-4 w-4" />
               </button>
               <button
                 onClick={handleResetView}
-                className="p-1.5 hover:bg-white dark:hover:bg-[#141418] rounded-lg text-neutral-600 dark:text-fixed-muted hover:text-neutral-900 dark:hover:text-fixed-white cursor-pointer shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
+                className="p-1.5 hover:bg-white rounded-lg text-neutral-600 hover:text-neutral-900 cursor-pointer shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500"
                 title="Fit View"
               >
                 <Maximize2 className="h-4 w-4" />
               </button>
-              <div className="w-px h-4 bg-neutral-200 dark:bg-fixed-white/8 mx-1" />
+              <div className="w-px h-4 bg-neutral-200 mx-1" />
               <button
                 onClick={() => {
                   setNodes([]);
@@ -879,7 +879,7 @@ export default function InteractiveROIBuilder() {
             ref={canvasRef}
             onClick={handleCanvasBgClick}
             onMouseDown={handleBgMouseDown}
-            className={`flex-1 border border-neutral-150 dark:border-fixed-white/8 rounded-[2.2rem] bg-[#fafafb] dark:bg-[#0c0c0e] overflow-hidden relative shadow-inner select-none ${
+            className={`flex-1 border border-neutral-150 rounded-[2.2rem] bg-[#fafafb] overflow-hidden relative shadow-inner select-none ${
               isPanning ? 'cursor-grabbing' : 'cursor-grab'
             }`}
           >
@@ -892,7 +892,7 @@ export default function InteractiveROIBuilder() {
                 height: '2400px',
                 backgroundImage: 'radial-gradient(var(--canvas-dot-color, #e4e4e7) 1.5px, transparent 1.5px)',
                 backgroundSize: '24px 24px',
-                ['--canvas-dot-color' as any]: 'color-mix(in srgb, var(--bg-white) 75%, var(--indigo-500) 12%)',
+                ['--canvas-dot-color' as any]: 'color-mix(in srgb, var(--bg-white) 75%, var(--primary-500) 12%)',
               }}
               onClick={handleCanvasBgClick}
             >
@@ -901,11 +901,11 @@ export default function InteractiveROIBuilder() {
               <svg className="absolute inset-0 pointer-events-none w-full h-full">
                 <defs>
                   <linearGradient id="selectedGlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{ stopColor: 'var(--indigo-600)' }} />
-                    <stop offset="100%" style={{ stopColor: 'var(--indigo-400)' }} />
+                    <stop offset="0%" style={{ stopColor: 'var(--primary-600)' }} />
+                    <stop offset="100%" style={{ stopColor: 'var(--primary-400)' }} />
                   </linearGradient>
                   <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" style={{ fill: 'var(--indigo-400)' }} />
+                    <path d="M 0 1.5 L 8 5 L 0 8.5 z" style={{ fill: 'var(--primary-400)' }} />
                   </marker>
                 </defs>
 
@@ -956,7 +956,7 @@ export default function InteractiveROIBuilder() {
                       <path
                         d={`M ${x1} ${y1} C ${(x1 + x2) / 2} ${y1}, ${(x1 + x2) / 2} ${y2}, ${x2} ${y2}`}
                         fill="none"
-                        style={{ stroke: isSelected ? 'var(--indigo-500)' : 'var(--indigo-300)', strokeDashoffset: 100, animation: 'dash 3s linear infinite' }}
+                        style={{ stroke: isSelected ? 'var(--primary-500)' : 'var(--primary-300)', strokeDashoffset: 100, animation: 'dash 3s linear infinite' }}
                         strokeWidth="2"
                         strokeDasharray="8, 12"
                         className="animate-dash-flow opacity-80"
@@ -969,7 +969,7 @@ export default function InteractiveROIBuilder() {
                             cx={x1}
                             cy={y1}
                             r={7}
-                            style={{ fill: 'var(--indigo-600)' }}
+                            style={{ fill: 'var(--primary-600)' }}
                             stroke="#ffffff"
                             strokeWidth="2"
                             className="cursor-ew-resize hover:scale-125 transition-transform"
@@ -980,7 +980,7 @@ export default function InteractiveROIBuilder() {
                             cx={x2}
                             cy={y2}
                             r={7}
-                            style={{ fill: 'var(--indigo-600)' }}
+                            style={{ fill: 'var(--primary-600)' }}
                             stroke="#ffffff"
                             strokeWidth="2"
                             className="cursor-ew-resize hover:scale-125 transition-transform"
@@ -1023,7 +1023,7 @@ export default function InteractiveROIBuilder() {
                     <path
                       d={`M ${x1} ${y1} C ${(x1 + x2) / 2} ${y1}, ${(x1 + x2) / 2} ${y2}, ${x2} ${y2}`}
                       fill="none"
-                      style={{ stroke: 'var(--indigo-600)' }}
+                      style={{ stroke: 'var(--primary-600)' }}
                       strokeWidth="3"
                       strokeDasharray="4 4"
                       className="opacity-90"
@@ -1061,13 +1061,13 @@ export default function InteractiveROIBuilder() {
                       key={node.id}
                       className={`absolute rounded-2xl bg-white border p-3.5 flex flex-col justify-between w-[210px] min-h-[86px] transition-all cursor-grab select-none ${
                         isDragging 
-                          ? 'scale-105 -translate-y-1 shadow-2xl z-50 border-indigo-500 ring-2 ring-indigo-500/15'
+                          ? 'scale-105 -translate-y-1 shadow-2xl z-50 border-primary-500 ring-2 ring-primary-500/15'
                           : isSelected 
-                          ? 'border-indigo-600 ring-2 ring-indigo-600/10 shadow-lg' 
+                          ? 'border-primary-600 ring-2 ring-primary-600/10 shadow-lg' 
                           : isConnectingSrc 
-                          ? 'border-indigo-400 ring-1 ring-indigo-400/20 shadow-md'
+                          ? 'border-primary-400 ring-1 ring-primary-400/20 shadow-md'
                           : showTargetPulse
-                          ? 'border-indigo-500 ring-4 ring-indigo-500/15 animate-pulse shadow-md'
+                          ? 'border-primary-500 ring-4 ring-primary-500/15 animate-pulse shadow-md'
                           : 'border-neutral-200 hover:border-neutral-300 hover:-translate-y-0.5 shadow-xs hover:shadow-sm'
                       }`}
                       style={{
@@ -1085,12 +1085,12 @@ export default function InteractiveROIBuilder() {
                         }}
                         className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 h-4 w-4 rounded-full border bg-white flex items-center justify-center cursor-pointer group/port ${
                           showTargetPulse 
-                            ? 'border-indigo-600 bg-indigo-50 scale-125'
-                            : 'border-neutral-300 hover:border-indigo-500 hover:scale-110'
+                            ? 'border-primary-600 bg-primary-50 scale-125'
+                            : 'border-neutral-300 hover:border-primary-500 hover:scale-110'
                         }`}
                         title="Connect target here"
                       >
-                        <span className={`h-2 w-2 rounded-full ${showTargetPulse ? 'bg-indigo-600 animate-ping' : 'bg-neutral-400 group-hover/port:bg-indigo-600'}`} />
+                        <span className={`h-2 w-2 rounded-full ${showTargetPulse ? 'bg-primary-600 animate-ping' : 'bg-neutral-400 group-hover/port:bg-primary-600'}`} />
                       </div>
 
                       {/* Node Header Row */}
@@ -1147,10 +1147,10 @@ export default function InteractiveROIBuilder() {
                           e.stopPropagation();
                           handlePortClick(node.id, true);
                         }}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 h-4 w-4 rounded-full border bg-white flex items-center justify-center cursor-pointer group/port border-neutral-300 hover:border-indigo-500 hover:scale-110"
+                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 h-4 w-4 rounded-full border bg-white flex items-center justify-center cursor-pointer group/port border-neutral-300 hover:border-primary-500 hover:scale-110"
                         title="Link to predecessor"
                       >
-                        <span className="h-2 w-2 bg-neutral-400 group-hover/port:bg-indigo-600 rounded-full" />
+                        <span className="h-2 w-2 bg-neutral-400 group-hover/port:bg-primary-600 rounded-full" />
                       </div>
 
                     </div>
@@ -1162,7 +1162,7 @@ export default function InteractiveROIBuilder() {
 
             {/* Connect Mode Top status helper */}
             {connectingFromId && (
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg flex items-center gap-2 z-30">
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-primary-600 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg flex items-center gap-2 z-30">
                 <Sparkle className="h-4 w-4 animate-spin" style={{ animationDuration: '3.5s' }} />
                 <span>Manual Link Active: Click target handle port to link nodes</span>
                 <button
@@ -1201,8 +1201,8 @@ export default function InteractiveROIBuilder() {
             <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
               <span className="text-[10px] font-mono tracking-wider font-extrabold text-neutral-400 uppercase flex items-center gap-1.5">
                 <span className="flex h-2 w-2 relative shrink-0">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
                 </span>
                 Real-Time Projections
               </span>
@@ -1212,9 +1212,9 @@ export default function InteractiveROIBuilder() {
             </div>
 
             {/* Equivalent Paid Spend Saved Banner */}
-            <div className="bg-indigo-600 text-white rounded-2xl p-4 text-center shadow-sm relative overflow-hidden group">
+            <div className="bg-primary-600 text-white rounded-2xl p-4 text-center shadow-sm relative overflow-hidden group">
               <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
-              <span className="text-[9px] font-mono uppercase tracking-widest text-indigo-200 block font-bold relative z-10">
+              <span className="text-[9px] font-mono uppercase tracking-widest text-primary-200 block font-bold relative z-10">
                 Organic Traffic Equivalent
               </span>
               <div className="text-2xl font-display font-black tracking-tight mt-1.5 relative z-10">
@@ -1250,7 +1250,7 @@ export default function InteractiveROIBuilder() {
                   <span className="text-[9px] text-neutral-400 font-mono block uppercase">QUALIFIED LEADS</span>
                   <span className="text-[11px] font-bold text-neutral-700 block leading-tight">Projected MQL count</span>
                 </div>
-                <span className="font-mono text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-100">
+                <span className="font-mono text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded-md border border-primary-100">
                   <AnimatedNumber value={metrics.leads} />
                 </span>
               </div>
@@ -1286,7 +1286,7 @@ export default function InteractiveROIBuilder() {
                 <div className="max-h-[85px] overflow-y-auto space-y-1.5 pr-1 scrollbar-thin">
                   {activeChains.map((chain, idx) => (
                     <div key={idx} className="flex items-center gap-1.5 bg-neutral-50 border border-neutral-150 p-2 rounded-xl text-[9px] text-neutral-600 font-mono leading-none">
-                      <span className="bg-indigo-100 text-indigo-700 px-1.5 py-0.5 rounded text-[8px] font-bold shrink-0">Path {idx + 1}</span>
+                      <span className="bg-primary-100 text-primary-700 px-1.5 py-0.5 rounded text-[8px] font-bold shrink-0">Path {idx + 1}</span>
                       <span className="truncate flex-1">
                         {chain.map(b => b.label).join(' → ')}
                       </span>
@@ -1303,15 +1303,15 @@ export default function InteractiveROIBuilder() {
       </div>
 
       {/* ================= BOTTOM ROW: AI STRATEGY INSIGHTS ================= */}
-      <div className="border border-indigo-100/80 dark:border-fixed-white/8 rounded-3xl p-6 bg-indigo-50/30 dark:bg-[#11131a] relative overflow-hidden shadow-2xs">
-        <div className="absolute top-0 right-0 h-32 w-32 bg-indigo-500/5 dark:bg-indigo-500/10 blur-3xl pointer-events-none" />
+      <div className="border border-primary-100/80 rounded-3xl p-6 bg-primary-50/30 relative overflow-hidden shadow-2xs">
+        <div className="absolute top-0 right-0 h-32 w-32 bg-primary-500/5 blur-3xl pointer-events-none" />
         
-        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-indigo-100/40 dark:border-fixed-white/6">
-          <Sparkles className="h-4.5 w-4.5 text-indigo-600 animate-pulse shrink-0" />
-          <span className="text-xs font-mono font-extrabold text-indigo-900 dark:text-indigo-300 uppercase tracking-widest">
+        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-primary-100/40">
+          <Sparkles className="h-4.5 w-4.5 text-primary-600 animate-pulse shrink-0" />
+          <span className="text-xs font-mono font-extrabold text-primary-900 uppercase tracking-widest">
             Wozku Strategy Copilot • Live AI Strategy Insights
           </span>
-          <span className="text-[10px] bg-indigo-100 dark:bg-[color-mix(in_srgb,var(--indigo-500)_18%,#141418)] text-indigo-700 dark:text-indigo-200 px-2 py-0.5 rounded-full font-semibold ml-auto">
+          <span className="text-[10px] bg-primary-100 text-primary-700 px-2 py-0.5 rounded-full font-semibold ml-auto">
             Instant Analysis
           </span>
         </div>
@@ -1322,7 +1322,7 @@ export default function InteractiveROIBuilder() {
           initial={{ opacity: 0, y: 5 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
-          className="text-sm text-neutral-600 dark:text-fixed-light leading-relaxed font-normal"
+          className="text-sm text-neutral-600 leading-relaxed font-normal"
         >
           "{getDynamicAIInsight()}"
         </motion.div>

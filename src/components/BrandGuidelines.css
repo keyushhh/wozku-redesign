@@ -34,17 +34,9 @@
   --pure-black:#000000;
   --pure-white:#ffffff;
 
-  /* default Accent scale values */
-  --brand-accent-50: #fdf2f8;
-  --brand-accent-100: #fce7f3;
-  --brand-accent-200: #fbcfe8;
-  --brand-accent-300: #f9a8d4;
-  --brand-accent-400: #f472b6;
-  --brand-accent-500: #ec4899;
-  --brand-accent-600: #db2777;
-  --brand-accent-700: #be185d;
-  --brand-accent-800: #9d174d;
-  --brand-accent-900: #831843;
+  /* Fixed brand palette — emerald is the one and only primary/secondary scale */
+  --primary-50:#ecfdf5; --primary-100:#d1fae5; --primary-200:#a7f3d0; --primary-300:#6ee7b7; --primary-400:#34d399; --primary-500:#10b981; --primary-600:#059669; --primary-700:#047857; --primary-800:#065f46; --primary-900:#064e3b;
+  --accent-50:#f0fdf4; --accent-100:#dcfce7; --accent-200:#bbf7d0; --accent-300:#86efac; --accent-400:#4ade80; --accent-500:#22c55e; --accent-600:#16a34a; --accent-700:#15803d; --accent-800:#166534; --accent-900:#14532d;
 
   font-family: var(--font-sans);
   background: var(--neutral-100);
@@ -52,40 +44,6 @@
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
   display: block;
-}
-
-/* ---------- Theme preset scales ---------- */
-.wg-doc, .wg-doc.theme-indigo {
-  --indigo-50:#f5f3ff; --indigo-100:#e0e7ff; --indigo-200:#c7d2fe; --indigo-300:#a5b4fc; --indigo-400:#818cf8; --indigo-500:#6366f1; --indigo-600:#4f46e5; --indigo-700:#4338ca; --indigo-800:#3730a3; --indigo-900:#1e1b4b;
-  --accent-50:#f5f3ff; --accent-100:#e0e7ff; --accent-200:#c7d2fe; --accent-300:#a5b4fc; --accent-400:#818cf8; --accent-500:#6366f1; --accent-600:#4f46e5; --accent-700:#4338ca; --accent-800:#3730a3; --accent-900:#1e1b4b;
-}
-.wg-doc.theme-emerald {
-  --indigo-50:#ecfdf5; --indigo-100:#d1fae5; --indigo-200:#a7f3d0; --indigo-300:#6ee7b7; --indigo-400:#34d399; --indigo-500:#10b981; --indigo-600:#059669; --indigo-700:#047857; --indigo-800:#065f46; --indigo-900:#064e3b;
-  --accent-50:#f0fdf4; --accent-100:#dcfce7; --accent-200:#bbf7d0; --accent-300:#86efac; --accent-400:#4ade80; --accent-500:#22c55e; --accent-600:#16a34a; --accent-700:#15803d; --accent-800:#166534; --accent-900:#14532d;
-}
-.wg-doc.theme-rose {
-  --indigo-50:#fff1f2; --indigo-100:#ffe4e6; --indigo-200:#fecdd3; --indigo-300:#fda4af; --indigo-400:#fb7185; --indigo-500:#f43f5e; --indigo-600:#e11d48; --indigo-700:#be123c; --indigo-800:#9f1239; --indigo-900:#881337;
-  --accent-50:#fff7ed; --accent-100:#ffedd5; --accent-200:#fed7aa; --accent-300:#fdba74; --accent-400:#fb923c; --accent-500:#f97316; --accent-600:#ea580c; --accent-700:#c2410c; --accent-800:#9a3412; --accent-900:#7c2d12;
-}
-.wg-doc.theme-amber {
-  --indigo-50:#fffbeb; --indigo-100:#fef3c7; --indigo-200:#fde68a; --indigo-300:#fcd34d; --indigo-400:#fbbf24; --indigo-500:#f59e0b; --indigo-600:#d97706; --indigo-700:#b45309; --indigo-800:#92400e; --indigo-900:#78350f;
-  --accent-50:#fefce8; --accent-100:#fef9c3; --accent-200:#fef08a; --accent-300:#fde047; --accent-400:#facc15; --accent-500:#eab308; --accent-600:#ca8a04; --accent-700:#a16207; --accent-800:#854d0e; --accent-900:#713f12;
-}
-.wg-doc.theme-violet {
-  --indigo-50:#f5f3ff; --indigo-100:#ede9fe; --indigo-200:#ddd6fe; --indigo-300:#c4b5fd; --indigo-400:#a78bfa; --indigo-500:#8b5cf6; --indigo-600:#7c3aed; --indigo-700:#6d28d9; --indigo-800:#5b21b6; --indigo-900:#4c1d95;
-  --accent-50:#fdf4ff; --accent-100:#fae8ff; --accent-200:#f5d0fe; --accent-300:#f0abfc; --accent-400:#e879f9; --accent-500:#d946ef; --accent-600:#c026d3; --accent-700:#a21caf; --accent-800:#86198f; --accent-900:#701a75;
-}
-.wg-doc.theme-sky {
-  --indigo-50:#f0f9ff; --indigo-100:#e0f2fe; --indigo-200:#bae6fd; --indigo-300:#7dd3fc; --indigo-400:#38bdf8; --indigo-500:#0ea5e9; --indigo-600:#0284c7; --indigo-700:#0369a1; --indigo-800:#075985; --indigo-900:#0c4a6e;
-  --accent-50:#eff6ff; --accent-100:#dbeafe; --accent-200:#bfdbfe; --accent-300:#93c5fd; --accent-400:#60a5fa; --accent-500:#3b82f6; --accent-600:#2563eb; --accent-700:#1d4ed8; --accent-800:#1e40af; --accent-900:#1e3a8a;
-}
-.wg-doc.theme-fuchsia {
-  --indigo-50:#fdf4ff; --indigo-100:#fae8ff; --indigo-200:#f5d0fe; --indigo-300:#f0abfc; --indigo-400:#e879f9; --indigo-500:#d946ef; --indigo-600:#c026d3; --indigo-700:#a21caf; --indigo-800:#86198f; --indigo-900:#701a75;
-  --accent-50:#faf5ff; --accent-100:#f3e8ff; --accent-200:#e9d5ff; --accent-300:#d8b4fe; --accent-400:#c084fc; --accent-500:#a855f7; --accent-600:#9333ea; --accent-700:#7e22ce; --accent-800:#6b21a8; --accent-900:#581c87;
-}
-.wg-doc.theme-crimson {
-  --indigo-50:#fef2f2; --indigo-100:#fee2e2; --indigo-200:#fecaca; --indigo-300:#fca5a5; --indigo-400:#f87171; --indigo-500:#dc2626; --indigo-600:#b91c1c; --indigo-700:#991b1b; --indigo-800:#7f1d1d; --indigo-900:#651313;
-  --accent-50:#fff7ed; --accent-100:#ffedd5; --accent-200:#fed7aa; --accent-300:#fdba74; --accent-400:#fb923c; --accent-500:#f97316; --accent-600:#ea580c; --accent-700:#c2410c; --accent-800:#9a3412; --accent-900:#7c2d12;
 }
 
 /* ---------- Corner styling customization hooks ---------- */
@@ -135,64 +93,11 @@
 }
 .wg-doc .sidenav a .n { font-family: var(--font-mono); font-size: 11px; color: var(--neutral-400); min-width: 16px; }
 .wg-doc .sidenav a:hover { background: var(--neutral-100); color: var(--neutral-900); }
-.wg-doc .sidenav a.active { background: var(--indigo-50); color: var(--indigo-700); }
-.wg-doc .sidenav a.active .n { color: var(--indigo-600); }
+.wg-doc .sidenav a.active { background: var(--primary-50); color: var(--primary-700); }
+.wg-doc .sidenav a.active .n { color: var(--primary-600); }
 
 .wg-doc .sidenav-tools { padding: 18px 16px 22px; border-top: 1px solid var(--neutral-150); }
 .wg-doc .tools-label { font-size: 10.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--neutral-400); }
-.wg-doc .swatch-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; margin-bottom: 12px; }
-.wg-doc .swatch {
-  width: 22px; height: 22px; border-radius: 50%;
-  border: 2px solid var(--pure-white);
-  outline: 1px solid var(--neutral-200);
-  cursor: pointer; position: relative;
-}
-.wg-doc .swatch.active { outline: 2px solid var(--neutral-900); outline-offset: 1px; }
-
-/* Custom Edit Panel Styles */
-.wg-doc .edit-toggle-btn {
-  background: none; border: none; cursor: pointer; color: var(--neutral-400);
-  padding: 2px; display: inline-flex; align-items: center; justify-content: center;
-  transition: color 0.15s ease;
-}
-.wg-doc .edit-toggle-btn:hover { color: var(--neutral-900); }
-.wg-doc .edit-panel {
-  border-top: 1px solid var(--neutral-150);
-  border-bottom: 1px solid var(--neutral-150);
-  padding: 14px 0;
-  margin: 16px 0;
-  display: flex; flex-direction: column; gap: 10px;
-}
-.wg-doc .edit-input-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-}
-.wg-doc .edit-input-label {
-  font-size: 11px; font-weight: 500; color: var(--neutral-650);
-}
-.wg-doc .edit-input-field {
-  display: flex; align-items: center; gap: 6px;
-}
-.wg-doc .edit-input-field input[type=color] {
-  width: 20px; height: 20px; border: none; border-radius: 4px; padding: 0; cursor: pointer; background: none;
-}
-.wg-doc .edit-input-field span {
-  font-size: 10px; font-family: var(--font-mono); color: var(--neutral-500);
-}
-.wg-doc .edit-checkbox-row {
-  display: flex; align-items: center; gap: 6px; margin-top: 4px; border-top: 1px dashed var(--neutral-150); padding-top: 8px;
-}
-.wg-doc .edit-checkbox-row input[type=checkbox] {
-  cursor: pointer;
-}
-.wg-doc .edit-checkbox-row label {
-  font-size: 10px; font-weight: 500; color: var(--neutral-550); cursor: pointer;
-}
-
-.wg-doc .custom-hex-row { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
-.wg-doc .custom-hex-row input[type=color] {
-  width: 26px; height: 26px; border: none; border-radius: 6px; padding: 0; cursor: pointer; background: none;
-}
-.wg-doc .custom-hex-row span { font-size: 11.5px; color: var(--neutral-500); font-family: var(--font-mono); }
 .wg-doc .export-btn {
   width: 100%; display: flex; align-items: center; justify-content: center; gap: 7px;
   background: var(--neutral-900); color: #fff; border: none;
@@ -200,17 +105,8 @@
   font-family: var(--font-sans); font-weight: 600; font-size: 13px;
   cursor: pointer; transition: background .15s ease;
 }
-.wg-doc .export-btn:hover { background: var(--indigo-700); }
+.wg-doc .export-btn:hover { background: var(--primary-700); }
 .wg-doc .export-btn svg { width: 14px; height: 14px; }
-
-/* Swatch edit card hover styling */
-.wg-doc .swatch-edit-btn {
-  opacity: 0.6;
-}
-.wg-doc .swatch-edit-btn:hover {
-  opacity: 1;
-  background: rgba(255,255,255,0.3) !important;
-}
 
 /* ================= MAIN / PAGES ================= */
 .wg-doc .book { margin-left: 236px; padding: 40px 40px 120px; max-width: 1180px; }
@@ -227,10 +123,10 @@
 }
 .wg-doc .eyebrow {
   font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-  letter-spacing: .09em; text-transform: uppercase; color: var(--indigo-600);
+  letter-spacing: .09em; text-transform: uppercase; color: var(--primary-600);
   margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
 }
-.wg-doc .eyebrow::before { content: ""; width: 14px; height: 1.5px; background: var(--indigo-500); display: inline-block; }
+.wg-doc .eyebrow::before { content: ""; width: 14px; height: 1.5px; background: var(--primary-500); display: inline-block; }
 .wg-doc h1.page-title { font-family: var(--font-display); font-weight: 700; font-size: 40px; letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 18px; color: var(--neutral-950); }
 .wg-doc .page-body { font-size: 15px; line-height: 1.65; color: var(--neutral-600); max-width: 480px; }
 .wg-doc .footer-row {
@@ -242,7 +138,7 @@
 
 /* ---------- 01 COVER ---------- */
 .wg-doc .page-cover {
-  background: linear-gradient(160deg, var(--indigo-600), var(--indigo-900) 78%);
+  background: linear-gradient(160deg, var(--primary-600), var(--primary-900) 78%);
   color: #fff; min-height: 720px; padding: 48px 60px;
   display: flex; flex-direction: column; justify-content: space-between;
 }
@@ -261,17 +157,17 @@
 /* ---------- 02 TOC ---------- */
 .wg-doc .page-toc { background: var(--neutral-950); color: #fff; }
 .wg-doc .toc-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 44px; }
-.wg-doc .toc-head .big { font-family: var(--font-display); font-weight: 700; font-size: 64px; color: var(--indigo-400); letter-spacing: -0.02em; }
+.wg-doc .toc-head .big { font-family: var(--font-display); font-weight: 700; font-size: 64px; color: var(--primary-400); letter-spacing: -0.02em; }
 .wg-doc .toc-head p { max-width: 280px; font-size: 13.5px; color: var(--neutral-400); text-align: right; line-height: 1.6; }
 .wg-doc .toc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 48px; }
 .wg-doc .toc-item { display: flex; align-items: center; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
-.wg-doc .toc-item .num { font-family: var(--font-mono); font-size: 12px; color: var(--indigo-400); width: 22px; }
+.wg-doc .toc-item .num { font-family: var(--font-mono); font-size: 12px; color: var(--primary-400); width: 22px; }
 .wg-doc .toc-item .name { font-family: var(--font-display); font-weight: 500; font-size: 16px; }
 
 /* ---------- 03 TYPOGRAPHY ---------- */
 .wg-doc .type-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: flex-start; margin-top: 28px; }
 .wg-doc .type-showcase {
-  background: linear-gradient(150deg, var(--indigo-600), var(--indigo-800));
+  background: linear-gradient(150deg, var(--primary-600), var(--primary-800));
   border-radius: var(--radius-card); color: #fff; padding: 36px 32px;
   box-shadow: var(--shadow-lift);
 }
@@ -291,7 +187,7 @@
 .wg-doc .hier-specs .spec .name { font-family: var(--font-display); font-weight: 600; font-size: 13.5px; margin-bottom: 3px; }
 .wg-doc .hier-specs .spec .meta { font-family: var(--font-mono); font-size: 10.5px; color: var(--neutral-500); }
 .wg-doc .hier-demo h2 { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1.15; letter-spacing: -0.015em; margin-bottom: 14px; }
-.wg-doc .hier-demo h3 { font-family: var(--font-display); font-weight: 600; font-size: 20px; margin-bottom: 14px; color: var(--indigo-700); }
+.wg-doc .hier-demo h3 { font-family: var(--font-display); font-weight: 600; font-size: 20px; margin-bottom: 14px; color: var(--primary-700); }
 .wg-doc .hier-demo h4 { font-family: var(--font-display); font-weight: 500; font-size: 16px; margin-bottom: 14px; color: var(--neutral-800); }
 .wg-doc .hier-demo p.lg { font-size: 16px; line-height: 1.6; color: var(--neutral-700); margin-bottom: 10px; }
 .wg-doc .hier-demo p.sm { font-size: 13px; line-height: 1.6; color: var(--neutral-500); }
@@ -299,7 +195,7 @@
 /* ---------- 05 LOGO ---------- */
 .wg-doc .logo-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; margin-top: 26px; }
 .wg-doc .logo-card { border-radius: var(--radius-card); height: 170px; display: flex; align-items: center; justify-content: center; position: relative; box-shadow: var(--shadow-soft); }
-.wg-doc .logo-card.primary { background: linear-gradient(135deg, var(--indigo-600), var(--indigo-800)); }
+.wg-doc .logo-card.primary { background: linear-gradient(135deg, var(--primary-600), var(--primary-800)); }
 .wg-doc .logo-card.reverse { background: var(--neutral-50); border: 1px solid var(--neutral-150); }
 .wg-doc .logo-card .tag { position: absolute; top: 14px; left: 16px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .09em; text-transform: uppercase; }
 .wg-doc .logo-card.primary .tag { color: rgba(255,255,255,.65); }
@@ -311,12 +207,11 @@
 .wg-doc .lockup span { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: .01em; }
 .wg-doc .min-size-row { display: flex; gap: 36px; margin-top: 22px; }
 .wg-doc .min-size-row .item { text-align: center; }
-.wg-doc .min-size-row svg { width: 20px; height: 20px; color: var(--indigo-600); }
+.wg-doc .min-size-row svg { width: 20px; height: 20px; color: var(--primary-600); }
 .wg-doc .min-size-row .cap { font-family: var(--font-mono); font-size: 10.5px; color: var(--neutral-500); margin-top: 8px; }
 
 /* ---------- 06 COLOUR PALETTE ---------- */
 .wg-doc .palette-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 30px; }
-.wg-doc .palette-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
 .wg-doc .swatch-card { border-radius: var(--radius-card); height: 280px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: var(--shadow-soft); }
 .wg-doc .swatch-card .label { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
 .wg-doc .swatch-card .role { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .06em; opacity: .75; margin-top: 2px; }
@@ -332,32 +227,32 @@
 
 /* grid & spacing mock */
 .wg-doc .mock-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; padding: 10px; height: 100%; }
-.wg-doc .mock-grid div { background: var(--indigo-100); border-radius: 3px; }
-.wg-doc .mock-grid div:nth-child(3n) { background: var(--indigo-300); }
+.wg-doc .mock-grid div { background: var(--primary-100); border-radius: 3px; }
+.wg-doc .mock-grid div:nth-child(3n) { background: var(--primary-300); }
 
 /* corner radius mock */
 .wg-doc .mock-radius { display: flex; align-items: center; justify-content: center; gap: 10px; height: 100%; }
-.wg-doc .mock-radius i { display: block; width: 34px; height: 34px; background: var(--indigo-500); }
+.wg-doc .mock-radius i { display: block; width: 34px; height: 34px; background: var(--primary-500); }
 .wg-doc .mock-radius i:nth-child(1) { border-radius: 4px; }
 .wg-doc .mock-radius i:nth-child(2) { border-radius: 10px; }
 .wg-doc .mock-radius i:nth-child(3) { border-radius: 16px; }
 
 /* iconography mock */
 .wg-doc .mock-icons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; align-items: center; justify-items: center; height: 100%; padding: 10px; }
-.wg-doc .mock-icons svg { width: 20px; height: 20px; color: var(--indigo-600); }
+.wg-doc .mock-icons svg { width: 20px; height: 20px; color: var(--primary-600); }
 
 /* illustration mock */
 .wg-doc .mock-illustration { display: flex; align-items: center; justify-content: center; height: 100%; gap: 6px; }
 .wg-doc .mock-illustration .b1 { width: 44px; height: 44px; border-radius: 50%; background: var(--accent-300); }
-.wg-doc .mock-illustration .b2 { width: 30px; height: 52px; border-radius: 14px; background: var(--indigo-500); }
-.wg-doc .mock-illustration .b3 { width: 24px; height: 24px; border-radius: 6px; background: var(--indigo-800); transform: rotate(18deg); }
+.wg-doc .mock-illustration .b2 { width: 30px; height: 52px; border-radius: 14px; background: var(--primary-500); }
+.wg-doc .mock-illustration .b3 { width: 24px; height: 24px; border-radius: 6px; background: var(--primary-800); transform: rotate(18deg); }
 
 /* gradients mock */
-.wg-doc .mock-gradient { height: 100%; background: linear-gradient(135deg, var(--indigo-400), var(--accent-500)); position: relative; }
+.wg-doc .mock-gradient { height: 100%; background: linear-gradient(135deg, var(--primary-400), var(--accent-500)); position: relative; }
 .wg-doc .mock-gradient::after { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,.35); filter: blur(14px); top: 20px; right: 16px; }
 
 /* photography mock */
-.wg-doc .mock-photo { height: 100%; background: linear-gradient(160deg, var(--neutral-800), var(--indigo-900)); position: relative; }
+.wg-doc .mock-photo { height: 100%; background: linear-gradient(160deg, var(--neutral-800), var(--primary-900)); position: relative; }
 .wg-doc .mock-photo::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1px); background-size: 12px 12px; }
 
 /* ---------- 08 CLEAR SPACE ---------- */
@@ -387,7 +282,7 @@
 
 @media (max-width: 1040px) {
   .wg-doc .type-grid, .wg-doc .hier-grid, .wg-doc .logo-grid { grid-template-columns: 1fr; }
-  .wg-doc .palette-grid, .wg-doc .palette-grid.cols-5 { grid-template-columns: repeat(2, 1fr); }
+  .wg-doc .palette-grid { grid-template-columns: repeat(2, 1fr); }
   .wg-doc .vl-grid, .wg-doc .misuse-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -397,7 +292,7 @@
   .wg-doc .page { padding: 36px 24px; }
   .wg-doc .cover-title h1 { font-size: 44px; }
   .wg-doc .toc-list { grid-template-columns: 1fr; }
-  .wg-doc .palette-grid, .wg-doc .palette-grid.cols-5, .wg-doc .vl-grid, .wg-doc .misuse-grid { grid-template-columns: 1fr 1fr; }
+  .wg-doc .palette-grid, .wg-doc .vl-grid, .wg-doc .misuse-grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* ================= PRINT / PDF EXPORT ================= */
@@ -410,7 +305,5 @@
     -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important;
   }
   .wg-doc .page:last-child { page-break-after: auto !important; }
-  .wg-doc .swatch-edit-btn { display: none !important; }
-  .wg-doc .reset-btn-link { display: none !important; }
-  .wg-doc .palette-grid, .wg-doc .palette-grid.cols-5 { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+  .wg-doc .palette-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
 }

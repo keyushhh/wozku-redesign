@@ -8,16 +8,16 @@ export default function NetworkTeaserGlobe() {
   const pointerInteractionMovement = useRef(0);
   const currentPhi = useRef(2.8);
 
-  // Theme-reactive color ref: stores the current --indigo-500 as fractional [R,G,B]
+  // Theme-reactive color ref: stores the current --primary-500 as fractional [R,G,B]
   const themeColorRef = useRef<[number, number, number]>([0.38, 0.4, 0.95]);
   const themeColorValueRef = useRef('');
   const themeColorFrameRef = useRef<number | null>(null);
 
-  // Parse computed --indigo-500 (hex or rgb()) to fractional [R,G,B] and store in ref
+  // Parse computed --primary-500 (hex or rgb()) to fractional [R,G,B] and store in ref
   const readThemeColor = () => {
     try {
       const raw = getComputedStyle(document.documentElement)
-        .getPropertyValue('--indigo-500');
+        .getPropertyValue('--primary-500');
       const trimmed = raw.trim();
       if (!trimmed) return;
       if (trimmed === themeColorValueRef.current) return;

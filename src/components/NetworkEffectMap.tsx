@@ -399,7 +399,7 @@ export default function NetworkEffectMap() {
               <div>
                 <span className="text-[9px] font-mono font-bold text-neutral-400 block uppercase tracking-wider">PROJECTED AUDIENCE</span>
                 <span className="text-2xl font-black text-neutral-950 font-display transition-all duration-300">
-                  {totalReachCount.toLocaleString()} <span className="text-indigo-600 text-xs font-semibold">Professionals</span>
+                  {totalReachCount.toLocaleString()} <span className="text-primary-600 text-xs font-semibold">Professionals</span>
                 </span>
               </div>
               <Compass className={`w-8 h-8 text-neutral-350 ${isSimulating ? 'animate-spin' : ''}`} />
@@ -426,7 +426,7 @@ export default function NetworkEffectMap() {
                       <div className="flex items-center gap-2">
                         <div className={`h-2 w-2 rounded-full transition-all duration-300 ${
                           isActive 
-                            ? 'bg-indigo-600 shadow-xs shadow-indigo-650' 
+                            ? 'bg-primary-600 shadow-xs shadow-primary-650' 
                             : 'bg-neutral-200'
                         }`} />
                         <span className={`font-semibold transition-colors ${isActive ? 'text-neutral-950' : 'text-neutral-400'}`}>
@@ -445,7 +445,7 @@ export default function NetworkEffectMap() {
             <button
               onClick={handleSimulate}
               disabled={isSimulating}
-              className="w-full relative inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-neutral-200 text-white font-bold py-3.5 px-6 rounded-2xl text-xs transition-all shadow-md shadow-indigo-600/20 cursor-pointer active:scale-98 disabled:cursor-not-allowed"
+              className="w-full relative inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-500 disabled:bg-neutral-200 text-white font-bold py-3.5 px-6 rounded-2xl text-xs transition-all shadow-md shadow-primary-600/20 cursor-pointer active:scale-98 disabled:cursor-not-allowed"
             >
               {isSimulating ? (
                 <>
@@ -454,7 +454,7 @@ export default function NetworkEffectMap() {
                 </>
               ) : (
                 <>
-                  <Share2 className="w-4 h-4 text-indigo-200" />
+                  <Share2 className="w-4 h-4 text-primary-200" />
                   Simulate Global Share
                 </>
               )}
@@ -476,7 +476,7 @@ export default function NetworkEffectMap() {
             </div>
             <div className="text-right">
               <span className="text-[8px] font-mono font-bold text-neutral-500 uppercase tracking-widest block">ACTIVE LINK HOPS</span>
-              <span className="text-xs font-semibold text-indigo-400 font-mono font-bold">
+              <span className="text-xs font-semibold text-primary-400 font-mono font-bold">
                 {reachedNodes.length} / {NODES.length} Node Hops
               </span>
             </div>
@@ -508,7 +508,7 @@ export default function NetworkEffectMap() {
                   
                   <div className="flex items-center justify-between">
                     <span className="text-neutral-500 font-medium">Linked Reach</span>
-                    <span className="font-semibold text-indigo-400">
+                    <span className="font-semibold text-primary-400">
                       {reachedNodes.includes(activeNodeData.id) ? activeNodeData.reach : '0'} Professionals
                     </span>
                   </div>
@@ -523,7 +523,7 @@ export default function NetworkEffectMap() {
 
           {/* Footer Coordinates / Status */}
           <div className="flex items-center justify-between text-[9px] font-mono text-neutral-500 relative z-10 border-t border-neutral-900 pt-3">
-            <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5 text-indigo-500" /> WEBGL VECTOR ENGINE ACTIVE</span>
+            <span className="flex items-center gap-1"><ShieldCheck className="w-3.5 h-3.5 text-primary-500" /> WEBGL VECTOR ENGINE ACTIVE</span>
             <span>SIMULATOR STATUS: {isSimulating ? 'BROADCASTING PARTICLE FLUX' : 'DRAG TO ROTATE GLOBE'}</span>
           </div>
 

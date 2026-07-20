@@ -43,15 +43,15 @@ export default function TeamsEmployeesPage() {
       desc: "Marketing drafts the campaign and outlines compliant parameters.",
       pill: "Marketer Admin!",
       renderVisual: () => (
-        <div className="w-full h-32 bg-white dark:bg-neutral-950 rounded-xl border border-neutral-100 dark:border-neutral-850 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
+        <div className="w-full h-32 bg-white rounded-xl border border-neutral-100 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
           {/* Mock mini document visual */}
           <div className="w-full space-y-2">
-            <div className="flex items-center gap-1.5 pb-2 border-b border-neutral-100 dark:border-neutral-850">
-              <div className="h-4 w-4 rounded bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900/40 flex items-center justify-center text-[7px] text-emerald-600 dark:text-emerald-450 font-bold">W</div>
-              <div className="h-2 w-16 bg-neutral-200 dark:bg-neutral-800 rounded" />
+            <div className="flex items-center gap-1.5 pb-2 border-b border-neutral-100">
+              <div className="h-4 w-4 rounded bg-emerald-50 border border-emerald-100 flex items-center justify-center text-[7px] text-emerald-600 font-bold">W</div>
+              <div className="h-2 w-16 bg-neutral-200 rounded" />
             </div>
-            <div className="h-2.5 w-full bg-neutral-100 dark:bg-neutral-900 rounded" />
-            <div className="h-2.5 w-3/4 bg-neutral-100 dark:bg-neutral-900 rounded" />
+            <div className="h-2.5 w-full bg-neutral-100 rounded" />
+            <div className="h-2.5 w-3/4 bg-neutral-100 rounded" />
           </div>
         </div>
       )
@@ -62,15 +62,15 @@ export default function TeamsEmployeesPage() {
       desc: "Wozku drafts multiple pre-vetted options to prevent duplicate text.",
       pill: "AI Studio!",
       renderVisual: () => (
-        <div className="w-full h-32 bg-white dark:bg-neutral-950 rounded-xl border border-neutral-100 dark:border-neutral-850 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
+        <div className="w-full h-32 bg-white rounded-xl border border-neutral-100 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
           {/* Mock post list with green tick badge */}
           <div className="w-full space-y-3">
-            <div className="p-1.5 bg-neutral-50 dark:bg-neutral-900 rounded border border-neutral-200 dark:border-neutral-800 flex justify-between items-center">
-              <div className="h-2 w-20 bg-neutral-300 dark:bg-neutral-700 rounded" />
+            <div className="p-1.5 bg-neutral-50 rounded border border-neutral-200 flex justify-between items-center">
+              <div className="h-2 w-20 bg-neutral-300 rounded" />
               <div className="h-3 w-3 rounded-full bg-emerald-500 flex items-center justify-center text-white text-[7px]"><Check className="h-2 w-2 stroke-[4]" /></div>
             </div>
-            <div className="p-1.5 bg-neutral-50 dark:bg-neutral-900 rounded border border-neutral-200 dark:border-neutral-800 flex justify-between items-center opacity-60">
-              <div className="h-2 w-16 bg-neutral-300 dark:bg-neutral-750 rounded" />
+            <div className="p-1.5 bg-neutral-50 rounded border border-neutral-200 flex justify-between items-center opacity-60">
+              <div className="h-2 w-16 bg-neutral-300 rounded" />
             </div>
           </div>
         </div>
@@ -82,14 +82,14 @@ export default function TeamsEmployeesPage() {
       desc: "Advocates edit pre-approved drafts and share to LinkedIn.",
       pill: "One-Click!",
       renderVisual: () => (
-        <div className="w-full h-32 bg-white dark:bg-neutral-950 rounded-xl border border-neutral-100 dark:border-neutral-850 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
+        <div className="w-full h-32 bg-white rounded-xl border border-neutral-100 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
           {/* Stacked sheets visual */}
           <div className="relative w-16 h-20">
-            <div className="absolute inset-0 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-3xs rotate-3" />
-            <div className="absolute inset-0 bg-white dark:bg-neutral-950 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-2xs -rotate-2 p-2 flex flex-col justify-between">
+            <div className="absolute inset-0 bg-neutral-50 border border-neutral-200 rounded-lg shadow-3xs rotate-3" />
+            <div className="absolute inset-0 bg-white border border-neutral-200 rounded-lg shadow-2xs -rotate-2 p-2 flex flex-col justify-between">
               <div className="space-y-1">
-                <div className="h-1 w-8 bg-neutral-300 dark:bg-neutral-750 rounded" />
-                <div className="h-1 w-10 bg-neutral-200 dark:bg-neutral-800 rounded" />
+                <div className="h-1 w-8 bg-neutral-300 rounded" />
+                <div className="h-1 w-10 bg-neutral-200 rounded" />
               </div>
               <div className="h-3 w-10 bg-emerald-600 rounded-sm text-[5px] text-white flex items-center justify-center font-bold">LinkedIn</div>
             </div>
@@ -103,12 +103,12 @@ export default function TeamsEmployeesPage() {
       desc: "Track every lead and pipeline dollar back to the individual advocate.",
       pill: "Salesforce Sync!",
       renderVisual: () => (
-        <div className="w-full h-32 bg-white dark:bg-neutral-950 rounded-xl border border-neutral-100 dark:border-neutral-850 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
+        <div className="w-full h-32 bg-white rounded-xl border border-neutral-100 flex items-center justify-center p-4 relative shadow-3xs overflow-hidden select-none">
           {/* Floating tag pills */}
           <div className="flex flex-col gap-1.5 items-center justify-center">
-            <span className="text-[7.5px] font-bold bg-[#09090f] dark:bg-white dark:text-neutral-900 text-white px-2.5 py-1 rounded shadow-md">+ $14K Pipeline</span>
-            <span className="text-[7.5px] font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-850 dark:text-emerald-350 border border-emerald-100 dark:border-emerald-900/40 px-2 py-0.5 rounded-full">124 Clicks</span>
-            <span className="text-[7.5px] font-bold bg-neutral-100 dark:bg-neutral-900 text-neutral-600 dark:text-neutral-400 px-2 py-0.5 rounded-full">Attributed!</span>
+            <span className="text-[7.5px] font-bold bg-[#09090f] text-white px-2.5 py-1 rounded shadow-md">+ $14K Pipeline</span>
+            <span className="text-[7.5px] font-bold bg-emerald-50 text-emerald-850 border border-emerald-100 px-2 py-0.5 rounded-full">124 Clicks</span>
+            <span className="text-[7.5px] font-bold bg-neutral-100 text-neutral-600 px-2 py-0.5 rounded-full">Attributed!</span>
           </div>
         </div>
       )
@@ -178,7 +178,7 @@ export default function TeamsEmployeesPage() {
             className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.08] text-neutral-955"
           >
             Turn team alignment <br />
-            <span className="text-emerald-600 dark:text-emerald-500">
+            <span className="text-emerald-600">
               into organic reach.
             </span>
           </motion.h1>
@@ -312,33 +312,33 @@ export default function TeamsEmployeesPage() {
             {ugcSteps.map((step, idx) => (
               <div
                 key={idx}
-                className="group bg-neutral-50 dark:bg-neutral-900/60 border border-neutral-200 dark:border-neutral-800 rounded-[2rem] p-6.5 flex flex-col justify-between space-y-6 relative hover:shadow-xs hover:border-emerald-500/20 dark:hover:border-emerald-500/30 transition-all duration-350"
+                className="group bg-neutral-50 border border-neutral-200 rounded-[2rem] p-6.5 flex flex-col justify-between space-y-6 relative hover:shadow-xs hover:border-emerald-500/20 transition-all duration-350"
               >
                 {idx < 3 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-6.5 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-neutral-200 dark:bg-neutral-850 text-neutral-600 dark:text-neutral-400 border border-neutral-300/40 dark:border-neutral-700/40 items-center justify-center shadow-3xs">
+                  <div className="hidden md:flex absolute top-1/2 -right-6.5 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-neutral-200 text-neutral-600 border border-neutral-300/40 items-center justify-center shadow-3xs">
                     <ArrowRight className="h-4 w-4 stroke-[2.5]" />
                   </div>
                 )}
 
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <span className="text-[9px] font-mono tracking-wider font-extrabold text-neutral-450 dark:text-neutral-500 uppercase">
+                    <span className="text-[9px] font-mono tracking-wider font-extrabold text-neutral-450 uppercase">
                       {step.step}
                     </span>
-                    <h3 className="text-sm sm:text-base font-display font-extrabold text-neutral-900 dark:text-white leading-snug">
+                    <h3 className="text-sm sm:text-base font-display font-extrabold text-neutral-900 leading-snug">
                       {step.title}
                     </h3>
                   </div>
 
                   {step.renderVisual()}
 
-                  <p className="text-[11.5px] text-neutral-550 dark:text-neutral-400 leading-relaxed font-normal font-sans">
+                  <p className="text-[11.5px] text-neutral-550 leading-relaxed font-normal font-sans">
                     {step.desc}
                   </p>
                 </div>
 
                 <div className="pt-2">
-                  <span className="inline-block bg-white dark:bg-neutral-850 text-neutral-800 dark:text-neutral-200 text-[9.5px] font-bold px-3.5 py-1.5 rounded-full border border-neutral-200/60 dark:border-neutral-700/60 shadow-3xs">
+                  <span className="inline-block bg-white text-neutral-800 text-[9.5px] font-bold px-3.5 py-1.5 rounded-full border border-neutral-200/60 shadow-3xs">
                     {step.pill}
                   </span>
                 </div>

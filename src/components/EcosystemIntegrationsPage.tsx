@@ -156,7 +156,7 @@ export default function EcosystemIntegrationsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-indigo-500/10 selection:text-indigo-900 pb-20">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary-500/10 selection:text-primary-900 pb-20">
 
       {/* ── 1. HERO ──────────────────────────────────────────────── */}
       <section className="relative overflow-hidden pt-16 pb-0 text-center">
@@ -167,7 +167,7 @@ export default function EcosystemIntegrationsPage() {
         }} />
 
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-50 border border-indigo-100 px-4 py-1.5 text-[10px] font-mono font-extrabold uppercase tracking-widest text-indigo-600 mb-8">
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-50 border border-primary-100 px-4 py-1.5 text-[10px] font-mono font-extrabold uppercase tracking-widest text-primary-600 mb-8">
             <Link className="w-3.5 h-3.5" /> Integration Hub
           </span>
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] mb-6 text-slate-900">
@@ -243,7 +243,7 @@ export default function EcosystemIntegrationsPage() {
                   className={[
                     'rounded-full flex items-center justify-center shadow-md border border-white cursor-pointer transition-all duration-300 w-11 h-11',
                     item.bg,
-                    hoveredArchIndex === index ? 'scale-115 ring-4 ring-indigo-500/10' : ''
+                    hoveredArchIndex === index ? 'scale-115 ring-4 ring-primary-500/10' : ''
                   ].join(' ')}
                   style={{
                     backgroundColor: item.bg === 'bg-black' ? '#000' : undefined,
@@ -293,7 +293,7 @@ export default function EcosystemIntegrationsPage() {
               className={[
                 'px-5 py-2.5 rounded-full text-[10px] font-mono font-extrabold uppercase tracking-widest border transition-all cursor-pointer select-none',
                 activeCategory === cat.id
-                  ? 'border-indigo-500 text-indigo-600 bg-indigo-50'
+                  ? 'border-primary-500 text-primary-600 bg-primary-50'
                   : 'border-slate-200 text-slate-500 bg-white hover:bg-slate-50'
               ].join(' ')}
             >
@@ -362,7 +362,7 @@ export default function EcosystemIntegrationsPage() {
                     )}
 
                     <a href="#/resources/ecosystem-integrations" onClick={e => { e.preventDefault(); window.dispatchEvent(new CustomEvent('open-demo-modal')); }}
-                      className="text-xs text-slate-405 hover:text-indigo-600 font-bold transition-colors flex items-center gap-1">
+                      className="text-xs text-slate-405 hover:text-primary-600 font-bold transition-colors flex items-center gap-1">
                       Documentation <ArrowUpRight className="w-3.5 h-3.5" />
                     </a>
                   </div>
@@ -374,11 +374,11 @@ export default function EcosystemIntegrationsPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-white/95 rounded-3xl p-6 flex flex-col justify-between z-10 border border-indigo-200"
+                        className="absolute inset-0 bg-white/95 rounded-3xl p-6 flex flex-col justify-between z-10 border border-primary-200"
                       >
                         <div className="space-y-4">
                           <div className="flex items-center justify-between">
-                            <span className="text-[10px] font-mono font-bold uppercase text-indigo-600 tracking-wider">Setup connection</span>
+                            <span className="text-[10px] font-mono font-bold uppercase text-primary-600 tracking-wider">Setup connection</span>
                             <button onClick={() => setConnectingId(null)} className="text-slate-400 hover:text-slate-600 cursor-pointer">
                               <X className="w-4 h-4" />
                             </button>
@@ -397,7 +397,7 @@ export default function EcosystemIntegrationsPage() {
                                 value={clientKey}
                                 onChange={e => setClientKey(e.target.value)}
                                 placeholder="api_key_wozku_..."
-                                className="w-full bg-slate-50 border border-slate-200 focus:border-indigo-500 rounded-xl px-3.5 py-2 text-xs text-slate-800 focus:outline-none transition-all placeholder:text-slate-350"
+                                className="w-full bg-slate-50 border border-slate-200 focus:border-primary-500 rounded-xl px-3.5 py-2 text-xs text-slate-800 focus:outline-none transition-all placeholder:text-slate-350"
                               />
                             </div>
 
@@ -411,7 +411,7 @@ export default function EcosystemIntegrationsPage() {
                               </button>
                               <button
                                 type="submit"
-                                className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white text-[10px] font-mono font-bold uppercase py-2.5 rounded-xl cursor-pointer"
+                                className="flex-1 bg-primary-600 hover:bg-primary-500 text-white text-[10px] font-mono font-bold uppercase py-2.5 rounded-xl cursor-pointer"
                               >
                                 Connect
                               </button>

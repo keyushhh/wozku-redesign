@@ -197,17 +197,17 @@ export default function CaseStudiesPage() {
   }, [activeCategory, filteredStudies]);
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-indigo-500/10 selection:text-indigo-900 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-primary-500/10 selection:text-primary-900 relative overflow-hidden">
       
       {/* Background radial glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--indigo-500) 6%, transparent), transparent 60%)' }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--primary-500) 6%, transparent), transparent 60%)' }} />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-600 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-500" /> CUSTOMER RESULTS
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-primary-600 font-extrabold bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full">
+            <Sparkles className="w-3.5 h-3.5 text-primary-500" /> CUSTOMER RESULTS
           </span>
           <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
             Proven Outcomes, Real Impact
@@ -229,7 +229,7 @@ export default function CaseStudiesPage() {
                   onClick={() => setActiveCategory(category)}
                   className={`px-5 py-2 rounded-xl text-xs font-semibold font-sans transition-all duration-200 cursor-pointer ${
                     isActive 
-                      ? 'bg-indigo-600 text-fixed-white shadow-xs shadow-indigo-500/20' 
+                      ? 'bg-primary-600 text-fixed-white shadow-xs shadow-primary-500/20' 
                       : 'text-slate-655 hover:bg-slate-50 hover:text-slate-900'
                   }`}
                 >
@@ -332,7 +332,7 @@ export default function CaseStudiesPage() {
                   transition={{ duration: 0.25 }}
                   key={study.id}
                   onClick={() => setSelectedStudy(study)}
-                  className="bg-white border border-slate-200 hover:border-indigo-500/40 rounded-3rem p-6 flex flex-col justify-between shadow-xs hover:shadow-md hover:scale-[1.01] transition-all duration-300 cursor-pointer group relative"
+                  className="bg-white border border-slate-200 hover:border-primary-500/40 rounded-3rem p-6 flex flex-col justify-between shadow-xs hover:shadow-md hover:scale-[1.01] transition-all duration-300 cursor-pointer group relative"
                 >
                   <div>
                     {/* Top Metadata */}
@@ -347,9 +347,9 @@ export default function CaseStudiesPage() {
 
                     {/* Metric Highlights */}
                     <div className="mb-4">
-                      <div className="text-4xl font-display font-black text-indigo-600 tracking-tight flex items-baseline gap-1">
+                      <div className="text-4xl font-display font-black text-primary-600 tracking-tight flex items-baseline gap-1">
                         {study.metric}
-                        <TrendingUp className="w-5 h-5 text-indigo-500" />
+                        <TrendingUp className="w-5 h-5 text-primary-500" />
                       </div>
                       <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
                         {study.metricLabel}
@@ -357,7 +357,7 @@ export default function CaseStudiesPage() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-sm font-bold text-neutral-900 leading-snug group-hover:text-indigo-600 transition-colors mb-2 min-h-[44px]">
+                    <h3 className="text-sm font-bold text-neutral-900 leading-snug group-hover:text-primary-600 transition-colors mb-2 min-h-[44px]">
                       {study.title}
                     </h3>
 
@@ -377,7 +377,7 @@ export default function CaseStudiesPage() {
                           </span>
                         ))}
                       </div>
-                      <span className="text-indigo-600 group-hover:text-indigo-500 transition-colors flex items-center gap-1 font-bold text-xs shrink-0 pl-2">
+                      <span className="text-primary-600 group-hover:text-primary-500 transition-colors flex items-center gap-1 font-bold text-xs shrink-0 pl-2">
                         <span>Details</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </span>
@@ -402,7 +402,7 @@ export default function CaseStudiesPage() {
                   transition={{ duration: 0.2 }}
                   key={study.id}
                   onClick={() => setSelectedStudy(study)}
-                  className="bg-white border border-slate-200 hover:border-indigo-500/40 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer group"
+                  className="bg-white border border-slate-200 hover:border-primary-500/40 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xs hover:shadow-md transition-all duration-300 cursor-pointer group"
                 >
                   {/* Left Column: Company & Title */}
                   <div className="flex items-start gap-4 md:max-w-2xl">
@@ -416,7 +416,7 @@ export default function CaseStudiesPage() {
                           {study.duration}
                         </span>
                       </div>
-                      <h3 className="text-sm font-semibold text-neutral-800 leading-snug group-hover:text-indigo-600 transition-colors">
+                      <h3 className="text-sm font-semibold text-neutral-800 leading-snug group-hover:text-primary-600 transition-colors">
                         {study.title}
                       </h3>
                       <div className="flex flex-wrap gap-1.5 pt-1">
@@ -432,9 +432,9 @@ export default function CaseStudiesPage() {
                   {/* Middle Column: Metric */}
                   <div className="flex items-center gap-4 shrink-0 md:border-l md:border-slate-100 md:pl-8 min-w-[150px]">
                     <div>
-                      <div className="text-2xl font-display font-black text-indigo-600 tracking-tight flex items-baseline gap-0.5">
+                      <div className="text-2xl font-display font-black text-primary-600 tracking-tight flex items-baseline gap-0.5">
                         {study.metric}
-                        <TrendingUp className="w-4 h-4 text-indigo-500" />
+                        <TrendingUp className="w-4 h-4 text-primary-500" />
                       </div>
                       <div className="text-[9px] font-bold uppercase tracking-wider text-slate-450">
                         {study.metricLabel}
@@ -444,7 +444,7 @@ export default function CaseStudiesPage() {
 
                   {/* Right Column: CTA */}
                   <div className="shrink-0 flex items-center">
-                    <span className="text-indigo-600 group-hover:text-indigo-500 transition-colors flex items-center gap-1 font-bold text-xs">
+                    <span className="text-primary-600 group-hover:text-primary-500 transition-colors flex items-center gap-1 font-bold text-xs">
                       <span>Read Case Study</span>
                       <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </span>
@@ -464,7 +464,7 @@ export default function CaseStudiesPage() {
                 <div key={colCategory} className="bg-slate-100/50 border border-slate-200/60 rounded-3xl p-5 space-y-4 shadow-sm">
                   <div className="flex justify-between items-center border-b border-slate-200 pb-3">
                     <div className="flex items-center gap-2">
-                      <span className="h-2 w-2 rounded-full bg-indigo-600" />
+                      <span className="h-2 w-2 rounded-full bg-primary-600" />
                       <h4 className="text-xs font-bold text-neutral-800 tracking-wide uppercase font-sans">{colCategory}</h4>
                     </div>
                     <span className="text-[10px] font-mono font-bold text-slate-500 bg-slate-200/70 px-2 py-0.5 rounded-full">
@@ -477,7 +477,7 @@ export default function CaseStudiesPage() {
                       <div
                         key={study.id}
                         onClick={() => setSelectedStudy(study)}
-                        className="bg-white border border-slate-200/80 hover:border-indigo-500/30 rounded-2xl p-4 space-y-3 shadow-2xs hover:shadow-xs transition-all duration-300 cursor-pointer group"
+                        className="bg-white border border-slate-200/80 hover:border-primary-500/30 rounded-2xl p-4 space-y-3 shadow-2xs hover:shadow-xs transition-all duration-300 cursor-pointer group"
                       >
                         <div className="flex justify-between items-center">
                           <span className="text-[10px] font-bold text-neutral-900 font-mono bg-slate-50 border border-slate-100 px-2 py-0.5 rounded">
@@ -485,11 +485,11 @@ export default function CaseStudiesPage() {
                           </span>
                           <span className="text-[9px] text-slate-400 font-medium">{study.duration}</span>
                         </div>
-                        <h5 className="text-xs font-bold text-slate-800 leading-snug group-hover:text-indigo-600 transition-colors line-clamp-2">
+                        <h5 className="text-xs font-bold text-slate-800 leading-snug group-hover:text-primary-600 transition-colors line-clamp-2">
                           {study.title}
                         </h5>
                         <div className="flex items-baseline gap-1">
-                          <span className="text-xl font-display font-black text-indigo-600">{study.metric}</span>
+                          <span className="text-xl font-display font-black text-primary-600">{study.metric}</span>
                           <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">{study.metricLabel}</span>
                         </div>
                       </div>
@@ -537,7 +537,7 @@ export default function CaseStudiesPage() {
                   exit={{ opacity: 0, x: -15 }}
                   transition={{ duration: 0.25 }}
                   onClick={() => setSelectedStudy(activeSlide)}
-                  className="bg-white border border-slate-200 hover:border-indigo-500/40 rounded-3rem p-6 sm:p-10 flex flex-col md:flex-row gap-8 items-stretch shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer group min-h-[350px]"
+                  className="bg-white border border-slate-200 hover:border-primary-500/40 rounded-3rem p-6 sm:p-10 flex flex-col md:flex-row gap-8 items-stretch shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer group min-h-[350px]"
                 >
                   {/* Left Content */}
                   <div className="flex-1 flex flex-col justify-between space-y-6">
@@ -551,7 +551,7 @@ export default function CaseStudiesPage() {
                           <div className="text-[9px] text-slate-400 font-mono font-medium">{activeSlide.duration}</div>
                         </div>
                       </div>
-                      <h3 className="text-lg sm:text-xl font-display font-extrabold text-neutral-900 leading-tight group-hover:text-indigo-650 transition-colors">
+                      <h3 className="text-lg sm:text-xl font-display font-extrabold text-neutral-900 leading-tight group-hover:text-primary-650 transition-colors">
                         {activeSlide.title}
                       </h3>
                       <p className="text-xs text-slate-550 leading-relaxed font-sans font-medium line-clamp-3">
@@ -571,9 +571,9 @@ export default function CaseStudiesPage() {
                   {/* Right Metrics Banner */}
                   <div className="w-full md:w-[220px] bg-slate-50/50 rounded-2.5rem border border-slate-100 p-6 flex flex-col justify-between space-y-6 shrink-0 text-center md:text-left">
                     <div>
-                      <div className="text-4xl font-display font-black text-indigo-600 tracking-tight flex items-baseline justify-center md:justify-start gap-0.5">
+                      <div className="text-4xl font-display font-black text-primary-600 tracking-tight flex items-baseline justify-center md:justify-start gap-0.5">
                         {activeSlide.metric}
-                        <TrendingUp className="w-5 h-5 text-indigo-500" />
+                        <TrendingUp className="w-5 h-5 text-primary-500" />
                       </div>
                       <div className="text-[9px] font-bold uppercase tracking-wider text-slate-450 mt-1">
                         {activeSlide.metricLabel}
@@ -581,7 +581,7 @@ export default function CaseStudiesPage() {
                     </div>
                     
                     <div className="pt-4 border-t border-slate-200/60">
-                      <span className="text-indigo-600 group-hover:text-indigo-500 transition-colors flex items-center justify-center md:justify-start gap-1 font-bold text-xs">
+                      <span className="text-primary-600 group-hover:text-primary-500 transition-colors flex items-center justify-center md:justify-start gap-1 font-bold text-xs">
                         <span>View Details</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </span>
@@ -601,18 +601,18 @@ export default function CaseStudiesPage() {
                     onClick={() => setActiveSlide(study)}
                     className={`h-11 px-4 rounded-xl border text-left flex items-center gap-2.5 transition-all duration-200 cursor-pointer ${
                       isActive
-                        ? 'bg-indigo-600 border-indigo-600 text-white shadow-md'
+                        ? 'bg-primary-600 border-primary-600 text-white shadow-md'
                         : 'bg-white border-slate-200 text-slate-650 hover:bg-slate-50 hover:border-slate-300'
                     }`}
                   >
                     <span className={`h-6 w-6 rounded-lg text-[9px] font-bold font-mono flex items-center justify-center shrink-0 border ${
-                      isActive ? 'bg-indigo-700 border-indigo-500 text-white' : 'bg-slate-50 border-slate-100 text-slate-700'
+                      isActive ? 'bg-primary-700 border-primary-500 text-white' : 'bg-slate-50 border-slate-100 text-slate-700'
                     }`}>
                       {study.logoText}
                     </span>
                     <div className="leading-tight pr-1">
                       <div className={`text-[9px] font-bold ${isActive ? 'text-white' : 'text-slate-900'}`}>{study.company}</div>
-                      <div className={`text-[8px] font-semibold ${isActive ? 'text-indigo-200' : 'text-slate-450'}`}>{study.metric}</div>
+                      <div className={`text-[8px] font-semibold ${isActive ? 'text-primary-200' : 'text-slate-450'}`}>{study.metric}</div>
                     </div>
                   </button>
                 );
@@ -664,15 +664,15 @@ export default function CaseStudiesPage() {
                   </div>
 
                   {/* Main Metric Banner */}
-                  <div className="bg-indigo-50/50 border border-indigo-100/50 rounded-2rem p-5 flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-xl bg-indigo-600/10 flex items-center justify-center text-indigo-600 shrink-0">
+                  <div className="bg-primary-50/50 border border-primary-100/50 rounded-2rem p-5 flex items-center gap-4">
+                    <div className="h-12 w-12 rounded-xl bg-primary-600/10 flex items-center justify-center text-primary-600 shrink-0">
                       <BarChart2 className="w-6 h-6" />
                     </div>
                     <div>
-                      <div className="text-3xl font-display font-black text-indigo-600 leading-none mb-1">
+                      <div className="text-3xl font-display font-black text-primary-600 leading-none mb-1">
                         {selectedStudy.metric}
                       </div>
-                      <div className="text-[10px] font-bold uppercase tracking-wide text-indigo-750">
+                      <div className="text-[10px] font-bold uppercase tracking-wide text-primary-750">
                         {selectedStudy.metricLabel} (Verified Result)
                       </div>
                     </div>
@@ -696,7 +696,7 @@ export default function CaseStudiesPage() {
 
                     <div className="space-y-2">
                       <h4 className="text-[11px] font-bold uppercase tracking-wider text-slate-500 font-mono flex items-center gap-1.5">
-                        <CheckCircle className="w-3.5 h-3.5 text-indigo-500" /> The Solution
+                        <CheckCircle className="w-3.5 h-3.5 text-primary-500" /> The Solution
                       </h4>
                       <p className="text-xs text-slate-650 leading-relaxed font-sans font-medium">
                         {selectedStudy.solution}
@@ -712,7 +712,7 @@ export default function CaseStudiesPage() {
                     <ul className="space-y-2">
                       {selectedStudy.results.map((result, idx) => (
                         <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
-                          <span className="h-2 w-2 rounded-full bg-indigo-600 shrink-0 mt-1.5" />
+                          <span className="h-2 w-2 rounded-full bg-primary-600 shrink-0 mt-1.5" />
                           <span>{result}</span>
                         </li>
                       ))}
@@ -747,7 +747,7 @@ export default function CaseStudiesPage() {
                       setSelectedStudy(null);
                       window.dispatchEvent(new CustomEvent('open-demo-modal'));
                     }}
-                    className="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold py-3 px-5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm shadow-indigo-600/10"
+                    className="bg-primary-600 hover:bg-primary-500 text-white text-xs font-bold py-3 px-5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 shadow-sm shadow-primary-600/10"
                   >
                     Schedule Demo
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -761,10 +761,10 @@ export default function CaseStudiesPage() {
         {/* CTA Footer Block */}
         <div className="mt-28 bg-[#09090f] text-fixed-white rounded-[2.5rem] p-8 sm:p-12 border border-fixed-white/10 shadow-2xl relative overflow-hidden text-center max-w-5xl mx-auto">
           <div className="absolute inset-0 bg-grid-dots-accent opacity-15 pointer-events-none" />
-          <div className="absolute top-0 right-0 h-40 w-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 h-40 w-40 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="max-w-2xl mx-auto space-y-6 relative z-10">
-            <span className="inline-flex items-center gap-1.5 text-[8.5px] uppercase font-mono tracking-widest text-indigo-400 font-extrabold bg-indigo-950 border border-indigo-900/50 px-3.5 py-1 rounded-full">
+            <span className="inline-flex items-center gap-1.5 text-[8.5px] uppercase font-mono tracking-widest text-primary-400 font-extrabold bg-primary-950 border border-primary-900/50 px-3.5 py-1 rounded-full">
               <Users className="w-3.5 h-3.5" /> DRIVE BUSINESS GROWTH
             </span>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-fixed-white">
@@ -776,7 +776,7 @@ export default function CaseStudiesPage() {
             <div className="pt-2 flex flex-wrap justify-center items-center gap-3 text-xs">
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
-                className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-indigo-500/20"
+                className="bg-primary-600 hover:bg-primary-500 text-white font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-primary-500/20"
               >
                 Schedule Consultation
                 <ArrowRight className="w-4 h-4" />

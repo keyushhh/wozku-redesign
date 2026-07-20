@@ -142,17 +142,17 @@ export default function PricingPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-indigo-500/10 selection:text-indigo-900 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-50 text-slate-900 font-sans pt-16 pb-20 selection:bg-primary-500/10 selection:text-primary-900 relative overflow-hidden">
       
       {/* Background radial glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--indigo-500) 6%, transparent), transparent 60%)' }} />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[400px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--primary-500) 6%, transparent), transparent 60%)' }} />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header Block */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-indigo-600 font-extrabold bg-indigo-50 border border-indigo-100 px-4 py-1.5 rounded-full">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-500" /> Wozku Plans
+          <span className="inline-flex items-center gap-1.5 text-[10px] uppercase font-mono tracking-widest text-primary-600 font-extrabold bg-primary-50 border border-primary-100 px-4 py-1.5 rounded-full">
+            <Sparkles className="w-3.5 h-3.5 text-primary-500" /> Wozku Plans
           </span>
           <h1 className="text-4xl sm:text-5xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
             Transparent, Scale-Ready Pricing
@@ -174,15 +174,15 @@ export default function PricingPage() {
                 onClick={() => setSelectedTier(plan.name)}
                 className={`bg-white border rounded-3xl p-6 flex flex-col justify-between relative shadow-xs transition-all duration-300 cursor-pointer ${
                   isSelected 
-                    ? 'border-indigo-600 ring-2 ring-indigo-500/20 scale-[1.03] md:scale-[1.04]' 
+                    ? 'border-primary-600 ring-2 ring-primary-500/20 scale-[1.03] md:scale-[1.04]' 
                     : 'border-slate-200 hover:border-slate-350 hover:scale-[1.01]'
                 }`}
               >
                 {isSelected && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white font-mono text-[9px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-xs flex items-center gap-1.5">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-primary-600 text-white font-mono text-[9px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-xs flex items-center gap-1.5">
                     {plan.name === 'Premium' ? (
                       <>
-                        <Flame className="w-3.5 h-3.5 text-indigo-300 fill-indigo-300 animate-pulse" /> MOST POPULAR
+                        <Flame className="w-3.5 h-3.5 text-primary-300 fill-primary-300 animate-pulse" /> MOST POPULAR
                       </>
                     ) : (
                       'SELECTED'
@@ -216,7 +216,7 @@ export default function PricingPage() {
                   <ul className="space-y-3 pt-2">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2.5 text-xs text-slate-600 font-sans font-medium">
-                        <Check className="w-4 h-4 text-indigo-600 shrink-0 stroke-[3] mt-0.5" />
+                        <Check className="w-4 h-4 text-primary-600 shrink-0 stroke-[3] mt-0.5" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -228,7 +228,7 @@ export default function PricingPage() {
                     onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
                     className={`w-full font-bold py-3.5 px-6 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 text-xs ${
                       isSelected
-                        ? 'bg-indigo-600 hover:bg-indigo-500 text-fixed-white shadow-md shadow-indigo-500/20'
+                        ? 'bg-primary-600 hover:bg-primary-500 text-fixed-white shadow-md shadow-primary-500/20'
                         : 'bg-[#141418] hover:bg-[#181b22] text-fixed-white border border-fixed-white/10 shadow-black/20'
                     }`}
                   >
@@ -236,7 +236,7 @@ export default function PricingPage() {
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                   {plan.tier === 'growth' ? (
-                    <span className="text-[10px] text-indigo-600 font-bold block text-center mt-2.5">
+                    <span className="text-[10px] text-primary-600 font-bold block text-center mt-2.5">
                       Live Walkthrough + Best Practice Setup
                     </span>
                   ) : plan.tier === 'starter' && (
@@ -265,7 +265,7 @@ export default function PricingPage() {
                 <tr className="bg-neutral-50 border-b border-slate-200">
                   <th className="p-4 sm:p-5 font-mono font-bold text-neutral-400 uppercase tracking-widest text-[9px] w-1/2 sm:w-2/5">Feature Category</th>
                   <th className="p-4 sm:p-5 font-bold text-neutral-900 w-1/6">Lite</th>
-                  <th className="p-4 sm:p-5 font-bold text-indigo-700 w-1/6">Premium</th>
+                  <th className="p-4 sm:p-5 font-bold text-primary-700 w-1/6">Premium</th>
                   <th className="p-4 sm:p-5 font-bold text-neutral-900 w-1/6">Agency</th>
                 </tr>
               </thead>
@@ -288,9 +288,9 @@ export default function PricingPage() {
                             row.starter
                           )}
                         </td>
-                        <td className="px-5 py-3.5 text-indigo-700 font-semibold">
+                        <td className="px-5 py-3.5 text-primary-700 font-semibold">
                           {typeof row.growth === 'boolean' ? (
-                            row.growth ? <Check className="w-4 h-4 text-indigo-600 stroke-[3]" /> : <X className="w-4 h-4 text-slate-500" />
+                            row.growth ? <Check className="w-4 h-4 text-primary-600 stroke-[3]" /> : <X className="w-4 h-4 text-slate-500" />
                           ) : (
                             row.growth
                           )}
@@ -328,10 +328,10 @@ export default function PricingPage() {
                 >
                   <button
                     onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between p-5 text-left font-sans font-bold text-xs text-slate-900 hover:text-indigo-600 cursor-pointer"
+                    className="w-full flex items-center justify-between p-5 text-left font-sans font-bold text-xs text-slate-900 hover:text-primary-600 cursor-pointer"
                   >
                     <span>{faq.q}</span>
-                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-indigo-600' : ''}`} />
+                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-primary-600' : ''}`} />
                   </button>
                   <AnimatePresence initial={false}>
                     {isExpanded && (
@@ -357,10 +357,10 @@ export default function PricingPage() {
         <div className="bg-[#09090f] text-fixed-white rounded-[2.5rem] p-8 sm:p-12 border border-fixed-white/10 shadow-2xl relative overflow-hidden text-center max-w-5xl mx-auto">
           {/* Subtle decoration vector */}
           <div className="absolute inset-0 bg-grid-dots-accent opacity-15 pointer-events-none" />
-          <div className="absolute top-0 right-0 h-40 w-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 h-40 w-40 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="max-w-2xl mx-auto space-y-6 relative z-10">
-            <span className="inline-flex items-center gap-1.5 text-[8.5px] uppercase font-mono tracking-widest text-indigo-400 font-extrabold bg-indigo-950 border border-indigo-900/50 px-3.5 py-1 rounded-full">
+            <span className="inline-flex items-center gap-1.5 text-[8.5px] uppercase font-mono tracking-widest text-primary-400 font-extrabold bg-primary-950 border border-primary-900/50 px-3.5 py-1 rounded-full">
               <MessageSquare className="w-3.5 h-3.5" /> Direct Support Routing
             </span>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold tracking-tight text-fixed-white">
@@ -372,7 +372,7 @@ export default function PricingPage() {
             <div className="pt-2 flex flex-wrap justify-center items-center gap-3 text-xs">
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
-                className="bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-indigo-500/20"
+                className="bg-primary-600 hover:bg-primary-500 text-fixed-white font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-primary-500/20"
               >
                 Schedule Architecture Consultation
                 <ChevronRight className="w-4 h-4" />

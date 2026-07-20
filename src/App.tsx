@@ -64,13 +64,13 @@ import { m, AnimatePresence, useScroll, useTransform } from 'motion/react';
 const SectionSkeleton = ({ className = '', heightStyle = '400px' }: { className?: string; heightStyle?: string }) => (
   <div 
     style={{ minHeight: heightStyle }} 
-    className={`w-full my-8 animate-pulse bg-neutral-100 dark:bg-neutral-900/40 rounded-3xl border border-neutral-200/50 dark:border-neutral-800/40 flex items-center justify-center ${className}`}
+    className={`w-full my-8 animate-pulse bg-neutral-100 rounded-3xl border border-neutral-200/50 flex items-center justify-center ${className}`}
   >
     <div className="flex flex-col items-center gap-2">
-      <div className="w-12 h-12 rounded-2xl bg-neutral-200/60 dark:bg-neutral-800/60 flex items-center justify-center">
-        <RefreshCw className="w-5 h-5 text-neutral-400 dark:text-neutral-600 animate-spin" />
+      <div className="w-12 h-12 rounded-2xl bg-neutral-200/60 flex items-center justify-center">
+        <RefreshCw className="w-5 h-5 text-neutral-400 animate-spin" />
       </div>
-      <div className="w-24 h-3 bg-neutral-200/60 dark:bg-neutral-800/60 rounded" />
+      <div className="w-24 h-3 bg-neutral-200/60 rounded" />
     </div>
   </div>
 );
@@ -304,7 +304,7 @@ export default function App() {
   const isBrandGuidelines = currentPath.startsWith('/brand-guidelines');
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 selection:bg-indigo-500/10 selection:text-indigo-900">
+    <div className="min-h-screen bg-neutral-50 text-neutral-900 selection:bg-primary-500/10 selection:text-primary-900">
       {/* 1. TOP NAV BAR */}
       {!isBrandGuidelines && <Navbar />}
 
@@ -321,15 +321,15 @@ export default function App() {
             stiffness: 100,
             mass: 0.6,
           }}
-          className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-indigo-500 opacity-[0.05] blur-[110px] pointer-events-none z-30 hidden md:block"
+          className="fixed -left-[175px] -top-[175px] w-[350px] h-[350px] rounded-full bg-primary-500 opacity-[0.05] blur-[110px] pointer-events-none z-30 hidden md:block"
         />
       )}
 
       {/* Dynamic Page Router Switcher */}
       <Suspense fallback={
-        <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans">
+        <div className="min-h-screen flex flex-col items-center justify-center bg-white text-neutral-900 font-sans">
           <div className="flex flex-col items-center gap-3">
-            <RefreshCw className="w-8.5 h-8.5 animate-spin text-indigo-650" />
+            <RefreshCw className="w-8.5 h-8.5 animate-spin text-primary-650" />
             <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400">Loading Page...</span>
           </div>
         </div>
@@ -372,10 +372,10 @@ export default function App() {
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
           {/* Top-Left Soft Drift Orb (Starts right behind the Hero content) */}
           {/* Top-Left Soft Drift Orb (Starts right behind the Hero content) */}
-          <div className="absolute top-[3%] left-[10%] w-[450px] h-[450px] rounded-full bg-indigo-500 opacity-[0.09] blur-[100px] animate-orb-top-left" />
+          <div className="absolute top-[3%] left-[10%] w-[450px] h-[450px] rounded-full bg-primary-500 opacity-[0.09] blur-[100px] animate-orb-top-left" />
 
           {/* Top-Right Soft Drift Orb (Hero right side) */}
-          <div className="absolute top-[8%] right-[10%] w-[500px] h-[500px] rounded-full bg-indigo-400 opacity-[0.08] blur-[120px] animate-orb-top-right" />
+          <div className="absolute top-[8%] right-[10%] w-[500px] h-[500px] rounded-full bg-primary-400 opacity-[0.08] blur-[120px] animate-orb-top-right" />
 
           {/* Center Subtle Deep Orb (Behind the CRM dashboard preview) */}
           <m.div
@@ -384,7 +384,7 @@ export default function App() {
               x: mouseOffset.x,
               y: mouseOffset.y,
             }}
-            className="absolute top-[22%] left-[15%] w-[600px] h-[600px] rounded-full bg-indigo-600 opacity-[0.07] blur-[130px] pointer-events-none animate-orb-center"
+            className="absolute top-[22%] left-[15%] w-[600px] h-[600px] rounded-full bg-primary-600 opacity-[0.07] blur-[130px] pointer-events-none animate-orb-center"
           />
 
           {/* Mid Section Left Warm Pink/Orange Orb */}
@@ -394,7 +394,7 @@ export default function App() {
               x: mouseOffset.x * -0.7,
               y: mouseOffset.y * -0.7,
             }}
-            className="absolute top-[45%] left-[5%] w-[450px] h-[450px] rounded-full bg-indigo-500 opacity-[0.05] blur-[120px] pointer-events-none animate-orb-mid-left"
+            className="absolute top-[45%] left-[5%] w-[450px] h-[450px] rounded-full bg-primary-500 opacity-[0.05] blur-[120px] pointer-events-none animate-orb-mid-left"
           />
 
           {/* Lower Section Warm Orb (Behind Event Loop Simulator) */}
@@ -404,7 +404,7 @@ export default function App() {
               x: mouseOffset.x * 1.2,
               y: mouseOffset.y * 1.2,
             }}
-            className="absolute top-[65%] right-[10%] w-[550px] h-[550px] rounded-full bg-indigo-400 opacity-[0.06] blur-[130px] pointer-events-none animate-orb-lower"
+            className="absolute top-[65%] right-[10%] w-[550px] h-[550px] rounded-full bg-primary-400 opacity-[0.06] blur-[130px] pointer-events-none animate-orb-lower"
           />
 
           {/* Bottom Near Footer Deep Blue Orb */}
@@ -414,13 +414,13 @@ export default function App() {
               x: mouseOffset.x * -0.5,
               y: mouseOffset.y * -0.5,
             }}
-            className="absolute bottom-[5%] left-[25%] w-[600px] h-[600px] rounded-full bg-indigo-600 opacity-[0.05] blur-[140px] pointer-events-none animate-orb-bottom"
+            className="absolute bottom-[5%] left-[25%] w-[600px] h-[600px] rounded-full bg-primary-600 opacity-[0.05] blur-[140px] pointer-events-none animate-orb-bottom"
           />
         </div>
 
         {/* ================= HERO SECTION ================= */}
         {heroVisual === 'network' ? (
-          <Suspense fallback={<div className="w-full min-h-[600px] bg-neutral-100 dark:bg-neutral-900 rounded-3xl animate-pulse" />}>
+          <Suspense fallback={<div className="w-full min-h-[600px] bg-neutral-100 rounded-3xl animate-pulse" />}>
             <EditorialHero onOpenDemo={() => setIsDemoModalOpen(true)} />
           </Suspense>
         ) : heroVisual === 'linkedin' ? (
@@ -434,10 +434,10 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-display font-extrabold text-neutral-900 dark:text-fixed-white tracking-tight leading-[1.1]"
+                className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-display font-extrabold text-neutral-900 tracking-tight leading-[1.1]"
               >
                 Own distribution.<br />
-                <span className="text-indigo-650 dark:text-indigo-400">
+                <span className="text-primary-650">
                   Your community is the antidote.
                 </span>
               </m.h1>
@@ -446,7 +446,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-sm sm:text-base text-neutral-500 dark:text-fixed-light leading-relaxed font-sans max-w-lg"
+                className="text-sm sm:text-base text-neutral-500 leading-relaxed font-sans max-w-lg"
               >
                 Paid ads are losing trust. Your employees, partners, and customers already have the audience. Wozku activates them to share your story at scale while attributing every dollar of organic pipeline.
               </m.p>
@@ -457,16 +457,16 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="h-[52px] flex items-center bg-white dark:bg-neutral-900 border border-neutral-200/50 dark:border-neutral-800/40 p-1.5 rounded-xl max-w-md focus-within:border-neutral-350 dark:focus-within:border-neutral-700 transition-all"
+              className="h-[52px] flex items-center bg-white border border-neutral-200/50 p-1.5 rounded-xl max-w-md focus-within:border-neutral-350 transition-all"
             >
               <input
                 type="email"
                 placeholder="Enter work email"
-                className="flex-1 h-full bg-transparent px-3 text-xs focus:outline-none text-neutral-900 dark:text-fixed-white placeholder:text-neutral-400/70"
+                className="flex-1 h-full bg-transparent px-3 text-xs focus:outline-none text-neutral-900 placeholder:text-neutral-400/70"
               />
               <button 
                 onClick={() => setIsDemoModalOpen(true)}
-                className="h-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-6 rounded-lg transition-all cursor-pointer whitespace-nowrap"
+                className="h-full bg-primary-600 hover:bg-primary-500 text-white font-bold text-xs px-6 rounded-lg transition-all cursor-pointer whitespace-nowrap"
               >
                 Book a demo
               </button>
@@ -477,15 +477,15 @@ export default function App() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="grid grid-cols-2 gap-6 pt-5 border-t border-neutral-100 dark:border-neutral-850 max-w-sm"
+              className="grid grid-cols-2 gap-6 pt-5 border-t border-neutral-100 max-w-sm"
             >
               <div>
-                <span className="text-3xl font-black font-display text-neutral-900 dark:text-fixed-white">8x</span>
-                <span className="text-[10px] font-mono font-bold text-neutral-450 dark:text-fixed-muted uppercase tracking-wider block mt-1">Average ROI Multiplier</span>
+                <span className="text-3xl font-black font-display text-neutral-900">8x</span>
+                <span className="text-[10px] font-mono font-bold text-neutral-450 uppercase tracking-wider block mt-1">Average ROI Multiplier</span>
               </div>
               <div>
-                <span className="text-3xl font-black font-display text-neutral-900 dark:text-fixed-white">2.1M+</span>
-                <span className="text-[10px] font-mono font-bold text-neutral-450 dark:text-fixed-muted uppercase tracking-wider block mt-1">Organic reach scaled</span>
+                <span className="text-3xl font-black font-display text-neutral-900">2.1M+</span>
+                <span className="text-[10px] font-mono font-bold text-neutral-450 uppercase tracking-wider block mt-1">Organic reach scaled</span>
               </div>
             </m.div>
           </div>
@@ -494,7 +494,7 @@ export default function App() {
           <div className="lg:col-span-6 flex flex-col items-center justify-center lg:items-end">
             <AnimatePresence mode="wait">
               <m.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.28 }} className="w-full flex justify-center lg:justify-end">
-                <Suspense fallback={<div className="w-full h-[450px] bg-neutral-100 dark:bg-neutral-900 rounded-3xl animate-pulse" />}>
+                <Suspense fallback={<div className="w-full h-[450px] bg-neutral-100 rounded-3xl animate-pulse" />}>
                   <InteractiveHeroCRM />
                 </Suspense>
               </m.div>
@@ -555,7 +555,7 @@ export default function App() {
 
               <div className="space-y-3.5 pt-4">
                 <div className="flex items-start gap-3">
-                  <div className="h-5 w-5 rounded-md bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 mt-0.5">
+                  <div className="h-5 w-5 rounded-md bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
                     <Check className="h-3 w-3 stroke-[3]" />
                   </div>
                   <p className="text-xs text-neutral-700">
@@ -564,7 +564,7 @@ export default function App() {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <div className="h-5 w-5 rounded-md bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 mt-0.5">
+                  <div className="h-5 w-5 rounded-md bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600 shrink-0 mt-0.5">
                     <Check className="h-3 w-3 stroke-[3]" />
                   </div>
                   <p className="text-xs text-neutral-700">
@@ -616,8 +616,8 @@ export default function App() {
               {/* Connected Visual Box */}
               <div className="bg-neutral-50 border border-neutral-200 rounded-2xl p-6 space-y-4 shadow-sm">
                 <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-indigo-500 animate-pulse" />
-                  <span className="text-xs font-mono text-indigo-600">The advocacy loop framework</span>
+                  <span className="h-2 w-2 rounded-full bg-primary-500 animate-pulse" />
+                  <span className="text-xs font-mono text-primary-600">The advocacy loop framework</span>
                 </div>
                 
                 <h4 className="font-display font-semibold text-neutral-900 text-sm">Transform colleagues into organic growth partners</h4>
@@ -634,16 +634,16 @@ export default function App() {
         </section>
 
         {/* ================= HOW IT WORKS ================= */}
-        <section id="how-it-works" className="py-24 border-t border-neutral-200 dark:border-fixed-white/6 relative overflow-hidden">
+        <section id="how-it-works" className="py-24 border-t border-neutral-200 relative overflow-hidden">
 
           {/* Subtle bg */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[280px] bg-indigo-500 opacity-[0.035] dark:opacity-[0.08] blur-[110px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[280px] bg-primary-500 opacity-[0.035] blur-[110px] rounded-full pointer-events-none" />
 
           <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 dark:text-fixed-white tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
               From zero to viral in<br className="hidden sm:block" /> five steps.
             </h2>
-            <p className="text-sm text-neutral-500 dark:text-fixed-light leading-relaxed font-medium">
+            <p className="text-sm text-neutral-500 leading-relaxed font-medium">
               Wozku's structured workflow turns a complex distributed-marketing operation into something any team can run in under an hour.
             </p>
           </div>
@@ -653,7 +653,7 @@ export default function App() {
 
             {/* Desktop: horizontal connector line */}
             <div className="hidden lg:block relative mb-10">
-              <div className="absolute top-7 left-[9%] right-[9%] h-px bg-gradient-to-r from-transparent via-indigo-200 dark:via-fixed-white/15 to-transparent" />
+              <div className="absolute top-7 left-[9%] right-[9%] h-px bg-gradient-to-r from-transparent via-primary-200 to-transparent" />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-6 lg:gap-4">
@@ -663,8 +663,8 @@ export default function App() {
                   icon: <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>,
                   title: 'Create Campaign',
                   body: 'Build a branded campaign with pre-approved content, hashtags, and sharing targets in minutes.',
-                  color: 'text-indigo-600 bg-indigo-50 border-indigo-100',
-                  dot: 'bg-indigo-600',
+                  color: 'text-primary-600 bg-primary-50 border-primary-100',
+                  dot: 'bg-primary-600',
                 },
                 {
                   step: '02',
@@ -709,15 +709,15 @@ export default function App() {
                 >
                   {/* Step bubble */}
                   <div className="relative mb-5">
-                    <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300 dark:!bg-[#141418] dark:!border-fixed-white/10 dark:shadow-[0_8px_24px_rgba(0,0,0,0.24)] ${s.color}`}>
+                    <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300 ${s.color}`}>
                       {s.icon}
                     </div>
-                    <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-white dark:bg-[#0f1115] border border-neutral-200 dark:border-fixed-white/10 text-[9px] font-black font-mono text-neutral-500 dark:text-fixed-muted flex items-center justify-center shadow-xs">
+                    <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-white border border-neutral-200 text-[9px] font-black font-mono text-neutral-500 flex items-center justify-center shadow-xs">
                       {s.step}
                     </span>
                   </div>
-                  <h3 className="text-xs font-bold text-neutral-900 dark:text-fixed-white mb-1.5 tracking-tight">{s.title}</h3>
-                  <p className="text-[11px] text-neutral-500 dark:text-fixed-light leading-relaxed font-medium">{s.body}</p>
+                  <h3 className="text-xs font-bold text-neutral-900 mb-1.5 tracking-tight">{s.title}</h3>
+                  <p className="text-[11px] text-neutral-500 leading-relaxed font-medium">{s.body}</p>
                 </m.div>
               ))}
             </div>
@@ -726,7 +726,7 @@ export default function App() {
             <div className="text-center mt-14">
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs px-6 py-3 rounded-xl transition-all shadow-md shadow-indigo-500/20 cursor-pointer"
+                className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-500 text-white font-bold text-xs px-6 py-3 rounded-xl transition-all shadow-md shadow-primary-500/20 cursor-pointer"
               >
                 See the full workflow live <ArrowRight className="w-3.5 h-3.5" />
               </button>
@@ -779,15 +779,15 @@ export default function App() {
         <section className="py-20 border-t border-neutral-200 relative overflow-hidden">
           
           {/* Subtle glow backdrops */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-indigo-500 opacity-[0.04] blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-primary-500 opacity-[0.04] blur-[120px] rounded-full pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-[400px] h-[200px] bg-secondary-500 opacity-[0.03] blur-[100px] rounded-full pointer-events-none" />
 
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-[#0c0c0e] border border-white/10 rounded-3xl p-8 sm:p-12 relative overflow-hidden shadow-lg shadow-black/15">
 
               {/* Inner glow */}
-              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top left, color-mix(in srgb, var(--indigo-500) 10%, transparent) 0%, transparent 60%)' }} />
-              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at bottom right, color-mix(in srgb, var(--indigo-500) 7%, transparent) 0%, transparent 60%)' }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at top left, color-mix(in srgb, var(--primary-500) 10%, transparent) 0%, transparent 60%)' }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at bottom right, color-mix(in srgb, var(--primary-500) 7%, transparent) 0%, transparent 60%)' }} />
 
               <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
                 
@@ -795,7 +795,7 @@ export default function App() {
                 <div className="space-y-4 max-w-lg">
                   <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-fixed-white leading-tight tracking-tight">
                     Attendees scan a QR.<br />
-                    <span className="text-indigo-400">
+                    <span className="text-primary-400">
                       Your brand goes viral.
                     </span>
                   </h2>
@@ -811,13 +811,13 @@ export default function App() {
                         <div key={step} className="flex items-center gap-1.5">
                           <span className={`h-6 w-6 rounded-full flex items-center justify-center text-[10px] font-bold font-mono transition-all shrink-0 ${
                             isFirst
-                      ? 'bg-indigo-600 border border-indigo-500 text-fixed-white shadow-sm shadow-indigo-500/20'
-                              : 'bg-indigo-500/10 border border-indigo-500/25 text-indigo-400'
+                      ? 'bg-primary-600 border border-primary-500 text-fixed-white shadow-sm shadow-primary-500/20'
+                              : 'bg-primary-500/10 border border-primary-500/25 text-primary-400'
                           }`}>
                             {i + 1}
                           </span>
                           <span className={`text-[11px] font-semibold transition-colors ${
-                            isFirst ? 'text-indigo-300' : 'text-fixed-muted'
+                            isFirst ? 'text-primary-300' : 'text-fixed-muted'
                           }`}>{step}</span>
                           {i < 3 && <ChevronRight className="w-3 h-3 text-neutral-700" />}
                         </div>
@@ -830,7 +830,7 @@ export default function App() {
                 <div className="flex flex-col items-start lg:items-end gap-4 shrink-0">
                   <button
                     onClick={() => { navigateTo('/product/events-communities'); }}
-                    className="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-bold py-3.5 px-7 rounded-2xl text-sm transition-all shadow-lg shadow-indigo-500/20 cursor-pointer group"
+                    className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-500 text-fixed-white font-bold py-3.5 px-7 rounded-2xl text-sm transition-all shadow-lg shadow-primary-500/20 cursor-pointer group"
                   >
                     See How It Works
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -845,13 +845,13 @@ export default function App() {
 
 
         {/* ================= CUSTOMER IMPACT PROOF ================= */}
-        <section id="customer-impact" className="py-16 border-t border-neutral-200 dark:border-neutral-800 relative bg-transparent">
+        <section id="customer-impact" className="py-16 border-t border-neutral-200 relative bg-transparent">
           
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3 px-4">
-            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 dark:text-fixed-white tracking-tight leading-tight pt-1">
+            <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight pt-1">
               Proven reach. Quantifiable impact.
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-600 dark:text-fixed-light leading-relaxed max-w-xl mx-auto font-sans font-medium">
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed max-w-xl mx-auto font-sans font-medium">
               We replace expensive rented attention with permanent, organic distribution assets built on real advocacy relationships.
             </p>
           </div>
@@ -892,7 +892,7 @@ export default function App() {
               
               {/* Decorative background grid and blurs */}
               <div className="absolute inset-0 bg-grid-dots-accent opacity-20 pointer-events-none" />
-              <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-indigo-500 opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-primary-500 opacity-[0.04] rounded-full blur-3xl pointer-events-none" />
 
               {/* Left Column: Text Content */}
               <div className="flex-1 space-y-6 relative z-10 text-center md:text-left">
@@ -910,7 +910,7 @@ export default function App() {
                     className="inline-flex items-center gap-2 bg-[#141418] hover:bg-[#181b22] text-fixed-white text-sm font-bold py-3.5 px-8 rounded-xl border border-fixed-white/10 shadow-lg shadow-black/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                   >
                     <span>Check How It Works</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-indigo-400" />
+                    <ArrowRight className="w-3.5 h-3.5 text-primary-400" />
                   </button>
                 </div>
               </div>
@@ -950,15 +950,15 @@ export default function App() {
 
               <div className="space-y-3">
                 <div className="flex items-center gap-3 text-xs text-neutral-700">
-                  <div className="h-5 w-5 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">✓</div>
+                  <div className="h-5 w-5 bg-primary-50 border border-primary-100 text-primary-600 rounded-full flex items-center justify-center font-bold">✓</div>
                   <span>Free SOC2 Type II configuration consult.</span>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-neutral-700">
-                  <div className="h-5 w-5 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">✓</div>
+                  <div className="h-5 w-5 bg-primary-50 border border-primary-100 text-primary-600 rounded-full flex items-center justify-center font-bold">✓</div>
                   <span>No credit cards or legacy setup fees required.</span>
                 </div>
                 <div className="flex items-center gap-3 text-xs text-neutral-700">
-                  <div className="h-5 w-5 bg-indigo-50 border border-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold">✓</div>
+                  <div className="h-5 w-5 bg-primary-50 border border-primary-100 text-primary-600 rounded-full flex items-center justify-center font-bold">✓</div>
                   <span>Dedicated support program manager.</span>
                 </div>
               </div>
@@ -966,7 +966,7 @@ export default function App() {
 
             {/* Interactive Proposal Planner Form - Right */}
             <div className="lg:col-span-6 bg-[#0a0a0d] border border-fixed-white/10 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden bg-grid-dots-dark">
-              <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-b from-primary-500/5 to-transparent pointer-events-none" />
               
               <div className="mb-6">
                 <h4 className="font-display font-bold text-fixed-white text-base">Generate Program Proposal</h4>
@@ -1016,7 +1016,7 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={generatingProposal}
-                  className="w-full bg-indigo-600 hover:bg-indigo-500 text-fixed-white font-semibold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-[0_4px_15px_rgba(99,102,241,0.3)]"
+                  className="w-full bg-primary-600 hover:bg-primary-500 text-fixed-white font-semibold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-[0_4px_15px_rgba(99,102,241,0.3)]"
                 >
                   {generatingProposal ? (
                     <>
@@ -1059,7 +1059,7 @@ export default function App() {
                       <div className="space-y-1.5">
                         {proposalResult.steps.map((st: any, idx: number) => (
                           <div key={idx} className="flex gap-2.5 text-xs text-neutral-300">
-                            <span className="font-mono text-indigo-400 font-bold min-w-[45px] shrink-0">{st.week}</span>
+                            <span className="font-mono text-primary-400 font-bold min-w-[45px] shrink-0">{st.week}</span>
                             <div>
                               <strong className="text-fixed-white block">{st.title}</strong>
                               <span className="text-[11px] text-fixed-light block leading-relaxed">{st.desc}</span>
@@ -1069,7 +1069,7 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="bg-indigo-600/10 border border-indigo-500/20 rounded-xl p-3 text-[11px] text-indigo-300 leading-normal text-center">
+                    <div className="bg-primary-600/10 border border-primary-500/20 rounded-xl p-3 text-[11px] text-primary-300 leading-normal text-center">
                       🌟 Excellent! This configuration yields an estimated **{proposalResult.savings}** in Equivalent Paid Search Cost Savings.
                     </div>
                   </m.div>
@@ -1084,7 +1084,7 @@ export default function App() {
 
         {/* ================= COMPACT PRICING SECTION ================= */}
         <section id="pricing" className="py-24 border-t border-neutral-200 relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-indigo-500 opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-primary-500 opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
           
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
             <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-neutral-900 tracking-tight leading-tight">
@@ -1108,9 +1108,9 @@ export default function App() {
                   <span className="text-[10px] font-semibold text-slate-500 ml-1">/ month</span>
                 </div>
                 <ul className="space-y-2 pt-2 text-[11px] text-slate-600">
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Up to 10 advocates</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> 1 workspace channel</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Standard presets</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Up to 10 advocates</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> 1 workspace channel</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Standard presets</li>
                 </ul>
               </div>
               <button 
@@ -1130,9 +1130,9 @@ export default function App() {
                   <span className="text-2xl font-display font-black text-neutral-900 tracking-tight">Walkthrough Required</span>
                 </div>
                 <ul className="space-y-2 pt-2 text-[11px] text-slate-600">
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Up to 100 advocates</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Unlimited sync channels</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Leaderboard gamification</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Up to 100 advocates</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Unlimited sync channels</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Leaderboard gamification</li>
                 </ul>
               </div>
               <div className="pt-6">
@@ -1142,7 +1142,7 @@ export default function App() {
                 >
                   View Details
                 </button>
-                <span className="text-[10px] text-indigo-600 font-bold block text-center mt-2.5">
+                <span className="text-[10px] text-primary-600 font-bold block text-center mt-2.5">
                   Live Walkthrough + Best Practice Setup
                 </span>
               </div>
@@ -1157,9 +1157,9 @@ export default function App() {
                   <span className="text-2xl font-display font-black text-neutral-900">Custom</span>
                 </div>
                 <ul className="space-y-2 pt-2 text-[11px] text-slate-600">
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Unlimited advocates</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Custom credentials vault</li>
-                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-indigo-600 stroke-[3.5]" /> Dedicated SLA manager</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Unlimited advocates</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Custom credentials vault</li>
+                  <li className="flex items-center gap-2"><Check className="w-3.5 h-3.5 text-primary-600 stroke-[3.5]" /> Dedicated SLA manager</li>
                 </ul>
               </div>
               <button 
@@ -1175,7 +1175,7 @@ export default function App() {
           <div className="text-center pt-10">
             <button 
               onClick={() => window.location.hash = '#/pricing'} 
-              className="text-xs font-bold text-indigo-650 hover:text-indigo-500 flex items-center gap-1 mx-auto transition-colors cursor-pointer group"
+              className="text-xs font-bold text-primary-650 hover:text-primary-500 flex items-center gap-1 mx-auto transition-colors cursor-pointer group"
             >
               View detailed plan comparison matrix
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -1191,9 +1191,9 @@ export default function App() {
       </Suspense>
         </>
       ) : (
-        <div className="min-h-[70vh] flex flex-col items-center justify-center text-center p-6 bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50 font-sans">
+        <div className="min-h-[70vh] flex flex-col items-center justify-center text-center p-6 bg-white text-neutral-900 font-sans">
           <div className="max-w-md space-y-4">
-            <h1 className="text-6xl font-black text-indigo-600">404</h1>
+            <h1 className="text-6xl font-black text-primary-600">404</h1>
             <h2 className="text-2xl font-bold font-display">Page Not Found</h2>
             <p className="text-xs text-neutral-550 max-w-sm mx-auto leading-relaxed">
               We couldn't find the page you're looking for. It might have been moved, deleted, or the URL might be incorrect.
@@ -1204,7 +1204,7 @@ export default function App() {
                 window.dispatchEvent(new CustomEvent('popstate'));
                 window.scrollTo({ top: 0 });
               }}
-              className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-indigo-750 cursor-pointer modal-control-height mx-auto block"
+              className="inline-flex items-center justify-center rounded-xl bg-primary-600 px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-primary-750 cursor-pointer modal-control-height mx-auto block"
             >
               Go Back Home
             </button>
@@ -1232,14 +1232,14 @@ export default function App() {
 
       {/* Global Dev & Design Controls Panel */}
       {(import.meta.env.DEV || import.meta.env.VITE_SHOW_DEV_CONTROLS === 'true') && (
-        <div className="fixed bottom-4 left-4 z-[60] flex flex-col gap-3 rounded-2xl border border-neutral-200 bg-white/95 p-3.5 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-neutral-950/95 text-neutral-900 dark:text-neutral-50 w-52 select-none">
+        <div className="fixed bottom-4 left-4 z-[60] flex flex-col gap-3 rounded-2xl border border-neutral-200 bg-white/95 p-3.5 shadow-xl backdrop-blur-md text-neutral-900 w-52 select-none">
           <div 
             onClick={() => setDevControlsExpanded(!devControlsExpanded)}
-            className={`flex items-center justify-between cursor-pointer ${devControlsExpanded ? 'border-b border-neutral-100 dark:border-white/5 pb-2' : ''}`}
+            className={`flex items-center justify-between cursor-pointer ${devControlsExpanded ? 'border-b border-neutral-100 pb-2' : ''}`}
           >
             <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neutral-400">Dev Controls</span>
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
               <ChevronDown className={`w-3.5 h-3.5 text-neutral-400 transition-transform duration-200 ${devControlsExpanded ? 'rotate-180' : ''}`} />
             </div>
           </div>
@@ -1248,22 +1248,22 @@ export default function App() {
             <>
               <div className="space-y-1.5">
                 <span className="block text-[9px] font-mono font-bold uppercase tracking-wider text-neutral-400">Hero Layout</span>
-                <div className="grid grid-cols-3 gap-1 bg-neutral-100 dark:bg-neutral-900 p-0.5 rounded-lg">
+                <div className="grid grid-cols-3 gap-1 bg-neutral-100 p-0.5 rounded-lg">
                   <button 
                     onClick={() => setHeroVisual('network')} 
-                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'network' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'network' ? 'bg-white text-neutral-950 shadow-xs' : 'text-neutral-500 hover:text-neutral-800'}`}
                   >
                     New
                   </button>
                   <button 
                     onClick={() => setHeroVisual('original')} 
-                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'original' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'original' ? 'bg-white text-neutral-950 shadow-xs' : 'text-neutral-500 hover:text-neutral-800'}`}
                   >
                     Original
                   </button>
                   <button 
                     onClick={() => setHeroVisual('linkedin')} 
-                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'linkedin' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${heroVisual === 'linkedin' ? 'bg-white text-neutral-950 shadow-xs' : 'text-neutral-500 hover:text-neutral-800'}`}
                   >
                     LinkedIn
                   </button>
@@ -1272,34 +1272,34 @@ export default function App() {
 
               <div className="space-y-1.5">
                 <span className="block text-[9px] font-mono font-bold uppercase tracking-wider text-neutral-400">Corners</span>
-                <div className="grid grid-cols-2 gap-1 bg-neutral-100 dark:bg-neutral-900 p-0.5 rounded-lg">
+                <div className="grid grid-cols-2 gap-1 bg-neutral-100 p-0.5 rounded-lg">
                   <button 
                     onClick={() => setRadiusMode('rounded')} 
-                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${radiusMode === 'rounded' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${radiusMode === 'rounded' ? 'bg-white text-neutral-950 shadow-xs' : 'text-neutral-500 hover:text-neutral-800'}`}
                   >
                     Rounded
                   </button>
                   <button 
                     onClick={() => setRadiusMode('sharp')} 
-                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${radiusMode === 'sharp' ? 'bg-white text-neutral-950 shadow-xs dark:bg-neutral-800 dark:text-white' : 'text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-300'}`}
+                    className={`rounded-md py-1 text-[10px] font-semibold transition-all cursor-pointer ${radiusMode === 'sharp' ? 'bg-white text-neutral-950 shadow-xs' : 'text-neutral-500 hover:text-neutral-800'}`}
                   >
                     Sharp
                   </button>
                 </div>
               </div>
 
-              <div className="border-t border-neutral-100 dark:border-white/5 pt-2 mt-1">
+              <div className="border-t border-neutral-100 pt-2 mt-1">
                 {isBrandGuidelines ? (
                   <button 
                     onClick={() => { navigateTo('/'); }} 
-                    className="w-full flex items-center justify-center gap-1 bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:hover:bg-neutral-100 dark:text-neutral-900 font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
+                    className="w-full flex items-center justify-center gap-1 bg-neutral-900 hover:bg-neutral-800 text-white font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
                   >
                     Exit Guidelines
                   </button>
                 ) : (
                   <button 
                     onClick={() => { navigateTo('/brand-guidelines'); }} 
-                    className="w-full flex items-center justify-center gap-1 bg-indigo-650 hover:bg-indigo-500 text-white font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
+                    className="w-full flex items-center justify-center gap-1 bg-primary-650 hover:bg-primary-500 text-white font-bold py-2 rounded-xl text-[10px] transition-all cursor-pointer shadow-xs"
                   >
                     Brand Guidelines
                   </button>

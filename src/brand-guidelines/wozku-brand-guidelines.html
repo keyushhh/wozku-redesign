@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-emerald">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +15,7 @@
 /* ============================================================
    WOZKU — BRAND GUIDELINES (internal reference doc)
    Standalone file. Not linked from product nav.
-   Reads / mirrors the product's theme-preset system so the team
-   can preview the full guideline in any preset before committing.
+   Emerald is the one and only brand palette — fixed, not themeable.
    Swap the placeholder mark in #logo-mark-svg for the real file
    from src/assets once available.
    ============================================================ */
@@ -52,46 +51,10 @@
 
   --pure-black:#000000;
   --pure-white:#ffffff;
-}
 
-/* ---------- Theme preset scales ----------
-   --indigo-*  = PRIMARY brand scale
-   --accent-*  = SECONDARY brand scale
-   (mirrors index.css preset structure; secondary/indigo duplication
-   from the app is collapsed here since the guideline only needs
-   two live brand scales, Primary + Secondary.) */
-
-html, .theme-indigo{
-  --indigo-50:#f5f3ff; --indigo-100:#e0e7ff; --indigo-200:#c7d2fe; --indigo-300:#a5b4fc; --indigo-400:#818cf8; --indigo-500:#6366f1; --indigo-600:#4f46e5; --indigo-700:#4338ca; --indigo-800:#3730a3; --indigo-900:#1e1b4b;
-  --accent-50:#f5f3ff; --accent-100:#e0e7ff; --accent-200:#c7d2fe; --accent-300:#a5b4fc; --accent-400:#818cf8; --accent-500:#6366f1; --accent-600:#4f46e5; --accent-700:#4338ca; --accent-800:#3730a3; --accent-900:#1e1b4b;
-}
-.theme-emerald{
-  --indigo-50:#ecfdf5; --indigo-100:#d1fae5; --indigo-200:#a7f3d0; --indigo-300:#6ee7b7; --indigo-400:#34d399; --indigo-500:#10b981; --indigo-600:#059669; --indigo-700:#047857; --indigo-800:#065f46; --indigo-900:#064e3b;
+  /* Fixed brand palette — emerald is the one and only primary/secondary scale */
+  --primary-50:#ecfdf5; --primary-100:#d1fae5; --primary-200:#a7f3d0; --primary-300:#6ee7b7; --primary-400:#34d399; --primary-500:#10b981; --primary-600:#059669; --primary-700:#047857; --primary-800:#065f46; --primary-900:#064e3b;
   --accent-50:#f0fdf4; --accent-100:#dcfce7; --accent-200:#bbf7d0; --accent-300:#86efac; --accent-400:#4ade80; --accent-500:#22c55e; --accent-600:#16a34a; --accent-700:#15803d; --accent-800:#166534; --accent-900:#14532d;
-}
-.theme-rose{
-  --indigo-50:#fff1f2; --indigo-100:#ffe4e6; --indigo-200:#fecdd3; --indigo-300:#fda4af; --indigo-400:#fb7185; --indigo-500:#f43f5e; --indigo-600:#e11d48; --indigo-700:#be123c; --indigo-800:#9f1239; --indigo-900:#881337;
-  --accent-50:#fff7ed; --accent-100:#ffedd5; --accent-200:#fed7aa; --accent-300:#fdba74; --accent-400:#fb923c; --accent-500:#f97316; --accent-600:#ea580c; --accent-700:#c2410c; --accent-800:#9a3412; --accent-900:#7c2d12;
-}
-.theme-amber{
-  --indigo-50:#fffbeb; --indigo-100:#fef3c7; --indigo-200:#fde68a; --indigo-300:#fcd34d; --indigo-400:#fbbf24; --indigo-500:#f59e0b; --indigo-600:#d97706; --indigo-700:#b45309; --indigo-800:#92400e; --indigo-900:#78350f;
-  --accent-50:#fefce8; --accent-100:#fef9c3; --accent-200:#fef08a; --accent-300:#fde047; --accent-400:#facc15; --accent-500:#eab308; --accent-600:#ca8a04; --accent-700:#a16207; --accent-800:#854d0e; --accent-900:#713f12;
-}
-.theme-violet{
-  --indigo-50:#f5f3ff; --indigo-100:#ede9fe; --indigo-200:#ddd6fe; --indigo-300:#c4b5fd; --indigo-400:#a78bfa; --indigo-500:#8b5cf6; --indigo-600:#7c3aed; --indigo-700:#6d28d9; --indigo-800:#5b21b6; --indigo-900:#4c1d95;
-  --accent-50:#fdf4ff; --accent-100:#fae8ff; --accent-200:#f5d0fe; --accent-300:#f0abfc; --accent-400:#e879f9; --accent-500:#d946ef; --accent-600:#c026d3; --accent-700:#a21caf; --accent-800:#86198f; --accent-900:#701a75;
-}
-.theme-sky{
-  --indigo-50:#f0f9ff; --indigo-100:#e0f2fe; --indigo-200:#bae6fd; --indigo-300:#7dd3fc; --indigo-400:#38bdf8; --indigo-500:#0ea5e9; --indigo-600:#0284c7; --indigo-700:#0369a1; --indigo-800:#075985; --indigo-900:#0c4a6e;
-  --accent-50:#eff6ff; --accent-100:#dbeafe; --accent-200:#bfdbfe; --accent-300:#93c5fd; --accent-400:#60a5fa; --accent-500:#3b82f6; --accent-600:#2563eb; --accent-700:#1d4ed8; --accent-800:#1e40af; --accent-900:#1e3a8a;
-}
-.theme-fuchsia{
-  --indigo-50:#fdf4ff; --indigo-100:#fae8ff; --indigo-200:#f5d0fe; --indigo-300:#f0abfc; --indigo-400:#e879f9; --indigo-500:#d946ef; --indigo-600:#c026d3; --indigo-700:#a21caf; --indigo-800:#86198f; --indigo-900:#701a75;
-  --accent-50:#faf5ff; --accent-100:#f3e8ff; --accent-200:#e9d5ff; --accent-300:#d8b4fe; --accent-400:#c084fc; --accent-500:#a855f7; --accent-600:#9333ea; --accent-700:#7e22ce; --accent-800:#6b21a8; --accent-900:#581c87;
-}
-.theme-crimson{
-  --indigo-50:#fef2f2; --indigo-100:#fee2e2; --indigo-200:#fecaca; --indigo-300:#fca5a5; --indigo-400:#f87171; --indigo-500:#dc2626; --indigo-600:#b91c1c; --indigo-700:#991b1b; --indigo-800:#7f1d1d; --indigo-900:#651313;
-  --accent-50:#fff7ed; --accent-100:#ffedd5; --accent-200:#fed7aa; --accent-300:#fdba74; --accent-400:#fb923c; --accent-500:#f97316; --accent-600:#ea580c; --accent-700:#c2410c; --accent-800:#9a3412; --accent-900:#7c2d12;
 }
 
 body{
@@ -117,7 +80,7 @@ body{
   padding: 22px 20px 18px;
   border-bottom: 1px solid var(--neutral-150);
 }
-.sidenav-brand svg{ width:20px; height:20px; color: var(--indigo-600); }
+.sidenav-brand svg{ width:20px; height:20px; color: var(--primary-600); }
 .sidenav-brand span{ font-family: var(--font-display); font-weight:700; font-size:14.5px; letter-spacing:0.01em; }
 .sidenav-scroll{ flex:1; overflow-y:auto; padding: 16px 12px; }
 .sidenav a{
@@ -129,24 +92,11 @@ body{
 }
 .sidenav a .n{ font-family: var(--font-mono); font-size:11px; color: var(--neutral-400); min-width:16px; }
 .sidenav a:hover{ background: var(--neutral-100); color: var(--neutral-900); }
-.sidenav a.active{ background: var(--indigo-50); color: var(--indigo-700); }
-.sidenav a.active .n{ color: var(--indigo-600); }
+.sidenav a.active{ background: var(--primary-50); color: var(--primary-700); }
+.sidenav a.active .n{ color: var(--primary-600); }
 
 .sidenav-tools{ padding: 14px 16px 18px; border-top: 1px solid var(--neutral-150); }
 .tools-label{ font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color: var(--neutral-400); margin-bottom:9px; }
-.swatch-row{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
-.swatch{
-  width:22px; height:22px; border-radius:50%;
-  border: 2px solid var(--pure-white);
-  outline: 1px solid var(--neutral-200);
-  cursor:pointer; position:relative;
-}
-.swatch.active{ outline: 2px solid var(--neutral-900); outline-offset:1px; }
-.custom-hex-row{ display:flex; align-items:center; gap:6px; margin-bottom:12px; }
-.custom-hex-row input[type=color]{
-  width:26px; height:26px; border:none; border-radius:6px; padding:0; cursor:pointer; background:none;
-}
-.custom-hex-row span{ font-size:11.5px; color: var(--neutral-500); font-family: var(--font-mono); }
 .export-btn{
   width:100%; display:flex; align-items:center; justify-content:center; gap:7px;
   background: var(--neutral-900); color:#fff; border:none;
@@ -154,7 +104,7 @@ body{
   font-family: var(--font-sans); font-weight:600; font-size:13px;
   cursor:pointer; transition: background .15s ease;
 }
-.export-btn:hover{ background: var(--indigo-700); }
+.export-btn:hover{ background: var(--primary-700); }
 .export-btn svg{ width:14px; height:14px; }
 
 /* ================= MAIN / PAGES ================= */
@@ -172,10 +122,10 @@ body{
 }
 .eyebrow{
   font-family: var(--font-mono); font-size:11px; font-weight:500;
-  letter-spacing:.09em; text-transform:uppercase; color: var(--indigo-600);
+  letter-spacing:.09em; text-transform:uppercase; color: var(--primary-600);
   margin-bottom: 14px; display:flex; align-items:center; gap:8px;
 }
-.eyebrow::before{ content:""; width:14px; height:1.5px; background: var(--indigo-500); display:inline-block; }
+.eyebrow::before{ content:""; width:14px; height:1.5px; background: var(--primary-500); display:inline-block; }
 h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40px; letter-spacing:-0.02em; line-height:1.05; margin-bottom:18px; color: var(--neutral-950);}
 .page-body{ font-size: 15px; line-height:1.65; color: var(--neutral-600); max-width: 480px; }
 .footer-row{
@@ -187,7 +137,7 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 
 /* ---------- 01 COVER ---------- */
 .page-cover{
-  background: linear-gradient(160deg, var(--indigo-600), var(--indigo-900) 78%);
+  background: linear-gradient(160deg, var(--primary-600), var(--primary-900) 78%);
   color: #fff; min-height: 720px; padding: 48px 60px;
   display:flex; flex-direction:column; justify-content:space-between;
 }
@@ -207,17 +157,17 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 /* ---------- 02 TOC ---------- */
 .page-toc{ background: var(--neutral-950); color:#fff; }
 .toc-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:44px; }
-.toc-head .big{ font-family: var(--font-display); font-weight:700; font-size:64px; color: var(--indigo-400); letter-spacing:-0.02em; }
+.toc-head .big{ font-family: var(--font-display); font-weight:700; font-size:64px; color: var(--primary-400); letter-spacing:-0.02em; }
 .toc-head p{ max-width:280px; font-size:13.5px; color: var(--neutral-400); text-align:right; line-height:1.6; }
 .toc-list{ display:grid; grid-template-columns: 1fr 1fr; gap: 4px 48px; }
 .toc-item{ display:flex; align-items:center; gap:16px; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.08); }
-.toc-item .num{ font-family: var(--font-mono); font-size:12px; color: var(--indigo-400); width:22px; }
+.toc-item .num{ font-family: var(--font-mono); font-size:12px; color: var(--primary-400); width:22px; }
 .toc-item .name{ font-family: var(--font-display); font-weight:500; font-size:16px; }
 
 /* ---------- 03 TYPOGRAPHY ---------- */
 .type-grid{ display:grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items:flex-start; margin-top:28px; }
 .type-showcase{
-  background: linear-gradient(150deg, var(--indigo-600), var(--indigo-800));
+  background: linear-gradient(150deg, var(--primary-600), var(--primary-800));
   border-radius: var(--radius-card); color:#fff; padding:36px 32px;
   box-shadow: var(--shadow-lift);
 }
@@ -237,7 +187,7 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 .hier-specs .spec .name{ font-family: var(--font-display); font-weight:600; font-size:13.5px; margin-bottom:3px; }
 .hier-specs .spec .meta{ font-family: var(--font-mono); font-size:10.5px; color: var(--neutral-500); }
 .hier-demo h2{ font-family: var(--font-display); font-weight:700; font-size:34px; line-height:1.15; letter-spacing:-0.015em; margin-bottom:14px; }
-.hier-demo h3{ font-family: var(--font-display); font-weight:600; font-size:20px; margin-bottom:14px; color: var(--indigo-700); }
+.hier-demo h3{ font-family: var(--font-display); font-weight:600; font-size:20px; margin-bottom:14px; color: var(--primary-700); }
 .hier-demo h4{ font-family: var(--font-display); font-weight:500; font-size:16px; margin-bottom:14px; color: var(--neutral-800); }
 .hier-demo p.lg{ font-size:16px; line-height:1.6; color: var(--neutral-700); margin-bottom:10px; }
 .hier-demo p.sm{ font-size:13px; line-height:1.6; color: var(--neutral-500); }
@@ -245,7 +195,7 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 /* ---------- 05 LOGO ---------- */
 .logo-grid{ display:grid; grid-template-columns: 1fr 1.2fr; gap:48px; margin-top:26px; }
 .logo-card{ border-radius: var(--radius-card); height:170px; display:flex; align-items:center; justify-content:center; position:relative; box-shadow: var(--shadow-soft); }
-.logo-card.primary{ background: linear-gradient(135deg, var(--indigo-600), var(--indigo-800)); }
+.logo-card.primary{ background: linear-gradient(135deg, var(--primary-600), var(--primary-800)); }
 .logo-card.reverse{ background: var(--neutral-50); border:1px solid var(--neutral-150); }
 .logo-card .tag{ position:absolute; top:14px; left:16px; font-family: var(--font-mono); font-size:9.5px; letter-spacing:.09em; text-transform:uppercase; }
 .logo-card.primary .tag{ color: rgba(255,255,255,.65); }
@@ -257,7 +207,7 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 .lockup span{ font-family: var(--font-display); font-weight:700; font-size:24px; letter-spacing:.01em; }
 .min-size-row{ display:flex; gap:36px; margin-top:22px; }
 .min-size-row .item{ text-align:center; }
-.min-size-row svg{ width:20px; height:20px; color: var(--indigo-600); }
+.min-size-row svg{ width:20px; height:20px; color: var(--primary-600); }
 .min-size-row .cap{ font-family: var(--font-mono); font-size:10.5px; color: var(--neutral-500); margin-top:8px; }
 
 /* ---------- 06 COLOUR PALETTE ---------- */
@@ -277,32 +227,32 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 
 /* grid & spacing mock */
 .mock-grid{ display:grid; grid-template-columns: repeat(6,1fr); gap:4px; padding:10px; height:100%; }
-.mock-grid div{ background: var(--indigo-100); border-radius:3px; }
-.mock-grid div:nth-child(3n){ background: var(--indigo-300); }
+.mock-grid div{ background: var(--primary-100); border-radius:3px; }
+.mock-grid div:nth-child(3n){ background: var(--primary-300); }
 
 /* corner radius mock */
 .mock-radius{ display:flex; align-items:center; justify-content:center; gap:10px; height:100%; }
-.mock-radius i{ display:block; width:34px; height:34px; background: var(--indigo-500); }
+.mock-radius i{ display:block; width:34px; height:34px; background: var(--primary-500); }
 .mock-radius i:nth-child(1){ border-radius:4px; }
 .mock-radius i:nth-child(2){ border-radius:10px; }
 .mock-radius i:nth-child(3){ border-radius:16px; }
 
 /* iconography mock */
 .mock-icons{ display:grid; grid-template-columns: repeat(4,1fr); gap:8px; align-items:center; justify-items:center; height:100%; padding:10px; }
-.mock-icons svg{ width:20px; height:20px; color: var(--indigo-600); }
+.mock-icons svg{ width:20px; height:20px; color: var(--primary-600); }
 
 /* illustration mock */
 .mock-illustration{ display:flex; align-items:center; justify-content:center; height:100%; gap:6px; }
 .mock-illustration .b1{ width:44px; height:44px; border-radius:50%; background: var(--accent-300); }
-.mock-illustration .b2{ width:30px; height:52px; border-radius:14px; background: var(--indigo-500); }
-.mock-illustration .b3{ width:24px; height:24px; border-radius:6px; background: var(--indigo-800); transform: rotate(18deg); }
+.mock-illustration .b2{ width:30px; height:52px; border-radius:14px; background: var(--primary-500); }
+.mock-illustration .b3{ width:24px; height:24px; border-radius:6px; background: var(--primary-800); transform: rotate(18deg); }
 
 /* gradients mock */
-.mock-gradient{ height:100%; background: linear-gradient(135deg, var(--indigo-400), var(--accent-500)); position:relative; }
+.mock-gradient{ height:100%; background: linear-gradient(135deg, var(--primary-400), var(--accent-500)); position:relative; }
 .mock-gradient::after{ content:""; position:absolute; width:60px; height:60px; border-radius:50%; background: rgba(255,255,255,.35); filter: blur(14px); top:20px; right:16px; }
 
 /* photography mock */
-.mock-photo{ height:100%; background: linear-gradient(160deg, var(--neutral-800), var(--indigo-900)); position:relative; }
+.mock-photo{ height:100%; background: linear-gradient(160deg, var(--neutral-800), var(--primary-900)); position:relative; }
 .mock-photo::before{ content:""; position:absolute; inset:0; background-image: radial-gradient(circle, rgba(255,255,255,.14) 1px, transparent 1px); background-size:12px 12px; }
 
 /* ---------- 08 CLEAR SPACE ---------- */
@@ -325,7 +275,7 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 .misuse-preview .badge svg{ width:10px; height:10px; color:#fff; }
 .misuse-card .cap{ padding:12px 14px; font-size:12px; color: var(--neutral-600); border-top:1px solid var(--neutral-150); font-weight:500; }
 .misuse-preview .lockup{ color: var(--neutral-950); }
-.misuse-preview.busy{ background: linear-gradient(135deg, var(--indigo-300), var(--accent-400), var(--indigo-700)); }
+.misuse-preview.busy{ background: linear-gradient(135deg, var(--primary-300), var(--accent-400), var(--primary-700)); }
 .misuse-preview.busy .lockup{ color:#fff; }
 
 /* small helpers */
@@ -381,12 +331,6 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
     <a href="#misuse" data-n="08"><span class="n">08</span>Logo Misuse</a>
   </nav>
   <div class="sidenav-tools">
-    <div class="tools-label">Preview theme</div>
-    <div class="swatch-row" id="swatchRow"></div>
-    <div class="custom-hex-row">
-      <input type="color" id="customHex" value="#10b981">
-      <span>Custom primary</span>
-    </div>
     <button class="export-btn" onclick="window.print()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
       Export as PDF
@@ -664,55 +608,7 @@ h1.page-title{ font-family: var(--font-display); font-weight:700; font-size: 40p
 </main>
 
 <script>
-// ---------- theme presets (mirrors THEME_PRESETS in designSystem.ts) ----------
-const PRESETS = [
-  { id:'indigo',  name:'Indigo',  color:'#6366f1' },
-  { id:'emerald', name:'Emerald', color:'#10b981' },
-  { id:'rose',    name:'Rose',    color:'#f43f5e' },
-  { id:'amber',   name:'Amber',   color:'#f59e0b' },
-  { id:'violet',  name:'Violet',  color:'#8b5cf6' },
-  { id:'sky',     name:'Sky',     color:'#0ea5e9' },
-  { id:'fuchsia', name:'Fuchsia', color:'#d946ef' },
-  { id:'crimson', name:'Crimson', color:'#dc2626' },
-];
-
-const swatchRow = document.getElementById('swatchRow');
-PRESETS.forEach(p=>{
-  const el = document.createElement('div');
-  el.className = 'swatch' + (p.id === 'emerald' ? ' active' : '');
-  el.style.background = p.color;
-  el.title = p.name;
-  el.dataset.id = p.id;
-  el.onclick = () => setTheme(p.id);
-  swatchRow.appendChild(el);
-});
-
-function setTheme(id){
-  document.documentElement.className = 'theme-' + id;
-  document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.id === id));
-  document.documentElement.style.removeProperty('--indigo-500');
-  renderPalette();
-}
-
-// custom hex — simple single-tone override (not a full scale generator)
-document.getElementById('customHex').addEventListener('input', (e)=>{
-  const hex = e.target.value;
-  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-  document.documentElement.style.setProperty('--indigo-500', hex);
-  document.documentElement.style.setProperty('--indigo-600', shade(hex, -12));
-  document.documentElement.style.setProperty('--indigo-700', shade(hex, -24));
-  document.documentElement.style.setProperty('--indigo-400', shade(hex, 16));
-  renderPalette();
-});
-
-function shade(hex, percent){
-  const n = parseInt(hex.slice(1),16);
-  let r = (n>>16) + Math.round(2.55*percent);
-  let g = (n>>8 & 0xff) + Math.round(2.55*percent);
-  let b = (n & 0xff) + Math.round(2.55*percent);
-  r = Math.max(0,Math.min(255,r)); g = Math.max(0,Math.min(255,g)); b = Math.max(0,Math.min(255,b));
-  return '#' + (1<<24 | r<<16 | g<<8 | b).toString(16).slice(1);
-}
+// ---------- fixed palette rendering (Primary/Secondary read from the CSS custom properties) ----------
 
 function hexFromComputed(varName){
   const val = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
@@ -752,7 +648,7 @@ function swatchCardHTML(label, role, hex, bg, textColor){
 }
 
 function renderPalette(){
-  const primary = hexFromComputed('--indigo-500');
+  const primary = hexFromComputed('--primary-500');
   const secondary = hexFromComputed('--accent-500');
   document.getElementById('paletteGrid').innerHTML =
     swatchCardHTML('Primary','Primary', primary, primary, '#ffffff') +

@@ -93,12 +93,12 @@ export default function FAQSection() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search FAQs (e.g., security, tracking, Slack...)"
-              className="w-full pl-11 pr-4 py-3 bg-white border border-neutral-200 rounded-2xl text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:border-transparent transition-all shadow-3xs text-neutral-900 placeholder:text-neutral-400"
+              className="w-full pl-11 pr-4 py-3 bg-white border border-neutral-200 rounded-2xl text-sm focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:border-transparent transition-all shadow-3xs text-neutral-900 placeholder:text-neutral-400"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-neutral-400 hover:text-neutral-600 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-md px-1"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-neutral-400 hover:text-neutral-600 cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 rounded-md px-1"
               >
                 Clear
               </button>
@@ -113,9 +113,9 @@ export default function FAQSection() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 ${
                     isActive
-                      ? 'bg-indigo-600 text-fixed-white shadow-sm shadow-indigo-500/20 border border-transparent'
+                      ? 'bg-primary-600 text-fixed-white shadow-sm shadow-primary-500/20 border border-transparent'
                       : 'bg-neutral-50 hover:bg-neutral-100 text-neutral-600 border border-neutral-200/60'
                   }`}
                 >
@@ -136,13 +136,13 @@ export default function FAQSection() {
                   key={idx}
                   className={`bg-white border rounded-2xl transition-all duration-300 overflow-hidden ${
                     isOpen 
-                      ? 'border-indigo-200 shadow-xs shadow-indigo-100/30' 
+                      ? 'border-primary-200 shadow-xs shadow-primary-100/30' 
                       : 'border-neutral-200 hover:border-neutral-300'
                   }`}
                 >
                   <button
                     onClick={() => toggleFAQ(item.question)}
-                    className="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+                    className="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                     aria-expanded={isOpen}
                   >
                     <div className="space-y-1">
@@ -150,14 +150,14 @@ export default function FAQSection() {
                         {item.category}
                       </span>
                       <h3 className={`text-sm sm:text-sm font-display font-bold transition-colors leading-snug ${
-                        isOpen ? 'text-indigo-600' : 'text-neutral-900'
+                        isOpen ? 'text-primary-600' : 'text-neutral-900'
                       }`}>
                         {item.question}
                       </h3>
                     </div>
                     
                     <div className={`p-1.5 rounded-full transition-transform duration-300 shrink-0 ${
-                      isOpen ? 'bg-indigo-50 text-indigo-600 rotate-180' : 'bg-neutral-50 text-neutral-400'
+                      isOpen ? 'bg-primary-50 text-primary-600 rotate-180' : 'bg-neutral-50 text-neutral-400'
                     }`}>
                       <ChevronDown className="w-4 h-4" />
                     </div>
@@ -199,7 +199,7 @@ export default function FAQSection() {
                     setSearchQuery('');
                     setSelectedCategory('All');
                   }}
-                  className="text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3.5 py-2 rounded-xl transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500"
+                  className="text-xs font-bold text-primary-600 hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3.5 py-2 rounded-xl transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500"
                 >
                   Reset Search
                 </button>
@@ -221,9 +221,9 @@ export default function FAQSection() {
 
         {/* Call to action card inside FAQ */}
         <div className="mt-16 bg-[#0c0c0e] text-fixed-white rounded-3xl p-6 md:p-8 max-w-3xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden border border-fixed-white/10">
-          <div className="absolute top-0 right-0 h-32 w-32 bg-indigo-500/10 blur-2xl pointer-events-none" />
+          <div className="absolute top-0 right-0 h-32 w-32 bg-primary-500/10 blur-2xl pointer-events-none" />
           <div className="space-y-1.5 text-center md:text-left relative z-10">
-            <span className="inline-flex items-center gap-1 text-[8px] uppercase font-mono tracking-widest text-indigo-300 font-extrabold bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20">
+            <span className="inline-flex items-center gap-1 text-[8px] uppercase font-mono tracking-widest text-primary-300 font-extrabold bg-primary-500/10 px-2 py-0.5 rounded-full border border-primary-500/20">
               <Sparkles className="w-2.5 h-2.5" />
               STILL WONDERFUL?
             </span>
@@ -241,7 +241,7 @@ export default function FAQSection() {
           >
             <span className="relative z-10 flex items-center gap-1.5">
               Talk to an Architect
-              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 text-fixed-muted group-hover:text-indigo-300" />
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 text-fixed-muted group-hover:text-primary-300" />
             </span>
           </button>
         </div>

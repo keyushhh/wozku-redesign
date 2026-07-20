@@ -165,7 +165,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
               {/* Left Panel (Branding & Stats) */}
               <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />
-                <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-3xl" />
+                <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-primary-500/10 blur-3xl" />
                 
                 <div className="relative">
                   <img src={LogoWhiteTransparent} alt="Wozku" className="h-7 w-auto" />
@@ -173,7 +173,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
                 <div className="relative my-6 space-y-4 md:my-auto">
                   <div>
-                    <p className="mb-2 text-[10px] font-mono font-bold uppercase tracking-[.18em] text-indigo-300">Your Wozku walkthrough</p>
+                    <p className="mb-2 text-[10px] font-mono font-bold uppercase tracking-[.18em] text-primary-300">Your Wozku walkthrough</p>
                     <h2 className="max-w-sm font-display text-2xl font-black leading-tight tracking-tight">See how Wozku turns your advocates into reach</h2>
                   </div>
                   <ul className="space-y-2.5">
@@ -184,7 +184,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       'Leave with a tailored rollout plan',
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-2.5 text-[11px] text-neutral-200">
-                        <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-indigo-500/20 text-indigo-200">
+                        <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-primary-500/20 text-primary-200">
                           {/* Checked indicator */}
                           <svg className="h-3 w-3 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="3">
                             <polyline points="20 6 9 17 4 12" />
@@ -290,8 +290,8 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                       exit={{ opacity: 0 }}
                       className="flex h-full min-h-[300px] flex-col items-center justify-center space-y-4 text-center"
                     >
-                      <div className="rounded-full border border-indigo-100 bg-indigo-50 p-4">
-                        <RefreshCw className="h-8 w-8 animate-spin text-indigo-600" />
+                      <div className="rounded-full border border-primary-100 bg-primary-50 p-4">
+                        <RefreshCw className="h-8 w-8 animate-spin text-primary-600" />
                       </div>
                       <div>
                         <h4 className="font-mono text-sm font-bold uppercase tracking-wider text-neutral-900">Syncing Calendars...</h4>
@@ -323,7 +323,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                         <button
                           type="button"
                           onClick={() => setShowCalComAlert(true)}
-                          className="w-full text-xs font-bold text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer hover:underline"
+                          className="w-full text-xs font-bold text-primary-600 hover:text-primary-700 transition-colors cursor-pointer hover:underline"
                         >
                           Want to select a date and time of your choice?
                         </button>
@@ -334,7 +334,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
                               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
                               animate={{ opacity: 1, y: 0 }}
                               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -4 }}
-                              className="text-[11px] bg-indigo-50 border border-indigo-100 text-indigo-950 px-3.5 py-2.5 rounded-xl font-medium leading-normal"
+                              className="text-[11px] bg-primary-50 border border-primary-100 text-primary-950 px-3.5 py-2.5 rounded-xl font-medium leading-normal"
                             >
                               🗓️ Cal.com integration coming soon! A direct scheduling invitation has been sent to your email.
                             </motion.div>

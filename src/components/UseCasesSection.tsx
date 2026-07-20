@@ -145,7 +145,7 @@ export default function UseCasesSection() {
             onClick={() => setActiveUseCaseId(uc.id)}
             className={`flex items-center gap-2 py-2.5 px-4 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
               activeUseCaseId === uc.id
-                ? 'bg-indigo-600 text-fixed-white shadow-sm shadow-indigo-500/20'
+                ? 'bg-primary-600 text-fixed-white shadow-sm shadow-primary-500/20'
                 : 'bg-neutral-50 text-neutral-600 border border-neutral-200 hover:border-neutral-300 hover:text-neutral-900'
             }`}
           >
@@ -168,7 +168,7 @@ export default function UseCasesSection() {
           {/* Text Content Block - Left */}
           <div className="lg:col-span-7 space-y-5">
             <div>
-              <span className="text-[10px] uppercase font-mono tracking-wider font-bold text-indigo-700 bg-indigo-50/70 px-2 py-0.5 rounded border border-indigo-100 dark:text-indigo-300 dark:bg-indigo-950/60 dark:border-indigo-900/50">
+              <span className="text-[10px] uppercase font-mono tracking-wider font-bold text-primary-700 bg-primary-50/70 px-2 py-0.5 rounded border border-primary-100">
                 {activeUseCase.title} Solution
               </span>
               <h3 className="text-xl sm:text-2xl font-display font-semibold text-neutral-900 mt-3">
@@ -194,7 +194,7 @@ export default function UseCasesSection() {
           {/* Metrics Visualization Panel - Right */}
           <div className="lg:col-span-5 bg-neutral-50 border border-neutral-200 rounded-2xl p-6 space-y-6 shadow-sm">
             <div className="flex items-center gap-2">
-              <Target className="h-4 w-4 text-indigo-600" />
+              <Target className="h-4 w-4 text-primary-600" />
               <span className="text-xs font-mono font-semibold text-neutral-500">Target Business Outcomes</span>
             </div>
 
@@ -205,7 +205,7 @@ export default function UseCasesSection() {
                     <span className="text-[10px] uppercase font-mono text-neutral-400 block">{metric.label}</span>
                     <span className="text-xl font-display font-bold text-neutral-900 mt-0.5">{metric.value}</span>
                   </div>
-                  <div className="h-8 w-8 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600">
+                  <div className="h-8 w-8 rounded-full bg-primary-50 border border-primary-100 flex items-center justify-center text-primary-600">
                     <TrendingUp className="h-4.5 w-4.5" />
                   </div>
                 </div>

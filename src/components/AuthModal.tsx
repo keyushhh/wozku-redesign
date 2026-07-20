@@ -194,7 +194,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
               {/* Left Panel (Branding & Features) */}
               <aside className="relative flex shrink-0 flex-col overflow-hidden bg-neutral-900 px-7 py-8 text-white md:w-[42%] md:px-9 md:py-9 justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-grid-dots-accent opacity-5" />
-                <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-3xl" />
+                <div className="pointer-events-none absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-primary-500/10 blur-3xl" />
                 
                 <div className="relative">
                   <img src={LogoWhiteTransparent} alt="Wozku" className="h-7 w-auto" />
@@ -202,7 +202,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
                 <div className="relative my-6 space-y-4 md:my-auto">
                   <div>
-                    <p className="mb-2 text-[10px] font-mono font-bold uppercase tracking-[.18em] text-indigo-300">Welcome to Wozku</p>
+                    <p className="mb-2 text-[10px] font-mono font-bold uppercase tracking-[.18em] text-primary-300">Welcome to Wozku</p>
                     <h2 className="max-w-sm font-display text-2xl font-black leading-tight tracking-tight">Your advocate dashboard is waiting</h2>
                   </div>
                   <ul className="space-y-2.5">
@@ -212,7 +212,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                       'Manage your advocate network',
                     ].map((item) => (
                       <li key={item} className="flex items-center gap-2.5 text-[11px] text-neutral-200">
-                        <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-indigo-500/20 text-indigo-200">
+                        <span className="flex h-4.5 w-4.5 shrink-0 items-center justify-center rounded-full bg-primary-500/20 text-primary-200">
                           <svg className="h-3 w-3 fill-none stroke-current" viewBox="0 0 24 24" strokeWidth="3">
                             <polyline points="20 6 9 17 4 12" />
                           </svg>
@@ -332,7 +332,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                             {mode === 'signin' && (
                               <button
                                 type="button"
-                                className="text-[10px] font-mono font-bold text-indigo-600 hover:text-indigo-700 hover:underline cursor-pointer"
+                                className="text-[10px] font-mono font-bold text-primary-600 hover:text-primary-700 hover:underline cursor-pointer"
                                 onClick={() => alert('Forgot password helper coming soon!')}
                               >
                                 Forgot password?
@@ -385,12 +385,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                           {mode === 'signin' ? (
                             <>
                               Don't have an account?{' '}
-                              <span className="text-indigo-600 font-bold hover:underline">Sign up</span>
+                              <span className="text-primary-600 font-bold hover:underline">Sign up</span>
                             </>
                           ) : (
                             <>
                               Already have an account?{' '}
-                              <span className="text-indigo-600 font-bold hover:underline">Sign in</span>
+                              <span className="text-primary-600 font-bold hover:underline">Sign in</span>
                             </>
                           )}
                         </button>

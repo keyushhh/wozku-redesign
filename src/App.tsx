@@ -36,6 +36,7 @@ const CaseStudiesPage = lazy(() => import('./components/CaseStudiesPage'));
 const BlogPage = lazy(() => import('./components/BlogPage'));
 const WhyWozkuPage = lazy(() => import('./components/WhyWozkuPage'));
 const BrandGuidelines = lazy(() => import('./components/BrandGuidelines'));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 import slackLogo from './assets/slack.svg';
 import linkedinLogo from './assets/linkedin.svg';
 import hubspotLogo from './assets/hubspot.svg';
@@ -1191,25 +1192,7 @@ export default function App() {
       </Suspense>
         </>
       ) : (
-        <div className="min-h-[70vh] flex flex-col items-center justify-center text-center p-6 bg-white text-neutral-900 font-sans">
-          <div className="max-w-md space-y-4">
-            <h1 className="text-6xl font-black text-primary-600">404</h1>
-            <h2 className="text-2xl font-bold font-display">Page Not Found</h2>
-            <p className="text-xs text-neutral-550 max-w-sm mx-auto leading-relaxed">
-              We couldn't find the page you're looking for. It might have been moved, deleted, or the URL might be incorrect.
-            </p>
-            <button
-              onClick={() => {
-                window.history.pushState(null, '', '/');
-                window.dispatchEvent(new CustomEvent('popstate'));
-                window.scrollTo({ top: 0 });
-              }}
-              className="inline-flex items-center justify-center rounded-xl bg-primary-600 px-6 py-3 text-xs font-bold text-white transition-colors hover:bg-primary-750 cursor-pointer modal-control-height mx-auto block"
-            >
-              Go Back Home
-            </button>
-          </div>
-        </div>
+        <NotFoundPage />
       )}
       </Suspense>
 

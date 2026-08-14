@@ -128,11 +128,9 @@ export default function NotFoundPage() {
 
   const handleKeyUp = useCallback((e: KeyboardEvent) => {
     if (e.key === '4' || e.code === 'Digit4' || e.code === 'Numpad4') {
-      play('release', { volume: 0.55 });
       setKey4LeftPressed(false);
       setKey4RightPressed(false);
     } else if (e.key === '0' || e.code === 'Digit0' || e.code === 'Numpad0') {
-      play('release', { volume: 0.55 });
       setKey0PressedState(false);
     }
   }, []);
@@ -146,16 +144,16 @@ export default function NotFoundPage() {
     };
   }, [handleKeyDown, handleKeyUp]);
 
-  // Click & touch handlers for interactive keycaps
+  // Click & touch handlers for interactive keycaps (press sound only)
   const handleKeycapStart = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
     play('press', { volume: 0.65 });
     setter(true);
   };
 
   const handleKeycapEnd = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
-    play('release', { volume: 0.55 });
     setter(false);
   };
+
 
 
   return (

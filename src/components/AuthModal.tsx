@@ -28,9 +28,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
 
   const handleDismiss = () => {
-    play('droplet', { volume: 0.3 });
+    play('error', { volume: 0.45 });
     onClose();
   };
+
 
   // Reset form when modal opens/closes
   useEffect(() => {
@@ -198,13 +199,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             {/* Top Close button */}
             <button
               onClick={handleDismiss}
-              data-cuelume-press
-              data-cuelume-release
               aria-label="Close authentication modal"
               className="absolute right-4 top-4 z-30 rounded-full p-2 text-neutral-500 transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-550 focus-visible:text-red-600 focus-visible:outline-none cursor-pointer"
             >
               <X className="h-5 w-5" />
             </button>
+
 
             <div className="flex w-full min-h-0 flex-1 flex-col md:flex-row">
               {/* Left Panel (Branding & Features) - hidden on mobile to keep the modal compact; shown from md: up */}

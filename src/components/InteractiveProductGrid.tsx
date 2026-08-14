@@ -14,6 +14,8 @@ export default function InteractiveProductGrid() {
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
+            data-cuelume-toggle
+            data-cuelume-hover="tick"
             className={`flex-1 pb-3 text-xs font-bold font-mono uppercase tracking-wider transition-all cursor-pointer border-b-2 -mb-[2px] ${
               activeTab === tab
                 ? 'border-primary-600 text-primary-650'
@@ -24,6 +26,7 @@ export default function InteractiveProductGrid() {
           </button>
         ))}
       </div>
+
 
       {/* Feature Showcase Grid Panel */}
       <div className="bg-white border border-neutral-200 rounded-[2.5rem] p-8 sm:p-12 shadow-3xs relative overflow-hidden transition-all duration-300 min-h-[420px] flex items-center">

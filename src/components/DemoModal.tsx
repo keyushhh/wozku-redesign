@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { CheckCircle2, ChevronRight, RefreshCw, Star, X } from 'lucide-react';
+import { play } from 'cuelume';
 import LogoWhiteTransparent from '../assets/Logo_White_Transparent.png';
 import { Button, Input, Label } from './FormControls';
 
@@ -23,6 +24,11 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
 
+  const handleDismiss = () => {
+    play('droplet', { volume: 0.3 });
+    onClose();
+  };
+
   // Keyboard Focus Trap & A11y
   useEffect(() => {
     if (isOpen) {
@@ -39,7 +45,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
 
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-          onClose();
+          handleDismiss();
           return;
         }
 
@@ -89,20 +95,24 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
     event.preventDefault();
     if (!formData.fullName.trim()) {
       setError('Please enter your full name.');
+      play('error', { volume: 0.4 });
       return;
     }
     if (!formData.email.trim() || !formData.email.includes('@')) {
       setError('Please enter a valid work email.');
+      play('error', { volume: 0.4 });
       return;
     }
     if (!formData.phone.trim()) {
       setError('Please enter your phone number.');
+      play('error', { volume: 0.4 });
       return;
     }
 
     setStep('submitting');
     setTimeout(() => {
       setStep('confirmed');
+      play('success', { volume: 0.5 });
     }, 1800);
   };
 
@@ -115,8 +125,9 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
     });
     setError('');
     setShowCalComAlert(false);
-    onClose();
+    handleDismiss();
   };
+
 
   const modalAnimation = shouldReduceMotion
     ? { opacity: 1, scale: 1, y: 0 }
@@ -135,7 +146,7 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={handleDismiss}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
@@ -154,9 +165,11 @@ export default function DemoModal({ isOpen, onClose }: DemoModalProps) {
           >
             {/* Top Close button */}
             <button
-              onClick={onClose}
+              onClick={handleDismiss}
+              data-cuelume-press
+              data-cuelume-release
               aria-label="Close demo form"
-              className="absolute right-4 top-4 z-30 rounded-full p-2 text-neutral-500 transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-50 focus-visible:text-red-600 focus-visible:outline-none"
+              className="absolute right-4 top-4 z-30 rounded-full p-2 text-neutral-500 transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-50 focus-visible:text-red-600 focus-visible:outline-none cursor-pointer"
             >
               <X className="h-5 w-5" />
             </button>

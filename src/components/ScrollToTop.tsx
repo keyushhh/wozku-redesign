@@ -32,6 +32,8 @@ export default function ScrollToTop() {
         <m.button
           id="scroll-to-top-button"
           onClick={scrollToTop}
+          data-cuelume-press
+          data-cuelume-release
           initial={{ opacity: 0, scale: 0.8, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 10 }}
@@ -43,6 +45,7 @@ export default function ScrollToTop() {
         >
           <ArrowUp className="w-5 h-5 text-primary-400 group-hover:text-white transition-colors" />
         </m.button>
+
       )}
     </AnimatePresence>
   );

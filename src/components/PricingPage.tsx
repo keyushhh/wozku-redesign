@@ -172,6 +172,7 @@ export default function PricingPage() {
               <div
                 key={plan.name}
                 onClick={() => setSelectedTier(plan.name)}
+                data-cuelume-toggle
                 className={`bg-white border rounded-3xl p-6 flex flex-col justify-between relative shadow-xs transition-all duration-300 cursor-pointer ${
                   isSelected 
                     ? 'border-primary-600 ring-2 ring-primary-500/20 scale-[1.03] md:scale-[1.04]' 
@@ -226,6 +227,8 @@ export default function PricingPage() {
                 <div className="pt-8">
                   <button
                     onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+                    data-cuelume-press
+                    data-cuelume-release
                     className={`w-full font-bold py-3.5 px-6 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1.5 text-xs ${
                       isSelected
                         ? 'bg-primary-600 hover:bg-primary-500 text-fixed-white shadow-md shadow-primary-500/20'
@@ -235,6 +238,7 @@ export default function PricingPage() {
                     <span>{plan.ctaText}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
+
                   {plan.tier === 'growth' ? (
                     <span className="text-[10px] text-primary-600 font-bold block text-center mt-2.5">
                       Live Walkthrough + Best Practice Setup
@@ -328,6 +332,7 @@ export default function PricingPage() {
                 >
                   <button
                     onClick={() => toggleFaq(index)}
+                    data-cuelume-toggle
                     className="w-full flex items-center justify-between p-5 text-left font-sans font-bold text-xs text-slate-900 hover:text-primary-600 cursor-pointer"
                   >
                     <span>{faq.q}</span>
@@ -372,11 +377,14 @@ export default function PricingPage() {
             <div className="pt-2 flex flex-wrap justify-center items-center gap-3 text-xs">
               <button
                 onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+                data-cuelume-press
+                data-cuelume-release
                 className="bg-primary-600 hover:bg-primary-500 text-fixed-white font-bold py-3 px-6 rounded-xl transition-all cursor-pointer flex items-center gap-1 shadow-md shadow-primary-500/20"
               >
                 Schedule Architecture Consultation
                 <ChevronRight className="w-4 h-4" />
               </button>
+
             </div>
           </div>
         </div>

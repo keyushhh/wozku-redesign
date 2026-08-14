@@ -113,6 +113,7 @@ export default function FAQSection() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
+                  data-cuelume-toggle
                   className={`px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 ${
                     isActive
                       ? 'bg-primary-600 text-fixed-white shadow-sm shadow-primary-500/20 border border-transparent'
@@ -142,6 +143,7 @@ export default function FAQSection() {
                 >
                   <button
                     onClick={() => toggleFAQ(item.question)}
+                    data-cuelume-toggle
                     className="w-full text-left p-5 flex items-center justify-between gap-4 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
                     aria-expanded={isOpen}
                   >
@@ -189,21 +191,8 @@ export default function FAQSection() {
               <div className="p-3 bg-neutral-100 rounded-xl text-neutral-400">
                 <HelpCircle className="w-6 h-6" />
               </div>
-              <div className="space-y-1">
-                <h4 className="text-sm font-bold text-neutral-900">No matching FAQs found</h4>
-                <p className="text-xs text-neutral-500">Try checking your spelling or selecting a different category.</p>
-              </div>
-              {searchQuery && (
-                <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedCategory('All');
-                  }}
-                  className="text-xs font-bold text-primary-600 hover:text-primary-700 bg-primary-50 hover:bg-primary-100 px-3.5 py-2 rounded-xl transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500"
-                >
-                  Reset Search
-                </button>
-              )}
+              <p className="text-xs font-bold text-neutral-700">No matching questions found</p>
+              <p className="text-[11px] text-neutral-400 max-w-xs">Try adjusting your search terms or select another category above.</p>
             </motion.div>
           )}
         </div>
@@ -212,6 +201,8 @@ export default function FAQSection() {
         <div className="mt-8 text-center">
           <button
             onClick={() => navigateTo('/resources/faq')}
+            data-cuelume-press
+            data-cuelume-release
             className="inline-flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold px-6 py-3.5 rounded-full cursor-pointer transition-all border border-neutral-200 hover:scale-[1.02] active:scale-[0.98] shadow-xs"
           >
             <span>View More FAQs</span>
@@ -237,6 +228,8 @@ export default function FAQSection() {
 
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+            data-cuelume-press
+            data-cuelume-release
             className="group relative inline-flex items-center gap-1.5 bg-[#141418] hover:bg-[#181b22] text-fixed-white px-5 py-3 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer overflow-hidden shrink-0 border border-fixed-white/10 shadow-md shadow-black/20"
           >
             <span className="relative z-10 flex items-center gap-1.5">

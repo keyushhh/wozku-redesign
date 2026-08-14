@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { play } from 'cuelume';
 import { 
   Megaphone, Video, Calendar, Heart, Sparkles, 
   Users, Smile, Briefcase, Terminal, Globe, 
@@ -299,6 +300,7 @@ export default function InteractiveROIBuilder() {
       setConnections(prev => [...prev, ...newConnections]);
     }
     setSelectedNodeIds([newNodeId]);
+    play('sparkle', { volume: 0.3 });
   };
 
   const handleDuplicateNode = (node: NodeInstance) => {
@@ -311,6 +313,7 @@ export default function InteractiveROIBuilder() {
     };
     setNodes(prev => [...prev, duplicated]);
     setSelectedNodeIds([newNodeId]);
+    play('sparkle', { volume: 0.3 });
   };
 
   const handleDeleteSelected = () => {
@@ -318,12 +321,15 @@ export default function InteractiveROIBuilder() {
       setNodes(prev => prev.filter(n => !selectedNodeIds.includes(n.id)));
       setConnections(prev => prev.filter(c => !selectedNodeIds.includes(c.fromId) && !selectedNodeIds.includes(c.toId)));
       setSelectedNodeIds([]);
+      play('droplet', { volume: 0.3 });
     }
     if (selectedConnectionId) {
       setConnections(prev => prev.filter(c => c.id !== selectedConnectionId));
       setSelectedConnectionId(null);
+      play('droplet', { volume: 0.3 });
     }
   };
+
 
   const handleCanvasBgClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget || (e.target as HTMLElement).classList.contains('dotted-grid')) {

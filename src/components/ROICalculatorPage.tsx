@@ -5,6 +5,7 @@ import {
   RefreshCw, DollarSign, Award, ChevronRight, Calculator, PieChart
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { play } from 'cuelume';
 import InteractiveROIBuilder from './InteractiveROIBuilder';
 
 // Animated Counter Component for premium numbers transitions
@@ -144,9 +145,11 @@ export default function ROICalculatorPage() {
   // Handle PDF report generation trigger
   const triggerReportDownload = () => {
     setIsGenerating(true);
+    play('loading', { volume: 0.35 });
     setTimeout(() => {
       setIsGenerating(false);
       setIsGenerated(true);
+      play('success', { volume: 0.5 });
       setTimeout(() => setIsGenerated(false), 5000);
     }, 2000);
   };
@@ -182,6 +185,7 @@ export default function ROICalculatorPage() {
             <button
               key={p.name}
               onClick={() => applyPreset(p.name)}
+              data-cuelume-toggle
               className={`px-4.5 py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                 activePreset === p.name
                   ? 'bg-[#141418] border-fixed-white/10 text-fixed-white shadow-xs shadow-black/20'
@@ -192,6 +196,7 @@ export default function ROICalculatorPage() {
             </button>
           ))}
         </div>
+
 
         {/* 3-Column Calculator Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">

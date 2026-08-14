@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HelpCircle, Search, ArrowRight, Sparkles, MessageSquare, Send, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { play } from 'cuelume';
 
 interface FAQItem {
   question: string;
@@ -122,12 +123,16 @@ export default function FAQPage() {
 
   const handleAskSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!askQuestionText || !askEmail) return;
+    if (!askQuestionText || !askEmail) {
+      play('error', { volume: 0.4 });
+      return;
+    }
     
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
+      play('success', { volume: 0.5 });
       setAskQuestionText('');
       setAskName('');
       setAskEmail('');
@@ -192,6 +197,7 @@ export default function FAQPage() {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
+                    data-cuelume-toggle
                     className={[
                       'flex items-center justify-between text-left px-3 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap cursor-pointer transition-all',
                       isActive 
@@ -230,6 +236,7 @@ export default function FAQPage() {
                     >
                       <button
                         onClick={() => toggleFAQ(faq.question)}
+                        data-cuelume-toggle
                         className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 cursor-pointer"
                       >
                         <div className="space-y-1">
@@ -247,6 +254,7 @@ export default function FAQPage() {
                           <HelpCircle className="w-4 h-4" />
                         </div>
                       </button>
+
 
                       <AnimatePresence initial={false}>
                         {isOpen && (

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowRight, Sparkles, ArrowUpRight, Menu, X, Volume2, VolumeX } from 'lucide-react';
 import { m, AnimatePresence } from 'motion/react';
 import LogoBlackTransparent from '../assets/Logo_Black_Transparent.png';
 import { navigateTo } from '../lib/router';
 
-export default function Navbar() {
+interface NavbarProps {
+  soundEnabled?: boolean;
+  onToggleSound?: () => void;
+}
+
+export default function Navbar({ soundEnabled = true, onToggleSound }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -77,6 +82,8 @@ export default function Navbar() {
         {/* Brand Logo */}
         <button 
           onClick={handleLogoClick}
+          data-cuelume-press
+          data-cuelume-release
           className="flex items-center group text-left cursor-pointer transition-transform hover:scale-[1.02] duration-300 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 rounded-lg relative z-10"
         >
           <img src={LogoBlackTransparent} width={108} height={24} className="h-6 w-auto object-contain" alt="Wozku Logo" />
@@ -86,6 +93,9 @@ export default function Navbar() {
         <nav className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
           <button
             onClick={handleLogoClick}
+            data-cuelume-hover="tick"
+            data-cuelume-press
+            data-cuelume-release
             className={`${navBase} ${isHome ? navActive : navInactive}`}
             style={isHome ? navActiveStyle : undefined}
           >
@@ -94,6 +104,9 @@ export default function Navbar() {
 
           <button
             onClick={() => { navigateTo('/why-wozku'); setActiveDropdown(null); }}
+            data-cuelume-hover="tick"
+            data-cuelume-press
+            data-cuelume-release
             className={`${navBase} ${isWhyWozku ? navActive : navInactive}`}
             style={isWhyWozku ? navActiveStyle : undefined}
           >
@@ -107,7 +120,11 @@ export default function Navbar() {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              data-cuelume-hover="tick"
+              data-cuelume-press
+              data-cuelume-release
               className={`${navBase} flex items-center gap-1 ${
+
                 isSolutions || activeDropdown === 'solutions' ? navActive : navInactive
               }`}
               style={isSolutions || activeDropdown === 'solutions' ? navActiveStyle : undefined}
@@ -149,6 +166,9 @@ export default function Navbar() {
                                 navigateTo(item.path);
                                 setActiveDropdown(null);
                               }}
+                              data-cuelume-hover="whisper"
+                              data-cuelume-press
+                              data-cuelume-release
                               className={`block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-1.5 transition-all ${currentPath === item.path ? 'bg-primary-500/10' : 'hover:bg-neutral-100/80'}`}
                             >
                               <span className={`text-xs font-bold transition-colors block ${currentPath === item.path ? 'text-primary-600' : 'text-neutral-900 group-hover:text-primary-600'}`}>{item.label}</span>
@@ -173,6 +193,9 @@ export default function Navbar() {
                                 navigateTo(item.path);
                                 setActiveDropdown(null);
                               }}
+                              data-cuelume-hover="whisper"
+                              data-cuelume-press
+                              data-cuelume-release
                               className={`block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-1.5 transition-all ${currentPath === item.path ? 'bg-primary-500/10' : 'hover:bg-neutral-100/80'}`}
                             >
                               <span className={`text-xs font-bold transition-colors block ${currentPath === item.path ? 'text-primary-600' : 'text-neutral-900 group-hover:text-primary-600'}`}>{item.label}</span>
@@ -199,6 +222,9 @@ export default function Navbar() {
                                 navigateTo(item.path);
                                 setActiveDropdown(null);
                               }}
+                              data-cuelume-hover="whisper"
+                              data-cuelume-press
+                              data-cuelume-release
                               className={`block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-1.5 transition-all ${currentPath === item.path ? 'bg-primary-500/10' : 'hover:bg-neutral-100/80'}`}
                             >
                               <span className={`text-xs font-bold transition-colors block ${currentPath === item.path ? 'text-primary-600' : 'text-neutral-900 group-hover:text-primary-600'}`}>{item.label}</span>
@@ -215,6 +241,8 @@ export default function Navbar() {
                         navigateTo('/resources/roi-calculator');
                         setActiveDropdown(null);
                       }}
+                      data-cuelume-press
+                      data-cuelume-release
                       className="w-[230px] rounded-2xl bg-gradient-to-br from-primary-600 to-purple-700 text-fixed-white p-5 flex flex-col justify-between relative overflow-hidden shrink-0 shadow-md cursor-pointer hover:opacity-95 active:scale-[0.99] transition-all group"
                     >
                       {/* Background subtle lines waves */}
@@ -254,6 +282,9 @@ export default function Navbar() {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              data-cuelume-hover="tick"
+              data-cuelume-press
+              data-cuelume-release
               className={`${navBase} flex items-center gap-1 ${
                 isInsights || activeDropdown === 'insights' ? navActive : navInactive
               }`}
@@ -291,6 +322,9 @@ export default function Navbar() {
                           navigateTo(item.path);
                           setActiveDropdown(null);
                         }}
+                        data-cuelume-hover="whisper"
+                        data-cuelume-press
+                        data-cuelume-release
                         className="w-full block group text-left cursor-pointer focus:outline-hidden rounded-xl px-3 py-2 hover:bg-neutral-100/80 transition-all"
                       >
                         <span className="text-xs font-bold text-neutral-900 group-hover:text-primary-600 transition-colors block">{item.label}</span>
@@ -308,6 +342,9 @@ export default function Navbar() {
               navigateTo('/pricing');
               setActiveDropdown(null);
             }}
+            data-cuelume-hover="tick"
+            data-cuelume-press
+            data-cuelume-release
             className={`${navBase} ${isPricing ? navActive : navInactive}`}
             style={isPricing ? navActiveStyle : undefined}
           >
@@ -318,12 +355,36 @@ export default function Navbar() {
         {/* Action CTAs - Sleek pill style & microinteractions */}
         <div className="flex items-center gap-2 sm:gap-3">
 
+          {/* Sound Mute / Unmute Toggle Button (Hidden by default, preserved for future sound settings) */}
+          {onToggleSound && false && (
+            <button
+              onClick={onToggleSound}
+              data-cuelume-toggle
+              title={soundEnabled ? "Mute interface sounds" : "Enable interface sounds"}
+              aria-label={soundEnabled ? "Mute interface sounds" : "Enable interface sounds"}
+              className={`p-2 rounded-full transition-all cursor-pointer border focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 ${
+                soundEnabled 
+                  ? 'text-neutral-700 hover:text-primary-650 bg-neutral-100/60 hover:bg-neutral-100 border-neutral-200/60' 
+                  : 'text-neutral-400 hover:text-neutral-600 bg-transparent border-transparent hover:bg-neutral-100/40'
+              }`}
+            >
+              {soundEnabled ? (
+                <Volume2 className="w-4 h-4" />
+              ) : (
+                <VolumeX className="w-4 h-4" />
+              )}
+            </button>
+          )}
+
+
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={() => {
                 window.dispatchEvent(new CustomEvent('open-auth-modal'));
                 setIsMenuOpen(false);
-              }} 
+              }}
+              data-cuelume-press
+              data-cuelume-release
               className="text-sm font-semibold text-neutral-500 hover:text-neutral-900 px-3 py-1.5 transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full"
             >
               Sign In
@@ -334,6 +395,8 @@ export default function Navbar() {
                 window.dispatchEvent(new CustomEvent('open-demo-modal'));
                 setIsMenuOpen(false);
               }}
+              data-cuelume-press
+              data-cuelume-release
               className="group relative inline-flex items-center gap-1.5 bg-neutral-950 hover:bg-neutral-900 text-white px-4.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 cursor-pointer overflow-hidden border border-transparent focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
             >
               <span className="relative z-10">Book a Demo</span>
@@ -348,12 +411,16 @@ export default function Navbar() {
           <div className="flex lg:hidden items-center gap-1 shrink-0">
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('open-auth-modal'))}
+              data-cuelume-press
+              data-cuelume-release
               className="whitespace-nowrap text-xs font-semibold text-neutral-500 hover:text-neutral-900 px-2 py-1.5 transition-colors cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 rounded-full"
             >
               Sign In
             </button>
             <button
               onClick={() => window.dispatchEvent(new CustomEvent('open-demo-modal'))}
+              data-cuelume-press
+              data-cuelume-release
               className="whitespace-nowrap inline-flex items-center bg-neutral-950 hover:bg-neutral-900 text-white px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
             >
               Demo
@@ -363,6 +430,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            data-cuelume-toggle
             className="flex items-center justify-center p-2 rounded-full hover:bg-neutral-100 text-neutral-600 hover:text-neutral-950 transition-colors lg:hidden cursor-pointer focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary-500"
             aria-label="Toggle navigation menu"
           >
@@ -399,12 +467,16 @@ export default function Navbar() {
                 <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
                   <button 
                     onClick={handleLogoClick}
+                    data-cuelume-press
+                    data-cuelume-release
                     className="flex items-center cursor-pointer"
                   >
                     <img src={LogoBlackTransparent} className="h-5 w-auto object-contain" alt="Wozku Logo" />
                   </button>
                   <button
                     onClick={() => setIsMenuOpen(false)}
+                    data-cuelume-press
+                    data-cuelume-release
                     className="p-2 rounded-full hover:bg-neutral-100 text-neutral-400 hover:text-neutral-950 transition-colors cursor-pointer"
                   >
                     <X className="w-5 h-5" />
@@ -426,6 +498,9 @@ export default function Navbar() {
                     <button
                       key={link.label}
                       onClick={link.action}
+                      data-cuelume-hover="whisper"
+                      data-cuelume-press
+                      data-cuelume-release
                       className="text-left py-2 px-4 rounded-xl text-xs font-semibold text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50 transition-all cursor-pointer"
                     >
                       {link.label}
@@ -443,6 +518,9 @@ export default function Navbar() {
                         navigateTo(link.path);
                         setIsMenuOpen(false);
                       }}
+                      data-cuelume-hover="whisper"
+                      data-cuelume-press
+                      data-cuelume-release
                       className="text-left py-2 px-4 rounded-xl text-xs font-semibold text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50 transition-all cursor-pointer"
                     >
                       {link.label}
@@ -462,6 +540,9 @@ export default function Navbar() {
                         navigateTo(link.path);
                         setIsMenuOpen(false);
                       }}
+                      data-cuelume-hover="whisper"
+                      data-cuelume-press
+                      data-cuelume-release
                       className="text-left py-2 px-4 rounded-xl text-xs font-semibold text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50 transition-all cursor-pointer"
                     >
                       {link.label}
@@ -477,6 +558,8 @@ export default function Navbar() {
                     window.dispatchEvent(new CustomEvent('open-auth-modal'));
                     setIsMenuOpen(false);
                   }}
+                  data-cuelume-press
+                  data-cuelume-release
                   className="w-full text-center py-3 rounded-xl text-sm font-semibold text-neutral-600 hover:text-neutral-950 hover:bg-neutral-50 transition-all cursor-pointer block border border-neutral-200"
                 >
                   Sign In
@@ -486,6 +569,8 @@ export default function Navbar() {
                     window.dispatchEvent(new CustomEvent('open-demo-modal'));
                     setIsMenuOpen(false);
                   }}
+                  data-cuelume-press
+                  data-cuelume-release
                   className="w-full relative inline-flex items-center justify-center gap-1.5 bg-neutral-950 hover:bg-neutral-900 text-white py-3.5 rounded-xl text-sm font-semibold shadow-xs transition-all cursor-pointer"
                 >
                   <span>Try for Free</span>

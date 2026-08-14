@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import { bind, play, setEnabled } from 'cuelume';
 import Navbar from './components/Navbar';
 import { navigateTo } from './lib/router';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -97,6 +98,36 @@ export default function App() {
     pathname: (window.location.pathname === '/book-demo' || window.location.pathname === '/sign-in') ? '/' : window.location.pathname,
   });
 
+  // Sound preference state synced with cuelume
+  const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
+    const saved = localStorage.getItem('wozku-sound-enabled');
+    return saved !== null ? saved === 'true' : true;
+  });
+
+  // Initialize cuelume delegated listeners once
+  useEffect(() => {
+    bind();
+  }, []);
+
+  // Sync sound enable status
+  useEffect(() => {
+    setEnabled(soundEnabled);
+    localStorage.setItem('wozku-sound-enabled', String(soundEnabled));
+  }, [soundEnabled]);
+
+  // Modal open/close auditory feedback
+  useEffect(() => {
+    if (isDemoModalOpen) {
+      play('bloom', { volume: 0.35 });
+    }
+  }, [isDemoModalOpen]);
+
+  useEffect(() => {
+    if (isAuthModalOpen) {
+      play('bloom', { volume: 0.35 });
+    }
+  }, [isAuthModalOpen]);
+
   // Handle direct loads on mount
   useEffect(() => {
     const path = window.location.pathname;
@@ -142,6 +173,7 @@ export default function App() {
       }
     }
   }, [isAuthModalOpen]);
+
 
   // Sync browser back/forward buttons & custom navigation dispatches
   useEffect(() => {
@@ -307,7 +339,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900 selection:bg-primary-500/10 selection:text-primary-900">
       {/* 1. TOP NAV BAR */}
-      {!isBrandGuidelines && <Navbar />}
+      {!isBrandGuidelines && <Navbar soundEnabled={soundEnabled} onToggleSound={() => setSoundEnabled(prev => !prev)} />}
 
       {/* Interactive mouse follow blur orb */}
       {isHovering && !isBrandGuidelines && (

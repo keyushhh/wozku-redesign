@@ -17,7 +17,7 @@ export function Input(props: React.InputHTMLAttributes<HTMLInputElement>) {
 }
 
 export function Button({ className = '', ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return <button {...props} className={`rounded-xl bg-primary-600 px-4 text-xs font-bold text-white transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60 flex items-center justify-center modal-control-height ${className}`} />;
+  return <button data-cuelume-press data-cuelume-release {...props} className={`rounded-xl bg-primary-600 px-4 text-xs font-bold text-white transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-60 flex items-center justify-center modal-control-height cursor-pointer ${className}`} />;
 }
 
 export function CustomSelect({ label, options, value, onChange, tone = 'light', open, onOpenChange }: { label: string; options: string[]; value: string; onChange: (value: string) => void; tone?: 'light' | 'dark'; open?: boolean; onOpenChange?: (open: boolean) => void }) {
@@ -37,17 +37,34 @@ export function CustomSelect({ label, options, value, onChange, tone = 'light', 
   return (
     <div className="relative w-full text-left" ref={dropdownRef}>
       {tone === 'light' ? <Label>{label}</Label> : <label className="mb-1.5 block text-[10px] font-mono uppercase tracking-wider text-fixed-muted">{label}</label>}
-      <button type="button" onClick={() => setOpen(!isOpen)} className={`flex w-full items-center justify-between rounded-xl px-3.5 text-xs transition-colors focus:outline-none modal-control-height ${tone === 'light' ? 'border border-neutral-200 bg-white text-neutral-800 hover:border-neutral-300 focus:border-primary-500' : 'border border-fixed-white/10 bg-[#141418] text-fixed-white hover:border-fixed-white/20 focus:border-primary-550'}`}>
+      <button 
+        type="button" 
+        data-cuelume-toggle
+        onClick={() => setOpen(!isOpen)} 
+        className={`flex w-full items-center justify-between rounded-xl px-3.5 text-xs transition-colors focus:outline-none modal-control-height cursor-pointer ${tone === 'light' ? 'border border-neutral-200 bg-white text-neutral-800 hover:border-neutral-300 focus:border-primary-500' : 'border border-fixed-white/10 bg-[#141418] text-fixed-white hover:border-fixed-white/20 focus:border-primary-550'}`}
+      >
         <span className="truncate">{value}</span>
         <ChevronDown className={`ml-3 h-3.5 w-3.5 shrink-0 ${tone === 'light' ? 'text-neutral-400' : 'text-fixed-light'} transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence>
         {isOpen && (
           <m.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.15 }} className={`mt-1.5 overflow-hidden rounded-xl py-1 shadow-xl ${tone === 'light' ? 'border border-neutral-200 bg-white' : 'border border-fixed-white/10 bg-[#141418]'}`}>
-            {options.map((option) => <button key={option} type="button" onClick={() => { onChange(option); setOpen(false); }} className={`block w-full px-3.5 py-2.5 text-left text-[11px] transition-colors ${tone === 'light' ? `hover:bg-primary-50 ${option === value ? 'bg-primary-50 font-bold text-primary-700' : 'text-neutral-700'}` : `hover:bg-primary-600/10 ${option === value ? 'bg-primary-600/5 font-bold text-primary-400' : 'text-fixed-white'}`}`}>{option}</button>)}
+            {options.map((option) => (
+              <button 
+                key={option} 
+                type="button" 
+                data-cuelume-press
+                data-cuelume-release
+                onClick={() => { onChange(option); setOpen(false); }} 
+                className={`block w-full px-3.5 py-2.5 text-left text-[11px] transition-colors cursor-pointer ${tone === 'light' ? `hover:bg-primary-50 ${option === value ? 'bg-primary-50 font-bold text-primary-700' : 'text-neutral-700'}` : `hover:bg-primary-600/10 ${option === value ? 'bg-primary-600/5 font-bold text-primary-400' : 'text-fixed-white'}`}`}
+              >
+                {option}
+              </button>
+            ))}
           </m.div>
         )}
       </AnimatePresence>
     </div>
   );
 }
+

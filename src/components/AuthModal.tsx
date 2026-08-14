@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { X, CheckCircle2, Star } from 'lucide-react';
+import { play } from 'cuelume';
 import LogoWhiteTransparent from '../assets/Logo_White_Transparent.png';
 import linkedinIcon from '../assets/linkedin.svg';
 import linkedinInvertedIcon from '../assets/linkedin-inverted.svg';
@@ -26,17 +27,22 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const previouslyFocusedElement = useRef<HTMLElement | null>(null);
 
+  const handleDismiss = () => {
+    play('droplet', { volume: 0.3 });
+    onClose();
+  };
+
   // Reset form when modal opens/closes
   useEffect(() => {
-    if (isOpen) {
+    if (!isOpen) {
       setStep('form');
-      setError('');
       setFormData({
         fullName: '',
         email: '',
         password: '',
         confirmPassword: '',
       });
+      setError('');
     }
   }, [isOpen]);
 
@@ -56,7 +62,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
-          onClose();
+          handleDismiss();
           return;
         }
 
@@ -109,42 +115,50 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     // Basic Validation
     if (mode === 'signup' && !formData.fullName.trim()) {
       setError('Please enter your full name.');
+      play('error', { volume: 0.4 });
       return;
     }
 
     if (!formData.email.trim()) {
       setError('Email address is required.');
+      play('error', { volume: 0.4 });
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
       setError('Please enter a valid email address.');
+      play('error', { volume: 0.4 });
       return;
     }
 
     if (!formData.password) {
       setError('Password is required.');
+      play('error', { volume: 0.4 });
       return;
     }
 
     if (formData.password.length < 8) {
       setError('Password must be at least 8 characters long.');
+      play('error', { volume: 0.4 });
       return;
     }
 
     if (mode === 'signup' && formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
+      play('error', { volume: 0.4 });
       return;
     }
 
     // Success State
     setStep('confirmed');
+    play('success', { volume: 0.5 });
   };
 
   const handleLinkedInLogin = () => {
     setError('');
     setStep('confirmed');
+    play('success', { volume: 0.5 });
   };
 
   const modalAnimation = shouldReduceMotion
@@ -164,7 +178,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={handleDismiss}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
 
@@ -183,9 +197,11 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           >
             {/* Top Close button */}
             <button
-              onClick={onClose}
+              onClick={handleDismiss}
+              data-cuelume-press
+              data-cuelume-release
               aria-label="Close authentication modal"
-              className="absolute right-4 top-4 z-30 rounded-full p-2 text-neutral-500 transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-550 focus-visible:text-red-600 focus-visible:outline-none"
+              className="absolute right-4 top-4 z-30 rounded-full p-2 text-neutral-500 transition-[background-color,color,transform] duration-200 hover:rotate-90 hover:bg-red-500/10 hover:text-red-500 focus-visible:rotate-90 focus-visible:bg-red-550 focus-visible:text-red-600 focus-visible:outline-none cursor-pointer"
             >
               <X className="h-5 w-5" />
             </button>

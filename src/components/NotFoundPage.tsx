@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'motion/react';
+import { play } from 'cuelume';
 import { navigateTo } from '../lib/router';
 
 // Assets
@@ -53,7 +54,7 @@ function Keycap({
           scale: isPressed ? 0.98 : 1,
         }}
         transition={{
-          duration: 0.3,
+          duration: 0.2,
           ease: 'easeOut',
         }}
       >
@@ -68,7 +69,7 @@ function Keycap({
             opacity: isPressed ? 0 : 1,
           }}
           transition={{
-            duration: 0.3,
+            duration: 0.2,
             ease: 'easeOut',
           }}
         />
@@ -84,7 +85,7 @@ function Keycap({
             opacity: isPressed ? 1 : 0,
           }}
           transition={{
-            duration: 0.3,
+            duration: 0.2,
             ease: 'easeOut',
           }}
         />
@@ -111,6 +112,7 @@ export default function NotFoundPage() {
     if (e.repeat) return;
 
     if (e.key === '4' || e.code === 'Digit4' || e.code === 'Numpad4') {
+      play('press', { volume: 0.65 });
       if (next4IsLeftRef.current) {
         setKey4LeftPressed(true);
         next4IsLeftRef.current = false;
@@ -119,15 +121,18 @@ export default function NotFoundPage() {
         next4IsLeftRef.current = true;
       }
     } else if (e.key === '0' || e.code === 'Digit0' || e.code === 'Numpad0') {
+      play('press', { volume: 0.65 });
       setKey0PressedState(true);
     }
   }, []);
 
   const handleKeyUp = useCallback((e: KeyboardEvent) => {
     if (e.key === '4' || e.code === 'Digit4' || e.code === 'Numpad4') {
+      play('release', { volume: 0.55 });
       setKey4LeftPressed(false);
       setKey4RightPressed(false);
     } else if (e.key === '0' || e.code === 'Digit0' || e.code === 'Numpad0') {
+      play('release', { volume: 0.55 });
       setKey0PressedState(false);
     }
   }, []);
@@ -141,13 +146,17 @@ export default function NotFoundPage() {
     };
   }, [handleKeyDown, handleKeyUp]);
 
-  // Quick helper trigger for mouse clicks on individual keycaps
-  const triggerKeyBriefly = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
+  // Click & touch handlers for interactive keycaps
+  const handleKeycapStart = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
+    play('press', { volume: 0.65 });
     setter(true);
-    setTimeout(() => {
-      setter(false);
-    }, 280);
   };
+
+  const handleKeycapEnd = (setter: React.Dispatch<React.SetStateAction<boolean>>) => {
+    play('release', { volume: 0.55 });
+    setter(false);
+  };
+
 
   return (
     <div className="min-h-[85vh] flex flex-col items-center justify-start pt-16 sm:pt-24 pb-32 sm:pb-44 px-4 sm:px-6 text-center select-none">
@@ -177,8 +186,8 @@ export default function NotFoundPage() {
               isPressed={key4LeftPressed}
               defaultSrc={key4Default}
               pressedSrc={key4Pressed}
-              onPressStart={() => triggerKeyBriefly(setKey4LeftPressed)}
-              onPressEnd={() => setKey4LeftPressed(false)}
+              onPressStart={() => handleKeycapStart(setKey4LeftPressed)}
+              onPressEnd={() => handleKeycapEnd(setKey4LeftPressed)}
             />
 
             {/* Middle '0' Key */}
@@ -188,8 +197,8 @@ export default function NotFoundPage() {
               isPressed={key0PressedState}
               defaultSrc={key0Default}
               pressedSrc={key0Pressed}
-              onPressStart={() => triggerKeyBriefly(setKey0PressedState)}
-              onPressEnd={() => setKey0PressedState(false)}
+              onPressStart={() => handleKeycapStart(setKey0PressedState)}
+              onPressEnd={() => handleKeycapEnd(setKey0PressedState)}
             />
 
             {/* Right '4' Key */}
@@ -199,8 +208,8 @@ export default function NotFoundPage() {
               isPressed={key4RightPressed}
               defaultSrc={key4Default}
               pressedSrc={key4Pressed}
-              onPressStart={() => triggerKeyBriefly(setKey4RightPressed)}
-              onPressEnd={() => setKey4RightPressed(false)}
+              onPressStart={() => handleKeycapStart(setKey4RightPressed)}
+              onPressEnd={() => handleKeycapEnd(setKey4RightPressed)}
             />
           </div>
         </div>
@@ -231,6 +240,8 @@ export default function NotFoundPage() {
         <button
           type="button"
           onClick={() => navigateTo('/')}
+          data-cuelume-press
+          data-cuelume-release
           className="px-7 py-3 rounded-full bg-neutral-900 hover:bg-neutral-800 text-white text-sm font-semibold tracking-wide shadow-md hover:shadow-lg transition-all active:scale-[0.98] cursor-pointer"
         >
           Back to Homepage
@@ -239,3 +250,4 @@ export default function NotFoundPage() {
     </div>
   );
 }
+

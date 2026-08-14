@@ -32,7 +32,7 @@ export default function InteractiveHeroCRM() {
 
   return (
     <div 
-      className="relative w-full max-w-[440px] aspect-square flex items-center justify-center p-4 select-none"
+      className="relative w-full max-w-[440px] aspect-square flex items-center justify-center p-4 select-none scale-[0.8] xs:scale-[0.9] sm:scale-100 origin-center"
       style={{
         perspective: '1200px',
         transformStyle: 'preserve-3d'

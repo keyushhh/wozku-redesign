@@ -54,7 +54,8 @@ export default function EditorialHero({ onOpenDemo }: { onOpenDemo: () => void }
         <motion.div {...rise(0.18)} className="mt-3 flex justify-center"><button onClick={onOpenDemo} className="group inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-neutral-950/15 transition-transform hover:-translate-y-0.5">Book a demo <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></button></motion.div>
       </div>
 
-      <motion.div {...rise(0.25)} className="relative mx-auto mt-auto grid h-[384px] max-w-[1440px] w-full grid-cols-[1.02fr_1.12fr_.98fr_1.12fr_1.02fr] items-end gap-3 px-4 sm:gap-4 sm:px-6">
+      <div className="w-full overflow-x-auto pb-4 pt-2 -mb-4 scrollbar-none">
+        <motion.div {...rise(0.25)} className="relative mx-auto mt-auto grid h-[384px] max-w-[1440px] min-w-[860px] lg:min-w-0 w-full grid-cols-[1.02fr_1.12fr_.98fr_1.12fr_1.02fr] items-end gap-3 px-4 sm:gap-4 sm:px-6">
         <div className="flex h-full flex-col gap-3">
           <FolderCardA surface="var(--primary-900)" className="min-h-0 flex-1">
             <div className="relative flex h-full flex-col justify-between p-4 text-white sm:p-5"><svg className="absolute inset-x-0 top-6 h-20 w-full fill-none stroke-[var(--accent-300)] opacity-20" viewBox="0 0 200 80"><path d="M-6 60 L50 27 L108 50 L206 11" strokeWidth="8" /><path d="M-6 76 L50 43 L108 66 L206 27" strokeWidth="8" /></svg><div className="relative"><p className="pt-5 font-display text-5xl font-black leading-none">8×</p><p className="mt-3 max-w-[130px] text-[10px] leading-snug text-white/75">More trusted than paid ads.</p></div><div className="relative flex items-center justify-between rounded-2xl bg-white/10 px-3 py-2.5 text-[10px] font-bold"><span>Share with trust</span><ArrowUpRight className="h-5 w-5 rounded-full bg-[var(--accent-300)] p-1 text-[var(--primary-950)]" /></div></div>
@@ -80,7 +81,8 @@ export default function EditorialHero({ onOpenDemo }: { onOpenDemo: () => void }
           </FolderCardE>
           <FolderCardD compact surface="var(--primary-950)" className="h-[110px]"><div className="flex h-full items-center gap-3 p-4 text-white"><ShieldCheck className="h-7 w-7 shrink-0 text-[var(--accent-300)]" /><div className="min-w-0 flex-1"><p className="font-display text-lg font-black leading-[0.95]">Built for<br />safe sharing.</p><p className="mt-1 text-[8px] text-white/55">Always on-brand. Always in control.</p></div><button onClick={onOpenDemo} aria-label="Learn about safe sharing" className="flex h-6 w-6 shrink-0 items-center justify-center bg-white/10 text-[var(--accent-300)]"><ArrowUpRight className="h-3.5 w-3.5" /></button></div></FolderCardD>
         </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }
